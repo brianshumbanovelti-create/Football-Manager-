@@ -7,6 +7,11 @@ import { state, initNewGame, resetState, getUserClub, getUserLeague } from "./st
 import { saveExists, loadGame, saveGame, autosave, getSaveMeta } from "./storage.js";
 import { CLUBS, getAllClubs, getClubsByLeague } from "../data/clubs.js";
 import { LEAGUES, LEAGUE_ORDER } from "../data/leagues.js";
+import {
+  buildLeagueTable,
+  getNextFixtureForClub,
+  getFixturesByClub
+} from "../data/fixtures.js";
 import { formatMoney, formatDateLong, el, $, clear } from "./util/helpers.js";
 
 /* ============================================================
@@ -35,7 +40,6 @@ function showInitialScreen() {
    TITLE SCREEN
    ============================================================ */
 function renderTitleScreen() {
-  const app = $("#app");
   const screens = $("#screens");
   const nav = $("#bottomnav");
   const topbar = $("#topbar");
@@ -122,13 +126,11 @@ function renderClubSelect() {
 }
 
 function switchClubSelectLeague(leagueId) {
-  // Tabs
   const tabs = document.querySelectorAll("#clubselect-tabs .tab");
   tabs.forEach(t => {
     t.classList.toggle("active", t.dataset.league === leagueId);
   });
 
-  // List
   const list = $("#clubselect-list");
   clear(list);
 
@@ -208,17 +210,14 @@ function wireNav() {
 }
 
 export function showScreen(name) {
-  // Nav highlight
   document.querySelectorAll("#bottomnav .nav-btn").forEach(b => {
     b.classList.toggle("active", b.dataset.screen === name);
   });
 
-  // Screen visibility
   document.querySelectorAll(".screen").forEach(s => {
     s.classList.toggle("active", s.id === `screen-${name}`);
   });
 
-  // Notify modules
   if (name === "dashboard")  renderDashboard();
   if (name === "fixtures")   import("./ui/fixtures.js").then(m => m.renderFixturesScreen());
   if (name === "squad")      import("./ui/squad.js").then(m => m.renderSquadScreen());
@@ -242,7 +241,7 @@ function renderDashboard() {
   const next = getNextUserFixtureSafe();
   const table = state.userClubId ? getUserLeagueTable() : null;
   const position = table ? table.findIndex(r => r.clubId === state.userClubId) + 1 : null;
-  const inbox = state.inbox.filter(m => !m.read).length;
+  const unread = state.inbox.filter(m => !m.read).length;
 
   // Next fixture card
   content.appendChild(el("div", { class: "card card-highlight" }, [
@@ -251,7 +250,7 @@ function renderDashboard() {
       el("div", { style: "font-size:15px;font-weight:600" },
         `${clubName(next.homeClubId)} vs ${clubName(next.awayClubId)}`),
       el("div", { class: "card-sub" },
-        `${formatDateLong(next.date)} · ${next.time} · ${league.name}`),
+        `${formatDateLong(next.date)} · ${next.time} · ${league ? league.name : ""}`),
       el("button", {
         class: "btn-primary",
         style: "margin-top:10px;width:100%",
@@ -263,7 +262,7 @@ function renderDashboard() {
   // Club snapshot
   const clubState = state.clubStates[state.userClubId] || {};
   content.appendChild(el("div", { class: "card" }, [
-    el("div", { class: "card-title" }, club.name),
+    el("div", { class: "card-title" }, club ? club.name : "—"),
     el("div", { class: "row-between" }, [
       el("span", { class: "card-sub" }, "League Position"),
       el("span", { style: "font-weight:700" }, position ? `#${position}` : "—")
@@ -278,7 +277,7 @@ function renderDashboard() {
     ]),
     el("div", { class: "row-between" }, [
       el("span", { class: "card-sub" }, "Unread Messages"),
-      el("span", { style: "font-weight:700" }, String(inbox))
+      el("span", { style: "font-weight:700" }, String(unread))
     ])
   ]));
 
@@ -300,51 +299,22 @@ function renderDashboard() {
   }
 }
 
+/* ============================================================
+   FIXTURE + TABLE HELPERS  (direct, no shims)
+   ============================================================ */
 function getNextUserFixtureSafe() {
-  try {
-    const { getNextUserFixture } = require_state_next();
-    return getNextUserFixture();
-  } catch {
-    return null;
-  }
+  if (!state.userClubId) return null;
+  return getNextFixtureForClub(state.fixtures, state.userClubId);
 }
 
 function getUserFixturesSafe() {
-  try {
-    const { getUserFixtures } = require_state_next();
-    return getUserFixtures();
-  } catch {
-    return null;
-  }
-}
-
-/* We import lazily to avoid circular import issues in the boot path. */
-function require_state_next() {
-  // Returns the already-imported state module bindings.
-  // Since we imported them at the top, we can just re-expose here.
-  return {
-    getNextUserFixture: () => {
-      const fixs = state.fixtures.filter(
-        f => f.homeClubId === state.userClubId || f.awayClubId === state.userClubId
-      );
-      fixs.sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
-      return fixs.find(f => !f.played) || null;
-    },
-    getUserFixtures: () =>
-      state.fixtures.filter(
-        f => f.homeClubId === state.userClubId || f.awayClubId === state.userClubId
-      )
-  };
+  if (!state.userClubId) return [];
+  return getFixturesByClub(state.fixtures, state.userClubId);
 }
 
 function getUserLeagueTable() {
-  const { buildLeagueTable } = require_fixtures_next();
+  if (!state.userLeagueId) return [];
   return buildLeagueTable(state.fixtures, state.userLeagueId);
-}
-
-function require_fixtures_next() {
-  // Lazy delegate to avoid a top-level circular import
-  return window.__fm_fixtures__ || {};
 }
 
 function clubName(clubId) {
@@ -364,7 +334,7 @@ function startMatchFlow(fixtureId) {
 }
 
 /* ============================================================
-   MATCH OVERLAY  (placeholder wiring; real logic in ui/match.js)
+   MATCH OVERLAY  (close button wiring)
    ============================================================ */
 function wireMatchOverlay() {
   const close = $("#result-close");
@@ -373,7 +343,7 @@ function wireMatchOverlay() {
       $("#match-overlay").classList.add("hidden");
       autosave();
       updateTopbar();
-      renderDashboard();
+      showScreen("dashboard");
     });
   }
 }
@@ -383,7 +353,7 @@ function wireMatchOverlay() {
    ============================================================ */
 document.addEventListener("DOMContentLoaded", boot);
 
-/* Expose a minimal API for other modules that need to route */
+/* Expose a minimal API for other modules */
 window.__fm__ = {
   showScreen,
   updateTopbar,
