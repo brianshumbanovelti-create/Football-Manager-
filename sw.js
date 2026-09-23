@@ -3,7 +3,7 @@
    Offline cache for full playability without internet
    ============================================================ */
 
-const CACHE_VERSION = "fm-v1";
+const CACHE_VERSION = "fm-v2";
 const ASSETS = [
   "./",
   "./index.html",
