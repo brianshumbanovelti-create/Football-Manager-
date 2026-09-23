@@ -1,101 +1,43 @@
 /* ============================================================
    FOOTBALL MANAGER — sw.js
-   Offline cache for full playability without internet
+   TEMPORARY: self-destruct mode while debugging.
+   Any already-installed SW will unregister itself and clear
+   all caches on its next activation. Once the game is stable,
+   this file will be restored to a real caching service worker.
    ============================================================ */
 
-const CACHE_VERSION = "fm-v2";
-
-const ASSETS = [
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./css/main.css",
-  "./css/components.css",
-  "./css/responsive.css",
-  "./data/leagues.js",
-  "./data/clubs.js",
-  "./data/players.js",
-  "./data/fixtures.js",
-  "./js/app.js",
-  "./js/state.js",
-  "./js/storage.js",
-  "./js/util/constants.js",
-  "./js/util/helpers.js",
-  "./js/engine/matchEngine.js",
-  "./js/engine/matchReveal.js",
-  "./js/engine/fatigue.js",
-  "./js/engine/morale.js",
-  "./js/engine/aiTransfers.js",
-  "./js/ui/match.js",
-  "./js/ui/fixtures.js",
-  "./js/ui/squad.js",
-  "./js/ui/inbox.js",
-  "./js/ui/tables.js",
-  "./js/ui/transfers.js"
-];
-
-/* ---------- Install: pre-cache all assets ---------- */
+/* ---------- Install: skip waiting immediately ---------- */
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_VERSION)
-      .then(cache => cache.addAll(ASSETS))
-      .then(() => self.skipWaiting())
-  );
+  self.skipWaiting();
 });
 
-/* ---------- Activate: clean up old caches ---------- */
+/* ---------- Activate: nuke caches + unregister ---------- */
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(k => k !== CACHE_VERSION).map(k => caches.delete(k))
-      ))
-      .then(() => self.clients.claim())
-  );
-});
+    (async () => {
+      // Delete every cache this origin owns
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
 
-/* ---------- Fetch: network-first for HTML, cache-first for the rest ---------- */
-self.addEventListener("fetch", (event) => {
-  const req = event.request;
-  if (req.method !== "GET") return;
+      // Unregister this service worker
+      await self.registration.unregister();
 
-  const url = new URL(req.url);
-
-  // Don't touch cross-origin requests (there aren't any, but be safe)
-  if (url.origin !== self.location.origin) return;
-
-  // Network-first for navigation (HTML) requests so updates are picked up
-  if (req.mode === "navigate" || url.pathname.endsWith(".html")) {
-    event.respondWith(
-      fetch(req)
-        .then(res => {
-          const clone = res.clone();
-          caches.open(CACHE_VERSION).then(c => c.put(req, clone));
-          return res;
-        })
-        .catch(() => caches.match(req).then(cached => cached || caches.match("./index.html")))
-    );
-    return;
-  }
-
-  // Cache-first for scripts, styles, data
-  event.respondWith(
-    caches.match(req).then(cached => {
-      if (cached) return cached;
-      return fetch(req).then(res => {
-        if (res.ok) {
-          const clone = res.clone();
-          caches.open(CACHE_VERSION).then(c => c.put(req, clone));
+      // Force all open tabs to reload with fresh network requests
+      const clients = await self.clients.matchAll({ type: "window" });
+      for (const client of clients) {
+        try {
+          client.navigate(client.url);
+        } catch (e) {
+          // Some browsers block programmatic navigate; harmless
         }
-        return res;
-      }).catch(() => caches.match("./index.html"));
-    })
+      }
+    })()
   );
 });
 
-/* ---------- Allow the page to force an immediate update ---------- */
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
+/* ---------- Fetch: pass through to network (no caching) ---------- */
+self.addEventListener("fetch", (event) => {
+  // Do nothing — let the browser handle the request normally.
+  // (Not calling respondWith means default network behavior.)
+  return;
 });
