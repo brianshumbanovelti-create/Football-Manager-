@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#E91E63" />
+  <title>Football Manager</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ===== APP SHELL ===== -->
+  <div id="app">
+
+    <!-- Top bar: club name, season, date, budget -->
+    <header id="topbar">
+      <div class="topbar-left">
+        <span id="topbar-club">—</span>
+        <span id="topbar-league" class="muted">—</span>
+      </div>
+      <div class="topbar-right">
+        <span id="topbar-date" class="muted">—</span>
+        <span id="topbar-budget" class="muted">—</span>
+      </div>
+    </header>
+
+    <!-- Main screen container: one .screen visible at a time -->
+    <main id="screens">
+
+      <section id="screen-dashboard" class="screen">
+        <h1>Dashboard</h1>
+        <div id="dashboard-content"></div>
+      </section>
+
+      <section id="screen-fixtures" class="screen">
+        <div id="fixtures-league-tabs" class="tab-bar"></div>
+        <div id="fixtures-list"></div>
+      </section>
+
+      <section id="screen-squad" class="screen">
+        <div id="squad-list"></div>
+        <div id="squad-detail" class="side-panel hidden"></div>
+      </section>
+
+      <section id="screen-tactics" class="screen">
+        <div id="tactics-content"></div>
+      </section>
+
+      <section id="screen-transfers" class="screen">
+        <div id="transfers-content"></div>
+      </section>
+
+      <section id="screen-inbox" class="screen">
+        <div id="inbox-list"></div>
+        <div id="inbox-detail" class="side-panel hidden"></div>
+      </section>
+
+      <section id="screen-tables" class="screen">
+        <div id="tables-league-tabs" class="tab-bar"></div>
+        <div id="tables-content"></div>
+      </section>
+
+    </main>
+
+    <!-- Bottom navigation -->
+    <nav id="bottomnav">
+      <button data-screen="dashboard" class="nav-btn active">Home</button>
+      <button data-screen="fixtures"  class="nav-btn">Fixtures</button>
+      <button data-screen="squad"     class="nav-btn">Squad</button>
+      <button data-screen="tactics"   class="nav-btn">Tactics</button>
+      <button data-screen="transfers" class="nav-btn">Transfers</button>
+      <button data-screen="inbox"     class="nav-btn">Inbox</button>
+      <button data-screen="tables"    class="nav-btn">Tables</button>
+    </nav>
+
+  </div>
+
+  <!-- ===== MATCH OVERLAY (pre-match → live → result) ===== -->
+  <div id="match-overlay" class="hidden">
+
+    <!-- PRE-MATCH -->
+    <div id="match-prematch" class="match-panel">
+      <h2 id="prematch-title">Pre-Match</h2>
+      <div id="prematch-body"></div>
+      <div class="match-actions">
+        <button id="prematch-kickoff" class="btn-primary">Kick Off</button>
+      </div>
+    </div>
+
+    <!-- LIVE -->
+    <div id="match-live" class="match-panel hidden">
+      <div id="live-scoreboard">
+        <span id="live-home-name">—</span>
+        <span id="live-score">0 – 0</span>
+        <span id="live-away-name">—</span>
+        <span id="live-minute" class="muted">0'</span>
+      </div>
+      <div id="live-events"></div>
+      <div class="match-actions">
+        <button id="live-pause" class="btn-primary">Pause / Manage</button>
+      </div>
+    </div>
+
+    <!-- MANAGE PANEL (slides over live view when paused) -->
+    <div id="match-manage" class="match-panel hidden">
+      <h2>Manage</h2>
+      <div id="manage-body"></div>
+      <div class="match-actions">
+        <button id="manage-resume" class="btn-primary">Resume</button>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div id="match-result" class="match-panel hidden">
+      <div id="result-banner"></div>
+      <div class="tab-bar" id="result-tabs">
+        <button data-tab="events" class="tab active">Events</button>
+        <button data-tab="teams"  class="tab">Teams</button>
+      </div>
+      <div id="result-events" class="tab-panel"></div>
+      <div id="result-teams"  class="tab-panel hidden"></div>
+      <div class="match-actions">
+        <button id="result-close" class="btn-primary">Continue</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script type="module" src="js/app.js"></script>
+
+  <script>
+    // Register service worker for offline play
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+
+</body>
+</html>
