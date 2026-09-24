@@ -18,7 +18,7 @@ ul,ol{list-style:none}
   --accent:#E91E63;--accent-soft:#ff4d8d;--accent-dark:#ad1457;--accent-glow:rgba(233,30,99,.12);
   --green:#2ecc71;--green-bg:#e7f7ee;--yellow:#f1c40f;--yellow-bg:#fef7dc;
   --red:#e74c3c;--red-bg:#fbeae8;--blue:#3498db;--blue-bg:#e6f2fb;
-  --purple:#7c4dff;--purple-bg:#ede7ff;--bar-track:#e4e4ea;
+  --bar-track:#e4e4ea;
   --topbar-h:52px;--nav-h:60px;
   --radius:12px;--radius-sm:8px;--radius-lg:16px;
   --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -33,7 +33,6 @@ h3{font-size:14px;font-weight:600}
 .row-between{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .mt-1{margin-top:4px}.mt-2{margin-top:8px}.mt-3{margin-top:16px}
 .mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:16px}
-
 #app{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:780px;margin:0 auto}
 #topbar{height:var(--topbar-h);flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--border)}
 .topbar-left,.topbar-right{display:flex;align-items:center;gap:10px;min-width:0}
@@ -47,7 +46,6 @@ h3{font-size:14px;font-weight:600}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:600;color:var(--text-muted);letter-spacing:.2px;transition:color .15s;position:relative}
 .nav-btn.active{color:var(--accent)}
 .nav-btn.active::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:26px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
-
 .btn-primary,.btn-secondary,.btn-ghost,.btn-danger{padding:11px 18px;border-radius:var(--radius-sm);font-weight:600;font-size:14px;transition:background .15s,transform .1s;white-space:nowrap}
 .btn-primary{background:var(--accent);color:#fff;box-shadow:0 3px 12px var(--accent-glow)}
 .btn-primary:hover{background:var(--accent-soft)}
@@ -60,24 +58,20 @@ h3{font-size:14px;font-weight:600}
 .btn-danger{background:transparent;color:var(--red);border:1px solid var(--red)}
 .btn-danger:hover{background:var(--red-bg)}
 .btn-sm{padding:7px 11px;font-size:12px;border-radius:var(--radius-sm)}
-
 .tab-bar{display:flex;gap:4px;overflow-x:auto;padding-bottom:2px;margin-bottom:12px;scrollbar-width:none;border-bottom:1px solid var(--border)}
 .tab-bar::-webkit-scrollbar{display:none}
 .tab{flex:0 0 auto;padding:10px 14px;font-size:13px;font-weight:600;color:var(--text-muted);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s,border-color .15s}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:10px}
 .card-highlight{border-left:3px solid var(--accent)}
 .card-title{font-size:14px;font-weight:700;margin-bottom:6px}
 .card-sub{font-size:12px;color:var(--text-muted)}
-
 .badge{display:inline-block;padding:3px 9px;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;border-radius:6px;background:var(--surface-3);color:var(--text-muted)}
 .badge.blue{background:var(--blue-bg);color:#1c6ea4}
 .badge.yellow{background:var(--yellow-bg);color:#8b6f00}
 .badge.green{background:var(--green-bg);color:#1c7a4a}
 .badge.red{background:var(--red-bg);color:#a52a1f}
 .badge.pink{background:#fce4ec;color:var(--accent-dark)}
-
 .fixture-group{margin-bottom:20px}
 .fixture-group-title{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;padding-left:2px}
 .fixture-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:6px;transition:background .15s,border-color .15s}
@@ -89,7 +83,6 @@ h3{font-size:14px;font-weight:600}
 .fixture-team{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fixture-center{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums;text-align:center;min-width:56px}
 .fixture-center .score{font-size:15px;font-weight:800;color:var(--accent-soft)}
-
 .bar-row{display:flex;align-items:center;gap:8px;font-size:12px}
 .bar-label{width:52px;color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
 .bar-track{flex:1;height:6px;background:var(--bar-track);border-radius:3px;overflow:hidden}
@@ -104,7 +97,6 @@ h3{font-size:14px;font-weight:600}
 .bar-fill.morale-bad{background:var(--red)}
 .bar-value{width:28px;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-muted);font-size:11px}
 .bar-status{font-size:11px;color:var(--text-muted);margin-top:2px;padding-left:60px}
-
 .player-row{display:grid;grid-template-columns:34px 1fr 46px 40px;align-items:center;gap:10px;padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:6px;cursor:pointer;transition:background .15s,border-color .15s}
 .player-row:hover{background:var(--surface-2)}
 .player-row.selected{border-color:var(--accent);background:var(--surface-2)}
@@ -120,7 +112,6 @@ h3{font-size:14px;font-weight:600}
 .player-ovr.good{color:var(--green)}
 .player-ovr.avg{color:var(--text)}
 .player-age{font-size:12px;text-align:center;color:var(--text-muted)}
-
 .league-table{width:100%;border-collapse:collapse;font-size:13px}
 .league-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-dim);padding:8px 6px;border-bottom:1px solid var(--border)}
 .league-table td{padding:9px 6px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums}
@@ -131,7 +122,6 @@ h3{font-size:14px;font-weight:600}
 .league-table .pts{font-weight:800;color:var(--accent-soft);width:34px;text-align:center}
 .league-table .pos-ucl{color:var(--green);font-weight:700}
 .league-table .pos-rel{color:var(--red);font-weight:700}
-
 .event-item{display:grid;grid-template-columns:38px 24px 1fr auto;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px solid var(--border);font-size:13px;animation:eventIn .3s}
 @keyframes eventIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 .event-item:last-child{border-bottom:none}
@@ -142,13 +132,11 @@ h3{font-size:14px;font-weight:600}
 .event-score{font-size:13px;font-weight:800;color:var(--accent-soft);font-variant-numeric:tabular-nums}
 .event-item.goal .event-player{color:var(--accent-dark);font-weight:700}
 .event-item.ht,.event-item.ft{font-weight:700;color:var(--text-muted);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
-
 #result-banner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px 12px;padding:20px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:16px;text-align:center}
 #result-banner .rb-side{display:flex;flex-direction:column;align-items:center;gap:6px}
 #result-banner .rb-team{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
 #result-banner .rb-score{font-size:34px;font-weight:800;letter-spacing:-1.5px;color:var(--accent-soft);font-variant-numeric:tabular-nums}
 #result-banner .rb-status{grid-column:1/-1;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);margin-top:4px}
-
 .lineup-block{margin-bottom:18px}
 .lineup-title{font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:8px}
 .lineup-row{display:grid;grid-template-columns:34px 1fr 42px 90px;align-items:center;gap:8px;padding:9px 10px;border-bottom:1px solid var(--border);font-size:13px}
@@ -158,7 +146,6 @@ h3{font-size:14px;font-weight:600}
 .lineup-rating.mid{color:var(--text)}
 .lineup-rating.low{color:#a52a1f;background:var(--red-bg)}
 .lineup-stats{font-size:11px;color:var(--text-muted);text-align:right;white-space:nowrap}
-
 .stat-header{display:grid;grid-template-columns:1fr 42px;gap:8px;padding:6px 10px;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--border)}
 .stat-row{display:grid;grid-template-columns:34px 1fr 42px;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--border);font-size:12px}
 .stat-row:last-child{border-bottom:none}
@@ -168,14 +155,12 @@ h3{font-size:14px;font-weight:600}
 .stat-rating.high{color:#1c7a4a;background:var(--green-bg)}
 .stat-rating.mid{color:var(--text)}
 .stat-rating.low{color:#a52a1f;background:var(--red-bg)}
-
 .manage-section{margin-bottom:16px}
 .manage-section h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-dim);margin-bottom:8px}
 .manage-select{width:100%;padding:10px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text)}
 .style-toggle{display:flex;gap:6px}
 .style-toggle .tab{flex:1;text-align:center;padding:10px 4px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);margin:0;border-bottom:1px solid var(--border)}
 .style-toggle .tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-
 #match-overlay{position:fixed;inset:0;z-index:1000;background:rgba(20,20,30,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
 .match-panel{width:100%;max-width:600px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.15);animation:panelIn .22s}
 @keyframes panelIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
@@ -187,12 +172,11 @@ h3{font-size:14px;font-weight:600}
 #live-score{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--accent-soft);grid-column:2;grid-row:1;font-variant-numeric:tabular-nums}
 #live-minute{grid-column:1/-1;grid-row:2;text-align:center;font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums}
 #live-events{display:flex;flex-direction:column;gap:0;max-height:48vh;overflow-y:auto;padding-right:2px}
-
 .empty{text-align:center;padding:48px 20px;color:var(--text-dim);font-size:13px}
+.error-box{padding:16px;color:var(--red);font-family:monospace;font-size:12px;white-space:pre-wrap;background:var(--red-bg);border-radius:8px}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:4px}
-
 @media (max-width:420px){
   #topbar-league{display:none}
   #topbar-budget{display:none}
@@ -205,7 +189,6 @@ h3{font-size:14px;font-weight:600}
 </style>
 </head>
 <body>
-
 <div id="app">
   <header id="topbar" style="display:none">
     <div class="topbar-left">
@@ -228,13 +211,14 @@ h3{font-size:14px;font-weight:600}
     <button class="nav-btn" data-screen="tables">Tables</button>
   </nav>
 </div>
-
 <div id="match-overlay" class="hidden"></div>
-
 <script>
 /* ============================================================
-   DATA: LEAGUES
+   FOOTBALL MANAGER 2026/27
+   Single file. Data is inline. Placeholder squads are used until
+   data/players.js is present (it will overwrite PLACEHOLDER_PLAYERS).
    ============================================================ */
+
 const LEAGUES = {
   "premier-league":{id:"premier-league",name:"Premier League",short:"PL",country:"England",tier:1,
     clubIds:["arsenal","aston-villa","bournemouth","brentford","brighton","burnley","chelsea",
@@ -258,109 +242,105 @@ const LEAGUES = {
 };
 const LEAGUE_ORDER = ["premier-league","la-liga","ligue-1","serie-a","bundesliga"];
 
-/* ============================================================
-   DATA: CLUBS
-   ============================================================ */
 const CLUBS = {
-  "arsenal":{id:"arsenal",name:"Arsenal",short:"Arsenal",leagueId:"premier-league",bg:"#EF0107",fg:"#FFFFFF",abbr:"ARS",rating:86,budget:120000000,wageBudget:3200000},
-  "aston-villa":{id:"aston-villa",name:"Aston Villa",short:"Villa",leagueId:"premier-league",bg:"#95BFE5",fg:"#670E36",abbr:"AVL",rating:79,budget:45000000,wageBudget:2100000},
-  "bournemouth":{id:"bournemouth",name:"Bournemouth",short:"Bournemouth",leagueId:"premier-league",bg:"#DA291C",fg:"#FFFFFF",abbr:"BOU",rating:73,budget:35000000,wageBudget:1100000},
-  "brentford":{id:"brentford",name:"Brentford",short:"Brentford",leagueId:"premier-league",bg:"#E30613",fg:"#FFFFFF",abbr:"BRE",rating:74,budget:30000000,wageBudget:1050000},
-  "brighton":{id:"brighton",name:"Brighton",short:"Brighton",leagueId:"premier-league",bg:"#0057B8",fg:"#FFFFFF",abbr:"BHA",rating:77,budget:55000000,wageBudget:1400000},
-  "burnley":{id:"burnley",name:"Burnley",short:"Burnley",leagueId:"premier-league",bg:"#6C1D45",fg:"#99D6EA",abbr:"BUR",rating:68,budget:20000000,wageBudget:750000},
-  "chelsea":{id:"chelsea",name:"Chelsea",short:"Chelsea",leagueId:"premier-league",bg:"#034694",fg:"#FFFFFF",abbr:"CHE",rating:84,budget:130000000,wageBudget:3400000},
-  "crystal-palace":{id:"crystal-palace",name:"Crystal Palace",short:"Palace",leagueId:"premier-league",bg:"#1B458F",fg:"#C4122E",abbr:"CRY",rating:74,budget:35000000,wageBudget:1300000},
-  "everton":{id:"everton",name:"Everton",short:"Everton",leagueId:"premier-league",bg:"#003399",fg:"#FFFFFF",abbr:"EVE",rating:73,budget:30000000,wageBudget:1500000},
-  "fulham":{id:"fulham",name:"Fulham",short:"Fulham",leagueId:"premier-league",bg:"#000000",fg:"#FFFFFF",abbr:"FUL",rating:74,budget:35000000,wageBudget:1300000},
-  "leeds-united":{id:"leeds-united",name:"Leeds United",short:"Leeds",leagueId:"premier-league",bg:"#FFFFFF",fg:"#1D428A",abbr:"LEE",rating:70,budget:30000000,wageBudget:1100000},
-  "liverpool":{id:"liverpool",name:"Liverpool",short:"Liverpool",leagueId:"premier-league",bg:"#C8102E",fg:"#FFFFFF",abbr:"LIV",rating:87,budget:140000000,wageBudget:3600000},
-  "man-city":{id:"man-city",name:"Manchester City",short:"Man City",leagueId:"premier-league",bg:"#6CABDD",fg:"#1C2C5B",abbr:"MCI",rating:88,budget:150000000,wageBudget:4000000},
-  "man-united":{id:"man-united",name:"Manchester United",short:"Man United",leagueId:"premier-league",bg:"#DA020E",fg:"#FBE122",abbr:"MUN",rating:82,budget:120000000,wageBudget:3500000},
-  "newcastle":{id:"newcastle",name:"Newcastle United",short:"Newcastle",leagueId:"premier-league",bg:"#241F20",fg:"#FFFFFF",abbr:"NEW",rating:81,budget:90000000,wageBudget:2200000},
-  "nottingham-forest":{id:"nottingham-forest",name:"Nottingham Forest",short:"Forest",leagueId:"premier-league",bg:"#DD0000",fg:"#FFFFFF",abbr:"NFO",rating:74,budget:40000000,wageBudget:1500000},
-  "sunderland":{id:"sunderland",name:"Sunderland",short:"Sunderland",leagueId:"premier-league",bg:"#EB172B",fg:"#FFFFFF",abbr:"SUN",rating:70,budget:35000000,wageBudget:1100000},
-  "tottenham":{id:"tottenham",name:"Tottenham Hotspur",short:"Spurs",leagueId:"premier-league",bg:"#132257",fg:"#FFFFFF",abbr:"TOT",rating:81,budget:90000000,wageBudget:2600000},
-  "west-ham":{id:"west-ham",name:"West Ham United",short:"West Ham",leagueId:"premier-league",bg:"#7A263A",fg:"#1BB1E7",abbr:"WHU",rating:75,budget:45000000,wageBudget:1800000},
-  "wolves":{id:"wolves",name:"Wolverhampton",short:"Wolves",leagueId:"premier-league",bg:"#FDB913",fg:"#231F20",abbr:"WOL",rating:72,budget:30000000,wageBudget:1300000},
-  "alaves":{id:"alaves",name:"Deportivo Alavés",short:"Alavés",leagueId:"la-liga",bg:"#0761AF",fg:"#FFFFFF",abbr:"ALA",rating:68,budget:12000000,wageBudget:500000},
-  "athletic-bilbao":{id:"athletic-bilbao",name:"Athletic Club",short:"Athletic",leagueId:"la-liga",bg:"#EE2523",fg:"#FFFFFF",abbr:"ATH",rating:79,budget:40000000,wageBudget:1500000},
-  "atletico-madrid":{id:"atletico-madrid",name:"Atlético Madrid",short:"Atleti",leagueId:"la-liga",bg:"#CB3524",fg:"#FFFFFF",abbr:"ATM",rating:85,budget:100000000,wageBudget:3200000},
-  "barcelona":{id:"barcelona",name:"FC Barcelona",short:"Barça",leagueId:"la-liga",bg:"#A50044",fg:"#EDBB00",abbr:"BAR",rating:86,budget:90000000,wageBudget:3800000},
-  "celta-vigo":{id:"celta-vigo",name:"Celta Vigo",short:"Celta",leagueId:"la-liga",bg:"#8AC3EE",fg:"#FFFFFF",abbr:"CEL",rating:71,budget:15000000,wageBudget:650000},
-  "elche":{id:"elche",name:"Elche CF",short:"Elche",leagueId:"la-liga",bg:"#FFFFFF",fg:"#00963F",abbr:"ELC",rating:66,budget:10000000,wageBudget:420000},
-  "espanyol":{id:"espanyol",name:"RCD Espanyol",short:"Espanyol",leagueId:"la-liga",bg:"#007FC8",fg:"#FFFFFF",abbr:"ESP",rating:70,budget:15000000,wageBudget:620000},
-  "getafe":{id:"getafe",name:"Getafe CF",short:"Getafe",leagueId:"la-liga",bg:"#005999",fg:"#FFFFFF",abbr:"GET",rating:70,budget:14000000,wageBudget:600000},
-  "girona":{id:"girona",name:"Girona FC",short:"Girona",leagueId:"la-liga",bg:"#D50000",fg:"#FFFFFF",abbr:"GIR",rating:72,budget:20000000,wageBudget:700000},
-  "levante":{id:"levante",name:"Levante UD",short:"Levante",leagueId:"la-liga",bg:"#0051A2",fg:"#B4053F",abbr:"LEV",rating:66,budget:10000000,wageBudget:420000},
-  "mallorca":{id:"mallorca",name:"RCD Mallorca",short:"Mallorca",leagueId:"la-liga",bg:"#E20613",fg:"#000000",abbr:"MLL",rating:70,budget:14000000,wageBudget:600000},
-  "osasuna":{id:"osasuna",name:"CA Osasuna",short:"Osasuna",leagueId:"la-liga",bg:"#0A346F",fg:"#D91A21",abbr:"OSA",rating:71,budget:15000000,wageBudget:640000},
-  "rayo-vallecano":{id:"rayo-vallecano",name:"Rayo Vallecano",short:"Rayo",leagueId:"la-liga",bg:"#FFFFFF",fg:"#E53027",abbr:"RAY",rating:71,budget:14000000,wageBudget:600000},
-  "real-betis":{id:"real-betis",name:"Real Betis",short:"Betis",leagueId:"la-liga",bg:"#00954C",fg:"#FFFFFF",abbr:"BET",rating:76,budget:35000000,wageBudget:1300000},
-  "real-madrid":{id:"real-madrid",name:"Real Madrid",short:"Real Madrid",leagueId:"la-liga",bg:"#FFFFFF",fg:"#FEBE10",abbr:"RMA",rating:89,budget:160000000,wageBudget:4200000},
-  "real-oviedo":{id:"real-oviedo",name:"Real Oviedo",short:"Oviedo",leagueId:"la-liga",bg:"#0055A5",fg:"#FFFFFF",abbr:"OVI",rating:65,budget:9000000,wageBudget:400000},
-  "real-sociedad":{id:"real-sociedad",name:"Real Sociedad",short:"La Real",leagueId:"la-liga",bg:"#0067B1",fg:"#FFFFFF",abbr:"RSO",rating:76,budget:35000000,wageBudget:1300000},
-  "sevilla":{id:"sevilla",name:"Sevilla FC",short:"Sevilla",leagueId:"la-liga",bg:"#D80027",fg:"#FFFFFF",abbr:"SEV",rating:75,budget:30000000,wageBudget:1400000},
-  "valencia":{id:"valencia",name:"Valencia CF",short:"Valencia",leagueId:"la-liga",bg:"#FFFFFF",fg:"#EE3524",abbr:"VAL",rating:73,budget:22000000,wageBudget:950000},
-  "villarreal":{id:"villarreal",name:"Villarreal CF",short:"Villarreal",leagueId:"la-liga",bg:"#FFE667",fg:"#005187",abbr:"VIL",rating:77,budget:40000000,wageBudget:1400000},
-  "angers":{id:"angers",name:"Angers SCO",short:"Angers",leagueId:"ligue-1",bg:"#000000",fg:"#FFFFFF",abbr:"ANG",rating:65,budget:8000000,wageBudget:350000},
-  "auxerre":{id:"auxerre",name:"AJ Auxerre",short:"Auxerre",leagueId:"ligue-1",bg:"#0055A5",fg:"#FFFFFF",abbr:"AUX",rating:66,budget:9000000,wageBudget:380000},
-  "brest":{id:"brest",name:"Stade Brestois",short:"Brest",leagueId:"ligue-1",bg:"#E30613",fg:"#FFFFFF",abbr:"BST",rating:70,budget:12000000,wageBudget:520000},
-  "le-havre":{id:"le-havre",name:"Le Havre AC",short:"Le Havre",leagueId:"ligue-1",bg:"#003DA5",fg:"#FFFFFF",abbr:"HAV",rating:65,budget:8000000,wageBudget:350000},
-  "lens":{id:"lens",name:"RC Lens",short:"Lens",leagueId:"ligue-1",bg:"#FFED00",fg:"#E30613",abbr:"LEN",rating:75,budget:30000000,wageBudget:1050000},
-  "lille":{id:"lille",name:"LOSC Lille",short:"Lille",leagueId:"ligue-1",bg:"#E01E13",fg:"#FFFFFF",abbr:"LIL",rating:77,budget:35000000,wageBudget:1300000},
-  "lorient":{id:"lorient",name:"FC Lorient",short:"Lorient",leagueId:"ligue-1",bg:"#F77F00",fg:"#000000",abbr:"LOR",rating:66,budget:9000000,wageBudget:380000},
-  "lyon":{id:"lyon",name:"Olympique Lyonnais",short:"Lyon",leagueId:"ligue-1",bg:"#FFFFFF",fg:"#1D3C8F",abbr:"LYO",rating:78,budget:40000000,wageBudget:1600000},
-  "marseille":{id:"marseille",name:"Olympique de Marseille",short:"Marseille",leagueId:"ligue-1",bg:"#2FAEE0",fg:"#FFFFFF",abbr:"MAR",rating:79,budget:45000000,wageBudget:1900000},
-  "metz":{id:"metz",name:"FC Metz",short:"Metz",leagueId:"ligue-1",bg:"#7B0D1E",fg:"#FFFFFF",abbr:"MET",rating:65,budget:8000000,wageBudget:350000},
-  "monaco":{id:"monaco",name:"AS Monaco",short:"Monaco",leagueId:"ligue-1",bg:"#E63946",fg:"#FFFFFF",abbr:"MON",rating:80,budget:55000000,wageBudget:1800000},
-  "nantes":{id:"nantes",name:"FC Nantes",short:"Nantes",leagueId:"ligue-1",bg:"#FBE122",fg:"#007A33",abbr:"NAN",rating:68,budget:12000000,wageBudget:600000},
-  "nice":{id:"nice",name:"OGC Nice",short:"Nice",leagueId:"ligue-1",bg:"#ED1C24",fg:"#000000",abbr:"NIC",rating:75,budget:30000000,wageBudget:1100000},
-  "paris-fc":{id:"paris-fc",name:"Paris FC",short:"Paris FC",leagueId:"ligue-1",bg:"#002D5A",fg:"#FFFFFF",abbr:"PFC",rating:67,budget:25000000,wageBudget:700000},
-  "paris-sg":{id:"paris-sg",name:"Paris Saint-Germain",short:"PSG",leagueId:"ligue-1",bg:"#004170",fg:"#DA291C",abbr:"PSG",rating:87,budget:150000000,wageBudget:4200000},
-  "rennes":{id:"rennes",name:"Stade Rennais",short:"Rennes",leagueId:"ligue-1",bg:"#E21F26",fg:"#000000",abbr:"REN",rating:74,budget:25000000,wageBudget:1050000},
-  "strasbourg":{id:"strasbourg",name:"RC Strasbourg",short:"Strasbourg",leagueId:"ligue-1",bg:"#0072BC",fg:"#FFFFFF",abbr:"STR",rating:72,budget:18000000,wageBudget:720000},
-  "toulouse":{id:"toulouse",name:"Toulouse FC",short:"Toulouse",leagueId:"ligue-1",bg:"#5B2D90",fg:"#FFFFFF",abbr:"TOU",rating:71,budget:15000000,wageBudget:640000},
-  "atalanta":{id:"atalanta",name:"Atalanta",short:"Atalanta",leagueId:"serie-a",bg:"#1E71B8",fg:"#000000",abbr:"ATA",rating:80,budget:45000000,wageBudget:1500000},
-  "bologna":{id:"bologna",name:"Bologna",short:"Bologna",leagueId:"serie-a",bg:"#1A2F48",fg:"#E4002B",abbr:"BOL",rating:76,budget:30000000,wageBudget:1100000},
-  "cagliari":{id:"cagliari",name:"Cagliari",short:"Cagliari",leagueId:"serie-a",bg:"#00243F",fg:"#B2001F",abbr:"CAG",rating:70,budget:15000000,wageBudget:640000},
-  "como":{id:"como",name:"Como",short:"Como",leagueId:"serie-a",bg:"#005CA9",fg:"#FFFFFF",abbr:"COM",rating:71,budget:20000000,wageBudget:720000},
-  "cremonese":{id:"cremonese",name:"Cremonese",short:"Cremonese",leagueId:"serie-a",bg:"#A6192E",fg:"#FFFFFF",abbr:"CRE",rating:66,budget:9000000,wageBudget:400000},
-  "fiorentina":{id:"fiorentina",name:"Fiorentina",short:"Fiorentina",leagueId:"serie-a",bg:"#582C83",fg:"#FFFFFF",abbr:"FIO",rating:77,budget:40000000,wageBudget:1400000},
-  "genoa":{id:"genoa",name:"Genoa",short:"Genoa",leagueId:"serie-a",bg:"#A6192E",fg:"#003876",abbr:"GEN",rating:71,budget:15000000,wageBudget:680000},
-  "hellas-verona":{id:"hellas-verona",name:"Hellas Verona",short:"Verona",leagueId:"serie-a",bg:"#FFD700",fg:"#003876",abbr:"VER",rating:69,budget:13000000,wageBudget:580000},
-  "inter":{id:"inter",name:"Inter Milan",short:"Inter",leagueId:"serie-a",bg:"#010E80",fg:"#000000",abbr:"INT",rating:85,budget:80000000,wageBudget:2800000},
-  "juventus":{id:"juventus",name:"Juventus",short:"Juventus",leagueId:"serie-a",bg:"#000000",fg:"#FFFFFF",abbr:"JUV",rating:82,budget:70000000,wageBudget:2600000},
-  "lazio":{id:"lazio",name:"Lazio",short:"Lazio",leagueId:"serie-a",bg:"#87D8F7",fg:"#FFFFFF",abbr:"LAZ",rating:77,budget:35000000,wageBudget:1500000},
-  "lecce":{id:"lecce",name:"Lecce",short:"Lecce",leagueId:"serie-a",bg:"#F5D200",fg:"#E2001A",abbr:"LEC",rating:68,budget:12000000,wageBudget:500000},
-  "milan":{id:"milan",name:"AC Milan",short:"Milan",leagueId:"serie-a",bg:"#FB090B",fg:"#000000",abbr:"MIL",rating:83,budget:75000000,wageBudget:2500000},
-  "napoli":{id:"napoli",name:"Napoli",short:"Napoli",leagueId:"serie-a",bg:"#12A0D7",fg:"#FFFFFF",abbr:"NAP",rating:83,budget:70000000,wageBudget:2300000},
-  "parma":{id:"parma",name:"Parma",short:"Parma",leagueId:"serie-a",bg:"#FFD700",fg:"#003876",abbr:"PAR",rating:68,budget:12000000,wageBudget:520000},
-  "pisa":{id:"pisa",name:"Pisa",short:"Pisa",leagueId:"serie-a",bg:"#002D72",fg:"#FFFFFF",abbr:"PIS",rating:65,budget:9000000,wageBudget:400000},
-  "roma":{id:"roma",name:"AS Roma",short:"Roma",leagueId:"serie-a",bg:"#8E1F2F",fg:"#F0BC42",abbr:"ROM",rating:80,budget:50000000,wageBudget:2000000},
-  "sassuolo":{id:"sassuolo",name:"Sassuolo",short:"Sassuolo",leagueId:"serie-a",bg:"#00A752",fg:"#000000",abbr:"SAS",rating:67,budget:10000000,wageBudget:440000},
-  "torino":{id:"torino",name:"Torino",short:"Torino",leagueId:"serie-a",bg:"#8B1A1A",fg:"#FFFFFF",abbr:"TOR",rating:73,budget:20000000,wageBudget:820000},
-  "udinese":{id:"udinese",name:"Udinese",short:"Udinese",leagueId:"serie-a",bg:"#000000",fg:"#FFFFFF",abbr:"UDI",rating:72,budget:18000000,wageBudget:740000},
-  "augsburg":{id:"augsburg",name:"FC Augsburg",short:"Augsburg",leagueId:"bundesliga",bg:"#BA3733",fg:"#FFFFFF",abbr:"FCA",rating:70,budget:15000000,wageBudget:600000},
-  "bayern-munich":{id:"bayern-munich",name:"Bayern Munich",short:"Bayern",leagueId:"bundesliga",bg:"#DC052D",fg:"#FFFFFF",abbr:"FCB",rating:89,budget:130000000,wageBudget:4200000},
-  "dortmund":{id:"dortmund",name:"Borussia Dortmund",short:"Dortmund",leagueId:"bundesliga",bg:"#FDE100",fg:"#000000",abbr:"BVB",rating:84,budget:80000000,wageBudget:2600000},
-  "frankfurt":{id:"frankfurt",name:"Eintracht Frankfurt",short:"Frankfurt",leagueId:"bundesliga",bg:"#E1000F",fg:"#000000",abbr:"SGE",rating:78,budget:40000000,wageBudget:1500000},
-  "freiburg":{id:"freiburg",name:"SC Freiburg",short:"Freiburg",leagueId:"bundesliga",bg:"#000000",fg:"#E60000",abbr:"SCF",rating:75,budget:25000000,wageBudget:1000000},
-  "gladbach":{id:"gladbach",name:"Borussia M'gladbach",short:"Gladbach",leagueId:"bundesliga",bg:"#000000",fg:"#FFFFFF",abbr:"BMG",rating:74,budget:20000000,wageBudget:1100000},
-  "hamburger-sv":{id:"hamburger-sv",name:"Hamburger SV",short:"HSV",leagueId:"bundesliga",bg:"#FFFFFF",fg:"#0F3F94",abbr:"HSV",rating:71,budget:15000000,wageBudget:700000},
-  "heidenheim":{id:"heidenheim",name:"1. FC Heidenheim",short:"Heidenheim",leagueId:"bundesliga",bg:"#003D7D",fg:"#E2001A",abbr:"FCH",rating:68,budget:8000000,wageBudget:450000},
-  "hoffenheim":{id:"hoffenheim",name:"TSG Hoffenheim",short:"Hoffenheim",leagueId:"bundesliga",bg:"#1C63B7",fg:"#FFFFFF",abbr:"TSG",rating:73,budget:20000000,wageBudget:1000000},
-  "koln":{id:"koln",name:"1. FC Köln",short:"Köln",leagueId:"bundesliga",bg:"#ED1C24",fg:"#FFFFFF",abbr:"KOE",rating:71,budget:15000000,wageBudget:700000},
-  "leverkusen":{id:"leverkusen",name:"Bayer Leverkusen",short:"Leverkusen",leagueId:"bundesliga",bg:"#E32221",fg:"#000000",abbr:"B04",rating:83,budget:60000000,wageBudget:2200000},
-  "mainz":{id:"mainz",name:"1. FSV Mainz 05",short:"Mainz",leagueId:"bundesliga",bg:"#C3141E",fg:"#FFFFFF",abbr:"M05",rating:72,budget:15000000,wageBudget:750000},
-  "rb-leipzig":{id:"rb-leipzig",name:"RB Leipzig",short:"Leipzig",leagueId:"bundesliga",bg:"#FFFFFF",fg:"#DD0741",abbr:"RBL",rating:82,budget:70000000,wageBudget:2200000},
-  "st-pauli":{id:"st-pauli",name:"FC St. Pauli",short:"St. Pauli",leagueId:"bundesliga",bg:"#662D2A",fg:"#FFFFFF",abbr:"STP",rating:68,budget:9000000,wageBudget:450000},
-  "stuttgart":{id:"stuttgart",name:"VfB Stuttgart",short:"Stuttgart",leagueId:"bundesliga",bg:"#FFFFFF",fg:"#E32219",abbr:"VFB",rating:78,budget:40000000,wageBudget:1500000},
-  "union-berlin":{id:"union-berlin",name:"Union Berlin",short:"Union",leagueId:"bundesliga",bg:"#E60000",fg:"#FFFFFF",abbr:"FCU",rating:73,budget:20000000,wageBudget:800000},
-  "werder-bremen":{id:"werder-bremen",name:"Werder Bremen",short:"Bremen",leagueId:"bundesliga",bg:"#1D9053",fg:"#FFFFFF",abbr:"SVW",rating:74,budget:22000000,wageBudget:1000000},
-  "wolfsburg":{id:"wolfsburg",name:"VfL Wolfsburg",short:"Wolfsburg",leagueId:"bundesliga",bg:"#65B32E",fg:"#FFFFFF",abbr:"WOB",rating:74,budget:25000000,wageBudget:1100000}
+  "arsenal":{id:"arsenal",name:"Arsenal",short:"Arsenal",leagueId:"premier-league",bg:"#EF0107",fg:"#FFFFFF",abbr:"ARS",rating:86,budget:220000000,wageBudget:3200000},
+  "aston-villa":{id:"aston-villa",name:"Aston Villa",short:"Villa",leagueId:"premier-league",bg:"#95BFE5",fg:"#670E36",abbr:"AVL",rating:79,budget:80000000,wageBudget:2100000},
+  "bournemouth":{id:"bournemouth",name:"Bournemouth",short:"Bournemouth",leagueId:"premier-league",bg:"#DA291C",fg:"#FFFFFF",abbr:"BOU",rating:73,budget:50000000,wageBudget:1100000},
+  "brentford":{id:"brentford",name:"Brentford",short:"Brentford",leagueId:"premier-league",bg:"#E30613",fg:"#FFFFFF",abbr:"BRE",rating:74,budget:45000000,wageBudget:1050000},
+  "brighton":{id:"brighton",name:"Brighton",short:"Brighton",leagueId:"premier-league",bg:"#0057B8",fg:"#FFFFFF",abbr:"BHA",rating:77,budget:90000000,wageBudget:1400000},
+  "burnley":{id:"burnley",name:"Burnley",short:"Burnley",leagueId:"premier-league",bg:"#6C1D45",fg:"#99D6EA",abbr:"BUR",rating:68,budget:25000000,wageBudget:750000},
+  "chelsea":{id:"chelsea",name:"Chelsea",short:"Chelsea",leagueId:"premier-league",bg:"#034694",fg:"#FFFFFF",abbr:"CHE",rating:84,budget:280000000,wageBudget:3400000},
+  "crystal-palace":{id:"crystal-palace",name:"Crystal Palace",short:"Palace",leagueId:"premier-league",bg:"#1B458F",fg:"#C4122E",abbr:"CRY",rating:74,budget:50000000,wageBudget:1300000},
+  "everton":{id:"everton",name:"Everton",short:"Everton",leagueId:"premier-league",bg:"#003399",fg:"#FFFFFF",abbr:"EVE",rating:73,budget:45000000,wageBudget:1500000},
+  "fulham":{id:"fulham",name:"Fulham",short:"Fulham",leagueId:"premier-league",bg:"#000000",fg:"#FFFFFF",abbr:"FUL",rating:74,budget:50000000,wageBudget:1300000},
+  "leeds-united":{id:"leeds-united",name:"Leeds United",short:"Leeds",leagueId:"premier-league",bg:"#FFFFFF",fg:"#1D428A",abbr:"LEE",rating:70,budget:40000000,wageBudget:1100000},
+  "liverpool":{id:"liverpool",name:"Liverpool",short:"Liverpool",leagueId:"premier-league",bg:"#C8102E",fg:"#FFFFFF",abbr:"LIV",rating:87,budget:250000000,wageBudget:3600000},
+  "man-city":{id:"man-city",name:"Manchester City",short:"Man City",leagueId:"premier-league",bg:"#6CABDD",fg:"#1C2C5B",abbr:"MCI",rating:88,budget:300000000,wageBudget:4000000},
+  "man-united":{id:"man-united",name:"Manchester United",short:"Man United",leagueId:"premier-league",bg:"#DA020E",fg:"#FBE122",abbr:"MUN",rating:82,budget:260000000,wageBudget:3500000},
+  "newcastle":{id:"newcastle",name:"Newcastle United",short:"Newcastle",leagueId:"premier-league",bg:"#241F20",fg:"#FFFFFF",abbr:"NEW",rating:81,budget:180000000,wageBudget:2200000},
+  "nottingham-forest":{id:"nottingham-forest",name:"Nottingham Forest",short:"Forest",leagueId:"premier-league",bg:"#DD0000",fg:"#FFFFFF",abbr:"NFO",rating:74,budget:55000000,wageBudget:1500000},
+  "sunderland":{id:"sunderland",name:"Sunderland",short:"Sunderland",leagueId:"premier-league",bg:"#EB172B",fg:"#FFFFFF",abbr:"SUN",rating:70,budget:50000000,wageBudget:1100000},
+  "tottenham":{id:"tottenham",name:"Tottenham Hotspur",short:"Spurs",leagueId:"premier-league",bg:"#132257",fg:"#FFFFFF",abbr:"TOT",rating:81,budget:180000000,wageBudget:2600000},
+  "west-ham":{id:"west-ham",name:"West Ham United",short:"West Ham",leagueId:"premier-league",bg:"#7A263A",fg:"#1BB1E7",abbr:"WHU",rating:75,budget:80000000,wageBudget:1800000},
+  "wolves":{id:"wolves",name:"Wolverhampton",short:"Wolves",leagueId:"premier-league",bg:"#FDB913",fg:"#231F20",abbr:"WOL",rating:72,budget:45000000,wageBudget:1300000},
+  "alaves":{id:"alaves",name:"Deportivo Alavés",short:"Alavés",leagueId:"la-liga",bg:"#0761AF",fg:"#FFFFFF",abbr:"ALA",rating:68,budget:25000000,wageBudget:500000},
+  "athletic-bilbao":{id:"athletic-bilbao",name:"Athletic Club",short:"Athletic",leagueId:"la-liga",bg:"#EE2523",fg:"#FFFFFF",abbr:"ATH",rating:79,budget:70000000,wageBudget:1500000},
+  "atletico-madrid":{id:"atletico-madrid",name:"Atlético Madrid",short:"Atleti",leagueId:"la-liga",bg:"#CB3524",fg:"#FFFFFF",abbr:"ATM",rating:85,budget:200000000,wageBudget:3200000},
+  "barcelona":{id:"barcelona",name:"FC Barcelona",short:"Barça",leagueId:"la-liga",bg:"#A50044",fg:"#EDBB00",abbr:"BAR",rating:86,budget:180000000,wageBudget:3800000},
+  "celta-vigo":{id:"celta-vigo",name:"Celta Vigo",short:"Celta",leagueId:"la-liga",bg:"#8AC3EE",fg:"#FFFFFF",abbr:"CEL",rating:71,budget:30000000,wageBudget:650000},
+  "elche":{id:"elche",name:"Elche CF",short:"Elche",leagueId:"la-liga",bg:"#FFFFFF",fg:"#00963F",abbr:"ELC",rating:66,budget:20000000,wageBudget:420000},
+  "espanyol":{id:"espanyol",name:"RCD Espanyol",short:"Espanyol",leagueId:"la-liga",bg:"#007FC8",fg:"#FFFFFF",abbr:"ESP",rating:70,budget:30000000,wageBudget:620000},
+  "getafe":{id:"getafe",name:"Getafe CF",short:"Getafe",leagueId:"la-liga",bg:"#005999",fg:"#FFFFFF",abbr:"GET",rating:70,budget:30000000,wageBudget:600000},
+  "girona":{id:"girona",name:"Girona FC",short:"Girona",leagueId:"la-liga",bg:"#D50000",fg:"#FFFFFF",abbr:"GIR",rating:72,budget:40000000,wageBudget:700000},
+  "levante":{id:"levante",name:"Levante UD",short:"Levante",leagueId:"la-liga",bg:"#0051A2",fg:"#B4053F",abbr:"LEV",rating:66,budget:20000000,wageBudget:420000},
+  "mallorca":{id:"mallorca",name:"RCD Mallorca",short:"Mallorca",leagueId:"la-liga",bg:"#E20613",fg:"#000000",abbr:"MLL",rating:70,budget:30000000,wageBudget:600000},
+  "osasuna":{id:"osasuna",name:"CA Osasuna",short:"Osasuna",leagueId:"la-liga",bg:"#0A346F",fg:"#D91A21",abbr:"OSA",rating:71,budget:30000000,wageBudget:640000},
+  "rayo-vallecano":{id:"rayo-vallecano",name:"Rayo Vallecano",short:"Rayo",leagueId:"la-liga",bg:"#FFFFFF",fg:"#E53027",abbr:"RAY",rating:71,budget:30000000,wageBudget:600000},
+  "real-betis":{id:"real-betis",name:"Real Betis",short:"Betis",leagueId:"la-liga",bg:"#00954C",fg:"#FFFFFF",abbr:"BET",rating:76,budget:70000000,wageBudget:1300000},
+  "real-madrid":{id:"real-madrid",name:"Real Madrid",short:"Real Madrid",leagueId:"la-liga",bg:"#FFFFFF",fg:"#FEBE10",abbr:"RMA",rating:89,budget:350000000,wageBudget:4200000},
+  "real-oviedo":{id:"real-oviedo",name:"Real Oviedo",short:"Oviedo",leagueId:"la-liga",bg:"#0055A5",fg:"#FFFFFF",abbr:"OVI",rating:65,budget:20000000,wageBudget:400000},
+  "real-sociedad":{id:"real-sociedad",name:"Real Sociedad",short:"La Real",leagueId:"la-liga",bg:"#0067B1",fg:"#FFFFFF",abbr:"RSO",rating:76,budget:70000000,wageBudget:1300000},
+  "sevilla":{id:"sevilla",name:"Sevilla FC",short:"Sevilla",leagueId:"la-liga",bg:"#D80027",fg:"#FFFFFF",abbr:"SEV",rating:75,budget:60000000,wageBudget:1400000},
+  "valencia":{id:"valencia",name:"Valencia CF",short:"Valencia",leagueId:"la-liga",bg:"#FFFFFF",fg:"#EE3524",abbr:"VAL",rating:73,budget:45000000,wageBudget:950000},
+  "villarreal":{id:"villarreal",name:"Villarreal CF",short:"Villarreal",leagueId:"la-liga",bg:"#FFE667",fg:"#005187",abbr:"VIL",rating:77,budget:75000000,wageBudget:1400000},
+  "angers":{id:"angers",name:"Angers SCO",short:"Angers",leagueId:"ligue-1",bg:"#000000",fg:"#FFFFFF",abbr:"ANG",rating:65,budget:20000000,wageBudget:350000},
+  "auxerre":{id:"auxerre",name:"AJ Auxerre",short:"Auxerre",leagueId:"ligue-1",bg:"#0055A5",fg:"#FFFFFF",abbr:"AUX",rating:66,budget:22000000,wageBudget:380000},
+  "brest":{id:"brest",name:"Stade Brestois",short:"Brest",leagueId:"ligue-1",bg:"#E30613",fg:"#FFFFFF",abbr:"BST",rating:70,budget:30000000,wageBudget:520000},
+  "le-havre":{id:"le-havre",name:"Le Havre AC",short:"Le Havre",leagueId:"ligue-1",bg:"#003DA5",fg:"#FFFFFF",abbr:"HAV",rating:65,budget:20000000,wageBudget:350000},
+  "lens":{id:"lens",name:"RC Lens",short:"Lens",leagueId:"ligue-1",bg:"#FFED00",fg:"#E30613",abbr:"LEN",rating:75,budget:60000000,wageBudget:1050000},
+  "lille":{id:"lille",name:"LOSC Lille",short:"Lille",leagueId:"ligue-1",bg:"#E01E13",fg:"#FFFFFF",abbr:"LIL",rating:77,budget:70000000,wageBudget:1300000},
+  "lorient":{id:"lorient",name:"FC Lorient",short:"Lorient",leagueId:"ligue-1",bg:"#F77F00",fg:"#000000",abbr:"LOR",rating:66,budget:22000000,wageBudget:380000},
+  "lyon":{id:"lyon",name:"Olympique Lyonnais",short:"Lyon",leagueId:"ligue-1",bg:"#FFFFFF",fg:"#1D3C8F",abbr:"LYO",rating:78,budget:80000000,wageBudget:1600000},
+  "marseille":{id:"marseille",name:"Olympique de Marseille",short:"Marseille",leagueId:"ligue-1",bg:"#2FAEE0",fg:"#FFFFFF",abbr:"MAR",rating:79,budget:90000000,wageBudget:1900000},
+  "metz":{id:"metz",name:"FC Metz",short:"Metz",leagueId:"ligue-1",bg:"#7B0D1E",fg:"#FFFFFF",abbr:"MET",rating:65,budget:20000000,wageBudget:350000},
+  "monaco":{id:"monaco",name:"AS Monaco",short:"Monaco",leagueId:"ligue-1",bg:"#E63946",fg:"#FFFFFF",abbr:"MON",rating:80,budget:110000000,wageBudget:1800000},
+  "nantes":{id:"nantes",name:"FC Nantes",short:"Nantes",leagueId:"ligue-1",bg:"#FBE122",fg:"#007A33",abbr:"NAN",rating:68,budget:30000000,wageBudget:600000},
+  "nice":{id:"nice",name:"OGC Nice",short:"Nice",leagueId:"ligue-1",bg:"#ED1C24",fg:"#000000",abbr:"NIC",rating:75,budget:60000000,wageBudget:1100000},
+  "paris-fc":{id:"paris-fc",name:"Paris FC",short:"Paris FC",leagueId:"ligue-1",bg:"#002D5A",fg:"#FFFFFF",abbr:"PFC",rating:67,budget:40000000,wageBudget:700000},
+  "paris-sg":{id:"paris-sg",name:"Paris Saint-Germain",short:"PSG",leagueId:"ligue-1",bg:"#004170",fg:"#DA291C",abbr:"PSG",rating:87,budget:280000000,wageBudget:4200000},
+  "rennes":{id:"rennes",name:"Stade Rennais",short:"Rennes",leagueId:"ligue-1",bg:"#E21F26",fg:"#000000",abbr:"REN",rating:74,budget:55000000,wageBudget:1050000},
+  "strasbourg":{id:"strasbourg",name:"RC Strasbourg",short:"Strasbourg",leagueId:"ligue-1",bg:"#0072BC",fg:"#FFFFFF",abbr:"STR",rating:72,budget:45000000,wageBudget:720000},
+  "toulouse":{id:"toulouse",name:"Toulouse FC",short:"Toulouse",leagueId:"ligue-1",bg:"#5B2D90",fg:"#FFFFFF",abbr:"TOU",rating:71,budget:40000000,wageBudget:640000},
+  "atalanta":{id:"atalanta",name:"Atalanta",short:"Atalanta",leagueId:"serie-a",bg:"#1E71B8",fg:"#000000",abbr:"ATA",rating:80,budget:90000000,wageBudget:1500000},
+  "bologna":{id:"bologna",name:"Bologna",short:"Bologna",leagueId:"serie-a",bg:"#1A2F48",fg:"#E4002B",abbr:"BOL",rating:76,budget:60000000,wageBudget:1100000},
+  "cagliari":{id:"cagliari",name:"Cagliari",short:"Cagliari",leagueId:"serie-a",bg:"#00243F",fg:"#B2001F",abbr:"CAG",rating:70,budget:30000000,wageBudget:640000},
+  "como":{id:"como",name:"Como",short:"Como",leagueId:"serie-a",bg:"#005CA9",fg:"#FFFFFF",abbr:"COM",rating:71,budget:40000000,wageBudget:720000},
+  "cremonese":{id:"cremonese",name:"Cremonese",short:"Cremonese",leagueId:"serie-a",bg:"#A6192E",fg:"#FFFFFF",abbr:"CRE",rating:66,budget:22000000,wageBudget:400000},
+  "fiorentina":{id:"fiorentina",name:"Fiorentina",short:"Fiorentina",leagueId:"serie-a",bg:"#582C83",fg:"#FFFFFF",abbr:"FIO",rating:77,budget:80000000,wageBudget:1400000},
+  "genoa":{id:"genoa",name:"Genoa",short:"Genoa",leagueId:"serie-a",bg:"#A6192E",fg:"#003876",abbr:"GEN",rating:71,budget:30000000,wageBudget:680000},
+  "hellas-verona":{id:"hellas-verona",name:"Hellas Verona",short:"Verona",leagueId:"serie-a",bg:"#FFD700",fg:"#003876",abbr:"VER",rating:69,budget:25000000,wageBudget:580000},
+  "inter":{id:"inter",name:"Inter Milan",short:"Inter",leagueId:"serie-a",bg:"#010E80",fg:"#000000",abbr:"INT",rating:85,budget:180000000,wageBudget:2800000},
+  "juventus":{id:"juventus",name:"Juventus",short:"Juventus",leagueId:"serie-a",bg:"#000000",fg:"#FFFFFF",abbr:"JUV",rating:82,budget:160000000,wageBudget:2600000},
+  "lazio":{id:"lazio",name:"Lazio",short:"Lazio",leagueId:"serie-a",bg:"#87D8F7",fg:"#FFFFFF",abbr:"LAZ",rating:77,budget:70000000,wageBudget:1500000},
+  "lecce":{id:"lecce",name:"Lecce",short:"Lecce",leagueId:"serie-a",bg:"#F5D200",fg:"#E2001A",abbr:"LEC",rating:68,budget:25000000,wageBudget:500000},
+  "milan":{id:"milan",name:"AC Milan",short:"Milan",leagueId:"serie-a",bg:"#FB090B",fg:"#000000",abbr:"MIL",rating:83,budget:170000000,wageBudget:2500000},
+  "napoli":{id:"napoli",name:"Napoli",short:"Napoli",leagueId:"serie-a",bg:"#12A0D7",fg:"#FFFFFF",abbr:"NAP",rating:83,budget:160000000,wageBudget:2300000},
+  "parma":{id:"parma",name:"Parma",short:"Parma",leagueId:"serie-a",bg:"#FFD700",fg:"#003876",abbr:"PAR",rating:68,budget:25000000,wageBudget:520000},
+  "pisa":{id:"pisa",name:"Pisa",short:"Pisa",leagueId:"serie-a",bg:"#002D72",fg:"#FFFFFF",abbr:"PIS",rating:65,budget:20000000,wageBudget:400000},
+  "roma":{id:"roma",name:"AS Roma",short:"Roma",leagueId:"serie-a",bg:"#8E1F2F",fg:"#F0BC42",abbr:"ROM",rating:80,budget:110000000,wageBudget:2000000},
+  "sassuolo":{id:"sassuolo",name:"Sassuolo",short:"Sassuolo",leagueId:"serie-a",bg:"#00A752",fg:"#000000",abbr:"SAS",rating:67,budget:22000000,wageBudget:440000},
+  "torino":{id:"torino",name:"Torino",short:"Torino",leagueId:"serie-a",bg:"#8B1A1A",fg:"#FFFFFF",abbr:"TOR",rating:73,budget:40000000,wageBudget:820000},
+  "udinese":{id:"udinese",name:"Udinese",short:"Udinese",leagueId:"serie-a",bg:"#000000",fg:"#FFFFFF",abbr:"UDI",rating:72,budget:35000000,wageBudget:740000},
+  "augsburg":{id:"augsburg",name:"FC Augsburg",short:"Augsburg",leagueId:"bundesliga",bg:"#BA3733",fg:"#FFFFFF",abbr:"FCA",rating:70,budget:30000000,wageBudget:600000},
+  "bayern-munich":{id:"bayern-munich",name:"Bayern Munich",short:"Bayern",leagueId:"bundesliga",bg:"#DC052D",fg:"#FFFFFF",abbr:"FCB",rating:89,budget:300000000,wageBudget:4200000},
+  "dortmund":{id:"dortmund",name:"Borussia Dortmund",short:"Dortmund",leagueId:"bundesliga",bg:"#FDE100",fg:"#000000",abbr:"BVB",rating:84,budget:180000000,wageBudget:2600000},
+  "frankfurt":{id:"frankfurt",name:"Eintracht Frankfurt",short:"Frankfurt",leagueId:"bundesliga",bg:"#E1000F",fg:"#000000",abbr:"SGE",rating:78,budget:80000000,wageBudget:1500000},
+  "freiburg":{id:"freiburg",name:"SC Freiburg",short:"Freiburg",leagueId:"bundesliga",bg:"#000000",fg:"#E60000",abbr:"SCF",rating:75,budget:50000000,wageBudget:1000000},
+  "gladbach":{id:"gladbach",name:"Borussia M'gladbach",short:"Gladbach",leagueId:"bundesliga",bg:"#000000",fg:"#FFFFFF",abbr:"BMG",rating:74,budget:40000000,wageBudget:1100000},
+  "hamburger-sv":{id:"hamburger-sv",name:"Hamburger SV",short:"HSV",leagueId:"bundesliga",bg:"#FFFFFF",fg:"#0F3F94",abbr:"HSV",rating:71,budget:35000000,wageBudget:700000},
+  "heidenheim":{id:"heidenheim",name:"1. FC Heidenheim",short:"Heidenheim",leagueId:"bundesliga",bg:"#003D7D",fg:"#E2001A",abbr:"FCH",rating:68,budget:20000000,wageBudget:450000},
+  "hoffenheim":{id:"hoffenheim",name:"TSG Hoffenheim",short:"Hoffenheim",leagueId:"bundesliga",bg:"#1C63B7",fg:"#FFFFFF",abbr:"TSG",rating:73,budget:40000000,wageBudget:1000000},
+  "koln":{id:"koln",name:"1. FC Köln",short:"Köln",leagueId:"bundesliga",bg:"#ED1C24",fg:"#FFFFFF",abbr:"KOE",rating:71,budget:35000000,wageBudget:700000},
+  "leverkusen":{id:"leverkusen",name:"Bayer Leverkusen",short:"Leverkusen",leagueId:"bundesliga",bg:"#E32221",fg:"#000000",abbr:"B04",rating:83,budget:140000000,wageBudget:2200000},
+  "mainz":{id:"mainz",name:"1. FSV Mainz 05",short:"Mainz",leagueId:"bundesliga",bg:"#C3141E",fg:"#FFFFFF",abbr:"M05",rating:72,budget:35000000,wageBudget:750000},
+  "rb-leipzig":{id:"rb-leipzig",name:"RB Leipzig",short:"Leipzig",leagueId:"bundesliga",bg:"#FFFFFF",fg:"#DD0741",abbr:"RBL",rating:82,budget:150000000,wageBudget:2200000},
+  "st-pauli":{id:"st-pauli",name:"FC St. Pauli",short:"St. Pauli",leagueId:"bundesliga",bg:"#662D2A",fg:"#FFFFFF",abbr:"STP",rating:68,budget:20000000,wageBudget:450000},
+  "stuttgart":{id:"stuttgart",name:"VfB Stuttgart",short:"Stuttgart",leagueId:"bundesliga",bg:"#FFFFFF",fg:"#E32219",abbr:"VFB",rating:78,budget:80000000,wageBudget:1500000},
+  "union-berlin":{id:"union-berlin",name:"Union Berlin",short:"Union",leagueId:"bundesliga",bg:"#E60000",fg:"#FFFFFF",abbr:"FCU",rating:73,budget:40000000,wageBudget:800000},
+  "werder-bremen":{id:"werder-bremen",name:"Werder Bremen",short:"Bremen",leagueId:"bundesliga",bg:"#1D9053",fg:"#FFFFFF",abbr:"SVW",rating:74,budget:45000000,wageBudget:1000000},
+  "wolfsburg":{id:"wolfsburg",name:"VfL Wolfsburg",short:"Wolfsburg",leagueId:"bundesliga",bg:"#65B32E",fg:"#FFFFFF",abbr:"WOB",rating:74,budget:50000000,wageBudget:1100000}
 };
 
-/* ELITE CUP — 20 fixed clubs */
 const ELITE_CUP_CLUBS = [
   "chelsea","man-united","man-city","arsenal","tottenham","liverpool",
   "barcelona","real-madrid","atletico-madrid","real-betis",
@@ -369,335 +349,227 @@ const ELITE_CUP_CLUBS = [
   "bayern-munich","dortmund","leverkusen"
 ];
 
-/* ============================================================
-   DATA: PLACEHOLDER PLAYERS
-   ~200 players with 15-16 per PL big club + small squads elsewhere.
-   data/players.js will replace this.
-   ============================================================ */
+/* PLACEHOLDER PLAYERS — used until data/players.js is loaded */
 const PLACEHOLDER_PLAYERS = [
-  /* ARSENAL (16) */
-  {id:"ars-1",name:"David Raya",clubId:"arsenal",position:"GK",age:30,overall:85,nationality:"Spain"},
-  {id:"ars-2",name:"William Saliba",clubId:"arsenal",position:"CB",age:25,overall:86,nationality:"France"},
-  {id:"ars-3",name:"Gabriel Magalhães",clubId:"arsenal",position:"CB",age:28,overall:85,nationality:"Brazil"},
-  {id:"ars-4",name:"Piero Hincapié",clubId:"arsenal",position:"CB",age:24,overall:82,nationality:"Ecuador"},
-  {id:"ars-5",name:"Ben White",clubId:"arsenal",position:"RB",age:28,overall:82,nationality:"England"},
-  {id:"ars-6",name:"Jurriën Timber",clubId:"arsenal",position:"RB",age:25,overall:83,nationality:"Netherlands"},
-  {id:"ars-7",name:"Riccardo Calafiori",clubId:"arsenal",position:"LB",age:24,overall:82,nationality:"Italy"},
-  {id:"ars-8",name:"Myles Lewis-Skelly",clubId:"arsenal",position:"LB",age:19,overall:78,nationality:"England"},
-  {id:"ars-9",name:"Declan Rice",clubId:"arsenal",position:"CDM",age:27,overall:87,nationality:"England"},
-  {id:"ars-10",name:"Martín Zubimendi",clubId:"arsenal",position:"CDM",age:27,overall:85,nationality:"Spain"},
-  {id:"ars-11",name:"Bruno Guimarães",clubId:"arsenal",position:"CM",age:28,overall:84,nationality:"Brazil"},
-  {id:"ars-12",name:"Martin Ødegaard",clubId:"arsenal",position:"CAM",age:27,overall:87,nationality:"Norway"},
-  {id:"ars-13",name:"Eberechi Eze",clubId:"arsenal",position:"CAM",age:28,overall:84,nationality:"England"},
-  {id:"ars-14",name:"Bukayo Saka",clubId:"arsenal",position:"RW",age:24,overall:87,nationality:"England"},
-  {id:"ars-15",name:"Gabriel Martinelli",clubId:"arsenal",position:"LW",age:25,overall:82,nationality:"Brazil"},
-  {id:"ars-16",name:"Viktor Gyökeres",clubId:"arsenal",position:"ST",age:28,overall:85,nationality:"Sweden"},
-  {id:"ars-17",name:"Kai Havertz",clubId:"arsenal",position:"ST",age:27,overall:83,nationality:"Germany"},
-
-  /* CHELSEA (16) */
-  {id:"che-1",name:"Robert Sánchez",clubId:"chelsea",position:"GK",age:28,overall:80,nationality:"Spain"},
-  {id:"che-2",name:"Filip Jörgensen",clubId:"chelsea",position:"GK",age:24,overall:77,nationality:"Denmark"},
-  {id:"che-3",name:"Reece James",clubId:"chelsea",position:"RB",age:26,overall:83,nationality:"England"},
-  {id:"che-4",name:"Malo Gusto",clubId:"chelsea",position:"RB",age:23,overall:79,nationality:"France"},
-  {id:"che-5",name:"Marc Cucurella",clubId:"chelsea",position:"LB",age:28,overall:82,nationality:"Spain"},
-  {id:"che-6",name:"Levi Colwill",clubId:"chelsea",position:"CB",age:23,overall:81,nationality:"England"},
-  {id:"che-7",name:"Wesley Fofana",clubId:"chelsea",position:"CB",age:25,overall:80,nationality:"France"},
-  {id:"che-8",name:"Maxence Lacroix",clubId:"chelsea",position:"CB",age:26,overall:80,nationality:"France"},
-  {id:"che-9",name:"Tosin Adarabioyo",clubId:"chelsea",position:"CB",age:28,overall:78,nationality:"England"},
-  {id:"che-10",name:"Moisés Caicedo",clubId:"chelsea",position:"CDM",age:24,overall:85,nationality:"Ecuador"},
-  {id:"che-11",name:"Enzo Fernández",clubId:"chelsea",position:"CM",age:25,overall:84,nationality:"Argentina"},
-  {id:"che-12",name:"Cole Palmer",clubId:"chelsea",position:"CAM",age:24,overall:86,nationality:"England"},
-  {id:"che-13",name:"Morgan Rogers",clubId:"chelsea",position:"CAM",age:23,overall:81,nationality:"England"},
-  {id:"che-14",name:"Pedro Neto",clubId:"chelsea",position:"LW",age:26,overall:82,nationality:"Portugal"},
-  {id:"che-15",name:"João Pedro",clubId:"chelsea",position:"ST",age:24,overall:82,nationality:"Brazil"},
-  {id:"che-16",name:"Liam Delap",clubId:"chelsea",position:"ST",age:23,overall:78,nationality:"England"},
-
-  /* LIVERPOOL (16) */
-  {id:"liv-1",name:"Alisson Becker",clubId:"liverpool",position:"GK",age:34,overall:86,nationality:"Brazil"},
-  {id:"liv-2",name:"Giorgi Mamardashvili",clubId:"liverpool",position:"GK",age:25,overall:82,nationality:"Georgia"},
-  {id:"liv-3",name:"Virgil van Dijk",clubId:"liverpool",position:"CB",age:35,overall:85,nationality:"Netherlands"},
-  {id:"liv-4",name:"Ronald Araújo",clubId:"liverpool",position:"CB",age:27,overall:82,nationality:"Uruguay"},
-  {id:"liv-5",name:"Joe Gomez",clubId:"liverpool",position:"CB",age:29,overall:78,nationality:"England"},
-  {id:"liv-6",name:"Miloš Kerkez",clubId:"liverpool",position:"LB",age:23,overall:78,nationality:"Hungary"},
-  {id:"liv-7",name:"Kostas Tsimikas",clubId:"liverpool",position:"LB",age:30,overall:77,nationality:"Greece"},
-  {id:"liv-8",name:"Jeremie Frimpong",clubId:"liverpool",position:"RB",age:25,overall:79,nationality:"Netherlands"},
-  {id:"liv-9",name:"Conor Bradley",clubId:"liverpool",position:"RB",age:23,overall:78,nationality:"Northern Ireland"},
-  {id:"liv-10",name:"Ryan Gravenberch",clubId:"liverpool",position:"CDM",age:24,overall:82,nationality:"Netherlands"},
-  {id:"liv-11",name:"Alexis Mac Allister",clubId:"liverpool",position:"CM",age:27,overall:84,nationality:"Argentina"},
-  {id:"liv-12",name:"Dominik Szoboszlai",clubId:"liverpool",position:"CM",age:25,overall:83,nationality:"Hungary"},
-  {id:"liv-13",name:"Florian Wirtz",clubId:"liverpool",position:"CAM",age:23,overall:87,nationality:"Germany"},
-  {id:"liv-14",name:"Bradley Barcola",clubId:"liverpool",position:"LW",age:23,overall:82,nationality:"France"},
-  {id:"liv-15",name:"Alexander Isak",clubId:"liverpool",position:"ST",age:26,overall:86,nationality:"Sweden"},
-  {id:"liv-16",name:"Hugo Ekitike",clubId:"liverpool",position:"ST",age:24,overall:82,nationality:"France"},
-
-  /* MAN CITY (16) */
-  {id:"mci-1",name:"Gianluigi Donnarumma",clubId:"man-city",position:"GK",age:27,overall:88,nationality:"Italy"},
-  {id:"mci-2",name:"Stefan Ortega",clubId:"man-city",position:"GK",age:33,overall:80,nationality:"Germany"},
-  {id:"mci-3",name:"Rúben Dias",clubId:"man-city",position:"CB",age:29,overall:87,nationality:"Portugal"},
-  {id:"mci-4",name:"Marc Guéhi",clubId:"man-city",position:"CB",age:26,overall:82,nationality:"England"},
-  {id:"mci-5",name:"Abdukodir Khusanov",clubId:"man-city",position:"CB",age:22,overall:78,nationality:"Uzbekistan"},
-  {id:"mci-6",name:"Nathan Aké",clubId:"man-city",position:"CB",age:31,overall:80,nationality:"Netherlands"},
-  {id:"mci-7",name:"Joško Gvardiol",clubId:"man-city",position:"LB",age:24,overall:84,nationality:"Croatia"},
-  {id:"mci-8",name:"Rayan Aït-Nouri",clubId:"man-city",position:"LB",age:25,overall:80,nationality:"Algeria"},
-  {id:"mci-9",name:"Matheus Nunes",clubId:"man-city",position:"RB",age:27,overall:79,nationality:"Portugal"},
-  {id:"mci-10",name:"Rico Lewis",clubId:"man-city",position:"RB",age:21,overall:79,nationality:"England"},
-  {id:"mci-11",name:"Rodri",clubId:"man-city",position:"CDM",age:30,overall:89,nationality:"Spain"},
-  {id:"mci-12",name:"Nico González",clubId:"man-city",position:"CDM",age:24,overall:80,nationality:"Spain"},
-  {id:"mci-13",name:"Elliot Anderson",clubId:"man-city",position:"CM",age:23,overall:80,nationality:"England"},
-  {id:"mci-14",name:"Phil Foden",clubId:"man-city",position:"CAM",age:26,overall:85,nationality:"England"},
-  {id:"mci-15",name:"Rayan Cherki",clubId:"man-city",position:"CAM",age:23,overall:82,nationality:"France"},
-  {id:"mci-16",name:"Erling Haaland",clubId:"man-city",position:"ST",age:26,overall:91,nationality:"Norway"},
-
-  /* MAN UNITED (16) */
-  {id:"mun-1",name:"Senne Lammens",clubId:"man-united",position:"GK",age:24,overall:78,nationality:"Belgium"},
-  {id:"mun-2",name:"Matthijs de Ligt",clubId:"man-united",position:"CB",age:27,overall:82,nationality:"Netherlands"},
-  {id:"mun-3",name:"Lisandro Martínez",clubId:"man-united",position:"CB",age:28,overall:82,nationality:"Argentina"},
-  {id:"mun-4",name:"Harry Maguire",clubId:"man-united",position:"CB",age:33,overall:79,nationality:"England"},
-  {id:"mun-5",name:"Leny Yoro",clubId:"man-united",position:"CB",age:20,overall:79,nationality:"France"},
-  {id:"mun-6",name:"Diogo Dalot",clubId:"man-united",position:"RB",age:27,overall:81,nationality:"Portugal"},
-  {id:"mun-7",name:"Noussair Mazraoui",clubId:"man-united",position:"RB",age:28,overall:80,nationality:"Morocco"},
-  {id:"mun-8",name:"Luke Shaw",clubId:"man-united",position:"LB",age:31,overall:78,nationality:"England"},
-  {id:"mun-9",name:"Carlos Baleba",clubId:"man-united",position:"CDM",age:22,overall:81,nationality:"Cameroon"},
-  {id:"mun-10",name:"Manuel Ugarte",clubId:"man-united",position:"CDM",age:25,overall:78,nationality:"Uruguay"},
-  {id:"mun-11",name:"Bruno Fernandes",clubId:"man-united",position:"CAM",age:32,overall:85,nationality:"Portugal"},
-  {id:"mun-12",name:"Youri Tielemans",clubId:"man-united",position:"CM",age:29,overall:83,nationality:"Belgium"},
-  {id:"mun-13",name:"Bryan Mbeumo",clubId:"man-united",position:"RW",age:27,overall:81,nationality:"Cameroon"},
-  {id:"mun-14",name:"Amad Diallo",clubId:"man-united",position:"RW",age:24,overall:79,nationality:"Ivory Coast"},
-  {id:"mun-15",name:"Matheus Cunha",clubId:"man-united",position:"ST",age:27,overall:82,nationality:"Brazil"},
-  {id:"mun-16",name:"Benjamin Šeško",clubId:"man-united",position:"ST",age:23,overall:81,nationality:"Slovenia"},
-
-  /* TOTTENHAM (16) */
-  {id:"tot-1",name:"Guglielmo Vicario",clubId:"tottenham",position:"GK",age:30,overall:81,nationality:"Italy"},
-  {id:"tot-2",name:"Antonín Kinský",clubId:"tottenham",position:"GK",age:23,overall:78,nationality:"Czechia"},
-  {id:"tot-3",name:"Cristian Romero",clubId:"tottenham",position:"CB",age:28,overall:84,nationality:"Argentina"},
-  {id:"tot-4",name:"Micky van de Ven",clubId:"tottenham",position:"CB",age:25,overall:82,nationality:"Netherlands"},
-  {id:"tot-5",name:"Jan Paul van Hecke",clubId:"tottenham",position:"CB",age:26,overall:81,nationality:"Netherlands"},
-  {id:"tot-6",name:"Marcos Senesi",clubId:"tottenham",position:"CB",age:29,overall:79,nationality:"Argentina"},
-  {id:"tot-7",name:"Pedro Porro",clubId:"tottenham",position:"RB",age:26,overall:81,nationality:"Spain"},
-  {id:"tot-8",name:"Andy Robertson",clubId:"tottenham",position:"LB",age:32,overall:82,nationality:"Scotland"},
-  {id:"tot-9",name:"Destiny Udogie",clubId:"tottenham",position:"LB",age:23,overall:80,nationality:"Italy"},
-  {id:"tot-10",name:"Sandro Tonali",clubId:"tottenham",position:"CDM",age:26,overall:83,nationality:"Italy"},
-  {id:"tot-11",name:"Rodrigo Bentancur",clubId:"tottenham",position:"CM",age:29,overall:80,nationality:"Uruguay"},
-  {id:"tot-12",name:"Conor Gallagher",clubId:"tottenham",position:"CM",age:26,overall:80,nationality:"England"},
-  {id:"tot-13",name:"James Maddison",clubId:"tottenham",position:"CAM",age:29,overall:80,nationality:"England"},
-  {id:"tot-14",name:"Mohammed Kudus",clubId:"tottenham",position:"RW",age:26,overall:81,nationality:"Ghana"},
-  {id:"tot-15",name:"Sávio",clubId:"tottenham",position:"RW",age:22,overall:79,nationality:"Brazil"},
-  {id:"tot-16",name:"Omar Marmoush",clubId:"tottenham",position:"ST",age:27,overall:82,nationality:"Egypt"},
-
-  /* NEWCASTLE (16) */
-  {id:"new-1",name:"Nick Pope",clubId:"newcastle",position:"GK",age:34,overall:81,nationality:"England"},
-  {id:"new-2",name:"Lukáš Horníček",clubId:"newcastle",position:"GK",age:24,overall:74,nationality:"Czechia"},
-  {id:"new-3",name:"Sven Botman",clubId:"newcastle",position:"CB",age:26,overall:80,nationality:"Netherlands"},
-  {id:"new-4",name:"Malick Thiaw",clubId:"newcastle",position:"CB",age:25,overall:79,nationality:"Germany"},
-  {id:"new-5",name:"Fabian Schär",clubId:"newcastle",position:"CB",age:34,overall:78,nationality:"Switzerland"},
-  {id:"new-6",name:"Tino Livramento",clubId:"newcastle",position:"RB",age:23,overall:80,nationality:"England"},
-  {id:"new-7",name:"Amar Dedic",clubId:"newcastle",position:"RB",age:24,overall:76,nationality:"Bosnia"},
-  {id:"new-8",name:"Lewis Hall",clubId:"newcastle",position:"LB",age:22,overall:79,nationality:"England"},
-  {id:"new-9",name:"Bruno Guimarães",clubId:"newcastle",position:"CM",age:28,overall:84,nationality:"Brazil"},
-  {id:"new-10",name:"Joelinton",clubId:"newcastle",position:"CM",age:30,overall:81,nationality:"Brazil"},
-  {id:"new-11",name:"Joe Willock",clubId:"newcastle",position:"CM",age:27,overall:76,nationality:"England"},
-  {id:"new-12",name:"Lewis Miley",clubId:"newcastle",position:"CM",age:20,overall:75,nationality:"England"},
-  {id:"new-13",name:"Anthony Elanga",clubId:"newcastle",position:"RW",age:24,overall:78,nationality:"Sweden"},
-  {id:"new-14",name:"Harvey Barnes",clubId:"newcastle",position:"LW",age:29,overall:79,nationality:"England"},
-  {id:"new-15",name:"Nick Woltemade",clubId:"newcastle",position:"ST",age:24,overall:82,nationality:"Germany"},
-  {id:"new-16",name:"Yoane Wissa",clubId:"newcastle",position:"ST",age:29,overall:79,nationality:"DR Congo"},
-
-  /* REAL MADRID (16) */
-  {id:"rma-1",name:"Thibaut Courtois",clubId:"real-madrid",position:"GK",age:34,overall:89,nationality:"Belgium"},
-  {id:"rma-2",name:"Andriy Lunin",clubId:"real-madrid",position:"GK",age:27,overall:80,nationality:"Ukraine"},
-  {id:"rma-3",name:"Antonio Rüdiger",clubId:"real-madrid",position:"CB",age:33,overall:85,nationality:"Germany"},
-  {id:"rma-4",name:"Dean Huijsen",clubId:"real-madrid",position:"CB",age:21,overall:82,nationality:"Spain"},
-  {id:"rma-5",name:"Éder Militão",clubId:"real-madrid",position:"CB",age:28,overall:83,nationality:"Brazil"},
-  {id:"rma-6",name:"Trent Alexander-Arnold",clubId:"real-madrid",position:"RB",age:27,overall:85,nationality:"England"},
-  {id:"rma-7",name:"Dani Carvajal",clubId:"real-madrid",position:"RB",age:34,overall:80,nationality:"Spain"},
-  {id:"rma-8",name:"Álvaro Carreras",clubId:"real-madrid",position:"LB",age:23,overall:81,nationality:"Spain"},
-  {id:"rma-9",name:"Federico Valverde",clubId:"real-madrid",position:"CM",age:28,overall:86,nationality:"Uruguay"},
-  {id:"rma-10",name:"Aurélien Tchouaméni",clubId:"real-madrid",position:"CDM",age:26,overall:84,nationality:"France"},
-  {id:"rma-11",name:"Jude Bellingham",clubId:"real-madrid",position:"CAM",age:23,overall:88,nationality:"England"},
-  {id:"rma-12",name:"Arda Güler",clubId:"real-madrid",position:"CAM",age:21,overall:82,nationality:"Turkey"},
-  {id:"rma-13",name:"Vinicius Júnior",clubId:"real-madrid",position:"LW",age:26,overall:89,nationality:"Brazil"},
-  {id:"rma-14",name:"Rodrygo",clubId:"real-madrid",position:"RW",age:25,overall:85,nationality:"Brazil"},
-  {id:"rma-15",name:"Kylian Mbappé",clubId:"real-madrid",position:"ST",age:27,overall:91,nationality:"France"},
-  {id:"rma-16",name:"Endrick",clubId:"real-madrid",position:"ST",age:20,overall:78,nationality:"Brazil"},
-
-  /* BARCELONA (16) */
-  {id:"bar-1",name:"Joan García",clubId:"barcelona",position:"GK",age:25,overall:82,nationality:"Spain"},
-  {id:"bar-2",name:"Wojciech Szczęsny",clubId:"barcelona",position:"GK",age:36,overall:80,nationality:"Poland"},
-  {id:"bar-3",name:"Pau Cubarsí",clubId:"barcelona",position:"CB",age:19,overall:83,nationality:"Spain"},
-  {id:"bar-4",name:"Ronald Araújo",clubId:"barcelona",position:"CB",age:27,overall:82,nationality:"Uruguay"},
-  {id:"bar-5",name:"Andreas Christensen",clubId:"barcelona",position:"CB",age:30,overall:79,nationality:"Denmark"},
-  {id:"bar-6",name:"Jules Koundé",clubId:"barcelona",position:"RB",age:27,overall:85,nationality:"France"},
-  {id:"bar-7",name:"Héctor Fort",clubId:"barcelona",position:"RB",age:20,overall:76,nationality:"Spain"},
-  {id:"bar-8",name:"Alejandro Balde",clubId:"barcelona",position:"LB",age:22,overall:82,nationality:"Spain"},
-  {id:"bar-9",name:"Pedri",clubId:"barcelona",position:"CM",age:23,overall:86,nationality:"Spain"},
-  {id:"bar-10",name:"Frenkie de Jong",clubId:"barcelona",position:"CM",age:28,overall:84,nationality:"Netherlands"},
-  {id:"bar-11",name:"Marc Bernal",clubId:"barcelona",position:"CDM",age:19,overall:76,nationality:"Spain"},
-  {id:"bar-12",name:"Dani Olmo",clubId:"barcelona",position:"CAM",age:28,overall:85,nationality:"Spain"},
-  {id:"bar-13",name:"Fermín López",clubId:"barcelona",position:"CAM",age:23,overall:82,nationality:"Spain"},
-  {id:"bar-14",name:"Lamine Yamal",clubId:"barcelona",position:"RW",age:19,overall:88,nationality:"Spain"},
-  {id:"bar-15",name:"Raphinha",clubId:"barcelona",position:"LW",age:29,overall:86,nationality:"Brazil"},
-  {id:"bar-16",name:"Robert Lewandowski",clubId:"barcelona",position:"ST",age:37,overall:84,nationality:"Poland"},
-
-  /* PSG (16) */
-  {id:"psg-1",name:"Matvei Safonov",clubId:"paris-sg",position:"GK",age:27,overall:82,nationality:"Russia"},
-  {id:"psg-2",name:"Lucas Chevalier",clubId:"paris-sg",position:"GK",age:24,overall:78,nationality:"France"},
-  {id:"psg-3",name:"Marquinhos",clubId:"paris-sg",position:"CB",age:32,overall:85,nationality:"Brazil"},
-  {id:"psg-4",name:"Willian Pacho",clubId:"paris-sg",position:"CB",age:24,overall:83,nationality:"Ecuador"},
-  {id:"psg-5",name:"Lucas Hernández",clubId:"paris-sg",position:"CB",age:30,overall:80,nationality:"France"},
-  {id:"psg-6",name:"Achraf Hakimi",clubId:"paris-sg",position:"RB",age:27,overall:85,nationality:"Morocco"},
-  {id:"psg-7",name:"Nuno Mendes",clubId:"paris-sg",position:"LB",age:24,overall:84,nationality:"Portugal"},
-  {id:"psg-8",name:"Lucas Digne",clubId:"paris-sg",position:"LB",age:33,overall:77,nationality:"France"},
-  {id:"psg-9",name:"Vitinha",clubId:"paris-sg",position:"CDM",age:26,overall:85,nationality:"Portugal"},
-  {id:"psg-10",name:"João Neves",clubId:"paris-sg",position:"CM",age:21,overall:84,nationality:"Portugal"},
-  {id:"psg-11",name:"Fabián Ruiz",clubId:"paris-sg",position:"CM",age:30,overall:84,nationality:"Spain"},
-  {id:"psg-12",name:"Senny Mayulu",clubId:"paris-sg",position:"CM",age:20,overall:75,nationality:"France"},
-  {id:"psg-13",name:"Désiré Doué",clubId:"paris-sg",position:"RW",age:21,overall:82,nationality:"France"},
-  {id:"psg-14",name:"Khvicha Kvaratskhelia",clubId:"paris-sg",position:"LW",age:25,overall:86,nationality:"Georgia"},
-  {id:"psg-15",name:"Ousmane Dembélé",clubId:"paris-sg",position:"ST",age:29,overall:86,nationality:"France"},
-  {id:"psg-16",name:"Gonçalo Ramos",clubId:"paris-sg",position:"ST",age:25,overall:82,nationality:"Portugal"},
-
-  /* INTER (14) */
-  {id:"int-1",name:"Yann Sommer",clubId:"inter",position:"GK",age:37,overall:82,nationality:"Switzerland"},
-  {id:"int-2",name:"Josep Martínez",clubId:"inter",position:"GK",age:28,overall:79,nationality:"Spain"},
-  {id:"int-3",name:"Alessandro Bastoni",clubId:"inter",position:"CB",age:27,overall:84,nationality:"Italy"},
-  {id:"int-4",name:"Francesco Acerbi",clubId:"inter",position:"CB",age:38,overall:79,nationality:"Italy"},
-  {id:"int-5",name:"Manuel Akanji",clubId:"inter",position:"CB",age:31,overall:82,nationality:"Switzerland"},
-  {id:"int-6",name:"Federico Dimarco",clubId:"inter",position:"LB",age:28,overall:83,nationality:"Italy"},
-  {id:"int-7",name:"Denzel Dumfries",clubId:"inter",position:"RB",age:30,overall:81,nationality:"Netherlands"},
-  {id:"int-8",name:"Nicolò Barella",clubId:"inter",position:"CM",age:29,overall:84,nationality:"Italy"},
-  {id:"int-9",name:"Hakan Çalhanoğlu",clubId:"inter",position:"CDM",age:32,overall:83,nationality:"Turkey"},
-  {id:"int-10",name:"Henrikh Mkhitaryan",clubId:"inter",position:"CM",age:37,overall:79,nationality:"Armenia"},
-  {id:"int-11",name:"Piotr Zieliński",clubId:"inter",position:"CAM",age:32,overall:81,nationality:"Poland"},
-  {id:"int-12",name:"Marcus Thuram",clubId:"inter",position:"ST",age:29,overall:82,nationality:"France"},
-  {id:"int-13",name:"Lautaro Martínez",clubId:"inter",position:"ST",age:29,overall:85,nationality:"Argentina"},
-  {id:"int-14",name:"Mehdi Taremi",clubId:"inter",position:"ST",age:33,overall:78,nationality:"Iran"},
-
-  /* JUVENTUS (14) */
-  {id:"juv-1",name:"Michele Di Gregorio",clubId:"juventus",position:"GK",age:29,overall:80,nationality:"Italy"},
-  {id:"juv-2",name:"Mattia Perin",clubId:"juventus",position:"GK",age:33,overall:76,nationality:"Italy"},
-  {id:"juv-3",name:"Gleison Bremer",clubId:"juventus",position:"CB",age:29,overall:84,nationality:"Brazil"},
-  {id:"juv-4",name:"Federico Gatti",clubId:"juventus",position:"CB",age:28,overall:79,nationality:"Italy"},
-  {id:"juv-5",name:"Pierre Kalulu",clubId:"juventus",position:"CB",age:26,overall:78,nationality:"France"},
-  {id:"juv-6",name:"Andrea Cambiaso",clubId:"juventus",position:"RB",age:26,overall:81,nationality:"Italy"},
-  {id:"juv-7",name:"Lloyd Kelly",clubId:"juventus",position:"LB",age:27,overall:77,nationality:"England"},
-  {id:"juv-8",name:"Manuel Locatelli",clubId:"juventus",position:"CM",age:28,overall:82,nationality:"Italy"},
-  {id:"juv-9",name:"Douglas Luiz",clubId:"juventus",position:"CM",age:28,overall:82,nationality:"Brazil"},
-  {id:"juv-10",name:"Teun Koopmeiners",clubId:"juventus",position:"CAM",age:28,overall:81,nationality:"Netherlands"},
-  {id:"juv-11",name:"Nicolás González",clubId:"juventus",position:"RW",age:28,overall:79,nationality:"Argentina"},
-  {id:"juv-12",name:"Randal Kolo Muani",clubId:"juventus",position:"ST",age:27,overall:80,nationality:"France"},
-  {id:"juv-13",name:"Dušan Vlahović",clubId:"juventus",position:"ST",age:26,overall:83,nationality:"Serbia"},
-  {id:"juv-14",name:"Kenan Yıldız",clubId:"juventus",position:"CAM",age:21,overall:81,nationality:"Turkey"},
-
-  /* MILAN (14) */
-  {id:"mil-1",name:"Mike Maignan",clubId:"milan",position:"GK",age:31,overall:85,nationality:"France"},
-  {id:"mil-2",name:"Marco Sportiello",clubId:"milan",position:"GK",age:34,overall:76,nationality:"Italy"},
-  {id:"mil-3",name:"Fikayo Tomori",clubId:"milan",position:"CB",age:28,overall:82,nationality:"England"},
-  {id:"mil-4",name:"Strahinja Pavlović",clubId:"milan",position:"CB",age:25,overall:80,nationality:"Serbia"},
-  {id:"mil-5",name:"Malick Thiaw",clubId:"milan",position:"CB",age:25,overall:79,nationality:"Germany"},
-  {id:"mil-6",name:"Theo Hernández",clubId:"milan",position:"LB",age:28,overall:85,nationality:"France"},
-  {id:"mil-7",name:"Alessandro Florenzi",clubId:"milan",position:"RB",age:35,overall:75,nationality:"Italy"},
-  {id:"mil-8",name:"Yunus Musah",clubId:"milan",position:"CM",age:23,overall:78,nationality:"USA"},
-  {id:"mil-9",name:"Tijjani Reijnders",clubId:"milan",position:"CM",age:28,overall:82,nationality:"Netherlands"},
-  {id:"mil-10",name:"Ruben Loftus-Cheek",clubId:"milan",position:"CM",age:30,overall:78,nationality:"England"},
-  {id:"mil-11",name:"Christian Pulisic",clubId:"milan",position:"RW",age:27,overall:82,nationality:"USA"},
-  {id:"mil-12",name:"Rafael Leão",clubId:"milan",position:"LW",age:27,overall:85,nationality:"Portugal"},
-  {id:"mil-13",name:"Tammy Abraham",clubId:"milan",position:"ST",age:28,overall:78,nationality:"England"},
-  {id:"mil-14",name:"Santiago Giménez",clubId:"milan",position:"ST",age:25,overall:80,nationality:"Mexico"},
-
-  /* NAPOLI (14) */
-  {id:"nap-1",name:"Alex Meret",clubId:"napoli",position:"GK",age:29,overall:81,nationality:"Italy"},
-  {id:"nap-2",name:"Vanja Milinković-Savić",clubId:"napoli",position:"GK",age:29,overall:79,nationality:"Serbia"},
-  {id:"nap-3",name:"Amir Rrahmani",clubId:"napoli",position:"CB",age:32,overall:82,nationality:"Kosovo"},
-  {id:"nap-4",name:"Alessandro Buongiorno",clubId:"napoli",position:"CB",age:27,overall:82,nationality:"Italy"},
-  {id:"nap-5",name:"Juan Jesus",clubId:"napoli",position:"CB",age:35,overall:76,nationality:"Brazil"},
-  {id:"nap-6",name:"Giovanni Di Lorenzo",clubId:"napoli",position:"RB",age:33,overall:82,nationality:"Italy"},
-  {id:"nap-7",name:"Mathías Olivera",clubId:"napoli",position:"LB",age:28,overall:78,nationality:"Uruguay"},
-  {id:"nap-8",name:"Stanislav Lobotka",clubId:"napoli",position:"CDM",age:31,overall:82,nationality:"Slovakia"},
-  {id:"nap-9",name:"Frank Anguissa",clubId:"napoli",position:"CM",age:30,overall:81,nationality:"Cameroon"},
-  {id:"nap-10",name:"Scott McTominay",clubId:"napoli",position:"CM",age:29,overall:82,nationality:"Scotland"},
-  {id:"nap-11",name:"Kevin De Bruyne",clubId:"napoli",position:"CAM",age:35,overall:85,nationality:"Belgium"},
-  {id:"nap-12",name:"Matteo Politano",clubId:"napoli",position:"RW",age:33,overall:80,nationality:"Italy"},
-  {id:"nap-13",name:"David Neres",clubId:"napoli",position:"LW",age:29,overall:81,nationality:"Brazil"},
-  {id:"nap-14",name:"Romelu Lukaku",clubId:"napoli",position:"ST",age:33,overall:83,nationality:"Belgium"},
-
-  /* BAYERN (14) */
-  {id:"bay-1",name:"Manuel Neuer",clubId:"bayern-munich",position:"GK",age:40,overall:86,nationality:"Germany"},
-  {id:"bay-2",name:"Jonas Urbig",clubId:"bayern-munich",position:"GK",age:23,overall:75,nationality:"Germany"},
-  {id:"bay-3",name:"Dayot Upamecano",clubId:"bayern-munich",position:"CB",age:27,overall:84,nationality:"France"},
-  {id:"bay-4",name:"Kim Min-jae",clubId:"bayern-munich",position:"CB",age:29,overall:83,nationality:"South Korea"},
-  {id:"bay-5",name:"Jonathan Tah",clubId:"bayern-munich",position:"CB",age:30,overall:82,nationality:"Germany"},
-  {id:"bay-6",name:"Joshua Kimmich",clubId:"bayern-munich",position:"RB",age:31,overall:86,nationality:"Germany"},
-  {id:"bay-7",name:"Alphonso Davies",clubId:"bayern-munich",position:"LB",age:25,overall:85,nationality:"Canada"},
-  {id:"bay-8",name:"Aleksandar Pavlovic",clubId:"bayern-munich",position:"CDM",age:22,overall:81,nationality:"Germany"},
-  {id:"bay-9",name:"Leon Goretzka",clubId:"bayern-munich",position:"CM",age:31,overall:82,nationality:"Germany"},
-  {id:"bay-10",name:"Michael Olise",clubId:"bayern-munich",position:"CAM",age:24,overall:85,nationality:"France"},
-  {id:"bay-11",name:"Jamal Musiala",clubId:"bayern-munich",position:"CAM",age:23,overall:86,nationality:"Germany"},
-  {id:"bay-12",name:"Leroy Sané",clubId:"bayern-munich",position:"RW",age:30,overall:83,nationality:"Germany"},
-  {id:"bay-13",name:"Serge Gnabry",clubId:"bayern-munich",position:"LW",age:31,overall:80,nationality:"Germany"},
-  {id:"bay-14",name:"Harry Kane",clubId:"bayern-munich",position:"ST",age:33,overall:89,nationality:"England"},
-
-  /* DORTMUND (14) */
-  {id:"bvb-1",name:"Gregor Kobel",clubId:"dortmund",position:"GK",age:28,overall:85,nationality:"Switzerland"},
-  {id:"bvb-2",name:"Alexander Meyer",clubId:"dortmund",position:"GK",age:34,overall:74,nationality:"Germany"},
-  {id:"bvb-3",name:"Nico Schlotterbeck",clubId:"dortmund",position:"CB",age:26,overall:83,nationality:"Germany"},
-  {id:"bvb-4",name:"Waldemar Anton",clubId:"dortmund",position:"CB",age:30,overall:79,nationality:"Germany"},
-  {id:"bvb-5",name:"Niklas Süle",clubId:"dortmund",position:"CB",age:30,overall:80,nationality:"Germany"},
-  {id:"bvb-6",name:"Julian Ryerson",clubId:"dortmund",position:"RB",age:28,overall:78,nationality:"Norway"},
-  {id:"bvb-7",name:"Ramy Bensebaini",clubId:"dortmund",position:"LB",age:31,overall:78,nationality:"Algeria"},
-  {id:"bvb-8",name:"Pascal Groß",clubId:"dortmund",position:"CDM",age:35,overall:79,nationality:"Germany"},
-  {id:"bvb-9",name:"Felix Nmecha",clubId:"dortmund",position:"CM",age:25,overall:80,nationality:"Germany"},
-  {id:"bvb-10",name:"Julian Brandt",clubId:"dortmund",position:"CAM",age:30,overall:81,nationality:"Germany"},
-  {id:"bvb-11",name:"Karim Adeyemi",clubId:"dortmund",position:"LW",age:24,overall:80,nationality:"Germany"},
-  {id:"bvb-12",name:"Jamie Gittens",clubId:"dortmund",position:"LW",age:22,overall:79,nationality:"England"},
-  {id:"bvb-13",name:"Serhou Guirassy",clubId:"dortmund",position:"ST",age:30,overall:83,nationality:"Guinea"},
-  {id:"bvb-14",name:"Maximilian Beier",clubId:"dortmund",position:"ST",age:23,overall:79,nationality:"Germany"},
-
-  /* LEVERKUSEN (14) */
-  {id:"lev-1",name:"Mark Flekken",clubId:"leverkusen",position:"GK",age:33,overall:80,nationality:"Netherlands"},
-  {id:"lev-2",name:"Niklas Lomb",clubId:"leverkusen",position:"GK",age:32,overall:72,nationality:"Germany"},
-  {id:"lev-3",name:"Edmond Tapsoba",clubId:"leverkusen",position:"CB",age:27,overall:82,nationality:"Burkina Faso"},
-  {id:"lev-4",name:"Jonathan Tah",clubId:"leverkusen",position:"CB",age:30,overall:82,nationality:"Germany"},
-  {id:"lev-5",name:"Piero Hincapié",clubId:"leverkusen",position:"CB",age:24,overall:82,nationality:"Ecuador"},
-  {id:"lev-6",name:"Jeremie Frimpong",clubId:"leverkusen",position:"RB",age:25,overall:79,nationality:"Netherlands"},
-  {id:"lev-7",name:"Alejandro Grimaldo",clubId:"leverkusen",position:"LB",age:30,overall:82,nationality:"Spain"},
-  {id:"lev-8",name:"Granit Xhaka",clubId:"leverkusen",position:"CDM",age:33,overall:82,nationality:"Switzerland"},
-  {id:"lev-9",name:"Exequiel Palacios",clubId:"leverkusen",position:"CM",age:27,overall:80,nationality:"Argentina"},
-  {id:"lev-10",name:"Florian Wirtz",clubId:"leverkusen",position:"CAM",age:23,overall:87,nationality:"Germany"},
-  {id:"lev-11",name:"Jonas Hofmann",clubId:"leverkusen",position:"CAM",age:34,overall:79,nationality:"Germany"},
-  {id:"lev-12",name:"Amine Adli",clubId:"leverkusen",position:"RW",age:26,overall:78,nationality:"Morocco"},
-  {id:"lev-13",name:"Patrik Schick",clubId:"leverkusen",position:"ST",age:30,overall:82,nationality:"Czechia"},
-  {id:"lev-14",name:"Victor Boniface",clubId:"leverkusen",position:"ST",age:25,overall:82,nationality:"Nigeria"},
-
-  /* ATLETICO MADRID (14) */
-  {id:"atm-1",name:"Jan Oblak",clubId:"atletico-madrid",position:"GK",age:33,overall:87,nationality:"Slovenia"},
-  {id:"atm-2",name:"Juan Musso",clubId:"atletico-madrid",position:"GK",age:32,overall:78,nationality:"Argentina"},
-  {id:"atm-3",name:"José María Giménez",clubId:"atletico-madrid",position:"CB",age:31,overall:82,nationality:"Uruguay"},
-  {id:"atm-4",name:"Robin Le Normand",clubId:"atletico-madrid",position:"CB",age:29,overall:82,nationality:"Spain"},
-  {id:"atm-5",name:"Dávid Hancko",clubId:"atletico-madrid",position:"CB",age:28,overall:81,nationality:"Slovakia"},
-  {id:"atm-6",name:"Nahuel Molina",clubId:"atletico-madrid",position:"RB",age:28,overall:79,nationality:"Argentina"},
-  {id:"atm-7",name:"Marcos Llorente",clubId:"atletico-madrid",position:"RB",age:31,overall:81,nationality:"Spain"},
-  {id:"atm-8",name:"Javi Galán",clubId:"atletico-madrid",position:"LB",age:31,overall:78,nationality:"Spain"},
-  {id:"atm-9",name:"Rodrigo De Paul",clubId:"atletico-madrid",position:"CM",age:32,overall:81,nationality:"Argentina"},
-  {id:"atm-10",name:"Pablo Barrios",clubId:"atletico-madrid",position:"CM",age:23,overall:80,nationality:"Spain"},
-  {id:"atm-11",name:"Koke",clubId:"atletico-madrid",position:"CM",age:34,overall:81,nationality:"Spain"},
-  {id:"atm-12",name:"Antoine Griezmann",clubId:"atletico-madrid",position:"CAM",age:35,overall:85,nationality:"France"},
-  {id:"atm-13",name:"Julián Álvarez",clubId:"atletico-madrid",position:"ST",age:26,overall:85,nationality:"Argentina"},
-  {id:"atm-14",name:"Alexander Sørloth",clubId:"atletico-madrid",position:"ST",age:30,overall:81,nationality:"Norway"},
-
-  /* REAL BETIS (13) */
-  {id:"bet-1",name:"Rui Silva",clubId:"real-betis",position:"GK",age:32,overall:78,nationality:"Portugal"},
-  {id:"bet-2",name:"Álvaro Valles",clubId:"real-betis",position:"GK",age:29,overall:79,nationality:"Spain"},
-  {id:"bet-3",name:"Marc Bartra",clubId:"real-betis",position:"CB",age:35,overall:76,nationality:"Spain"},
-  {id:"bet-4",name:"Natan",clubId:"real-betis",position:"CB",age:25,overall:78,nationality:"Brazil"},
-  {id:"bet-5",name:"Diego Llorente",clubId:"real-betis",position:"CB",age:33,overall:77,nationality:"Spain"},
-  {id:"bet-6",name:"Héctor Bellerín",clubId:"real-betis",position:"RB",age:31,overall:76,nationality:"Spain"},
-  {id:"bet-7",name:"Romain Perraud",clubId:"real-betis",position:"LB",age:28,overall:76,nationality:"France"},
-  {id:"bet-8",name:"Johnny Cardoso",clubId:"real-betis",position:"CDM",age:24,overall:79,nationality:"USA"},
-  {id:"bet-9",name:"Marc Roca",clubId:"real-betis",position:"CDM",age:29,overall:78,nationality:"Spain"},
-  {id:"bet-10",name:"Pablo Fornals",clubId:"real-betis",position:"CM",age:30,overall:79,nationality:"Spain"},
-  {id:"bet-11",name:"Isco",clubId:"real-betis",position:"CAM",age:34,overall:79,nationality:"Spain"},
-  {id:"bet-12",name:"Antony",clubId:"real-betis",position:"RW",age:26,overall:79,nationality:"Brazil"},
-  {id:"bet-13",name:"Cucho Hernández",clubId:"real-betis",position:"ST",age:27,overall:78,nationality:"Colombia"}
+  {id:"ars-1",name:"David Raya",clubId:"arsenal",position:"GK",age:30,overall:85,nationality:"Spain",value:35000000,wage:120000},
+  {id:"ars-2",name:"William Saliba",clubId:"arsenal",position:"CB",age:25,overall:86,nationality:"France",value:100000000,wage:190000},
+  {id:"ars-3",name:"Gabriel Magalhães",clubId:"arsenal",position:"CB",age:28,overall:85,nationality:"Brazil",value:90000000,wage:180000},
+  {id:"ars-4",name:"Ben White",clubId:"arsenal",position:"RB",age:28,overall:82,nationality:"England",value:55000000,wage:160000},
+  {id:"ars-5",name:"Riccardo Calafiori",clubId:"arsenal",position:"LB",age:24,overall:82,nationality:"Italy",value:60000000,wage:130000},
+  {id:"ars-6",name:"Declan Rice",clubId:"arsenal",position:"CDM",age:27,overall:87,nationality:"England",value:120000000,wage:240000},
+  {id:"ars-7",name:"Martín Zubimendi",clubId:"arsenal",position:"CDM",age:27,overall:85,nationality:"Spain",value:80000000,wage:180000},
+  {id:"ars-8",name:"Martin Ødegaard",clubId:"arsenal",position:"CAM",age:27,overall:87,nationality:"Norway",value:110000000,wage:240000},
+  {id:"ars-9",name:"Bukayo Saka",clubId:"arsenal",position:"RW",age:24,overall:87,nationality:"England",value:130000000,wage:220000},
+  {id:"ars-10",name:"Gabriel Martinelli",clubId:"arsenal",position:"LW",age:25,overall:82,nationality:"Brazil",value:60000000,wage:150000},
+  {id:"ars-11",name:"Viktor Gyökeres",clubId:"arsenal",position:"ST",age:28,overall:85,nationality:"Sweden",value:90000000,wage:180000},
+  {id:"ars-12",name:"Kai Havertz",clubId:"arsenal",position:"ST",age:27,overall:83,nationality:"Germany",value:65000000,wage:200000},
+  {id:"ars-13",name:"Eberechi Eze",clubId:"arsenal",position:"CAM",age:28,overall:84,nationality:"England",value:75000000,wage:180000},
+  {id:"ars-14",name:"Bruno Guimarães",clubId:"arsenal",position:"CM",age:28,overall:84,nationality:"Brazil",value:75000000,wage:200000},
+  {id:"ars-15",name:"Jurriën Timber",clubId:"arsenal",position:"RB",age:25,overall:83,nationality:"Netherlands",value:60000000,wage:140000},
+  {id:"che-1",name:"Robert Sánchez",clubId:"chelsea",position:"GK",age:28,overall:80,nationality:"Spain",value:25000000,wage:80000},
+  {id:"che-2",name:"Reece James",clubId:"chelsea",position:"RB",age:26,overall:83,nationality:"England",value:55000000,wage:180000},
+  {id:"che-3",name:"Levi Colwill",clubId:"chelsea",position:"CB",age:23,overall:81,nationality:"England",value:60000000,wage:90000},
+  {id:"che-4",name:"Wesley Fofana",clubId:"chelsea",position:"CB",age:25,overall:80,nationality:"France",value:45000000,wage:100000},
+  {id:"che-5",name:"Marc Cucurella",clubId:"chelsea",position:"LB",age:28,overall:82,nationality:"Spain",value:45000000,wage:100000},
+  {id:"che-6",name:"Moisés Caicedo",clubId:"chelsea",position:"CDM",age:24,overall:85,nationality:"Ecuador",value:100000000,wage:150000},
+  {id:"che-7",name:"Enzo Fernández",clubId:"chelsea",position:"CM",age:25,overall:84,nationality:"Argentina",value:85000000,wage:160000},
+  {id:"che-8",name:"Cole Palmer",clubId:"chelsea",position:"CAM",age:24,overall:86,nationality:"England",value:120000000,wage:180000},
+  {id:"che-9",name:"Pedro Neto",clubId:"chelsea",position:"LW",age:26,overall:82,nationality:"Portugal",value:55000000,wage:120000},
+  {id:"che-10",name:"João Pedro",clubId:"chelsea",position:"ST",age:24,overall:82,nationality:"Brazil",value:60000000,wage:120000},
+  {id:"che-11",name:"Morgan Rogers",clubId:"chelsea",position:"CAM",age:23,overall:81,nationality:"England",value:55000000,wage:150000},
+  {id:"che-12",name:"Tosin Adarabioyo",clubId:"chelsea",position:"CB",age:28,overall:78,nationality:"England",value:20000000,wage:80000},
+  {id:"che-13",name:"Malo Gusto",clubId:"chelsea",position:"RB",age:23,overall:79,nationality:"France",value:35000000,wage:70000},
+  {id:"che-14",name:"Jamie Gittens",clubId:"chelsea",position:"LW",age:22,overall:78,nationality:"England",value:35000000,wage:60000},
+  {id:"che-15",name:"Liam Delap",clubId:"chelsea",position:"ST",age:23,overall:78,nationality:"England",value:35000000,wage:70000},
+  {id:"che-16",name:"Roméo Lavia",clubId:"chelsea",position:"CDM",age:22,overall:78,nationality:"Belgium",value:35000000,wage:60000},
+  {id:"che-17",name:"Danny Welbeck",clubId:"chelsea",position:"ST",age:36,overall:75,nationality:"England",value:2000000,wage:70000},
+  {id:"liv-1",name:"Alisson Becker",clubId:"liverpool",position:"GK",age:34,overall:86,nationality:"Brazil",value:20000000,wage:180000},
+  {id:"liv-2",name:"Virgil van Dijk",clubId:"liverpool",position:"CB",age:35,overall:85,nationality:"Netherlands",value:20000000,wage:220000},
+  {id:"liv-3",name:"Ronald Araújo",clubId:"liverpool",position:"CB",age:27,overall:82,nationality:"Uruguay",value:50000000,wage:120000},
+  {id:"liv-4",name:"Miloš Kerkez",clubId:"liverpool",position:"LB",age:23,overall:78,nationality:"Hungary",value:35000000,wage:60000},
+  {id:"liv-5",name:"Jeremie Frimpong",clubId:"liverpool",position:"RB",age:25,overall:79,nationality:"Netherlands",value:35000000,wage:70000},
+  {id:"liv-6",name:"Ryan Gravenberch",clubId:"liverpool",position:"CDM",age:24,overall:82,nationality:"Netherlands",value:60000000,wage:100000},
+  {id:"liv-7",name:"Alexis Mac Allister",clubId:"liverpool",position:"CM",age:27,overall:84,nationality:"Argentina",value:75000000,wage:140000},
+  {id:"liv-8",name:"Dominik Szoboszlai",clubId:"liverpool",position:"CM",age:25,overall:83,nationality:"Hungary",value:65000000,wage:120000},
+  {id:"liv-9",name:"Florian Wirtz",clubId:"liverpool",position:"CAM",age:23,overall:87,nationality:"Germany",value:140000000,wage:200000},
+  {id:"liv-10",name:"Bradley Barcola",clubId:"liverpool",position:"LW",age:23,overall:82,nationality:"France",value:60000000,wage:100000},
+  {id:"liv-11",name:"Alexander Isak",clubId:"liverpool",position:"ST",age:26,overall:86,nationality:"Sweden",value:120000000,wage:180000},
+  {id:"liv-12",name:"Hugo Ekitike",clubId:"liverpool",position:"ST",age:24,overall:82,nationality:"France",value:60000000,wage:100000},
+  {id:"liv-13",name:"Cody Gakpo",clubId:"liverpool",position:"LW",age:27,overall:82,nationality:"Netherlands",value:50000000,wage:110000},
+  {id:"liv-14",name:"Conor Bradley",clubId:"liverpool",position:"RB",age:23,overall:78,nationality:"Northern Ireland",value:25000000,wage:55000},
+  {id:"liv-15",name:"Joe Gomez",clubId:"liverpool",position:"CB",age:29,overall:78,nationality:"England",value:15000000,wage:80000},
+  {id:"mci-1",name:"Gianluigi Donnarumma",clubId:"man-city",position:"GK",age:27,overall:88,nationality:"Italy",value:60000000,wage:200000},
+  {id:"mci-2",name:"Rúben Dias",clubId:"man-city",position:"CB",age:29,overall:87,nationality:"Portugal",value:90000000,wage:180000},
+  {id:"mci-3",name:"Marc Guéhi",clubId:"man-city",position:"CB",age:26,overall:82,nationality:"England",value:70000000,wage:100000},
+  {id:"mci-4",name:"Joško Gvardiol",clubId:"man-city",position:"LB",age:24,overall:84,nationality:"Croatia",value:80000000,wage:120000},
+  {id:"mci-5",name:"Rayan Aït-Nouri",clubId:"man-city",position:"LB",age:25,overall:80,nationality:"Algeria",value:40000000,wage:80000},
+  {id:"mci-6",name:"Rodri",clubId:"man-city",position:"CDM",age:30,overall:89,nationality:"Spain",value:100000000,wage:220000},
+  {id:"mci-7",name:"Elliot Anderson",clubId:"man-city",position:"CM",age:23,overall:80,nationality:"England",value:45000000,wage:80000},
+  {id:"mci-8",name:"Phil Foden",clubId:"man-city",position:"CAM",age:26,overall:85,nationality:"England",value:90000000,wage:180000},
+  {id:"mci-9",name:"Rayan Cherki",clubId:"man-city",position:"CAM",age:23,overall:82,nationality:"France",value:60000000,wage:90000},
+  {id:"mci-10",name:"Iliman Ndiaye",clubId:"man-city",position:"LW",age:26,overall:81,nationality:"Senegal",value:45000000,wage:80000},
+  {id:"mci-11",name:"Erling Haaland",clubId:"man-city",position:"ST",age:26,overall:91,nationality:"Norway",value:180000000,wage:400000},
+  {id:"mci-12",name:"Jérémy Doku",clubId:"man-city",position:"LW",age:24,overall:81,nationality:"Belgium",value:50000000,wage:90000},
+  {id:"mci-13",name:"Omar Marmoush",clubId:"man-city",position:"ST",age:27,overall:82,nationality:"Egypt",value:50000000,wage:100000},
+  {id:"mci-14",name:"Bernardo Silva",clubId:"man-city",position:"CM",age:32,overall:84,nationality:"Portugal",value:25000000,wage:150000},
+  {id:"mun-1",name:"Senne Lammens",clubId:"man-united",position:"GK",age:24,overall:78,nationality:"Belgium",value:25000000,wage:50000},
+  {id:"mun-2",name:"Matthijs de Ligt",clubId:"man-united",position:"CB",age:27,overall:82,nationality:"Netherlands",value:50000000,wage:120000},
+  {id:"mun-3",name:"Lisandro Martínez",clubId:"man-united",position:"CB",age:28,overall:82,nationality:"Argentina",value:50000000,wage:120000},
+  {id:"mun-4",name:"Diogo Dalot",clubId:"man-united",position:"RB",age:27,overall:81,nationality:"Portugal",value:40000000,wage:100000},
+  {id:"mun-5",name:"Luke Shaw",clubId:"man-united",position:"LB",age:31,overall:78,nationality:"England",value:15000000,wage:120000},
+  {id:"mun-6",name:"Carlos Baleba",clubId:"man-united",position:"CDM",age:22,overall:81,nationality:"Cameroon",value:70000000,wage:90000},
+  {id:"mun-7",name:"Bruno Fernandes",clubId:"man-united",position:"CAM",age:32,overall:85,nationality:"Portugal",value:60000000,wage:200000},
+  {id:"mun-8",name:"Youri Tielemans",clubId:"man-united",position:"CM",age:29,overall:83,nationality:"Belgium",value:50000000,wage:150000},
+  {id:"mun-9",name:"Bryan Mbeumo",clubId:"man-united",position:"RW",age:27,overall:81,nationality:"Cameroon",value:50000000,wage:100000},
+  {id:"mun-10",name:"Matheus Cunha",clubId:"man-united",position:"ST",age:27,overall:82,nationality:"Brazil",value:55000000,wage:120000},
+  {id:"mun-11",name:"Benjamin Šeško",clubId:"man-united",position:"ST",age:23,overall:81,nationality:"Slovenia",value:65000000,wage:90000},
+  {id:"mun-12",name:"Leny Yoro",clubId:"man-united",position:"CB",age:20,overall:79,nationality:"France",value:60000000,wage:60000},
+  {id:"mun-13",name:"Harry Maguire",clubId:"man-united",position:"CB",age:33,overall:79,nationality:"England",value:10000000,wage:120000},
+  {id:"tot-1",name:"Guglielmo Vicario",clubId:"tottenham",position:"GK",age:30,overall:81,nationality:"Italy",value:30000000,wage:90000},
+  {id:"tot-2",name:"Cristian Romero",clubId:"tottenham",position:"CB",age:28,overall:84,nationality:"Argentina",value:70000000,wage:150000},
+  {id:"tot-3",name:"Micky van de Ven",clubId:"tottenham",position:"CB",age:25,overall:82,nationality:"Netherlands",value:65000000,wage:90000},
+  {id:"tot-4",name:"Pedro Porro",clubId:"tottenham",position:"RB",age:26,overall:81,nationality:"Spain",value:50000000,wage:90000},
+  {id:"tot-5",name:"Andy Robertson",clubId:"tottenham",position:"LB",age:32,overall:82,nationality:"Scotland",value:20000000,wage:120000},
+  {id:"tot-6",name:"Sandro Tonali",clubId:"tottenham",position:"CDM",age:26,overall:83,nationality:"Italy",value:70000000,wage:120000},
+  {id:"tot-7",name:"Conor Gallagher",clubId:"tottenham",position:"CM",age:26,overall:80,nationality:"England",value:45000000,wage:90000},
+  {id:"tot-8",name:"James Maddison",clubId:"tottenham",position:"CAM",age:29,overall:80,nationality:"England",value:35000000,wage:110000},
+  {id:"tot-9",name:"Mohammed Kudus",clubId:"tottenham",position:"RW",age:26,overall:81,nationality:"Ghana",value:55000000,wage:100000},
+  {id:"tot-10",name:"Omar Marmoush",clubId:"tottenham",position:"ST",age:27,overall:82,nationality:"Egypt",value:50000000,wage:100000},
+  {id:"tot-11",name:"Dominic Solanke",clubId:"tottenham",position:"ST",age:28,overall:80,nationality:"England",value:35000000,wage:100000},
+  {id:"new-1",name:"Nick Pope",clubId:"newcastle",position:"GK",age:34,overall:81,nationality:"England",value:15000000,wage:90000},
+  {id:"new-2",name:"Sven Botman",clubId:"newcastle",position:"CB",age:26,overall:80,nationality:"Netherlands",value:45000000,wage:80000},
+  {id:"new-3",name:"Malick Thiaw",clubId:"newcastle",position:"CB",age:25,overall:79,nationality:"Germany",value:40000000,wage:70000},
+  {id:"new-4",name:"Tino Livramento",clubId:"newcastle",position:"RB",age:23,overall:80,nationality:"England",value:50000000,wage:70000},
+  {id:"new-5",name:"Lewis Hall",clubId:"newcastle",position:"LB",age:22,overall:79,nationality:"England",value:45000000,wage:60000},
+  {id:"new-6",name:"Bruno Guimarães",clubId:"newcastle",position:"CM",age:28,overall:84,nationality:"Brazil",value:80000000,wage:200000},
+  {id:"new-7",name:"Joelinton",clubId:"newcastle",position:"CM",age:30,overall:81,nationality:"Brazil",value:40000000,wage:100000},
+  {id:"new-8",name:"Anthony Elanga",clubId:"newcastle",position:"RW",age:24,overall:78,nationality:"Sweden",value:35000000,wage:65000},
+  {id:"new-9",name:"Harvey Barnes",clubId:"newcastle",position:"LW",age:29,overall:79,nationality:"England",value:30000000,wage:80000},
+  {id:"new-10",name:"Nick Woltemade",clubId:"newcastle",position:"ST",age:24,overall:82,nationality:"Germany",value:65000000,wage:90000},
+  {id:"new-11",name:"Yoane Wissa",clubId:"newcastle",position:"ST",age:29,overall:79,nationality:"DR Congo",value:25000000,wage:75000},
+  {id:"rma-1",name:"Thibaut Courtois",clubId:"real-madrid",position:"GK",age:34,overall:89,nationality:"Belgium",value:25000000,wage:250000},
+  {id:"rma-2",name:"Antonio Rüdiger",clubId:"real-madrid",position:"CB",age:33,overall:85,nationality:"Germany",value:15000000,wage:200000},
+  {id:"rma-3",name:"Dean Huijsen",clubId:"real-madrid",position:"CB",age:21,overall:82,nationality:"Spain",value:80000000,wage:70000},
+  {id:"rma-4",name:"Trent Alexander-Arnold",clubId:"real-madrid",position:"RB",age:27,overall:85,nationality:"England",value:70000000,wage:250000},
+  {id:"rma-5",name:"Álvaro Carreras",clubId:"real-madrid",position:"LB",age:23,overall:81,nationality:"Spain",value:50000000,wage:70000},
+  {id:"rma-6",name:"Federico Valverde",clubId:"real-madrid",position:"CM",age:28,overall:86,nationality:"Uruguay",value:90000000,wage:220000},
+  {id:"rma-7",name:"Jude Bellingham",clubId:"real-madrid",position:"CAM",age:23,overall:88,nationality:"England",value:180000000,wage:300000},
+  {id:"rma-8",name:"Arda Güler",clubId:"real-madrid",position:"CAM",age:21,overall:82,nationality:"Turkey",value:70000000,wage:60000},
+  {id:"rma-9",name:"Vinicius Júnior",clubId:"real-madrid",position:"LW",age:26,overall:89,nationality:"Brazil",value:180000000,wage:350000},
+  {id:"rma-10",name:"Kylian Mbappé",clubId:"real-madrid",position:"ST",age:27,overall:91,nationality:"France",value:180000000,wage:400000},
+  {id:"rma-11",name:"Rodrygo",clubId:"real-madrid",position:"RW",age:25,overall:85,nationality:"Brazil",value:90000000,wage:180000},
+  {id:"bar-1",name:"Joan García",clubId:"barcelona",position:"GK",age:25,overall:82,nationality:"Spain",value:50000000,wage:80000},
+  {id:"bar-2",name:"Pau Cubarsí",clubId:"barcelona",position:"CB",age:19,overall:83,nationality:"Spain",value:90000000,wage:60000},
+  {id:"bar-3",name:"Ronald Araújo",clubId:"barcelona",position:"CB",age:27,overall:82,nationality:"Uruguay",value:55000000,wage:130000},
+  {id:"bar-4",name:"Jules Koundé",clubId:"barcelona",position:"RB",age:27,overall:85,nationality:"France",value:70000000,wage:150000},
+  {id:"bar-5",name:"Alejandro Balde",clubId:"barcelona",position:"LB",age:22,overall:82,nationality:"Spain",value:60000000,wage:80000},
+  {id:"bar-6",name:"Pedri",clubId:"barcelona",position:"CM",age:23,overall:86,nationality:"Spain",value:120000000,wage:150000},
+  {id:"bar-7",name:"Frenkie de Jong",clubId:"barcelona",position:"CM",age:28,overall:84,nationality:"Netherlands",value:55000000,wage:200000},
+  {id:"bar-8",name:"Dani Olmo",clubId:"barcelona",position:"CAM",age:28,overall:85,nationality:"Spain",value:65000000,wage:150000},
+  {id:"bar-9",name:"Lamine Yamal",clubId:"barcelona",position:"RW",age:19,overall:88,nationality:"Spain",value:200000000,wage:100000},
+  {id:"bar-10",name:"Raphinha",clubId:"barcelona",position:"LW",age:29,overall:86,nationality:"Brazil",value:80000000,wage:180000},
+  {id:"bar-11",name:"Robert Lewandowski",clubId:"barcelona",position:"ST",age:37,overall:84,nationality:"Poland",value:10000000,wage:300000},
+  {id:"psg-1",name:"Matvei Safonov",clubId:"paris-sg",position:"GK",age:27,overall:82,nationality:"Russia",value:40000000,wage:100000},
+  {id:"psg-2",name:"Marquinhos",clubId:"paris-sg",position:"CB",age:32,overall:85,nationality:"Brazil",value:25000000,wage:200000},
+  {id:"psg-3",name:"Willian Pacho",clubId:"paris-sg",position:"CB",age:24,overall:83,nationality:"Ecuador",value:70000000,wage:90000},
+  {id:"psg-4",name:"Achraf Hakimi",clubId:"paris-sg",position:"RB",age:27,overall:85,nationality:"Morocco",value:65000000,wage:150000},
+  {id:"psg-5",name:"Nuno Mendes",clubId:"paris-sg",position:"LB",age:24,overall:84,nationality:"Portugal",value:70000000,wage:120000},
+  {id:"psg-6",name:"Vitinha",clubId:"paris-sg",position:"CDM",age:26,overall:85,nationality:"Portugal",value:80000000,wage:150000},
+  {id:"psg-7",name:"João Neves",clubId:"paris-sg",position:"CM",age:21,overall:84,nationality:"Portugal",value:90000000,wage:90000},
+  {id:"psg-8",name:"Fabián Ruiz",clubId:"paris-sg",position:"CM",age:30,overall:84,nationality:"Spain",value:50000000,wage:150000},
+  {id:"psg-9",name:"Désiré Doué",clubId:"paris-sg",position:"RW",age:21,overall:82,nationality:"France",value:70000000,wage:70000},
+  {id:"psg-10",name:"Khvicha Kvaratskhelia",clubId:"paris-sg",position:"LW",age:25,overall:86,nationality:"Georgia",value:90000000,wage:180000},
+  {id:"psg-11",name:"Ousmane Dembélé",clubId:"paris-sg",position:"ST",age:29,overall:86,nationality:"France",value:70000000,wage:200000},
+  {id:"int-1",name:"Yann Sommer",clubId:"inter",position:"GK",age:37,overall:82,nationality:"Switzerland",value:5000000,wage:100000},
+  {id:"int-2",name:"Alessandro Bastoni",clubId:"inter",position:"CB",age:27,overall:84,nationality:"Italy",value:75000000,wage:150000},
+  {id:"int-3",name:"Manuel Akanji",clubId:"inter",position:"CB",age:31,overall:82,nationality:"Switzerland",value:25000000,wage:150000},
+  {id:"int-4",name:"Federico Dimarco",clubId:"inter",position:"LB",age:28,overall:83,nationality:"Italy",value:55000000,wage:130000},
+  {id:"int-5",name:"Denzel Dumfries",clubId:"inter",position:"RB",age:30,overall:81,nationality:"Netherlands",value:30000000,wage:120000},
+  {id:"int-6",name:"Nicolò Barella",clubId:"inter",position:"CM",age:29,overall:84,nationality:"Italy",value:75000000,wage:160000},
+  {id:"int-7",name:"Hakan Çalhanoğlu",clubId:"inter",position:"CDM",age:32,overall:83,nationality:"Turkey",value:35000000,wage:150000},
+  {id:"int-8",name:"Marcus Thuram",clubId:"inter",position:"ST",age:29,overall:82,nationality:"France",value:45000000,wage:150000},
+  {id:"int-9",name:"Lautaro Martínez",clubId:"inter",position:"ST",age:29,overall:85,nationality:"Argentina",value:80000000,wage:180000},
+  {id:"juv-1",name:"Michele Di Gregorio",clubId:"juventus",position:"GK",age:29,overall:80,nationality:"Italy",value:25000000,wage:80000},
+  {id:"juv-2",name:"Gleison Bremer",clubId:"juventus",position:"CB",age:29,overall:84,nationality:"Brazil",value:60000000,wage:130000},
+  {id:"juv-3",name:"Federico Gatti",clubId:"juventus",position:"CB",age:28,overall:79,nationality:"Italy",value:25000000,wage:90000},
+  {id:"juv-4",name:"Andrea Cambiaso",clubId:"juventus",position:"RB",age:26,overall:81,nationality:"Italy",value:45000000,wage:90000},
+  {id:"juv-5",name:"Manuel Locatelli",clubId:"juventus",position:"CM",age:28,overall:82,nationality:"Italy",value:40000000,wage:120000},
+  {id:"juv-6",name:"Douglas Luiz",clubId:"juventus",position:"CM",age:28,overall:82,nationality:"Brazil",value:50000000,wage:150000},
+  {id:"juv-7",name:"Teun Koopmeiners",clubId:"juventus",position:"CAM",age:28,overall:81,nationality:"Netherlands",value:40000000,wage:130000},
+  {id:"juv-8",name:"Nicolás González",clubId:"juventus",position:"RW",age:28,overall:79,nationality:"Argentina",value:25000000,wage:110000},
+  {id:"juv-9",name:"Dušan Vlahović",clubId:"juventus",position:"ST",age:26,overall:83,nationality:"Serbia",value:70000000,wage:200000},
+  {id:"juv-10",name:"Kenan Yıldız",clubId:"juventus",position:"CAM",age:21,overall:81,nationality:"Turkey",value:70000000,wage:70000},
+  {id:"mil-1",name:"Mike Maignan",clubId:"milan",position:"GK",age:31,overall:85,nationality:"France",value:45000000,wage:130000},
+  {id:"mil-2",name:"Fikayo Tomori",clubId:"milan",position:"CB",age:28,overall:82,nationality:"England",value:40000000,wage:100000},
+  {id:"mil-3",name:"Strahinja Pavlović",clubId:"milan",position:"CB",age:25,overall:80,nationality:"Serbia",value:35000000,wage:90000},
+  {id:"mil-4",name:"Theo Hernández",clubId:"milan",position:"LB",age:28,overall:85,nationality:"France",value:70000000,wage:160000},
+  {id:"mil-5",name:"Tijjani Reijnders",clubId:"milan",position:"CM",age:28,overall:82,nationality:"Netherlands",value:55000000,wage:110000},
+  {id:"mil-6",name:"Yunus Musah",clubId:"milan",position:"CM",age:23,overall:78,nationality:"USA",value:25000000,wage:70000},
+  {id:"mil-7",name:"Christian Pulisic",clubId:"milan",position:"RW",age:27,overall:82,nationality:"USA",value:45000000,wage:130000},
+  {id:"mil-8",name:"Rafael Leão",clubId:"milan",position:"LW",age:27,overall:85,nationality:"Portugal",value:80000000,wage:150000},
+  {id:"mil-9",name:"Santiago Giménez",clubId:"milan",position:"ST",age:25,overall:80,nationality:"Mexico",value:40000000,wage:90000},
+  {id:"nap-1",name:"Alex Meret",clubId:"napoli",position:"GK",age:29,overall:81,nationality:"Italy",value:25000000,wage:90000},
+  {id:"nap-2",name:"Amir Rrahmani",clubId:"napoli",position:"CB",age:32,overall:82,nationality:"Kosovo",value:20000000,wage:130000},
+  {id:"nap-3",name:"Alessandro Buongiorno",clubId:"napoli",position:"CB",age:27,overall:82,nationality:"Italy",value:50000000,wage:100000},
+  {id:"nap-4",name:"Giovanni Di Lorenzo",clubId:"napoli",position:"RB",age:33,overall:82,nationality:"Italy",value:18000000,wage:140000},
+  {id:"nap-5",name:"Stanislav Lobotka",clubId:"napoli",position:"CDM",age:31,overall:82,nationality:"Slovakia",value:30000000,wage:130000},
+  {id:"nap-6",name:"Frank Anguissa",clubId:"napoli",position:"CM",age:30,overall:81,nationality:"Cameroon",value:30000000,wage:130000},
+  {id:"nap-7",name:"Scott McTominay",clubId:"napoli",position:"CM",age:29,overall:82,nationality:"Scotland",value:45000000,wage:130000},
+  {id:"nap-8",name:"Kevin De Bruyne",clubId:"napoli",position:"CAM",age:35,overall:85,nationality:"Belgium",value:20000000,wage:250000},
+  {id:"nap-9",name:"Matteo Politano",clubId:"napoli",position:"RW",age:33,overall:80,nationality:"Italy",value:10000000,wage:110000},
+  {id:"nap-10",name:"Romelu Lukaku",clubId:"napoli",position:"ST",age:33,overall:83,nationality:"Belgium",value:25000000,wage:200000},
+  {id:"bay-1",name:"Manuel Neuer",clubId:"bayern-munich",position:"GK",age:40,overall:86,nationality:"Germany",value:5000000,wage:250000},
+  {id:"bay-2",name:"Dayot Upamecano",clubId:"bayern-munich",position:"CB",age:27,overall:84,nationality:"France",value:65000000,wage:150000},
+  {id:"bay-3",name:"Kim Min-jae",clubId:"bayern-munich",position:"CB",age:29,overall:83,nationality:"South Korea",value:50000000,wage:130000},
+  {id:"bay-4",name:"Joshua Kimmich",clubId:"bayern-munich",position:"RB",age:31,overall:86,nationality:"Germany",value:55000000,wage:200000},
+  {id:"bay-5",name:"Alphonso Davies",clubId:"bayern-munich",position:"LB",age:25,overall:85,nationality:"Canada",value:70000000,wage:160000},
+  {id:"bay-6",name:"Aleksandar Pavlovic",clubId:"bayern-munich",position:"CDM",age:22,overall:81,nationality:"Germany",value:55000000,wage:70000},
+  {id:"bay-7",name:"Leon Goretzka",clubId:"bayern-munich",position:"CM",age:31,overall:82,nationality:"Germany",value:25000000,wage:180000},
+  {id:"bay-8",name:"Michael Olise",clubId:"bayern-munich",position:"CAM",age:24,overall:85,nationality:"France",value:90000000,wage:130000},
+  {id:"bay-9",name:"Jamal Musiala",clubId:"bayern-munich",position:"CAM",age:23,overall:86,nationality:"Germany",value:140000000,wage:180000},
+  {id:"bay-10",name:"Harry Kane",clubId:"bayern-munich",position:"ST",age:33,overall:89,nationality:"England",value:70000000,wage:400000},
+  {id:"bay-11",name:"Leroy Sané",clubId:"bayern-munich",position:"RW",age:30,overall:83,nationality:"Germany",value:35000000,wage:180000},
+  {id:"bvb-1",name:"Gregor Kobel",clubId:"dortmund",position:"GK",age:28,overall:85,nationality:"Switzerland",value:50000000,wage:100000},
+  {id:"bvb-2",name:"Nico Schlotterbeck",clubId:"dortmund",position:"CB",age:26,overall:83,nationality:"Germany",value:60000000,wage:110000},
+  {id:"bvb-3",name:"Waldemar Anton",clubId:"dortmund",position:"CB",age:30,overall:79,nationality:"Germany",value:20000000,wage:90000},
+  {id:"bvb-4",name:"Julian Ryerson",clubId:"dortmund",position:"RB",age:28,overall:78,nationality:"Norway",value:20000000,wage:80000},
+  {id:"bvb-5",name:"Ramy Bensebaini",clubId:"dortmund",position:"LB",age:31,overall:78,nationality:"Algeria",value:12000000,wage:90000},
+  {id:"bvb-6",name:"Pascal Groß",clubId:"dortmund",position:"CDM",age:35,overall:79,nationality:"Germany",value:5000000,wage:100000},
+  {id:"bvb-7",name:"Felix Nmecha",clubId:"dortmund",position:"CM",age:25,overall:80,nationality:"Germany",value:35000000,wage:80000},
+  {id:"bvb-8",name:"Julian Brandt",clubId:"dortmund",position:"CAM",age:30,overall:81,nationality:"Germany",value:30000000,wage:120000},
+  {id:"bvb-9",name:"Karim Adeyemi",clubId:"dortmund",position:"LW",age:24,overall:80,nationality:"Germany",value:35000000,wage:80000},
+  {id:"bvb-10",name:"Serhou Guirassy",clubId:"dortmund",position:"ST",age:30,overall:83,nationality:"Guinea",value:45000000,wage:130000},
+  {id:"lev-1",name:"Mark Flekken",clubId:"leverkusen",position:"GK",age:33,overall:80,nationality:"Netherlands",value:15000000,wage:80000},
+  {id:"lev-2",name:"Edmond Tapsoba",clubId:"leverkusen",position:"CB",age:27,overall:82,nationality:"Burkina Faso",value:50000000,wage:100000},
+  {id:"lev-3",name:"Piero Hincapié",clubId:"leverkusen",position:"CB",age:24,overall:82,nationality:"Ecuador",value:55000000,wage:100000},
+  {id:"lev-4",name:"Alejandro Grimaldo",clubId:"leverkusen",position:"LB",age:30,overall:82,nationality:"Spain",value:35000000,wage:130000},
+  {id:"lev-5",name:"Granit Xhaka",clubId:"leverkusen",position:"CDM",age:33,overall:82,nationality:"Switzerland",value:20000000,wage:130000},
+  {id:"lev-6",name:"Exequiel Palacios",clubId:"leverkusen",position:"CM",age:27,overall:80,nationality:"Argentina",value:30000000,wage:100000},
+  {id:"lev-7",name:"Florian Wirtz",clubId:"leverkusen",position:"CAM",age:23,overall:87,nationality:"Germany",value:140000000,wage:200000},
+  {id:"lev-8",name:"Amine Adli",clubId:"leverkusen",position:"RW",age:26,overall:78,nationality:"Morocco",value:20000000,wage:70000},
+  {id:"lev-9",name:"Patrik Schick",clubId:"leverkusen",position:"ST",age:30,overall:82,nationality:"Czechia",value:40000000,wage:130000},
+  {id:"lev-10",name:"Victor Boniface",clubId:"leverkusen",position:"ST",age:25,overall:82,nationality:"Nigeria",value:50000000,wage:100000},
+  {id:"atm-1",name:"Jan Oblak",clubId:"atletico-madrid",position:"GK",age:33,overall:87,nationality:"Slovenia",value:30000000,wage:180000},
+  {id:"atm-2",name:"Robin Le Normand",clubId:"atletico-madrid",position:"CB",age:29,overall:82,nationality:"Spain",value:40000000,wage:130000},
+  {id:"atm-3",name:"Dávid Hancko",clubId:"atletico-madrid",position:"CB",age:28,overall:81,nationality:"Slovakia",value:35000000,wage:110000},
+  {id:"atm-4",name:"Marcos Llorente",clubId:"atletico-madrid",position:"RB",age:31,overall:81,nationality:"Spain",value:25000000,wage:130000},
+  {id:"atm-5",name:"Koke",clubId:"atletico-madrid",position:"CM",age:34,overall:81,nationality:"Spain",value:12000000,wage:150000},
+  {id:"atm-6",name:"Pablo Barrios",clubId:"atletico-madrid",position:"CM",age:23,overall:80,nationality:"Spain",value:50000000,wage:70000},
+  {id:"atm-7",name:"Rodrigo De Paul",clubId:"atletico-madrid",position:"CM",age:32,overall:81,nationality:"Argentina",value:20000000,wage:150000},
+  {id:"atm-8",name:"Antoine Griezmann",clubId:"atletico-madrid",position:"CAM",age:35,overall:85,nationality:"France",value:25000000,wage:250000},
+  {id:"atm-9",name:"Julián Álvarez",clubId:"atletico-madrid",position:"ST",age:26,overall:85,nationality:"Argentina",value:100000000,wage:180000},
+  {id:"atm-10",name:"Alexander Sørloth",clubId:"atletico-madrid",position:"ST",age:30,overall:81,nationality:"Norway",value:30000000,wage:130000},
+  {id:"bet-1",name:"Álvaro Valles",clubId:"real-betis",position:"GK",age:29,overall:79,nationality:"Spain",value:15000000,wage:60000},
+  {id:"bet-2",name:"Natan",clubId:"real-betis",position:"CB",age:25,overall:78,nationality:"Brazil",value:25000000,wage:70000},
+  {id:"bet-3",name:"Diego Llorente",clubId:"real-betis",position:"CB",age:33,overall:77,nationality:"Spain",value:5000000,wage:80000},
+  {id:"bet-4",name:"Héctor Bellerín",clubId:"real-betis",position:"RB",age:31,overall:76,nationality:"Spain",value:5000000,wage:70000},
+  {id:"bet-5",name:"Marc Roca",clubId:"real-betis",position:"CDM",age:29,overall:78,nationality:"Spain",value:15000000,wage:80000},
+  {id:"bet-6",name:"Johnny Cardoso",clubId:"real-betis",position:"CDM",age:24,overall:79,nationality:"USA",value:30000000,wage:70000},
+  {id:"bet-7",name:"Pablo Fornals",clubId:"real-betis",position:"CM",age:30,overall:79,nationality:"Spain",value:15000000,wage:90000},
+  {id:"bet-8",name:"Isco",clubId:"real-betis",position:"CAM",age:34,overall:79,nationality:"Spain",value:5000000,wage:90000},
+  {id:"bet-9",name:"Antony",clubId:"real-betis",position:"RW",age:26,overall:79,nationality:"Brazil",value:25000000,wage:100000},
+  {id:"bet-10",name:"Cucho Hernández",clubId:"real-betis",position:"ST",age:27,overall:78,nationality:"Colombia",value:20000000,wage:80000},
+  {id:"new-real-1",name:"Robert Sánchez",clubId:"chelsea",position:"GK",age:28,overall:80,nationality:"Spain",value:25000000,wage:80000},
 ];
 
 /* ============================================================
@@ -705,7 +577,6 @@ const PLACEHOLDER_PLAYERS = [
    ============================================================ */
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
-
 function el(tag, attrs={}, children=[]){
   const node = document.createElement(tag);
   for(const [k,v] of Object.entries(attrs)){
@@ -724,7 +595,6 @@ function el(tag, attrs={}, children=[]){
   return node;
 }
 function clearEl(node){ while(node.firstChild) node.removeChild(node.firstChild); }
-
 function formatMoney(n){
   if(n==null) return "—";
   if(Math.abs(n)>=1e6) return "£"+(n/1e6).toFixed(1)+"M";
@@ -752,7 +622,6 @@ function pickWeighted(arr, weights){
   for(let i=0;i<arr.length;i++){ r -= weights[i]; if(r<=0) return arr[i]; }
   return arr[arr.length-1];
 }
-
 function crestSvg(clubId, size=32){
   const c = CLUBS[clubId];
   if(!c) return "";
@@ -774,7 +643,6 @@ function crestEl(clubId, size=28){
   span.innerHTML = crestSvg(clubId, size);
   return span.firstChild;
 }
-
 function posClass(pos){
   if(pos==="GK") return "GK";
   if(["CB","LB","RB","RWB","LWB"].includes(pos)) return "DEF";
@@ -817,9 +685,6 @@ function moraleLabel(v){
 }
 function clubName(id){ return CLUBS[id]?.short || CLUBS[id]?.name || id; }
 
-/* ============================================================
-   FORMATIONS + POSITIONS
-   ============================================================ */
 const FORMATIONS = {
   "4-3-3":["GK","RB","CB","CB","LB","CDM","CM","CM","RW","ST","LW"],
   "4-4-2":["GK","RB","CB","CB","LB","RW","CM","CM","LW","ST","ST"],
@@ -828,7 +693,6 @@ const FORMATIONS = {
   "5-3-2":["GK","RB","CB","CB","CB","LB","CM","CDM","CM","ST","ST"],
   "3-4-3":["GK","CB","CB","CB","RWB","CDM","CM","LWB","AMR","AML","ST"]
 };
-
 const POSITION_FIT = {
   GK:{GK:1,CB:.1},
   CB:{CB:1,CDM:.80,LB:.75,RB:.75,CM:.65},
@@ -848,19 +712,13 @@ const POSITION_FIT = {
 function posFit(natural, assigned){
   return (POSITION_FIT[natural] && POSITION_FIT[natural][assigned]) || 0.6;
 }
-
 const MATCH = {
-  BASE_XG:1.35,
-  HOME_ADV:1.15,
-  REVEAL_MS:2200,
-  MINUTE_MS:260,
-  HALF_TIME:45,
-  MAX_SUBS:5
+  BASE_XG:1.35, HOME_ADV:1.15,
+  REVEAL_MS:2200, MINUTE_MS:260,
+  HALF_TIME:45, MAX_SUBS:5
 };
 
-/* ============================================================
-   STATE
-   ============================================================ */
+/* STATE */
 const state = {
   userClubId: null,
   currentDate: "2026-08-01",
@@ -876,21 +734,16 @@ const state = {
   userLineup: null,
   userBench: null,
   allPlayers: [],
-  matchStats: {}
+  transferOffers: [],
+  sellCount: {}
 };
 
-/* ============================================================
-   SQUAD ACCESS
-   ============================================================ */
 function getSquad(clubId){ return state.allPlayers.filter(p => p.clubId === clubId); }
 function getSquadWithState(clubId){
   return getSquad(clubId).map(p => ({...p, ...(state.playerStates[p.id] || {})}));
 }
 function getPlayerById(id){ return state.allPlayers.find(p => p.id === id); }
 
-/* ============================================================
-   FIXTURES
-   ============================================================ */
 function roundRobin(clubIds){
   const teams = [...clubIds];
   const n = teams.length;
@@ -939,112 +792,51 @@ function buildSeasonFixtures(){
   return all;
 }
 
-function buildCupFixtures(){
-  // Draw groups on matchday 3. Group stage has 8 midweek rounds (matchdays 4-11).
-  // Top 2 from each of 4 groups advance to QF (2 legs), SF (2 legs), Final.
-  const shuffled = [...ELITE_CUP_CLUBS].sort(()=>Math.random()-0.5);
-  const groups = [[],[],[],[]];
-  shuffled.forEach((c,i)=>groups[i%4].push(c));
-
-  const fixtures = [];
-  const startDate = "2026-08-01";
-  // Group stage starts midweek after matchday 3 → week 4 (7*3 days from start)
-  const groupStartWeek = addDays(startDate, 4*7 - 3);
-
-  // Build double round robin per group (5 teams → 10 matchdays, but we want
-  // each team to play each other home and away = 8 games per team = 8 rounds)
-  // For 5 teams, single RR is 5 rounds (each team plays 4 games, one bye).
-  // Double RR = 10 rounds (each plays 8, two byes).
-  // We use 10 rounds, and each round has 2 games + 1 bye per group.
-
-  for(let g=0; g<4; g++){
-    const groupClubIds = groups[g];
-    const rr = roundRobin5(groupClubIds); // returns 5 rounds of pairs with byes handled
-    const doubled = [...rr, ...rr.map(round => round.map(([h,a])=>[a,h]))];
-    doubled.forEach((round, mdIdx) => {
-      const roundDate = addDays(groupStartWeek, mdIdx * 7);
-      round.forEach(([home, away], i) => {
-        fixtures.push({
-          id: `cup-group-${g+1}-r${mdIdx+1}-${home}-${away}`,
-          comp:"cup", stage:"group", group:g+1,
-          round:mdIdx+1,
-          date: roundDate,
-          time: i === 0 ? "20:00" : "20:00",
-          homeClubId: home, awayClubId: away,
-          played:false, homeScore:null, awayScore:null
-        });
-      });
-    });
-  }
-
-  return {
-    groups,
-    fixtures
-  };
-}
-
 function roundRobin5(clubIds){
-  // 5-club round robin with byes. 5 rounds, each round: 2 games + 1 bye.
-  // Simple rotation.
-  const teams = [...clubIds];
-  const rounds = [];
-  // Add a dummy "bye" to make even
-  const arr = [...teams, "BYE"];
+  const arr = [...clubIds, "BYE"];
   const n = arr.length;
   const half = n/2;
+  const rounds = [];
   for(let r=0;r<n-1;r++){
     const round = [];
     for(let i=0;i<half;i++){
       const a = arr[i], b = arr[n-1-i];
-      if(a !== "BYE" && b !== "BYE"){
-        round.push(r%2===0 ? [a,b] : [b,a]);
-      }
+      if(a !== "BYE" && b !== "BYE") round.push(r%2===0 ? [a,b] : [b,a]);
     }
     rounds.push(round);
-    // rotate (keep arr[0] fixed)
     const last = arr.pop();
     arr.splice(1,0,last);
   }
   return rounds;
 }
 
-function buildCupKnockout(groupStandings){
-  // Called after group stage. Returns knockout fixtures object.
-  // Top 2 from each group → QF. QF: A1 v B2, B1 v A2, C1 v D2, D1 v C2.
-  // QF 2 legs, SF 2 legs, Final single.
-  const G = groupStandings;
-  const qf = [
-    { home: G[0][0], away: G[1][1], label:"QF1" },
-    { home: G[1][0], away: G[0][1], label:"QF2" },
-    { home: G[2][0], away: G[3][1], label:"QF3" },
-    { home: G[3][0], away: G[2][1], label:"QF4" }
-  ];
-  const startWeek = addDays("2026-08-01", 16*7);
+function buildCupFixtures(){
+  const shuffled = [...ELITE_CUP_CLUBS].sort(()=>Math.random()-0.5);
+  const groups = [[],[],[],[]];
+  shuffled.forEach((c,i)=>groups[i%4].push(c));
   const fixtures = [];
-  let id = 0;
-  qf.forEach(m => {
-    id++;
-    const leg1Date = addDays(startWeek, id*3);
-    const leg2Date = addDays(startWeek, id*3 + 3);
-    fixtures.push({
-      id:`cup-qf-${id}-leg1`, comp:"cup", stage:"qf", round:1,
-      label:m.label, date:leg1Date, time:"20:00",
-      homeClubId:m.home, awayClubId:m.away,
-      played:false, homeScore:null, awayScore:null
+  const startDate = "2026-08-01";
+  const groupStartWeek = addDays(startDate, 4*7 - 3);
+  for(let g=0; g<4; g++){
+    const rr = roundRobin5(groups[g]);
+    const doubled = [...rr, ...rr.map(round => round.map(([h,a])=>[a,h]))];
+    doubled.forEach((round, mdIdx) => {
+      const roundDate = addDays(groupStartWeek, mdIdx * 7);
+      round.forEach(([home, away]) => {
+        fixtures.push({
+          id: `cup-g${g+1}-r${mdIdx+1}-${home}-${away}`,
+          comp:"cup", stage:"group", group:g+1,
+          round:mdIdx+1, matchday:0,
+          date:roundDate, time:"20:00",
+          homeClubId:home, awayClubId:away,
+          played:false, homeScore:null, awayScore:null
+        });
+      });
     });
-    fixtures.push({
-      id:`cup-qf-${id}-leg2`, comp:"cup", stage:"qf", round:2,
-      label:m.label, date:leg2Date, time:"20:00",
-      homeClubId:m.away, awayClubId:m.home,
-      played:false, homeScore:null, awayScore:null
-    });
-  });
-  return fixtures;
+  }
+  return {groups, fixtures};
 }
 
-/* ============================================================
-   LEAGUE TABLE + CUP GROUP TABLE
-   ============================================================ */
 function buildTable(leagueId){
   const league = LEAGUES[leagueId];
   const rows = {};
@@ -1072,9 +864,7 @@ function buildCupGroupTable(groupIdx){
   if(!state.cupGroups) return [];
   const ids = state.cupGroups[groupIdx];
   const rows = {};
-  for(const cid of ids){
-    rows[cid] = {clubId:cid,played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,points:0};
-  }
+  for(const cid of ids) rows[cid] = {clubId:cid,played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,points:0};
   for(const f of state.cupFixtures){
     if(f.stage !== "group" || f.group !== (groupIdx+1) || !f.played) continue;
     const h = rows[f.homeClubId], a = rows[f.awayClubId];
@@ -1087,29 +877,26 @@ function buildCupGroupTable(groupIdx){
     else { h.drawn++; a.drawn++; h.points++; a.points++; }
   }
   const table = Object.values(rows).map(r => ({...r, gd:r.gf-r.ga}));
-  table.sort((x,y)=> y.points-x.points || y.gd-x.gd || y.gf-x.gf || x.clubId.localeCompare(y.clubId));
+  table.sort((x,y)=> y.points-x.points || y.gd-x.gd || y.gf-x.gf);
   table.forEach((r,i)=>r.position = i+1);
   return table;
 }
 
-/* ============================================================
-   INIT
-   ============================================================ */
 function initStateFor(clubId){
   const club = CLUBS[clubId];
   state.userClubId = clubId;
   state.currentDate = "2026-08-01";
   state.matchday = 1;
   state.playerStates = {};
-  state.matchStats = {};
+  state.transferOffers = [];
+  state.sellCount = {};
   for(const p of state.allPlayers){
     state.playerStates[p.id] = {
       fatigue: 100, morale: 75,
       minutesThisSeason: 0, matchesThisSeason: 0,
       goals: 0, assists: 0, yellow: 0, red: 0,
-      ratingPoints: 0,
-      ratingMatches: 0,
-      ratingBaseline: p.overall
+      ratingPoints: 0, ratingMatches: 0,
+      banMatches: 0
     };
   }
   state.inbox = [{
@@ -1129,31 +916,25 @@ function initStateFor(clubId){
   state.userBench = picked.bench.map(p => p.id);
 }
 
-/* ============================================================
-   LINEUP AUTO-PICK
-   ============================================================ */
 function autoPickLineup(clubId, formationId){
   const squad = getSquadWithState(clubId);
   const slots = FORMATIONS[formationId] || FORMATIONS["4-3-3"];
   const used = new Set();
   const lineup = [];
   for(const slotPos of slots){
-    const candidates = squad.filter(p => !used.has(p.id));
+    const candidates = squad.filter(p => !used.has(p.id) && !(state.playerStates[p.id]?.banMatches > 0));
     candidates.sort((a,b) => scoreForSlot(b, slotPos) - scoreForSlot(a, slotPos));
     if(!candidates[0]) break;
     lineup.push({...candidates[0], assignedPos:slotPos});
     used.add(candidates[0].id);
   }
-  const bench = squad.filter(p => !used.has(p.id)).slice(0, 9);
+  const bench = squad.filter(p => !used.has(p.id) && !(state.playerStates[p.id]?.banMatches > 0)).slice(0, 9);
   return {lineup, bench};
 }
 function scoreForSlot(p, slotPos){
   return p.overall * posFit(p.position, slotPos) * ((p.fatigue||100)/100);
 }
 
-/* ============================================================
-   MATCH ENGINE
-   ============================================================ */
 function samplePoisson(lambda){
   const L = Math.exp(-lambda);
   let k = 0, p = 1;
@@ -1163,7 +944,7 @@ function samplePoisson(lambda){
 
 function teamStrength(lineup, style, isHome){
   let total = 0;
-  lineup.forEach((p) => {
+  lineup.forEach(p => {
     const slotPos = p.assignedPos || p.position;
     const fit = posFit(p.position, slotPos);
     const fatMult = p.fatigue >= 80 ? 1 : p.fatigue >= 60 ? .95 : p.fatigue >= 40 ? .85 : p.fatigue >= 20 ? .70 : .50;
@@ -1197,10 +978,8 @@ function pickAssist(lineup, scorer){
 function simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle){
   const homeStr = teamStrength(homeLineup, homeStyle, true);
   const awayStr = teamStrength(awayLineup, awayStyle, false);
-  const homeRatio = homeStr / awayStr;
-  const awayRatio = awayStr / homeStr;
-  const homeXg = clamp(MATCH.BASE_XG * Math.pow(homeRatio, 1.6), 0.15, 4.8);
-  const awayXg = clamp(MATCH.BASE_XG * Math.pow(awayRatio, 1.6), 0.15, 4.8);
+  const homeXg = clamp(MATCH.BASE_XG * Math.pow(homeStr/awayStr, 1.6), 0.15, 4.8);
+  const awayXg = clamp(MATCH.BASE_XG * Math.pow(awayStr/homeStr, 1.6), 0.15, 4.8);
 
   const homeGoals = samplePoisson(homeXg);
   const awayGoals = samplePoisson(awayXg);
@@ -1230,24 +1009,27 @@ function simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle){
   }
 
   const cardCount = randInt(2,5);
+  const cardMap = {};
   for(let i=0;i<cardCount;i++){
     const side = Math.random()<.5 ? "home" : "away";
     const lineup = side === "home" ? homeLineup : awayLineup;
-    const candidates = lineup.filter(p => p.position !== "GK");
-    const p = pick(candidates);
+    const p = pick(lineup.filter(x => x.position !== "GK"));
     if(!p) continue;
-    events.push({minute:randInt(5,89),type:Math.random()<.06?"red":"yellow",side,playerId:p.id});
+    const isRed = Math.random()<.06;
+    events.push({minute:randInt(5,89),type:isRed?"red":"yellow",side,playerId:p.id});
+    cardMap[p.id] = cardMap[p.id] || {yellow:0, red:0};
+    if(isRed) cardMap[p.id].red++;
+    else cardMap[p.id].yellow++;
   }
 
   events.sort((a,b)=>a.minute-b.minute);
 
-  /* ============================================
-     PER-PLAYER MATCH STATS
-     ============================================ */
-  const allPlayers = [...homeLineup, ...awayLineup];
   const matchStats = {};
-  for(const p of allPlayers){
-    matchStats[p.id] = {
+  for(const p of [...homeLineup, ...awayLineup]){
+    const isGK = p.position === "GK";
+    const isDEF = ["CB","LB","RB","LWB","RWB"].includes(p.position);
+    const isMID = ["CDM","CM","CAM"].includes(p.position);
+    const s = {
       playerId: p.id, minutes: 90,
       goals:0, assists:0, yellow:0, red:0,
       shots:0, shotsOnTarget:0, xg:0,
@@ -1255,42 +1037,15 @@ function simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle){
       tackles:0, interceptions:0,
       rating: 6.0
     };
-    // Base stats per position
-    const isGK = p.position === "GK";
-    const isDEF = ["CB","LB","RB","LWB","RWB"].includes(p.position);
-    const isMID = ["CDM","CM","CAM"].includes(p.position);
-    const isATT = ["AMR","AML","LW","RW","ST"].includes(p.position);
-
-    if(isGK){
-      matchStats[p.id].passes = randInt(15, 35);
-      matchStats[p.id].passesCompleted = Math.floor(matchStats[p.id].passes * (0.65 + Math.random()*0.15));
-      matchStats[p.id].tackles = 0;
-      matchStats[p.id].interceptions = randInt(0, 1);
-    } else if(isDEF){
-      matchStats[p.id].passes = randInt(30, 70);
-      matchStats[p.id].passesCompleted = Math.floor(matchStats[p.id].passes * (0.82 + Math.random()*0.12));
-      matchStats[p.id].tackles = randInt(1, 5);
-      matchStats[p.id].interceptions = randInt(1, 4);
-      matchStats[p.id].shots = randInt(0, 1);
-      matchStats[p.id].xg = Math.round(Math.random()*15)/100;
-    } else if(isMID){
-      matchStats[p.id].passes = randInt(35, 85);
-      matchStats[p.id].passesCompleted = Math.floor(matchStats[p.id].passes * (0.85 + Math.random()*0.10));
-      matchStats[p.id].tackles = randInt(0, 4);
-      matchStats[p.id].interceptions = randInt(0, 3);
-      matchStats[p.id].shots = randInt(0, 3);
-      matchStats[p.id].xg = Math.round(Math.random()*30)/100;
-    } else if(isATT){
-      matchStats[p.id].passes = randInt(20, 55);
-      matchStats[p.id].passesCompleted = Math.floor(matchStats[p.id].passes * (0.75 + Math.random()*0.12));
-      matchStats[p.id].tackles = randInt(0, 2);
-      matchStats[p.id].interceptions = randInt(0, 1);
-      matchStats[p.id].shots = randInt(1, 5);
-      matchStats[p.id].xg = Math.round(Math.random()*60)/100;
-    }
+    if(isGK){ s.passes = randInt(15,35); s.tackles=0; s.interceptions=randInt(0,1); }
+    else if(isDEF){ s.passes=randInt(30,70); s.tackles=randInt(1,5); s.interceptions=randInt(1,4); s.shots=randInt(0,1); }
+    else if(isMID){ s.passes=randInt(35,85); s.tackles=randInt(0,4); s.interceptions=randInt(0,3); s.shots=randInt(0,3); }
+    else { s.passes=randInt(20,55); s.tackles=randInt(0,2); s.interceptions=randInt(0,1); s.shots=randInt(1,5); }
+    s.passesCompleted = Math.floor(s.passes * (0.75 + Math.random()*0.2));
+    s.xg = Math.round(Math.random() * (isATT ? 60 : 20)) / 100;
+    matchStats[p.id] = s;
   }
 
-  /* Apply goal/assist/card events to stats + ratings */
   for(const e of events){
     const s = matchStats[e.playerId];
     if(!s) continue;
@@ -1306,17 +1061,11 @@ function simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle){
     else if(e.type === "red"){ s.red++; s.rating -= 1.5; }
   }
 
-  /* Result bonus */
   const homeWin = hs>as, awayWin = as>hs;
   for(const id of Object.keys(matchStats)){
     const isHome = homeLineup.some(p => p.id === id);
     if(homeWin) matchStats[id].rating += isHome ? 0.4 : -0.4;
     else if(awayWin) matchStats[id].rating += isHome ? -0.4 : 0.4;
-    matchStats[id].rating = Math.max(3, Math.min(10, Math.round(matchStats[id].rating * 10)/10));
-  }
-
-  /* Rating adjustments - random noise per player */
-  for(const id of Object.keys(matchStats)){
     matchStats[id].rating = clamp(matchStats[id].rating + (Math.random()-0.5)*0.3, 3, 10);
     matchStats[id].rating = Math.round(matchStats[id].rating * 10)/10;
   }
@@ -1324,14 +1073,12 @@ function simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle){
   return {
     fixture, events, matchStats,
     finalScore:{home:hs,away:as},
-    homeLineup, awayLineup
+    homeLineup, awayLineup,
+    cardMap
   };
 }
 
-/* ============================================================
-   SAVE / LOAD
-   ============================================================ */
-const SAVE_KEY = "fm-2026-27-save-v2";
+const SAVE_KEY = "fm-2026-27-save-v3";
 function saveState(){
   try{
     const payload = {
@@ -1342,15 +1089,15 @@ function saveState(){
       cupFixtures: state.cupFixtures,
       cupGroups: state.cupGroups,
       cupDrawn: state.cupDrawn,
-      cupKnockout: state.cupKnockout,
       playerStates: state.playerStates,
       inbox: state.inbox,
       userFormation: state.userFormation,
       userLineup: state.userLineup,
-      userBench: state.userBench
+      userBench: state.userBench,
+      sellCount: state.sellCount
     };
     localStorage.setItem(SAVE_KEY, JSON.stringify(payload));
-  }catch(e){ console.warn("save failed", e); }
+  }catch(e){}
 }
 function loadState(){
   try{
@@ -1362,34 +1109,41 @@ function loadState(){
     return true;
   }catch(e){ return false; }
 }
-function clearSave(){
-  try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
-}
+function clearSave(){ try{ localStorage.removeItem(SAVE_KEY); }catch(e){} }
 
-/* ============================================================
-   UI: NAVIGATION
-   ============================================================ */
 let currentScreen = "dashboard";
 function showScreen(name){
-  currentScreen = name;
-  const screens = $("#screens");
-  clearEl(screens);
-  $$(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.screen === name));
-  const wrap = el("div", {class:"screen active"});
-  screens.appendChild(wrap);
-  if(name === "dashboard") renderDashboard(wrap);
-  else if(name === "fixtures") renderFixtures(wrap);
-  else if(name === "squad") renderSquad(wrap);
-  else if(name === "tactics") renderTactics(wrap);
-  else if(name === "transfers") renderTransfers(wrap);
-  else if(name === "inbox") renderInbox(wrap);
-  else if(name === "tables") renderTables(wrap);
-  updateTopbar();
+  try{
+    currentScreen = name;
+    const screens = $("#screens");
+    clearEl(screens);
+    $$(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.screen === name));
+    const wrap = el("div", {class:"screen active"});
+    screens.appendChild(wrap);
+    if(name === "dashboard") renderDashboard(wrap);
+    else if(name === "fixtures") renderFixtures(wrap);
+    else if(name === "squad") renderSquad(wrap);
+    else if(name === "tactics") renderTactics(wrap);
+    else if(name === "transfers") renderTransfers(wrap);
+    else if(name === "inbox") renderInbox(wrap);
+    else if(name === "tables") renderTables(wrap);
+    updateTopbar();
+  } catch(err){
+    const screens = $("#screens");
+    if(screens){
+      clearEl(screens);
+      const wrap = el("div", {class:"screen active"});
+      wrap.appendChild(el("div", {class:"error-box"}, "Screen '" + name + "' error:\n" + err.message + "\n\n" + (err.stack||"")));
+      screens.appendChild(wrap);
+    }
+    console.error(err);
+  }
 }
 
 function updateTopbar(){
   if(!state.userClubId) return;
   const c = CLUBS[state.userClubId];
+  if(!c) return;
   const l = LEAGUES[c.leagueId];
   $("#topbar-club").textContent = c.short;
   $("#topbar-league").textContent = l.short;
@@ -1397,65 +1151,66 @@ function updateTopbar(){
   $("#topbar-budget").textContent = formatMoney(c.budget);
 }
 
-/* ============================================================
-   UI: DASHBOARD
-   ============================================================ */
 function renderDashboard(root){
-  const c = CLUBS[state.userClubId];
-  const next = getNextFixture(state.userClubId);
-  const table = buildTable(c.leagueId);
-  const pos = table.find(r => r.clubId === state.userClubId)?.position;
-  const unread = state.inbox.filter(m => !m.read).length;
+  try{
+    const c = CLUBS[state.userClubId];
+    if(!c){ root.appendChild(el("div", {class:"empty"}, "No club selected.")); return; }
+    const next = getNextFixture(state.userClubId);
+    const table = buildTable(c.leagueId);
+    const pos = table.find(r => r.clubId === state.userClubId)?.position;
+    const unread = (state.inbox || []).filter(m => !m.read).length;
 
-  root.appendChild(el("h1", {}, "Dashboard"));
+    root.appendChild(el("h1", {}, "Dashboard"));
 
-  root.appendChild(el("div", {class:"card card-highlight"}, [
-    el("div", {class:"card-title"}, "Next Fixture"),
-    next ? el("div", {}, [
-      el("div", {style:"display:flex;align-items:center;gap:10px;margin-bottom:6px"}, [
-        crestEl(next.homeClubId, 32),
-        el("div", {class:"grow"}, [
-          el("div", {style:"font-size:15px;font-weight:700"}, clubName(next.homeClubId) + " vs " + clubName(next.awayClubId)),
-          el("div", {class:"card-sub"}, formatDateLong(next.date) + " · " + next.time)
+    root.appendChild(el("div", {class:"card card-highlight"}, [
+      el("div", {class:"card-title"}, "Next Fixture"),
+      next ? el("div", {}, [
+        el("div", {style:"display:flex;align-items:center;gap:10px;margin-bottom:6px"}, [
+          crestEl(next.homeClubId, 32),
+          el("div", {class:"grow"}, [
+            el("div", {style:"font-size:15px;font-weight:700"}, clubName(next.homeClubId) + " vs " + clubName(next.awayClubId)),
+            el("div", {class:"card-sub"}, formatDateLong(next.date) + " · " + next.time)
+          ]),
+          crestEl(next.awayClubId, 32)
         ]),
-        crestEl(next.awayClubId, 32)
-      ]),
-      el("button", {class:"btn-primary",style:"margin-top:8px;width:100%",onclick:()=>openPreMatch(next.id)}, "Play Match")
-    ]) : el("div", {class:"card-sub"}, "Season complete.")
-  ]));
-
-  root.appendChild(el("div", {class:"card"}, [
-    el("div", {class:"card-title",style:"display:flex;align-items:center;gap:10px"}, [
-      crestEl(state.userClubId, 28),
-      c.name
-    ]),
-    rowBetween("League Position", "#" + (pos || "—")),
-    rowBetween("Transfer Budget", formatMoney(c.budget)),
-    rowBetween("Unread Messages", String(unread))
-  ]));
-
-  const played = state.fixtures
-    .filter(f => (f.homeClubId===state.userClubId || f.awayClubId===state.userClubId) && f.played)
-    .slice(-5).reverse();
-  if(played.length){
-    root.appendChild(el("div", {class:"card"}, [
-      el("div", {class:"card-title"}, "Recent Results"),
-      ...played.map(f => el("div", {class:"row-between",style:"padding:6px 0;font-size:13px"}, [
-        el("span", {style:"display:flex;align-items:center;gap:6px"}, [
-          crestEl(f.homeClubId, 20),
-          el("span", {}, f.homeScore + "–" + f.awayScore),
-          crestEl(f.awayClubId, 20)
-        ]),
-        el("span", {class:"muted",style:"font-size:11px"}, "MD" + f.matchday)
-      ]))
+        el("button", {class:"btn-primary",style:"margin-top:8px;width:100%",onclick:()=>openPreMatch(next.id)}, "Play Match")
+      ]) : el("div", {class:"card-sub"}, "Season complete.")
     ]));
-  }
 
-  root.appendChild(el("button", {
-    class:"btn-danger",
-    style:"width:100%;margin-top:16px",
-    onclick:resignCareer
-  }, "Resign"));
+    root.appendChild(el("div", {class:"card"}, [
+      el("div", {class:"card-title",style:"display:flex;align-items:center;gap:10px"}, [
+        crestEl(state.userClubId, 28),
+        c.name
+      ]),
+      rowBetween("League Position", "#" + (pos || "—")),
+      rowBetween("Transfer Budget", formatMoney(c.budget)),
+      rowBetween("Unread Messages", String(unread))
+    ]));
+
+    const played = state.fixtures
+      .filter(f => (f.homeClubId===state.userClubId || f.awayClubId===state.userClubId) && f.played)
+      .slice(-5).reverse();
+    if(played.length){
+      root.appendChild(el("div", {class:"card"}, [
+        el("div", {class:"card-title"}, "Recent Results"),
+        ...played.map(f => el("div", {class:"row-between",style:"padding:6px 0;font-size:13px"}, [
+          el("span", {style:"display:flex;align-items:center;gap:6px"}, [
+            crestEl(f.homeClubId, 20),
+            el("span", {}, f.homeScore + "–" + f.awayScore),
+            crestEl(f.awayClubId, 20)
+          ]),
+          el("span", {class:"muted",style:"font-size:11px"}, "MD" + f.matchday)
+        ]))
+      ]));
+    }
+
+    root.appendChild(el("button", {
+      class:"btn-danger", style:"width:100%;margin-top:16px", onclick:resignCareer
+    }, "Resign"));
+  } catch(err){
+    root.appendChild(el("div", {class:"error-box"}, "Dashboard error:\n" + err.message + "\n\n" + (err.stack||"")));
+    console.error(err);
+  }
 }
 
 function rowBetween(label, value){
@@ -1467,7 +1222,7 @@ function rowBetween(label, value){
 
 function resignCareer(){
   const c = CLUBS[state.userClubId];
-  if(!confirm("Resign from " + c.name + "?\n\nThis will end your current career and return you to club selection. This cannot be undone.")) return;
+  if(!confirm("Resign from " + c.name + "?\n\nThis will end your current career and return you to club selection.")) return;
   clearSave();
   state.userClubId = null;
   state.fixtures = [];
@@ -1481,14 +1236,10 @@ function resignCareer(){
   renderClubSelect();
 }
 
-/* ============================================================
-   UI: FIXTURES (with Elite Cup tab)
-   ============================================================ */
 let activeFixturesLeague = null;
 function renderFixtures(root){
   if(!activeFixturesLeague) activeFixturesLeague = CLUBS[state.userClubId].leagueId;
   root.appendChild(el("h1", {}, "Fixtures"));
-
   const bar = el("div", {class:"tab-bar"});
   for(const lid of LEAGUE_ORDER){
     bar.appendChild(el("button", {
@@ -1502,10 +1253,7 @@ function renderFixtures(root){
   }, "Elite Cup"));
   root.appendChild(bar);
 
-  if(activeFixturesLeague === "elite-cup"){
-    renderCupFixtures(root);
-    return;
-  }
+  if(activeFixturesLeague === "elite-cup"){ renderCupFixtures(root); return; }
 
   const grouped = {};
   for(const f of state.fixtures){
@@ -1517,14 +1265,11 @@ function renderFixtures(root){
   const currentMd = matchdays.find(md => grouped[md].some(f => !f.played)) || matchdays[matchdays.length-1] || 1;
   const idx = matchdays.indexOf(currentMd);
   const window = matchdays.slice(Math.max(0, idx-1), Math.max(0, idx-1)+6);
-
   for(const md of window){
     const group = el("div", {class:"fixture-group"});
     group.appendChild(el("div", {class:"fixture-group-title"}, "Matchday " + md));
     const fixtures = grouped[md].sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time));
-    for(const f of fixtures){
-      group.appendChild(renderFixtureRow(f));
-    }
+    for(const f of fixtures) group.appendChild(renderFixtureRow(f));
     root.appendChild(group);
   }
 }
@@ -1538,32 +1283,25 @@ function renderCupFixtures(root){
     el("div", {class:"card-title"}, "Group Stage"),
     el("div", {class:"card-sub"}, "Home & away vs each team in your group. Top 2 advance.")
   ]));
-
-  // Group tables
   for(let g=0; g<4; g++){
     root.appendChild(el("div", {class:"card"}, [
       el("div", {class:"card-title"}, "Group " + String.fromCharCode(65+g)),
       ...buildCupGroupTable(g).map(r => {
         const isUser = r.clubId === state.userClubId;
         return el("div", {class:"row-between",style:"padding:4px 0;font-size:13px" + (isUser ? ";font-weight:700;color:var(--accent-dark)" : "")}, [
-          el("span", {style:"display:flex;align-items:center;gap:8px"}, [
-            crestEl(r.clubId, 20),
-            clubName(r.clubId)
-          ]),
+          el("span", {style:"display:flex;align-items:center;gap:8px"}, [crestEl(r.clubId, 20), clubName(r.clubId)]),
           el("span", {class:"muted",style:"font-size:11px"}, r.played + " P · " + r.points + " pts")
         ]);
       })
     ]));
   }
-
-  // Cup fixtures by round
   const grouped = {};
   for(const f of state.cupFixtures){
     const key = f.stage + "-" + (f.round || 1);
     if(!grouped[key]) grouped[key] = [];
     grouped[key].push(f);
   }
-  const roundKeys = Object.keys(grouped).sort((a,b)=> a.localeCompare(b));
+  const roundKeys = Object.keys(grouped).sort();
   for(const key of roundKeys){
     const group = el("div", {class:"fixture-group"});
     const label = formatCupRoundLabel(key);
@@ -1571,15 +1309,6 @@ function renderCupFixtures(root){
     const fixtures = grouped[key].sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time));
     for(const f of fixtures) group.appendChild(renderFixtureRow(f));
     root.appendChild(group);
-  }
-
-  if(!state.cupKnockout && state.cupFixtures.filter(f => f.stage==="group" && f.played).length >= 40){
-    // All group games done, build knockout (once)
-    const standings = [0,1,2,3].map(g => buildCupGroupTable(g).map(r => r.clubId));
-    state.cupKnockout = buildCupKnockout(standings);
-    state.cupFixtures.push(...state.cupKnockout);
-    saveState();
-    showScreen("fixtures");
   }
 }
 
@@ -1595,19 +1324,11 @@ function formatCupRoundLabel(key){
 function renderFixtureRow(f){
   const isUser = f.homeClubId === state.userClubId || f.awayClubId === state.userClubId;
   const row = el("div", {class:"fixture-row" + (isUser ? " is-user" : "") + (f.played ? " played" : "")}, [
-    el("div", {class:"fixture-side home"}, [
-      crestEl(f.homeClubId, 24),
-      el("div", {class:"fixture-team"}, clubName(f.homeClubId))
-    ]),
+    el("div", {class:"fixture-side home"}, [crestEl(f.homeClubId, 24), el("div", {class:"fixture-team"}, clubName(f.homeClubId))]),
     el("div", {class:"fixture-center"},
-      f.played
-        ? el("div", {class:"score"}, f.homeScore + " – " + f.awayScore)
-        : f.time
+      f.played ? el("div", {class:"score"}, f.homeScore + " – " + f.awayScore) : f.time
     ),
-    el("div", {class:"fixture-side away"}, [
-      el("div", {class:"fixture-team"}, clubName(f.awayClubId)),
-      crestEl(f.awayClubId, 24)
-    ])
+    el("div", {class:"fixture-side away"}, [el("div", {class:"fixture-team"}, clubName(f.awayClubId)), crestEl(f.awayClubId, 24)])
   ]);
   if(isUser && !f.played){
     row.style.cursor = "pointer";
@@ -1616,21 +1337,16 @@ function renderFixtureRow(f){
   return row;
 }
 
-/* ============================================================
-   UI: SQUAD
-   ============================================================ */
 function renderSquad(root){
   root.appendChild(el("h1", {}, "Squad"));
   const squad = getSquadWithState(state.userClubId).sort((a,b) => b.overall - a.overall);
-  if(squad.length === 0){
-    root.appendChild(el("div", {class:"empty"}, "No squad data. Upload data/players.js."));
-    return;
-  }
+  if(squad.length === 0){ root.appendChild(el("div", {class:"empty"}, "No squad data.")); return; }
   for(const p of squad){
+    const banTag = (p.banMatches||0) > 0 ? el("span", {class:"badge red",style:"margin-left:6px"}, "BAN") : null;
     const row = el("div", {class:"player-row", onclick:()=>openPlayerDetail(p.id)}, [
       el("div", {class:"player-pos " + posClass(p.position)}, p.position),
       el("div", {class:"grow"}, [
-        el("div", {class:"player-name"}, p.name),
+        el("div", {class:"player-name"}, p.name, banTag),
         el("div", {class:"player-meta"}, fatigueLabel(p.fatigue) + " · " + moraleLabel(p.morale))
       ]),
       el("div", {class:"player-ovr " + ratingClass(p.overall)}, String(p.overall)),
@@ -1662,42 +1378,21 @@ function openPlayerDetail(playerId){
       el("div", {class:"bar-value"}, String(Math.round(p.morale)))
     ]),
     el("div", {class:"bar-status"}, moraleLabel(p.morale)),
-    el("div", {class:"row-between",style:"margin-top:16px"}, [
-      el("span", {class:"card-sub"}, "Matches"),
-      el("span", null, String(p.matchesThisSeason || 0))
-    ]),
-    el("div", {class:"row-between"}, [
-      el("span", {class:"card-sub"}, "Minutes"),
-      el("span", null, String(p.minutesThisSeason || 0))
-    ]),
-    el("div", {class:"row-between"}, [
-      el("span", {class:"card-sub"}, "Goals"),
-      el("span", null, String(p.goals || 0))
-    ]),
-    el("div", {class:"row-between"}, [
-      el("span", {class:"card-sub"}, "Assists"),
-      el("span", null, String(p.assists || 0))
-    ]),
+    el("div", {class:"row-between",style:"margin-top:16px"}, [el("span", {class:"card-sub"}, "Appearances"), el("span", {}, String(p.matchesThisSeason || 0))]),
+    el("div", {class:"row-between"}, [el("span", {class:"card-sub"}, "Goals"), el("span", {}, String(p.goals || 0))]),
+    el("div", {class:"row-between"}, [el("span", {class:"card-sub"}, "Assists"), el("span", {}, String(p.assists || 0))]),
+    el("div", {class:"row-between"}, [el("span", {class:"card-sub"}, "Yellow cards"), el("span", {}, String(p.yellow || 0))]),
+    el("div", {class:"row-between"}, [el("span", {class:"card-sub"}, "Red cards"), el("span", {}, String(p.red || 0))]),
+    (p.banMatches || 0) > 0 ? el("div", {class:"badge red",style:"margin-top:8px"}, "Suspended for " + p.banMatches + " matches") : null,
     !inXI ? el("div", {class:"row",style:"margin-top:16px;gap:8px"}, [
-      el("button", {class:"btn-secondary btn-sm", onclick:()=>{
-        alert(p.name + " listed for sale. AI clubs may bid for him.");
-        overlay.classList.add("hidden");
-      }}, "List for Sale"),
-      el("button", {class:"btn-secondary btn-sm", onclick:()=>{
-        alert(p.name + " listed for loan. AI clubs may bid for him.");
-        overlay.classList.add("hidden");
-      }}, "List for Loan")
-    ]) : el("div", {class:"card-sub",style:"margin-top:12px"}, "Player is in your XI — remove him from the starting lineup to list."),
-    el("div", {class:"match-actions"}, [
-      el("button", {class:"btn-primary", onclick:()=>overlay.classList.add("hidden")}, "Close")
-    ])
+      el("button", {class:"btn-secondary btn-sm", onclick:()=>{ alert(p.name + " listed for sale."); overlay.classList.add("hidden"); }}, "List for Sale"),
+      el("button", {class:"btn-secondary btn-sm", onclick:()=>{ alert(p.name + " listed for loan."); overlay.classList.add("hidden"); }}, "List for Loan")
+    ]) : el("div", {class:"card-sub",style:"margin-top:12px"}, "Player is in your XI — remove him to list."),
+    el("div", {class:"match-actions"}, [el("button", {class:"btn-primary", onclick:()=>overlay.classList.add("hidden")}, "Close")])
   ]);
   overlay.appendChild(panel);
 }
 
-/* ============================================================
-   UI: TACTICS
-   ============================================================ */
 function renderTactics(root){
   root.appendChild(el("h1", {}, "Tactics"));
   if(!state.userFormation) state.userFormation = "4-3-3";
@@ -1775,14 +1470,14 @@ function openSwapDialog(slotIndex){
   const inXI = new Set(state.userLineup);
   const candidates = squad
     .filter(p => !inXI.has(p.id) && p.id !== currentId)
+    .filter(p => !(state.playerStates[p.id]?.banMatches > 0))
     .sort((a,b) => (b.overall * posFit(b.position, slotPos)) - (a.overall * posFit(a.position, slotPos)));
 
   const panel = el("div", {class:"match-panel"}, [
     el("h2", {style:"margin-bottom:4px"}, "Swap Player"),
-    el("div", {class:"card-sub", style:"margin-bottom:12px"},
-      "Slot: " + slotPos + " — currently " + (getPlayerById(currentId)?.name || "—")),
+    el("div", {class:"card-sub", style:"margin-bottom:12px"}, "Slot: " + slotPos + " — currently " + (getPlayerById(currentId)?.name || "—")),
     candidates.length === 0
-      ? el("div", {class:"empty"}, "No available players on the bench. Upload data/players.js for full squads.")
+      ? el("div", {class:"empty"}, "No available players.")
       : el("div", {}, ...candidates.slice(0, 25).map(p => {
           const fit = posFit(p.position, slotPos);
           const row = el("div", {class:"lineup-row", style:"cursor:pointer"}, [
@@ -1802,25 +1497,18 @@ function openSwapDialog(slotIndex){
           };
           return row;
         })),
-    el("div", {class:"match-actions"}, [
-      el("button", {class:"btn-ghost", onclick:()=>overlay.classList.add("hidden")}, "Cancel")
-    ])
+    el("div", {class:"match-actions"}, [el("button", {class:"btn-ghost", onclick:()=>overlay.classList.add("hidden")}, "Cancel")])
   ]);
   overlay.appendChild(panel);
 }
 
-/* ============================================================
-   UI: TRANSFERS
-   ============================================================ */
 let activeTransfersTab = "market";
-let transfersFilter = {position:"ALL", league:"ALL", maxValue:null};
+let transfersFilter = {position:"ALL", maxValue:null};
 function renderTransfers(root){
   root.appendChild(el("h1", {}, "Transfers"));
   root.appendChild(el("div", {class:"tab-bar"}, [
-    el("button", {class:"tab" + (activeTransfersTab==="market" ? " active" : ""),
-      onclick:()=>{activeTransfersTab="market"; showScreen("transfers");}}, "Market"),
-    el("button", {class:"tab" + (activeTransfersTab==="offers" ? " active" : ""),
-      onclick:()=>{activeTransfersTab="offers"; showScreen("transfers");}}, "My Offers")
+    el("button", {class:"tab" + (activeTransfersTab==="market" ? " active" : ""), onclick:()=>{activeTransfersTab="market"; showScreen("transfers");}}, "Market"),
+    el("button", {class:"tab" + (activeTransfersTab==="offers" ? " active" : ""), onclick:()=>{activeTransfersTab="offers"; showScreen("transfers");}}, "My Offers")
   ]));
   if(activeTransfersTab === "market") renderTransferMarket(root);
   else renderTransferOffers(root);
@@ -1832,7 +1520,6 @@ function renderTransferMarket(root){
     el("div", {class:"card-title"}, "Budget"),
     el("div", {class:"card-sub"}, "Transfer: " + formatMoney(budget))
   ]));
-
   const positions = ["ALL","GK","CB","LB","RB","LWB","RWB","CDM","CM","CAM","AMR","AML","LW","RW","ST"];
   root.appendChild(el("div", {class:"manage-section"}, [
     el("h3", {}, "Position"),
@@ -1843,35 +1530,26 @@ function renderTransferMarket(root){
       return sel;
     })()
   ]));
-
   root.appendChild(el("div", {class:"manage-section"}, [
     el("h3", {}, "Max Value"),
     (() => {
       const sel = el("select", {class:"manage-select"},
         [
-          {v:null, l:"No limit"},
-          {v:5000000, l:"£5M"},
-          {v:15000000, l:"£15M"},
-          {v:30000000, l:"£30M"},
-          {v:60000000, l:"£60M"},
-          {v:100000000, l:"£100M"}
+          {v:null, l:"No limit"},{v:10000000,l:"£10M"},{v:25000000,l:"£25M"},{v:50000000,l:"£50M"},
+          {v:100000000,l:"£100M"},{v:150000000,l:"£150M"}
         ].map(o => el("option", {value:o.v==null?"":o.v, selected:(transfersFilter.maxValue||"")==(o.v||"")}, o.l)));
       sel.onchange = e => { transfersFilter.maxValue = e.target.value ? Number(e.target.value) : null; showScreen("transfers"); };
       return sel;
     })()
   ]));
-
   const pool = state.allPlayers
     .filter(p => p.clubId !== state.userClubId)
     .filter(p => transfersFilter.position === "ALL" || p.position === transfersFilter.position)
-    .filter(p => !transfersFilter.maxValue || (p.value || estimateValue(p.overall, p.age)) <= transfersFilter.maxValue)
+    .filter(p => !transfersFilter.maxValue || (p.value || 0) <= transfersFilter.maxValue)
     .sort((a,b) => b.overall - a.overall);
-
-  root.appendChild(el("div", {class:"card-sub",style:"margin-bottom:8px"},
-    pool.length + " players"));
-
+  root.appendChild(el("div", {class:"card-sub",style:"margin-bottom:8px"}, pool.length + " players"));
   for(const p of pool.slice(0, 60)){
-    const estValue = p.value || estimateValue(p.overall, p.age);
+    const estValue = p.value || 10000000;
     const canAfford = estValue <= budget;
     root.appendChild(el("div", {class:"player-row", style:"grid-template-columns:34px 1fr 60px 80px"}, [
       el("div", {class:"player-pos " + posClass(p.position)}, p.position),
@@ -1889,36 +1567,23 @@ function renderTransferMarket(root){
   }
 }
 
-function estimateValue(overall, age){
-  const base = Math.pow(Math.max(0, overall - 50), 2.4) * 1000;
-  const ageMult = age <= 21 ? 1.6 : age <= 25 ? 1.3 : age <= 29 ? 1.0 : age <= 32 ? .65 : .35;
-  return Math.round(base * ageMult);
-}
-
 function makeOffer(player, estValue){
   const overlay = $("#match-overlay");
   overlay.classList.remove("hidden");
   clearEl(overlay);
   const budget = CLUBS[state.userClubId].budget;
-
-  const input = el("input", {
-    type:"number", value: estValue, style:"width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:var(--surface-2)"
-  });
-
+  const input = el("input", {type:"number", value: estValue, style:"width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:var(--surface-2)"});
   const panel = el("div", {class:"match-panel"}, [
     el("h2", {style:"margin-bottom:4px"}, "Offer for " + player.name),
     el("div", {class:"card-sub", style:"margin-bottom:12px"},
-      clubName(player.clubId) + " · " + player.position + " · OVR " + player.overall + " · age " + player.age),
-    el("div", {class:"manage-section"}, [
-      el("h3", {}, "Transfer Fee (£)"),
-      input
-    ]),
+      clubName(player.clubId) + " · " + player.position + " · OVR " + player.overall),
+    el("div", {class:"manage-section"}, [el("h3", {}, "Transfer Fee (£)"), input]),
     el("div", {class:"card-sub"}, "Your budget: " + formatMoney(budget)),
     el("div", {class:"match-actions"}, [
       el("button", {class:"btn-ghost", onclick:()=>overlay.classList.add("hidden")}, "Cancel"),
       el("button", {class:"btn-primary", onclick:()=>{
         const fee = Number(input.value);
-        if(!fee || fee < 100000){ alert("Enter a valid fee"); return; }
+        if(!fee || fee < 500000){ alert("Enter a valid fee"); return; }
         if(fee > budget){ alert("Fee exceeds budget"); return; }
         const result = resolveOffer(player, fee);
         overlay.classList.add("hidden");
@@ -1930,18 +1595,40 @@ function makeOffer(player, estValue){
   overlay.appendChild(panel);
 }
 
+function playerImportance(player){
+  const squad = getSquad(player.clubId);
+  const sorted = [...squad].sort((a,b) => b.overall - a.overall);
+  const rank = sorted.findIndex(p => p.id === player.id);
+  if(rank < 3) return "top";
+  if(rank < 8) return "mid";
+  return "squad";
+}
+
 function resolveOffer(player, fee){
-  const est = estimateValue(player.overall, player.age);
-  const ratio = fee / est;
-  if(ratio < 0.7){
-    return "Offer rejected — too low. " + clubName(player.clubId) + " wants closer to " + formatMoney(est) + ".";
+  const est = player.value || 10000000;
+  const importance = playerImportance(player);
+  const sellCount = state.sellCount[player.clubId] || 0;
+
+  if(sellCount >= 2){
+    return clubName(player.clubId) + " has already sold 2 first-team players this window. They refuse all further offers.";
   }
-  if(ratio < 1.0){
-    const counter = Math.round(est * 1.15);
+
+  let multiplier = 1.0;
+  if(importance === "top") multiplier = 3.0;
+  else if(importance === "mid") multiplier = 1.75;
+
+  const askingPrice = Math.round(est * multiplier);
+
+  if(importance === "top" && Math.random() < 0.5){
+    return clubName(player.clubId) + " refuses to sell " + player.name + " at any price.";
+  }
+  if(fee < askingPrice * 0.7){
+    return "Offer rejected — too low. " + clubName(player.clubId) + " wants around " + formatMoney(askingPrice) + ".";
+  }
+  if(fee < askingPrice){
+    const counter = Math.round(askingPrice * 1.05);
     const accept = confirm(clubName(player.clubId) + " counters with " + formatMoney(counter) + ". Accept?");
-    if(accept){
-      return executeSigning(player, counter);
-    }
+    if(accept) return executeSigning(player, counter);
     return "Offer withdrawn.";
   }
   return executeSigning(player, fee);
@@ -1950,13 +1637,14 @@ function resolveOffer(player, fee){
 function executeSigning(player, fee){
   const c = CLUBS[state.userClubId];
   if(fee > c.budget) return "Not enough budget.";
-  // Move player in state
   const p = state.allPlayers.find(x => x.id === player.id);
   if(p){
+    const oldClub = p.clubId;
     p.clubId = state.userClubId;
+    state.sellCount[oldClub] = (state.sellCount[oldClub] || 0) + 1;
     state.playerStates[p.id] = state.playerStates[p.id] || {
       fatigue:100, morale:75, minutesThisSeason:0, matchesThisSeason:0,
-      goals:0, assists:0, yellow:0, red:0, ratingPoints:0, ratingMatches:0, ratingBaseline:p.overall
+      goals:0, assists:0, yellow:0, red:0, ratingPoints:0, ratingMatches:0, banMatches:0
     };
   }
   c.budget -= fee;
@@ -1965,18 +1653,12 @@ function executeSigning(player, fee){
 }
 
 function renderTransferOffers(root){
-  root.appendChild(el("div", {class:"empty"}, "No offers pending. AI clubs will bid for your players as matchdays pass."));
+  root.appendChild(el("div", {class:"empty"}, "No offers pending."));
 }
 
-/* ============================================================
-   UI: INBOX
-   ============================================================ */
 function renderInbox(root){
   root.appendChild(el("h1", {}, "Inbox"));
-  if(state.inbox.length === 0){
-    root.appendChild(el("div", {class:"empty"}, "No messages."));
-    return;
-  }
+  if(state.inbox.length === 0){ root.appendChild(el("div", {class:"empty"}, "No messages.")); return; }
   for(const m of state.inbox){
     const card = el("div", {class:"card" + (!m.read ? " card-highlight" : ""), style:"cursor:pointer"}, [
       el("div", {class:"card-title"}, m.title),
@@ -1987,9 +1669,6 @@ function renderInbox(root){
   }
 }
 
-/* ============================================================
-   UI: TABLES
-   ============================================================ */
 let activeTablesLeague = null;
 function renderTables(root){
   if(!activeTablesLeague) activeTablesLeague = CLUBS[state.userClubId].leagueId;
@@ -2018,10 +1697,7 @@ function renderTables(root){
       const posCls = r.position <= 4 ? "pos-ucl" : r.position >= table.length-2 ? "pos-rel" : "";
       return el("tr", {class:r.clubId === state.userClubId ? "user-club" : ""}, [
         el("td", {class:"pos " + posCls}, String(r.position)),
-        el("td", {class:"team", style:"display:flex;align-items:center;gap:8px"}, [
-          crestEl(r.clubId, 20),
-          clubName(r.clubId)
-        ]),
+        el("td", {class:"team", style:"display:flex;align-items:center;gap:8px"}, [crestEl(r.clubId, 20), clubName(r.clubId)]),
         el("td", {class:"num"}, String(r.played)),
         el("td", {class:"num"}, String(r.won)),
         el("td", {class:"num"}, String(r.drawn)),
@@ -2034,11 +1710,7 @@ function renderTables(root){
   root.appendChild(tbl);
 }
 
-/* ============================================================
-   MATCH FLOW
-   ============================================================ */
 let currentMatch = null;
-
 function openPreMatch(fixtureId){
   const fixture = state.fixtures.find(f => f.id === fixtureId) ||
                   state.cupFixtures.find(f => f.id === fixtureId);
@@ -2071,13 +1743,10 @@ function openPreMatch(fixtureId){
 function renderPreMatch(){
   const overlay = $("#match-overlay");
   clearEl(overlay);
-  const {fixture, userIsHome, userFormation, userStyle, userPicked} = currentMatch;
-
+  const {fixture, userFormation, userStyle, userPicked} = currentMatch;
   const panel = el("div", {class:"match-panel"}, [
-    el("h2", {style:"margin-bottom:4px"},
-      clubName(fixture.homeClubId) + " vs " + clubName(fixture.awayClubId)),
+    el("h2", {style:"margin-bottom:4px"}, clubName(fixture.homeClubId) + " vs " + clubName(fixture.awayClubId)),
     el("div", {class:"card-sub", style:"margin-bottom:12px"}, "Pre-Match"),
-
     el("div", {class:"manage-section"}, [
       el("h3", {}, "Formation"),
       (() => {
@@ -2091,19 +1760,15 @@ function renderPreMatch(){
         return sel;
       })()
     ]),
-
     el("div", {class:"manage-section"}, [
       el("h3", {}, "Tactical Style"),
       el("div", {class:"style-toggle"},
         ["attacking","balanced","defensive"].map(s =>
-          el("button", {
-            class:"tab" + (s === userStyle ? " active" : ""),
-            onclick:()=>{ currentMatch.userStyle = s; renderPreMatch(); }
-          }, s.charAt(0).toUpperCase() + s.slice(1))
+          el("button", {class:"tab" + (s === userStyle ? " active" : ""), onclick:()=>{ currentMatch.userStyle = s; renderPreMatch(); }},
+            s.charAt(0).toUpperCase() + s.slice(1))
         )
       )
     ]),
-
     el("div", {class:"manage-section"}, [
       el("h3", {}, "Starting XI"),
       ...userPicked.lineup.map(p => el("div", {class:"lineup-row"}, [
@@ -2113,7 +1778,6 @@ function renderPreMatch(){
         el("div", {class:"lineup-stats"}, "")
       ]))
     ]),
-
     el("div", {class:"match-actions"}, [
       el("button", {class:"btn-ghost", onclick:closeMatch}, "Cancel"),
       el("button", {class:"btn-primary", onclick:kickOff}, "Kick Off")
@@ -2121,16 +1785,10 @@ function renderPreMatch(){
   ]);
   overlay.appendChild(panel);
 }
-
-function closeMatch(){
-  $("#match-overlay").classList.add("hidden");
-  currentMatch = null;
-}
-
+function closeMatch(){ $("#match-overlay").classList.add("hidden"); currentMatch = null; }
 let revealTimer = null;
-
 function kickOff(){
-  const {fixture, userIsHome, userFormation, userStyle, userPicked, aiPicked, aiStyle} = currentMatch;
+  const {fixture, userIsHome, userStyle, userPicked, aiPicked, aiStyle} = currentMatch;
   const homeLineup = userIsHome ? userPicked.lineup : aiPicked.lineup;
   const awayLineup = userIsHome ? aiPicked.lineup : userPicked.lineup;
   const homeStyle = userIsHome ? userStyle : aiStyle;
@@ -2145,7 +1803,6 @@ function kickOff(){
   renderLive();
   startReveal();
 }
-
 function renderLive(){
   const overlay = $("#match-overlay");
   clearEl(overlay);
@@ -2164,7 +1821,6 @@ function renderLive(){
   ]);
   overlay.appendChild(panel);
 }
-
 function startReveal(){
   clearTimeout(revealTimer);
   const {sim} = currentMatch;
@@ -2196,7 +1852,6 @@ function startReveal(){
   };
   revealTimer = setTimeout(step, 200);
 }
-
 function renderEventItem(ev){
   const iconMap = {goal:"⚽",yellow:"🟨",red:"🟥",sub:"🔁",injury:"🚑"};
   const p = ev.playerId ? getPlayerById(ev.playerId) : null;
@@ -2214,12 +1869,7 @@ function renderEventItem(ev){
     ev.type === "goal" ? el("div", {class:"event-score"}, ev.homeScore + "–" + ev.awayScore) : el("div")
   ]);
 }
-
-function onPauseClick(){
-  currentMatch.paused = true;
-  renderManage(false);
-}
-
+function onPauseClick(){ currentMatch.paused = true; renderManage(false); }
 function renderManage(fromHalfTime){
   const overlay = $("#match-overlay");
   clearEl(overlay);
@@ -2239,31 +1889,20 @@ function renderManage(fromHalfTime){
       el("h3", {}, "Tactical Style"),
       el("div", {class:"style-toggle"},
         ["attacking","balanced","defensive"].map(s =>
-          el("button", {
-            class:"tab" + (s === userStyle ? " active" : ""),
-            onclick:()=>{ currentMatch.userStyle = s; renderManage(fromHalfTime); }
-          }, s.charAt(0).toUpperCase() + s.slice(1))
+          el("button", {class:"tab" + (s === userStyle ? " active" : ""), onclick:()=>{ currentMatch.userStyle = s; renderManage(fromHalfTime); }},
+            s.charAt(0).toUpperCase() + s.slice(1))
         )
       )
     ]),
-    el("div", {class:"manage-section"}, [
-      el("h3", {}, "Substitutions"),
-      el("div", {class:"card-sub"}, "Sub management coming soon.")
-    ]),
-    el("div", {class:"match-actions"}, [
-      el("button", {class:"btn-primary", onclick:resumeMatch}, "Resume")
-    ])
+    el("div", {class:"match-actions"}, [el("button", {class:"btn-primary", onclick:resumeMatch}, "Resume")])
   ]);
   overlay.appendChild(panel);
 }
-
 function resumeMatch(){
   currentMatch.paused = false;
   renderLive();
   const sim = currentMatch.sim;
-  for(let i=0;i<currentMatch.revealIdx;i++){
-    $("#live-events").appendChild(renderEventItem(sim.events[i]));
-  }
+  for(let i=0;i<currentMatch.revealIdx;i++) $("#live-events").appendChild(renderEventItem(sim.events[i]));
   if(currentMatch.minute > 0){
     $("#live-minute").textContent = currentMatch.minute + "'";
     const goalsSoFar = sim.events.slice(0, currentMatch.revealIdx).filter(e => e.type === "goal");
@@ -2288,10 +1927,9 @@ function commitMatchStats(sim){
     ps.red = (ps.red || 0) + s.red;
     ps.ratingPoints = (ps.ratingPoints || 0) + s.rating;
     ps.ratingMatches = (ps.ratingMatches || 0) + 1;
-    // Fatigue decay
     ps.fatigue = Math.max(0, (ps.fatigue || 100) - 12);
-
-    // Every 20 matches: apply rating progression
+    if(s.yellow >= 2 && s.red === 0){ ps.red = (ps.red||0) + 1; s.red = 1; }
+    if(s.red > 0) ps.banMatches = 3;
     if(ps.ratingMatches >= 20){
       const avg = ps.ratingPoints / ps.ratingMatches;
       const p = getPlayerById(pid);
@@ -2300,8 +1938,6 @@ function commitMatchStats(sim){
         if(avg >= 8.0) delta = 2;
         else if(avg >= 7.5) delta = 1;
         else if(avg <= 5.5) delta = -1;
-        // Age modifier
-        if(p.age < 23 && delta > 0) delta = Math.min(2, delta + 0);
         if(p.age > 32 && delta > 0) delta = Math.max(0, delta - 1);
         p.overall = clamp(p.overall + delta, 40, 99);
       }
@@ -2320,9 +1956,13 @@ function finishMatch(){
 
   commitMatchStats(sim);
 
+  for(const pid of Object.keys(state.playerStates)){
+    const ps = state.playerStates[pid];
+    if(ps.banMatches > 0 && sim.matchStats[pid]) ps.banMatches = Math.max(0, ps.banMatches - 1);
+  }
+
   state.matchday = Math.max(state.matchday, fixture.matchday || state.matchday);
 
-  // Cup draw on matchday 3
   if(!state.cupDrawn && state.matchday >= 3){
     const result = buildCupFixtures();
     state.cupGroups = result.groups;
@@ -2331,18 +1971,16 @@ function finishMatch(){
     state.inbox.unshift({
       id: "cup-draw-" + Date.now(),
       title: "Elite Cup draw complete",
-      body: "20 clubs split into 4 groups of 5. Check Fixtures → Elite Cup to see your group.",
+      body: "20 clubs split into 4 groups of 5. Check Fixtures → Elite Cup.",
       read: false
     });
   }
 
-  // Advance date to next user fixture
   const allNext = [...state.fixtures, ...state.cupFixtures];
   const nextUserFix = allNext.find(f =>
     (f.homeClubId === state.userClubId || f.awayClubId === state.userClubId) && !f.played);
   if(nextUserFix) state.currentDate = nextUserFix.date;
 
-  // Auto-play remaining league fixtures for this matchday
   if(fixture.comp === "league"){
     for(const f of state.fixtures.filter(x => x.leagueId === fixture.leagueId && x.matchday === fixture.matchday && !x.played)){
       const hL = autoPickLineup(f.homeClubId, "4-3-3").lineup;
@@ -2364,7 +2002,6 @@ function renderResult(){
   const {sim, fixture} = currentMatch;
   const home = CLUBS[fixture.homeClubId];
   const away = CLUBS[fixture.awayClubId];
-
   const panel = el("div", {class:"match-panel"}, [
     el("div", {id:"result-banner"}, [
       el("div", {class:"rb-side"}, [crestEl(fixture.homeClubId, 48), el("div", {class:"rb-team"}, home.short)]),
@@ -2386,14 +2023,12 @@ function renderResult(){
 
   const evContainer = panel.querySelector("#result-events");
   for(const ev of sim.events) evContainer.appendChild(renderEventItem(ev));
-  evContainer.appendChild(
-    el("div", {class:"event-item ft"}, [
-      el("div", {class:"event-minute"}, "FT"),
-      el("div", {class:"event-icon"}, ""),
-      el("div", {}, el("div", {class:"event-player"}, "Full Time")),
-      el("div", {class:"event-score"}, sim.finalScore.home + "–" + sim.finalScore.away)
-    ])
-  );
+  evContainer.appendChild(el("div", {class:"event-item ft"}, [
+    el("div", {class:"event-minute"}, "FT"),
+    el("div", {class:"event-icon"}, ""),
+    el("div", {}, el("div", {class:"event-player"}, "Full Time")),
+    el("div", {class:"event-score"}, sim.finalScore.home + "–" + sim.finalScore.away)
+  ]));
 
   const teamsContainer = panel.querySelector("#result-teams");
   teamsContainer.appendChild(renderLineupBlock("home", sim));
@@ -2424,29 +2059,31 @@ function renderLineupBlock(side, sim){
     const s = sim.matchStats[p.id];
     if(!s) continue;
     const ratingCls = s.rating >= 7.5 ? "high" : s.rating >= 6 ? "mid" : "low";
-    const statBits = [];
-    if(s.goals) statBits.push(s.goals + " G");
-    if(s.assists) statBits.push(s.assists + " A");
-    statBits.push("xG " + s.xg.toFixed(2));
-    statBits.push("Pass " + s.passesCompleted + "/" + s.passes);
-    if(s.tackles) statBits.push("Tkl " + s.tackles);
-    if(s.interceptions) statBits.push("Int " + s.interceptions);
-    const row = el("div", {class:"stat-row"}, [
+    const bits = [];
+    if(s.goals) bits.push(s.goals + " G");
+    if(s.assists) bits.push(s.assists + " A");
+    bits.push("xG " + s.xg.toFixed(2));
+    bits.push("Pass " + s.passesCompleted + "/" + s.passes);
+    if(s.tackles) bits.push("Tkl " + s.tackles);
+    if(s.interceptions) bits.push("Int " + s.interceptions);
+    block.appendChild(el("div", {class:"stat-row"}, [
       el("div", {class:"player-pos " + posClass(p.position)}, p.position),
       el("div", {}, [
         el("div", {class:"stat-name"}, p.name),
-        el("div", {class:"stat-sub"}, statBits.join(" · "))
+        el("div", {class:"stat-sub"}, bits.join(" · "))
       ]),
       el("div", {class:"stat-rating " + ratingCls}, s.rating.toFixed(1))
-    ]);
-    block.appendChild(row);
+    ]));
   }
   return block;
 }
 
-/* ============================================================
-   CLUB SELECT
-   ============================================================ */
+function getNextFixture(clubId){
+  return [...state.fixtures, ...state.cupFixtures]
+    .filter(f => (f.homeClubId===clubId || f.awayClubId===clubId) && !f.played)
+    .sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time))[0] || null;
+}
+
 let clubSelectLeague = "premier-league";
 function renderClubSelect(){
   const screens = $("#screens");
@@ -2468,9 +2105,7 @@ function renderClubSelect(){
   ]);
   screens.appendChild(wrap);
   const list = $("#club-list");
-  const clubs = LEAGUES[clubSelectLeague].clubIds
-    .map(id => CLUBS[id])
-    .sort((a,b) => b.rating - a.rating);
+  const clubs = LEAGUES[clubSelectLeague].clubIds.map(id => CLUBS[id]).sort((a,b) => b.rating - a.rating);
   for(const c of clubs){
     const card = el("div", {class:"player-row", style:"grid-template-columns:40px 1fr 46px auto"}, [
       crestEl(c.id, 32),
@@ -2493,41 +2128,39 @@ function renderClubSelect(){
   }
 }
 
-/* ============================================================
-   BOOT
-   ============================================================ */
 function boot(){
   $$(".nav-btn").forEach(b => {
     b.addEventListener("click", () => showScreen(b.dataset.screen));
   });
-
+  state.allPlayers = PLACEHOLDER_PLAYERS;
   const externalScript = document.createElement("script");
   externalScript.src = "data/players.js";
   externalScript.onload = () => {
     if(window.FM_PLAYERS && Array.isArray(window.FM_PLAYERS) && window.FM_PLAYERS.length > 0){
       state.allPlayers = window.FM_PLAYERS;
-      console.log("Loaded " + state.allPlayers.length + " external players");
-    } else {
-      state.allPlayers = PLACEHOLDER_PLAYERS;
-      console.log("data/players.js empty — using placeholder");
     }
     bootWithPlayers();
   };
-  externalScript.onerror = () => {
-    state.allPlayers = PLACEHOLDER_PLAYERS;
-    console.log("data/players.js not found — using placeholder");
-    bootWithPlayers();
-  };
+  externalScript.onerror = () => { bootWithPlayers(); };
   document.head.appendChild(externalScript);
 }
 
 function bootWithPlayers(){
-  if(loadState() && state.userClubId && CLUBS[state.userClubId]){
-    $("#topbar").style.display = "";
-    $("#bottomnav").style.display = "";
-    showScreen("dashboard");
-  } else {
-    renderClubSelect();
+  try{
+    if(loadState() && state.userClubId && CLUBS[state.userClubId]){
+      $("#topbar").style.display = "";
+      $("#bottomnav").style.display = "";
+      showScreen("dashboard");
+    } else {
+      renderClubSelect();
+    }
+  } catch(err){
+    const screens = $("#screens");
+    clearEl(screens);
+    const wrap = el("div", {class:"screen active"});
+    wrap.appendChild(el("div", {class:"error-box"}, "Boot error:\n" + err.message + "\n\n" + (err.stack||"")));
+    screens.appendChild(wrap);
+    console.error(err);
   }
 }
 
