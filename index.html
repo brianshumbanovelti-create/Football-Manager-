@@ -17,7 +17,7 @@ ul,ol{list-style:none}
   --text:#16161c;--text-muted:#5a5a66;--text-dim:#8a8a95;
   --accent:#E91E63;--accent-soft:#ff4d8d;--accent-dark:#ad1457;--accent-glow:rgba(233,30,99,.12);
   --green:#2ecc71;--green-bg:#e7f7ee;--yellow:#f1c40f;--yellow-bg:#fef7dc;
-  --orange:#e67e22;--red:#e74c3c;--red-bg:#fbeae8;--blue:#3498db;--blue-bg:#e6f2fb;
+  --red:#e74c3c;--red-bg:#fbeae8;--blue:#3498db;--blue-bg:#e6f2fb;
   --purple:#7c4dff;--purple-bg:#ede7ff;--bar-track:#e4e4ea;
   --topbar-h:52px;--nav-h:60px;
   --radius:12px;--radius-sm:8px;--radius-lg:16px;
@@ -132,16 +132,16 @@ h3{font-size:14px;font-weight:600}
 .league-table .pos-ucl{color:var(--green);font-weight:700}
 .league-table .pos-rel{color:var(--red);font-weight:700}
 
-.event-item{display:grid;grid-template-columns:38px 24px 1fr auto;align-items:center;gap:10px;padding:12px 14px;background:var(--surface-2);border-radius:var(--radius-sm);font-size:13px;animation:eventIn .3s;margin-bottom:6px}
+.event-item{display:grid;grid-template-columns:38px 24px 1fr auto;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px solid var(--border);font-size:13px;animation:eventIn .3s}
 @keyframes eventIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.event-item:last-child{border-bottom:none}
 .event-minute{font-size:11px;font-weight:700;text-align:center;padding:3px 0;background:#fce4ec;color:var(--accent-dark);border-radius:6px}
 .event-icon{font-size:16px;text-align:center}
 .event-player{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .event-detail{font-size:11px;color:var(--text-muted)}
 .event-score{font-size:13px;font-weight:800;color:var(--accent-soft);font-variant-numeric:tabular-nums}
-.event-item.goal{background:linear-gradient(90deg,#fce4ec,var(--surface-2));border-left:3px solid var(--accent)}
-.event-item.ht,.event-item.ft{background:var(--surface-3);border-left:3px solid var(--border-strong);font-weight:700}
-.event-item.sub{border-left:3px solid var(--blue);opacity:.9}
+.event-item.goal .event-player{color:var(--accent-dark);font-weight:700}
+.event-item.ht,.event-item.ft{font-weight:700;color:var(--text-muted);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
 
 #result-banner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px 12px;padding:20px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:16px;text-align:center}
 #result-banner .rb-side{display:flex;flex-direction:column;align-items:center;gap:6px}
@@ -159,6 +159,16 @@ h3{font-size:14px;font-weight:600}
 .lineup-rating.low{color:#a52a1f;background:var(--red-bg)}
 .lineup-stats{font-size:11px;color:var(--text-muted);text-align:right;white-space:nowrap}
 
+.stat-header{display:grid;grid-template-columns:1fr 42px;gap:8px;padding:6px 10px;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--border)}
+.stat-row{display:grid;grid-template-columns:34px 1fr 42px;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--border);font-size:12px}
+.stat-row:last-child{border-bottom:none}
+.stat-name{font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat-sub{font-size:10px;color:var(--text-muted)}
+.stat-rating{font-weight:800;text-align:center;padding:3px 0;border-radius:5px;font-variant-numeric:tabular-nums}
+.stat-rating.high{color:#1c7a4a;background:var(--green-bg)}
+.stat-rating.mid{color:var(--text)}
+.stat-rating.low{color:#a52a1f;background:var(--red-bg)}
+
 .manage-section{margin-bottom:16px}
 .manage-section h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-dim);margin-bottom:8px}
 .manage-select{width:100%;padding:10px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text)}
@@ -171,12 +181,12 @@ h3{font-size:14px;font-weight:600}
 @keyframes panelIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 .match-actions{margin-top:18px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
 #live-scoreboard{display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto auto;align-items:center;gap:4px 12px;padding:16px;background:var(--surface-2);border-radius:var(--radius);margin-bottom:16px}
-#live-home-name,#live-away-name{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#live-home-name{text-align:right}
-#live-away-name{text-align:left}
+#live-home-name,#live-away-name{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:8px}
+#live-home-name{justify-content:flex-end}
+#live-away-name{justify-content:flex-start}
 #live-score{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--accent-soft);grid-column:2;grid-row:1;font-variant-numeric:tabular-nums}
 #live-minute{grid-column:1/-1;grid-row:2;text-align:center;font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums}
-#live-events{display:flex;flex-direction:column;gap:6px;max-height:48vh;overflow-y:auto;padding-right:2px}
+#live-events{display:flex;flex-direction:column;gap:0;max-height:48vh;overflow-y:auto;padding-right:2px}
 
 .empty{text-align:center;padding:48px 20px;color:var(--text-dim);font-size:13px}
 ::-webkit-scrollbar{width:8px;height:8px}
@@ -272,7 +282,6 @@ const CLUBS = {
   "tottenham":{id:"tottenham",name:"Tottenham Hotspur",short:"Spurs",leagueId:"premier-league",bg:"#132257",fg:"#FFFFFF",abbr:"TOT",rating:81,budget:90000000,wageBudget:2600000},
   "west-ham":{id:"west-ham",name:"West Ham United",short:"West Ham",leagueId:"premier-league",bg:"#7A263A",fg:"#1BB1E7",abbr:"WHU",rating:75,budget:45000000,wageBudget:1800000},
   "wolves":{id:"wolves",name:"Wolverhampton",short:"Wolves",leagueId:"premier-league",bg:"#FDB913",fg:"#231F20",abbr:"WOL",rating:72,budget:30000000,wageBudget:1300000},
-
   "alaves":{id:"alaves",name:"Deportivo Alavés",short:"Alavés",leagueId:"la-liga",bg:"#0761AF",fg:"#FFFFFF",abbr:"ALA",rating:68,budget:12000000,wageBudget:500000},
   "athletic-bilbao":{id:"athletic-bilbao",name:"Athletic Club",short:"Athletic",leagueId:"la-liga",bg:"#EE2523",fg:"#FFFFFF",abbr:"ATH",rating:79,budget:40000000,wageBudget:1500000},
   "atletico-madrid":{id:"atletico-madrid",name:"Atlético Madrid",short:"Atleti",leagueId:"la-liga",bg:"#CB3524",fg:"#FFFFFF",abbr:"ATM",rating:85,budget:100000000,wageBudget:3200000},
@@ -293,7 +302,6 @@ const CLUBS = {
   "sevilla":{id:"sevilla",name:"Sevilla FC",short:"Sevilla",leagueId:"la-liga",bg:"#D80027",fg:"#FFFFFF",abbr:"SEV",rating:75,budget:30000000,wageBudget:1400000},
   "valencia":{id:"valencia",name:"Valencia CF",short:"Valencia",leagueId:"la-liga",bg:"#FFFFFF",fg:"#EE3524",abbr:"VAL",rating:73,budget:22000000,wageBudget:950000},
   "villarreal":{id:"villarreal",name:"Villarreal CF",short:"Villarreal",leagueId:"la-liga",bg:"#FFE667",fg:"#005187",abbr:"VIL",rating:77,budget:40000000,wageBudget:1400000},
-
   "angers":{id:"angers",name:"Angers SCO",short:"Angers",leagueId:"ligue-1",bg:"#000000",fg:"#FFFFFF",abbr:"ANG",rating:65,budget:8000000,wageBudget:350000},
   "auxerre":{id:"auxerre",name:"AJ Auxerre",short:"Auxerre",leagueId:"ligue-1",bg:"#0055A5",fg:"#FFFFFF",abbr:"AUX",rating:66,budget:9000000,wageBudget:380000},
   "brest":{id:"brest",name:"Stade Brestois",short:"Brest",leagueId:"ligue-1",bg:"#E30613",fg:"#FFFFFF",abbr:"BST",rating:70,budget:12000000,wageBudget:520000},
@@ -312,7 +320,6 @@ const CLUBS = {
   "rennes":{id:"rennes",name:"Stade Rennais",short:"Rennes",leagueId:"ligue-1",bg:"#E21F26",fg:"#000000",abbr:"REN",rating:74,budget:25000000,wageBudget:1050000},
   "strasbourg":{id:"strasbourg",name:"RC Strasbourg",short:"Strasbourg",leagueId:"ligue-1",bg:"#0072BC",fg:"#FFFFFF",abbr:"STR",rating:72,budget:18000000,wageBudget:720000},
   "toulouse":{id:"toulouse",name:"Toulouse FC",short:"Toulouse",leagueId:"ligue-1",bg:"#5B2D90",fg:"#FFFFFF",abbr:"TOU",rating:71,budget:15000000,wageBudget:640000},
-
   "atalanta":{id:"atalanta",name:"Atalanta",short:"Atalanta",leagueId:"serie-a",bg:"#1E71B8",fg:"#000000",abbr:"ATA",rating:80,budget:45000000,wageBudget:1500000},
   "bologna":{id:"bologna",name:"Bologna",short:"Bologna",leagueId:"serie-a",bg:"#1A2F48",fg:"#E4002B",abbr:"BOL",rating:76,budget:30000000,wageBudget:1100000},
   "cagliari":{id:"cagliari",name:"Cagliari",short:"Cagliari",leagueId:"serie-a",bg:"#00243F",fg:"#B2001F",abbr:"CAG",rating:70,budget:15000000,wageBudget:640000},
@@ -333,7 +340,6 @@ const CLUBS = {
   "sassuolo":{id:"sassuolo",name:"Sassuolo",short:"Sassuolo",leagueId:"serie-a",bg:"#00A752",fg:"#000000",abbr:"SAS",rating:67,budget:10000000,wageBudget:440000},
   "torino":{id:"torino",name:"Torino",short:"Torino",leagueId:"serie-a",bg:"#8B1A1A",fg:"#FFFFFF",abbr:"TOR",rating:73,budget:20000000,wageBudget:820000},
   "udinese":{id:"udinese",name:"Udinese",short:"Udinese",leagueId:"serie-a",bg:"#000000",fg:"#FFFFFF",abbr:"UDI",rating:72,budget:18000000,wageBudget:740000},
-
   "augsburg":{id:"augsburg",name:"FC Augsburg",short:"Augsburg",leagueId:"bundesliga",bg:"#BA3733",fg:"#FFFFFF",abbr:"FCA",rating:70,budget:15000000,wageBudget:600000},
   "bayern-munich":{id:"bayern-munich",name:"Bayern Munich",short:"Bayern",leagueId:"bundesliga",bg:"#DC052D",fg:"#FFFFFF",abbr:"FCB",rating:89,budget:130000000,wageBudget:4200000},
   "dortmund":{id:"dortmund",name:"Borussia Dortmund",short:"Dortmund",leagueId:"bundesliga",bg:"#FDE100",fg:"#000000",abbr:"BVB",rating:84,budget:80000000,wageBudget:2600000},
@@ -354,159 +360,344 @@ const CLUBS = {
   "wolfsburg":{id:"wolfsburg",name:"VfL Wolfsburg",short:"Wolfsburg",leagueId:"bundesliga",bg:"#65B32E",fg:"#FFFFFF",abbr:"WOB",rating:74,budget:25000000,wageBudget:1100000}
 };
 
+/* ELITE CUP — 20 fixed clubs */
+const ELITE_CUP_CLUBS = [
+  "chelsea","man-united","man-city","arsenal","tottenham","liverpool",
+  "barcelona","real-madrid","atletico-madrid","real-betis",
+  "paris-sg","monaco","lyon",
+  "napoli","juventus","inter","milan",
+  "bayern-munich","dortmund","leverkusen"
+];
+
 /* ============================================================
    DATA: PLACEHOLDER PLAYERS
-   Small built-in set so the game runs standalone.
-   If data/players.js exists, it will replace this at boot.
+   ~200 players with 15-16 per PL big club + small squads elsewhere.
+   data/players.js will replace this.
    ============================================================ */
 const PLACEHOLDER_PLAYERS = [
+  /* ARSENAL (16) */
   {id:"ars-1",name:"David Raya",clubId:"arsenal",position:"GK",age:30,overall:85,nationality:"Spain"},
   {id:"ars-2",name:"William Saliba",clubId:"arsenal",position:"CB",age:25,overall:86,nationality:"France"},
   {id:"ars-3",name:"Gabriel Magalhães",clubId:"arsenal",position:"CB",age:28,overall:85,nationality:"Brazil"},
-  {id:"ars-4",name:"Ben White",clubId:"arsenal",position:"RB",age:28,overall:82,nationality:"England"},
-  {id:"ars-5",name:"Riccardo Calafiori",clubId:"arsenal",position:"LB",age:24,overall:82,nationality:"Italy"},
-  {id:"ars-6",name:"Declan Rice",clubId:"arsenal",position:"CDM",age:27,overall:87,nationality:"England"},
-  {id:"ars-7",name:"Martín Zubimendi",clubId:"arsenal",position:"CDM",age:27,overall:85,nationality:"Spain"},
-  {id:"ars-8",name:"Martin Ødegaard",clubId:"arsenal",position:"CAM",age:27,overall:87,nationality:"Norway"},
-  {id:"ars-9",name:"Bukayo Saka",clubId:"arsenal",position:"RW",age:24,overall:87,nationality:"England"},
-  {id:"ars-10",name:"Gabriel Martinelli",clubId:"arsenal",position:"LW",age:25,overall:82,nationality:"Brazil"},
-  {id:"ars-11",name:"Viktor Gyökeres",clubId:"arsenal",position:"ST",age:28,overall:85,nationality:"Sweden"},
-  {id:"ars-12",name:"Kai Havertz",clubId:"arsenal",position:"ST",age:27,overall:83,nationality:"Germany"},
+  {id:"ars-4",name:"Piero Hincapié",clubId:"arsenal",position:"CB",age:24,overall:82,nationality:"Ecuador"},
+  {id:"ars-5",name:"Ben White",clubId:"arsenal",position:"RB",age:28,overall:82,nationality:"England"},
+  {id:"ars-6",name:"Jurriën Timber",clubId:"arsenal",position:"RB",age:25,overall:83,nationality:"Netherlands"},
+  {id:"ars-7",name:"Riccardo Calafiori",clubId:"arsenal",position:"LB",age:24,overall:82,nationality:"Italy"},
+  {id:"ars-8",name:"Myles Lewis-Skelly",clubId:"arsenal",position:"LB",age:19,overall:78,nationality:"England"},
+  {id:"ars-9",name:"Declan Rice",clubId:"arsenal",position:"CDM",age:27,overall:87,nationality:"England"},
+  {id:"ars-10",name:"Martín Zubimendi",clubId:"arsenal",position:"CDM",age:27,overall:85,nationality:"Spain"},
+  {id:"ars-11",name:"Bruno Guimarães",clubId:"arsenal",position:"CM",age:28,overall:84,nationality:"Brazil"},
+  {id:"ars-12",name:"Martin Ødegaard",clubId:"arsenal",position:"CAM",age:27,overall:87,nationality:"Norway"},
   {id:"ars-13",name:"Eberechi Eze",clubId:"arsenal",position:"CAM",age:28,overall:84,nationality:"England"},
-  {id:"ars-14",name:"Bruno Guimarães",clubId:"arsenal",position:"CM",age:28,overall:84,nationality:"Brazil"},
-  {id:"ars-15",name:"Jurriën Timber",clubId:"arsenal",position:"RB",age:25,overall:83,nationality:"Netherlands"},
+  {id:"ars-14",name:"Bukayo Saka",clubId:"arsenal",position:"RW",age:24,overall:87,nationality:"England"},
+  {id:"ars-15",name:"Gabriel Martinelli",clubId:"arsenal",position:"LW",age:25,overall:82,nationality:"Brazil"},
+  {id:"ars-16",name:"Viktor Gyökeres",clubId:"arsenal",position:"ST",age:28,overall:85,nationality:"Sweden"},
+  {id:"ars-17",name:"Kai Havertz",clubId:"arsenal",position:"ST",age:27,overall:83,nationality:"Germany"},
+
+  /* CHELSEA (16) */
   {id:"che-1",name:"Robert Sánchez",clubId:"chelsea",position:"GK",age:28,overall:80,nationality:"Spain"},
-  {id:"che-2",name:"Reece James",clubId:"chelsea",position:"RB",age:26,overall:83,nationality:"England"},
-  {id:"che-3",name:"Levi Colwill",clubId:"chelsea",position:"CB",age:23,overall:81,nationality:"England"},
-  {id:"che-4",name:"Wesley Fofana",clubId:"chelsea",position:"CB",age:25,overall:80,nationality:"France"},
+  {id:"che-2",name:"Filip Jörgensen",clubId:"chelsea",position:"GK",age:24,overall:77,nationality:"Denmark"},
+  {id:"che-3",name:"Reece James",clubId:"chelsea",position:"RB",age:26,overall:83,nationality:"England"},
+  {id:"che-4",name:"Malo Gusto",clubId:"chelsea",position:"RB",age:23,overall:79,nationality:"France"},
   {id:"che-5",name:"Marc Cucurella",clubId:"chelsea",position:"LB",age:28,overall:82,nationality:"Spain"},
-  {id:"che-6",name:"Moisés Caicedo",clubId:"chelsea",position:"CDM",age:24,overall:85,nationality:"Ecuador"},
-  {id:"che-7",name:"Enzo Fernández",clubId:"chelsea",position:"CM",age:25,overall:84,nationality:"Argentina"},
-  {id:"che-8",name:"Cole Palmer",clubId:"chelsea",position:"CAM",age:24,overall:86,nationality:"England"},
-  {id:"che-9",name:"Pedro Neto",clubId:"chelsea",position:"LW",age:26,overall:82,nationality:"Portugal"},
-  {id:"che-10",name:"João Pedro",clubId:"chelsea",position:"ST",age:24,overall:82,nationality:"Brazil"},
-  {id:"che-11",name:"Morgan Rogers",clubId:"chelsea",position:"CAM",age:23,overall:81,nationality:"England"},
+  {id:"che-6",name:"Levi Colwill",clubId:"chelsea",position:"CB",age:23,overall:81,nationality:"England"},
+  {id:"che-7",name:"Wesley Fofana",clubId:"chelsea",position:"CB",age:25,overall:80,nationality:"France"},
+  {id:"che-8",name:"Maxence Lacroix",clubId:"chelsea",position:"CB",age:26,overall:80,nationality:"France"},
+  {id:"che-9",name:"Tosin Adarabioyo",clubId:"chelsea",position:"CB",age:28,overall:78,nationality:"England"},
+  {id:"che-10",name:"Moisés Caicedo",clubId:"chelsea",position:"CDM",age:24,overall:85,nationality:"Ecuador"},
+  {id:"che-11",name:"Enzo Fernández",clubId:"chelsea",position:"CM",age:25,overall:84,nationality:"Argentina"},
+  {id:"che-12",name:"Cole Palmer",clubId:"chelsea",position:"CAM",age:24,overall:86,nationality:"England"},
+  {id:"che-13",name:"Morgan Rogers",clubId:"chelsea",position:"CAM",age:23,overall:81,nationality:"England"},
+  {id:"che-14",name:"Pedro Neto",clubId:"chelsea",position:"LW",age:26,overall:82,nationality:"Portugal"},
+  {id:"che-15",name:"João Pedro",clubId:"chelsea",position:"ST",age:24,overall:82,nationality:"Brazil"},
+  {id:"che-16",name:"Liam Delap",clubId:"chelsea",position:"ST",age:23,overall:78,nationality:"England"},
+
+  /* LIVERPOOL (16) */
   {id:"liv-1",name:"Alisson Becker",clubId:"liverpool",position:"GK",age:34,overall:86,nationality:"Brazil"},
-  {id:"liv-2",name:"Virgil van Dijk",clubId:"liverpool",position:"CB",age:35,overall:85,nationality:"Netherlands"},
-  {id:"liv-3",name:"Ronald Araújo",clubId:"liverpool",position:"CB",age:27,overall:82,nationality:"Uruguay"},
-  {id:"liv-4",name:"Miloš Kerkez",clubId:"liverpool",position:"LB",age:23,overall:78,nationality:"Hungary"},
-  {id:"liv-5",name:"Jeremie Frimpong",clubId:"liverpool",position:"RB",age:25,overall:79,nationality:"Netherlands"},
-  {id:"liv-6",name:"Ryan Gravenberch",clubId:"liverpool",position:"CDM",age:24,overall:82,nationality:"Netherlands"},
-  {id:"liv-7",name:"Alexis Mac Allister",clubId:"liverpool",position:"CM",age:27,overall:84,nationality:"Argentina"},
-  {id:"liv-8",name:"Dominik Szoboszlai",clubId:"liverpool",position:"CM",age:25,overall:83,nationality:"Hungary"},
-  {id:"liv-9",name:"Florian Wirtz",clubId:"liverpool",position:"CAM",age:23,overall:87,nationality:"Germany"},
-  {id:"liv-10",name:"Bradley Barcola",clubId:"liverpool",position:"LW",age:23,overall:82,nationality:"France"},
-  {id:"liv-11",name:"Alexander Isak",clubId:"liverpool",position:"ST",age:26,overall:86,nationality:"Sweden"},
-  {id:"liv-12",name:"Hugo Ekitike",clubId:"liverpool",position:"ST",age:24,overall:82,nationality:"France"},
+  {id:"liv-2",name:"Giorgi Mamardashvili",clubId:"liverpool",position:"GK",age:25,overall:82,nationality:"Georgia"},
+  {id:"liv-3",name:"Virgil van Dijk",clubId:"liverpool",position:"CB",age:35,overall:85,nationality:"Netherlands"},
+  {id:"liv-4",name:"Ronald Araújo",clubId:"liverpool",position:"CB",age:27,overall:82,nationality:"Uruguay"},
+  {id:"liv-5",name:"Joe Gomez",clubId:"liverpool",position:"CB",age:29,overall:78,nationality:"England"},
+  {id:"liv-6",name:"Miloš Kerkez",clubId:"liverpool",position:"LB",age:23,overall:78,nationality:"Hungary"},
+  {id:"liv-7",name:"Kostas Tsimikas",clubId:"liverpool",position:"LB",age:30,overall:77,nationality:"Greece"},
+  {id:"liv-8",name:"Jeremie Frimpong",clubId:"liverpool",position:"RB",age:25,overall:79,nationality:"Netherlands"},
+  {id:"liv-9",name:"Conor Bradley",clubId:"liverpool",position:"RB",age:23,overall:78,nationality:"Northern Ireland"},
+  {id:"liv-10",name:"Ryan Gravenberch",clubId:"liverpool",position:"CDM",age:24,overall:82,nationality:"Netherlands"},
+  {id:"liv-11",name:"Alexis Mac Allister",clubId:"liverpool",position:"CM",age:27,overall:84,nationality:"Argentina"},
+  {id:"liv-12",name:"Dominik Szoboszlai",clubId:"liverpool",position:"CM",age:25,overall:83,nationality:"Hungary"},
+  {id:"liv-13",name:"Florian Wirtz",clubId:"liverpool",position:"CAM",age:23,overall:87,nationality:"Germany"},
+  {id:"liv-14",name:"Bradley Barcola",clubId:"liverpool",position:"LW",age:23,overall:82,nationality:"France"},
+  {id:"liv-15",name:"Alexander Isak",clubId:"liverpool",position:"ST",age:26,overall:86,nationality:"Sweden"},
+  {id:"liv-16",name:"Hugo Ekitike",clubId:"liverpool",position:"ST",age:24,overall:82,nationality:"France"},
+
+  /* MAN CITY (16) */
   {id:"mci-1",name:"Gianluigi Donnarumma",clubId:"man-city",position:"GK",age:27,overall:88,nationality:"Italy"},
-  {id:"mci-2",name:"Rúben Dias",clubId:"man-city",position:"CB",age:29,overall:87,nationality:"Portugal"},
-  {id:"mci-3",name:"Marc Guéhi",clubId:"man-city",position:"CB",age:26,overall:82,nationality:"England"},
-  {id:"mci-4",name:"Joško Gvardiol",clubId:"man-city",position:"LB",age:24,overall:84,nationality:"Croatia"},
-  {id:"mci-5",name:"Rayan Aït-Nouri",clubId:"man-city",position:"LB",age:25,overall:80,nationality:"Algeria"},
-  {id:"mci-6",name:"Rodri",clubId:"man-city",position:"CDM",age:30,overall:89,nationality:"Spain"},
-  {id:"mci-7",name:"Elliot Anderson",clubId:"man-city",position:"CM",age:23,overall:80,nationality:"England"},
-  {id:"mci-8",name:"Phil Foden",clubId:"man-city",position:"CAM",age:26,overall:85,nationality:"England"},
-  {id:"mci-9",name:"Rayan Cherki",clubId:"man-city",position:"CAM",age:23,overall:82,nationality:"France"},
-  {id:"mci-10",name:"Iliman Ndiaye",clubId:"man-city",position:"LW",age:26,overall:81,nationality:"Senegal"},
-  {id:"mci-11",name:"Erling Haaland",clubId:"man-city",position:"ST",age:26,overall:91,nationality:"Norway"},
+  {id:"mci-2",name:"Stefan Ortega",clubId:"man-city",position:"GK",age:33,overall:80,nationality:"Germany"},
+  {id:"mci-3",name:"Rúben Dias",clubId:"man-city",position:"CB",age:29,overall:87,nationality:"Portugal"},
+  {id:"mci-4",name:"Marc Guéhi",clubId:"man-city",position:"CB",age:26,overall:82,nationality:"England"},
+  {id:"mci-5",name:"Abdukodir Khusanov",clubId:"man-city",position:"CB",age:22,overall:78,nationality:"Uzbekistan"},
+  {id:"mci-6",name:"Nathan Aké",clubId:"man-city",position:"CB",age:31,overall:80,nationality:"Netherlands"},
+  {id:"mci-7",name:"Joško Gvardiol",clubId:"man-city",position:"LB",age:24,overall:84,nationality:"Croatia"},
+  {id:"mci-8",name:"Rayan Aït-Nouri",clubId:"man-city",position:"LB",age:25,overall:80,nationality:"Algeria"},
+  {id:"mci-9",name:"Matheus Nunes",clubId:"man-city",position:"RB",age:27,overall:79,nationality:"Portugal"},
+  {id:"mci-10",name:"Rico Lewis",clubId:"man-city",position:"RB",age:21,overall:79,nationality:"England"},
+  {id:"mci-11",name:"Rodri",clubId:"man-city",position:"CDM",age:30,overall:89,nationality:"Spain"},
+  {id:"mci-12",name:"Nico González",clubId:"man-city",position:"CDM",age:24,overall:80,nationality:"Spain"},
+  {id:"mci-13",name:"Elliot Anderson",clubId:"man-city",position:"CM",age:23,overall:80,nationality:"England"},
+  {id:"mci-14",name:"Phil Foden",clubId:"man-city",position:"CAM",age:26,overall:85,nationality:"England"},
+  {id:"mci-15",name:"Rayan Cherki",clubId:"man-city",position:"CAM",age:23,overall:82,nationality:"France"},
+  {id:"mci-16",name:"Erling Haaland",clubId:"man-city",position:"ST",age:26,overall:91,nationality:"Norway"},
+
+  /* MAN UNITED (16) */
   {id:"mun-1",name:"Senne Lammens",clubId:"man-united",position:"GK",age:24,overall:78,nationality:"Belgium"},
   {id:"mun-2",name:"Matthijs de Ligt",clubId:"man-united",position:"CB",age:27,overall:82,nationality:"Netherlands"},
   {id:"mun-3",name:"Lisandro Martínez",clubId:"man-united",position:"CB",age:28,overall:82,nationality:"Argentina"},
-  {id:"mun-4",name:"Diogo Dalot",clubId:"man-united",position:"RB",age:27,overall:81,nationality:"Portugal"},
-  {id:"mun-5",name:"Luke Shaw",clubId:"man-united",position:"LB",age:31,overall:78,nationality:"England"},
-  {id:"mun-6",name:"Carlos Baleba",clubId:"man-united",position:"CDM",age:22,overall:81,nationality:"Cameroon"},
-  {id:"mun-7",name:"Bruno Fernandes",clubId:"man-united",position:"CAM",age:32,overall:85,nationality:"Portugal"},
-  {id:"mun-8",name:"Youri Tielemans",clubId:"man-united",position:"CM",age:29,overall:83,nationality:"Belgium"},
-  {id:"mun-9",name:"Bryan Mbeumo",clubId:"man-united",position:"RW",age:27,overall:81,nationality:"Cameroon"},
-  {id:"mun-10",name:"Matheus Cunha",clubId:"man-united",position:"ST",age:27,overall:82,nationality:"Brazil"},
-  {id:"mun-11",name:"Benjamin Šeško",clubId:"man-united",position:"ST",age:23,overall:81,nationality:"Slovenia"},
+  {id:"mun-4",name:"Harry Maguire",clubId:"man-united",position:"CB",age:33,overall:79,nationality:"England"},
+  {id:"mun-5",name:"Leny Yoro",clubId:"man-united",position:"CB",age:20,overall:79,nationality:"France"},
+  {id:"mun-6",name:"Diogo Dalot",clubId:"man-united",position:"RB",age:27,overall:81,nationality:"Portugal"},
+  {id:"mun-7",name:"Noussair Mazraoui",clubId:"man-united",position:"RB",age:28,overall:80,nationality:"Morocco"},
+  {id:"mun-8",name:"Luke Shaw",clubId:"man-united",position:"LB",age:31,overall:78,nationality:"England"},
+  {id:"mun-9",name:"Carlos Baleba",clubId:"man-united",position:"CDM",age:22,overall:81,nationality:"Cameroon"},
+  {id:"mun-10",name:"Manuel Ugarte",clubId:"man-united",position:"CDM",age:25,overall:78,nationality:"Uruguay"},
+  {id:"mun-11",name:"Bruno Fernandes",clubId:"man-united",position:"CAM",age:32,overall:85,nationality:"Portugal"},
+  {id:"mun-12",name:"Youri Tielemans",clubId:"man-united",position:"CM",age:29,overall:83,nationality:"Belgium"},
+  {id:"mun-13",name:"Bryan Mbeumo",clubId:"man-united",position:"RW",age:27,overall:81,nationality:"Cameroon"},
+  {id:"mun-14",name:"Amad Diallo",clubId:"man-united",position:"RW",age:24,overall:79,nationality:"Ivory Coast"},
+  {id:"mun-15",name:"Matheus Cunha",clubId:"man-united",position:"ST",age:27,overall:82,nationality:"Brazil"},
+  {id:"mun-16",name:"Benjamin Šeško",clubId:"man-united",position:"ST",age:23,overall:81,nationality:"Slovenia"},
+
+  /* TOTTENHAM (16) */
   {id:"tot-1",name:"Guglielmo Vicario",clubId:"tottenham",position:"GK",age:30,overall:81,nationality:"Italy"},
-  {id:"tot-2",name:"Cristian Romero",clubId:"tottenham",position:"CB",age:28,overall:84,nationality:"Argentina"},
-  {id:"tot-3",name:"Micky van de Ven",clubId:"tottenham",position:"CB",age:25,overall:82,nationality:"Netherlands"},
-  {id:"tot-4",name:"Pedro Porro",clubId:"tottenham",position:"RB",age:26,overall:81,nationality:"Spain"},
-  {id:"tot-5",name:"Andy Robertson",clubId:"tottenham",position:"LB",age:32,overall:82,nationality:"Scotland"},
-  {id:"tot-6",name:"Sandro Tonali",clubId:"tottenham",position:"CDM",age:26,overall:83,nationality:"Italy"},
-  {id:"tot-7",name:"Conor Gallagher",clubId:"tottenham",position:"CM",age:26,overall:80,nationality:"England"},
-  {id:"tot-8",name:"James Maddison",clubId:"tottenham",position:"CAM",age:29,overall:80,nationality:"England"},
-  {id:"tot-9",name:"Mohammed Kudus",clubId:"tottenham",position:"RW",age:26,overall:81,nationality:"Ghana"},
-  {id:"tot-10",name:"Omar Marmoush",clubId:"tottenham",position:"ST",age:27,overall:82,nationality:"Egypt"},
+  {id:"tot-2",name:"Antonín Kinský",clubId:"tottenham",position:"GK",age:23,overall:78,nationality:"Czechia"},
+  {id:"tot-3",name:"Cristian Romero",clubId:"tottenham",position:"CB",age:28,overall:84,nationality:"Argentina"},
+  {id:"tot-4",name:"Micky van de Ven",clubId:"tottenham",position:"CB",age:25,overall:82,nationality:"Netherlands"},
+  {id:"tot-5",name:"Jan Paul van Hecke",clubId:"tottenham",position:"CB",age:26,overall:81,nationality:"Netherlands"},
+  {id:"tot-6",name:"Marcos Senesi",clubId:"tottenham",position:"CB",age:29,overall:79,nationality:"Argentina"},
+  {id:"tot-7",name:"Pedro Porro",clubId:"tottenham",position:"RB",age:26,overall:81,nationality:"Spain"},
+  {id:"tot-8",name:"Andy Robertson",clubId:"tottenham",position:"LB",age:32,overall:82,nationality:"Scotland"},
+  {id:"tot-9",name:"Destiny Udogie",clubId:"tottenham",position:"LB",age:23,overall:80,nationality:"Italy"},
+  {id:"tot-10",name:"Sandro Tonali",clubId:"tottenham",position:"CDM",age:26,overall:83,nationality:"Italy"},
+  {id:"tot-11",name:"Rodrigo Bentancur",clubId:"tottenham",position:"CM",age:29,overall:80,nationality:"Uruguay"},
+  {id:"tot-12",name:"Conor Gallagher",clubId:"tottenham",position:"CM",age:26,overall:80,nationality:"England"},
+  {id:"tot-13",name:"James Maddison",clubId:"tottenham",position:"CAM",age:29,overall:80,nationality:"England"},
+  {id:"tot-14",name:"Mohammed Kudus",clubId:"tottenham",position:"RW",age:26,overall:81,nationality:"Ghana"},
+  {id:"tot-15",name:"Sávio",clubId:"tottenham",position:"RW",age:22,overall:79,nationality:"Brazil"},
+  {id:"tot-16",name:"Omar Marmoush",clubId:"tottenham",position:"ST",age:27,overall:82,nationality:"Egypt"},
+
+  /* NEWCASTLE (16) */
   {id:"new-1",name:"Nick Pope",clubId:"newcastle",position:"GK",age:34,overall:81,nationality:"England"},
-  {id:"new-2",name:"Sven Botman",clubId:"newcastle",position:"CB",age:26,overall:80,nationality:"Netherlands"},
-  {id:"new-3",name:"Malick Thiaw",clubId:"newcastle",position:"CB",age:25,overall:79,nationality:"Germany"},
-  {id:"new-4",name:"Tino Livramento",clubId:"newcastle",position:"RB",age:23,overall:80,nationality:"England"},
-  {id:"new-5",name:"Lewis Hall",clubId:"newcastle",position:"LB",age:22,overall:79,nationality:"England"},
-  {id:"new-6",name:"Bruno Guimarães",clubId:"newcastle",position:"CM",age:28,overall:84,nationality:"Brazil"},
-  {id:"new-7",name:"Joelinton",clubId:"newcastle",position:"CM",age:30,overall:81,nationality:"Brazil"},
-  {id:"new-8",name:"Anthony Elanga",clubId:"newcastle",position:"RW",age:24,overall:78,nationality:"Sweden"},
-  {id:"new-9",name:"Harvey Barnes",clubId:"newcastle",position:"LW",age:29,overall:79,nationality:"England"},
-  {id:"new-10",name:"Nick Woltemade",clubId:"newcastle",position:"ST",age:24,overall:82,nationality:"Germany"},
-  {id:"new-11",name:"Yoane Wissa",clubId:"newcastle",position:"ST",age:29,overall:79,nationality:"DR Congo"},
-  {id:"rm-1",name:"Thibaut Courtois",clubId:"real-madrid",position:"GK",age:34,overall:89,nationality:"Belgium"},
-  {id:"rm-2",name:"Antonio Rüdiger",clubId:"real-madrid",position:"CB",age:33,overall:85,nationality:"Germany"},
-  {id:"rm-3",name:"Dean Huijsen",clubId:"real-madrid",position:"CB",age:21,overall:82,nationality:"Spain"},
-  {id:"rm-4",name:"Trent Alexander-Arnold",clubId:"real-madrid",position:"RB",age:27,overall:85,nationality:"England"},
-  {id:"rm-5",name:"Álvaro Carreras",clubId:"real-madrid",position:"LB",age:23,overall:81,nationality:"Spain"},
-  {id:"rm-6",name:"Federico Valverde",clubId:"real-madrid",position:"CM",age:28,overall:86,nationality:"Uruguay"},
-  {id:"rm-7",name:"Jude Bellingham",clubId:"real-madrid",position:"CAM",age:23,overall:88,nationality:"England"},
-  {id:"rm-8",name:"Arda Güler",clubId:"real-madrid",position:"CAM",age:21,overall:82,nationality:"Turkey"},
-  {id:"rm-9",name:"Vinicius Júnior",clubId:"real-madrid",position:"LW",age:26,overall:89,nationality:"Brazil"},
-  {id:"rm-10",name:"Kylian Mbappé",clubId:"real-madrid",position:"ST",age:27,overall:91,nationality:"France"},
-  {id:"rm-11",name:"Rodrygo",clubId:"real-madrid",position:"RW",age:25,overall:85,nationality:"Brazil"},
+  {id:"new-2",name:"Lukáš Horníček",clubId:"newcastle",position:"GK",age:24,overall:74,nationality:"Czechia"},
+  {id:"new-3",name:"Sven Botman",clubId:"newcastle",position:"CB",age:26,overall:80,nationality:"Netherlands"},
+  {id:"new-4",name:"Malick Thiaw",clubId:"newcastle",position:"CB",age:25,overall:79,nationality:"Germany"},
+  {id:"new-5",name:"Fabian Schär",clubId:"newcastle",position:"CB",age:34,overall:78,nationality:"Switzerland"},
+  {id:"new-6",name:"Tino Livramento",clubId:"newcastle",position:"RB",age:23,overall:80,nationality:"England"},
+  {id:"new-7",name:"Amar Dedic",clubId:"newcastle",position:"RB",age:24,overall:76,nationality:"Bosnia"},
+  {id:"new-8",name:"Lewis Hall",clubId:"newcastle",position:"LB",age:22,overall:79,nationality:"England"},
+  {id:"new-9",name:"Bruno Guimarães",clubId:"newcastle",position:"CM",age:28,overall:84,nationality:"Brazil"},
+  {id:"new-10",name:"Joelinton",clubId:"newcastle",position:"CM",age:30,overall:81,nationality:"Brazil"},
+  {id:"new-11",name:"Joe Willock",clubId:"newcastle",position:"CM",age:27,overall:76,nationality:"England"},
+  {id:"new-12",name:"Lewis Miley",clubId:"newcastle",position:"CM",age:20,overall:75,nationality:"England"},
+  {id:"new-13",name:"Anthony Elanga",clubId:"newcastle",position:"RW",age:24,overall:78,nationality:"Sweden"},
+  {id:"new-14",name:"Harvey Barnes",clubId:"newcastle",position:"LW",age:29,overall:79,nationality:"England"},
+  {id:"new-15",name:"Nick Woltemade",clubId:"newcastle",position:"ST",age:24,overall:82,nationality:"Germany"},
+  {id:"new-16",name:"Yoane Wissa",clubId:"newcastle",position:"ST",age:29,overall:79,nationality:"DR Congo"},
+
+  /* REAL MADRID (16) */
+  {id:"rma-1",name:"Thibaut Courtois",clubId:"real-madrid",position:"GK",age:34,overall:89,nationality:"Belgium"},
+  {id:"rma-2",name:"Andriy Lunin",clubId:"real-madrid",position:"GK",age:27,overall:80,nationality:"Ukraine"},
+  {id:"rma-3",name:"Antonio Rüdiger",clubId:"real-madrid",position:"CB",age:33,overall:85,nationality:"Germany"},
+  {id:"rma-4",name:"Dean Huijsen",clubId:"real-madrid",position:"CB",age:21,overall:82,nationality:"Spain"},
+  {id:"rma-5",name:"Éder Militão",clubId:"real-madrid",position:"CB",age:28,overall:83,nationality:"Brazil"},
+  {id:"rma-6",name:"Trent Alexander-Arnold",clubId:"real-madrid",position:"RB",age:27,overall:85,nationality:"England"},
+  {id:"rma-7",name:"Dani Carvajal",clubId:"real-madrid",position:"RB",age:34,overall:80,nationality:"Spain"},
+  {id:"rma-8",name:"Álvaro Carreras",clubId:"real-madrid",position:"LB",age:23,overall:81,nationality:"Spain"},
+  {id:"rma-9",name:"Federico Valverde",clubId:"real-madrid",position:"CM",age:28,overall:86,nationality:"Uruguay"},
+  {id:"rma-10",name:"Aurélien Tchouaméni",clubId:"real-madrid",position:"CDM",age:26,overall:84,nationality:"France"},
+  {id:"rma-11",name:"Jude Bellingham",clubId:"real-madrid",position:"CAM",age:23,overall:88,nationality:"England"},
+  {id:"rma-12",name:"Arda Güler",clubId:"real-madrid",position:"CAM",age:21,overall:82,nationality:"Turkey"},
+  {id:"rma-13",name:"Vinicius Júnior",clubId:"real-madrid",position:"LW",age:26,overall:89,nationality:"Brazil"},
+  {id:"rma-14",name:"Rodrygo",clubId:"real-madrid",position:"RW",age:25,overall:85,nationality:"Brazil"},
+  {id:"rma-15",name:"Kylian Mbappé",clubId:"real-madrid",position:"ST",age:27,overall:91,nationality:"France"},
+  {id:"rma-16",name:"Endrick",clubId:"real-madrid",position:"ST",age:20,overall:78,nationality:"Brazil"},
+
+  /* BARCELONA (16) */
   {id:"bar-1",name:"Joan García",clubId:"barcelona",position:"GK",age:25,overall:82,nationality:"Spain"},
-  {id:"bar-2",name:"Pau Cubarsí",clubId:"barcelona",position:"CB",age:19,overall:83,nationality:"Spain"},
-  {id:"bar-3",name:"Ronald Araújo",clubId:"barcelona",position:"CB",age:27,overall:82,nationality:"Uruguay"},
-  {id:"bar-4",name:"Jules Koundé",clubId:"barcelona",position:"RB",age:27,overall:85,nationality:"France"},
-  {id:"bar-5",name:"Alejandro Balde",clubId:"barcelona",position:"LB",age:22,overall:82,nationality:"Spain"},
-  {id:"bar-6",name:"Pedri",clubId:"barcelona",position:"CM",age:23,overall:86,nationality:"Spain"},
-  {id:"bar-7",name:"Frenkie de Jong",clubId:"barcelona",position:"CM",age:28,overall:84,nationality:"Netherlands"},
-  {id:"bar-8",name:"Dani Olmo",clubId:"barcelona",position:"CAM",age:28,overall:85,nationality:"Spain"},
-  {id:"bar-9",name:"Lamine Yamal",clubId:"barcelona",position:"RW",age:19,overall:88,nationality:"Spain"},
-  {id:"bar-10",name:"Raphinha",clubId:"barcelona",position:"LW",age:29,overall:86,nationality:"Brazil"},
-  {id:"bar-11",name:"Robert Lewandowski",clubId:"barcelona",position:"ST",age:37,overall:84,nationality:"Poland"},
+  {id:"bar-2",name:"Wojciech Szczęsny",clubId:"barcelona",position:"GK",age:36,overall:80,nationality:"Poland"},
+  {id:"bar-3",name:"Pau Cubarsí",clubId:"barcelona",position:"CB",age:19,overall:83,nationality:"Spain"},
+  {id:"bar-4",name:"Ronald Araújo",clubId:"barcelona",position:"CB",age:27,overall:82,nationality:"Uruguay"},
+  {id:"bar-5",name:"Andreas Christensen",clubId:"barcelona",position:"CB",age:30,overall:79,nationality:"Denmark"},
+  {id:"bar-6",name:"Jules Koundé",clubId:"barcelona",position:"RB",age:27,overall:85,nationality:"France"},
+  {id:"bar-7",name:"Héctor Fort",clubId:"barcelona",position:"RB",age:20,overall:76,nationality:"Spain"},
+  {id:"bar-8",name:"Alejandro Balde",clubId:"barcelona",position:"LB",age:22,overall:82,nationality:"Spain"},
+  {id:"bar-9",name:"Pedri",clubId:"barcelona",position:"CM",age:23,overall:86,nationality:"Spain"},
+  {id:"bar-10",name:"Frenkie de Jong",clubId:"barcelona",position:"CM",age:28,overall:84,nationality:"Netherlands"},
+  {id:"bar-11",name:"Marc Bernal",clubId:"barcelona",position:"CDM",age:19,overall:76,nationality:"Spain"},
+  {id:"bar-12",name:"Dani Olmo",clubId:"barcelona",position:"CAM",age:28,overall:85,nationality:"Spain"},
+  {id:"bar-13",name:"Fermín López",clubId:"barcelona",position:"CAM",age:23,overall:82,nationality:"Spain"},
+  {id:"bar-14",name:"Lamine Yamal",clubId:"barcelona",position:"RW",age:19,overall:88,nationality:"Spain"},
+  {id:"bar-15",name:"Raphinha",clubId:"barcelona",position:"LW",age:29,overall:86,nationality:"Brazil"},
+  {id:"bar-16",name:"Robert Lewandowski",clubId:"barcelona",position:"ST",age:37,overall:84,nationality:"Poland"},
+
+  /* PSG (16) */
   {id:"psg-1",name:"Matvei Safonov",clubId:"paris-sg",position:"GK",age:27,overall:82,nationality:"Russia"},
-  {id:"psg-2",name:"Marquinhos",clubId:"paris-sg",position:"CB",age:32,overall:85,nationality:"Brazil"},
-  {id:"psg-3",name:"Willian Pacho",clubId:"paris-sg",position:"CB",age:24,overall:83,nationality:"Ecuador"},
-  {id:"psg-4",name:"Achraf Hakimi",clubId:"paris-sg",position:"RB",age:27,overall:85,nationality:"Morocco"},
-  {id:"psg-5",name:"Nuno Mendes",clubId:"paris-sg",position:"LB",age:24,overall:84,nationality:"Portugal"},
-  {id:"psg-6",name:"Vitinha",clubId:"paris-sg",position:"CDM",age:26,overall:85,nationality:"Portugal"},
-  {id:"psg-7",name:"João Neves",clubId:"paris-sg",position:"CM",age:21,overall:84,nationality:"Portugal"},
-  {id:"psg-8",name:"Fabián Ruiz",clubId:"paris-sg",position:"CM",age:30,overall:84,nationality:"Spain"},
-  {id:"psg-9",name:"Désiré Doué",clubId:"paris-sg",position:"RW",age:21,overall:82,nationality:"France"},
-  {id:"psg-10",name:"Khvicha Kvaratskhelia",clubId:"paris-sg",position:"LW",age:25,overall:86,nationality:"Georgia"},
-  {id:"psg-11",name:"Ousmane Dembélé",clubId:"paris-sg",position:"ST",age:29,overall:86,nationality:"France"},
-  {id:"fio-1",name:"David de Gea",clubId:"fiorentina",position:"GK",age:35,overall:82,nationality:"Spain"},
-  {id:"fio-2",name:"Pietro Comuzzo",clubId:"fiorentina",position:"CB",age:21,overall:78,nationality:"Italy"},
-  {id:"fio-3",name:"Luca Ranieri",clubId:"fiorentina",position:"CB",age:27,overall:76,nationality:"Italy"},
-  {id:"fio-4",name:"Dodô",clubId:"fiorentina",position:"RB",age:27,overall:80,nationality:"Brazil"},
-  {id:"fio-5",name:"Robin Gosens",clubId:"fiorentina",position:"LB",age:31,overall:79,nationality:"Germany"},
-  {id:"fio-6",name:"Nicolò Fagioli",clubId:"fiorentina",position:"CM",age:25,overall:79,nationality:"Italy"},
-  {id:"fio-7",name:"Cher Ndour",clubId:"fiorentina",position:"CM",age:22,overall:75,nationality:"Italy"},
-  {id:"fio-8",name:"Nicolás González",clubId:"fiorentina",position:"RW",age:28,overall:80,nationality:"Argentina"},
-  {id:"fio-9",name:"Franco Mastantuono",clubId:"fiorentina",position:"CAM",age:19,overall:79,nationality:"Argentina"},
-  {id:"fio-10",name:"Moise Kean",clubId:"fiorentina",position:"ST",age:26,overall:82,nationality:"Italy"},
-  {id:"fio-11",name:"Mateo Pellegrino",clubId:"fiorentina",position:"ST",age:25,overall:76,nationality:"Argentina"},
-  {id:"bvb-1",name:"Gregor Kobel",clubId:"dortmund",position:"GK",age:28,overall:85,nationality:"Switzerland"},
-  {id:"bvb-2",name:"Nico Schlotterbeck",clubId:"dortmund",position:"CB",age:26,overall:83,nationality:"Germany"},
-  {id:"bvb-3",name:"Waldemar Anton",clubId:"dortmund",position:"CB",age:30,overall:79,nationality:"Germany"},
-  {id:"bvb-4",name:"Julian Ryerson",clubId:"dortmund",position:"RB",age:28,overall:78,nationality:"Norway"},
-  {id:"bvb-5",name:"Ramy Bensebaini",clubId:"dortmund",position:"LB",age:31,overall:78,nationality:"Algeria"},
-  {id:"bvb-6",name:"Pascal Groß",clubId:"dortmund",position:"CDM",age:35,overall:79,nationality:"Germany"},
-  {id:"bvb-7",name:"Felix Nmecha",clubId:"dortmund",position:"CM",age:25,overall:80,nationality:"Germany"},
-  {id:"bvb-8",name:"Julian Brandt",clubId:"dortmund",position:"CAM",age:30,overall:81,nationality:"Germany"},
-  {id:"bvb-9",name:"Karim Adeyemi",clubId:"dortmund",position:"LW",age:24,overall:80,nationality:"Germany"},
-  {id:"bvb-10",name:"Serhou Guirassy",clubId:"dortmund",position:"ST",age:30,overall:83,nationality:"Guinea"},
-  {id:"bvb-11",name:"Maximilian Beier",clubId:"dortmund",position:"ST",age:23,overall:79,nationality:"Germany"},
+  {id:"psg-2",name:"Lucas Chevalier",clubId:"paris-sg",position:"GK",age:24,overall:78,nationality:"France"},
+  {id:"psg-3",name:"Marquinhos",clubId:"paris-sg",position:"CB",age:32,overall:85,nationality:"Brazil"},
+  {id:"psg-4",name:"Willian Pacho",clubId:"paris-sg",position:"CB",age:24,overall:83,nationality:"Ecuador"},
+  {id:"psg-5",name:"Lucas Hernández",clubId:"paris-sg",position:"CB",age:30,overall:80,nationality:"France"},
+  {id:"psg-6",name:"Achraf Hakimi",clubId:"paris-sg",position:"RB",age:27,overall:85,nationality:"Morocco"},
+  {id:"psg-7",name:"Nuno Mendes",clubId:"paris-sg",position:"LB",age:24,overall:84,nationality:"Portugal"},
+  {id:"psg-8",name:"Lucas Digne",clubId:"paris-sg",position:"LB",age:33,overall:77,nationality:"France"},
+  {id:"psg-9",name:"Vitinha",clubId:"paris-sg",position:"CDM",age:26,overall:85,nationality:"Portugal"},
+  {id:"psg-10",name:"João Neves",clubId:"paris-sg",position:"CM",age:21,overall:84,nationality:"Portugal"},
+  {id:"psg-11",name:"Fabián Ruiz",clubId:"paris-sg",position:"CM",age:30,overall:84,nationality:"Spain"},
+  {id:"psg-12",name:"Senny Mayulu",clubId:"paris-sg",position:"CM",age:20,overall:75,nationality:"France"},
+  {id:"psg-13",name:"Désiré Doué",clubId:"paris-sg",position:"RW",age:21,overall:82,nationality:"France"},
+  {id:"psg-14",name:"Khvicha Kvaratskhelia",clubId:"paris-sg",position:"LW",age:25,overall:86,nationality:"Georgia"},
+  {id:"psg-15",name:"Ousmane Dembélé",clubId:"paris-sg",position:"ST",age:29,overall:86,nationality:"France"},
+  {id:"psg-16",name:"Gonçalo Ramos",clubId:"paris-sg",position:"ST",age:25,overall:82,nationality:"Portugal"},
+
+  /* INTER (14) */
+  {id:"int-1",name:"Yann Sommer",clubId:"inter",position:"GK",age:37,overall:82,nationality:"Switzerland"},
+  {id:"int-2",name:"Josep Martínez",clubId:"inter",position:"GK",age:28,overall:79,nationality:"Spain"},
+  {id:"int-3",name:"Alessandro Bastoni",clubId:"inter",position:"CB",age:27,overall:84,nationality:"Italy"},
+  {id:"int-4",name:"Francesco Acerbi",clubId:"inter",position:"CB",age:38,overall:79,nationality:"Italy"},
+  {id:"int-5",name:"Manuel Akanji",clubId:"inter",position:"CB",age:31,overall:82,nationality:"Switzerland"},
+  {id:"int-6",name:"Federico Dimarco",clubId:"inter",position:"LB",age:28,overall:83,nationality:"Italy"},
+  {id:"int-7",name:"Denzel Dumfries",clubId:"inter",position:"RB",age:30,overall:81,nationality:"Netherlands"},
+  {id:"int-8",name:"Nicolò Barella",clubId:"inter",position:"CM",age:29,overall:84,nationality:"Italy"},
+  {id:"int-9",name:"Hakan Çalhanoğlu",clubId:"inter",position:"CDM",age:32,overall:83,nationality:"Turkey"},
+  {id:"int-10",name:"Henrikh Mkhitaryan",clubId:"inter",position:"CM",age:37,overall:79,nationality:"Armenia"},
+  {id:"int-11",name:"Piotr Zieliński",clubId:"inter",position:"CAM",age:32,overall:81,nationality:"Poland"},
+  {id:"int-12",name:"Marcus Thuram",clubId:"inter",position:"ST",age:29,overall:82,nationality:"France"},
+  {id:"int-13",name:"Lautaro Martínez",clubId:"inter",position:"ST",age:29,overall:85,nationality:"Argentina"},
+  {id:"int-14",name:"Mehdi Taremi",clubId:"inter",position:"ST",age:33,overall:78,nationality:"Iran"},
+
+  /* JUVENTUS (14) */
+  {id:"juv-1",name:"Michele Di Gregorio",clubId:"juventus",position:"GK",age:29,overall:80,nationality:"Italy"},
+  {id:"juv-2",name:"Mattia Perin",clubId:"juventus",position:"GK",age:33,overall:76,nationality:"Italy"},
+  {id:"juv-3",name:"Gleison Bremer",clubId:"juventus",position:"CB",age:29,overall:84,nationality:"Brazil"},
+  {id:"juv-4",name:"Federico Gatti",clubId:"juventus",position:"CB",age:28,overall:79,nationality:"Italy"},
+  {id:"juv-5",name:"Pierre Kalulu",clubId:"juventus",position:"CB",age:26,overall:78,nationality:"France"},
+  {id:"juv-6",name:"Andrea Cambiaso",clubId:"juventus",position:"RB",age:26,overall:81,nationality:"Italy"},
+  {id:"juv-7",name:"Lloyd Kelly",clubId:"juventus",position:"LB",age:27,overall:77,nationality:"England"},
+  {id:"juv-8",name:"Manuel Locatelli",clubId:"juventus",position:"CM",age:28,overall:82,nationality:"Italy"},
+  {id:"juv-9",name:"Douglas Luiz",clubId:"juventus",position:"CM",age:28,overall:82,nationality:"Brazil"},
+  {id:"juv-10",name:"Teun Koopmeiners",clubId:"juventus",position:"CAM",age:28,overall:81,nationality:"Netherlands"},
+  {id:"juv-11",name:"Nicolás González",clubId:"juventus",position:"RW",age:28,overall:79,nationality:"Argentina"},
+  {id:"juv-12",name:"Randal Kolo Muani",clubId:"juventus",position:"ST",age:27,overall:80,nationality:"France"},
+  {id:"juv-13",name:"Dušan Vlahović",clubId:"juventus",position:"ST",age:26,overall:83,nationality:"Serbia"},
+  {id:"juv-14",name:"Kenan Yıldız",clubId:"juventus",position:"CAM",age:21,overall:81,nationality:"Turkey"},
+
+  /* MILAN (14) */
+  {id:"mil-1",name:"Mike Maignan",clubId:"milan",position:"GK",age:31,overall:85,nationality:"France"},
+  {id:"mil-2",name:"Marco Sportiello",clubId:"milan",position:"GK",age:34,overall:76,nationality:"Italy"},
+  {id:"mil-3",name:"Fikayo Tomori",clubId:"milan",position:"CB",age:28,overall:82,nationality:"England"},
+  {id:"mil-4",name:"Strahinja Pavlović",clubId:"milan",position:"CB",age:25,overall:80,nationality:"Serbia"},
+  {id:"mil-5",name:"Malick Thiaw",clubId:"milan",position:"CB",age:25,overall:79,nationality:"Germany"},
+  {id:"mil-6",name:"Theo Hernández",clubId:"milan",position:"LB",age:28,overall:85,nationality:"France"},
+  {id:"mil-7",name:"Alessandro Florenzi",clubId:"milan",position:"RB",age:35,overall:75,nationality:"Italy"},
+  {id:"mil-8",name:"Yunus Musah",clubId:"milan",position:"CM",age:23,overall:78,nationality:"USA"},
+  {id:"mil-9",name:"Tijjani Reijnders",clubId:"milan",position:"CM",age:28,overall:82,nationality:"Netherlands"},
+  {id:"mil-10",name:"Ruben Loftus-Cheek",clubId:"milan",position:"CM",age:30,overall:78,nationality:"England"},
+  {id:"mil-11",name:"Christian Pulisic",clubId:"milan",position:"RW",age:27,overall:82,nationality:"USA"},
+  {id:"mil-12",name:"Rafael Leão",clubId:"milan",position:"LW",age:27,overall:85,nationality:"Portugal"},
+  {id:"mil-13",name:"Tammy Abraham",clubId:"milan",position:"ST",age:28,overall:78,nationality:"England"},
+  {id:"mil-14",name:"Santiago Giménez",clubId:"milan",position:"ST",age:25,overall:80,nationality:"Mexico"},
+
+  /* NAPOLI (14) */
+  {id:"nap-1",name:"Alex Meret",clubId:"napoli",position:"GK",age:29,overall:81,nationality:"Italy"},
+  {id:"nap-2",name:"Vanja Milinković-Savić",clubId:"napoli",position:"GK",age:29,overall:79,nationality:"Serbia"},
+  {id:"nap-3",name:"Amir Rrahmani",clubId:"napoli",position:"CB",age:32,overall:82,nationality:"Kosovo"},
+  {id:"nap-4",name:"Alessandro Buongiorno",clubId:"napoli",position:"CB",age:27,overall:82,nationality:"Italy"},
+  {id:"nap-5",name:"Juan Jesus",clubId:"napoli",position:"CB",age:35,overall:76,nationality:"Brazil"},
+  {id:"nap-6",name:"Giovanni Di Lorenzo",clubId:"napoli",position:"RB",age:33,overall:82,nationality:"Italy"},
+  {id:"nap-7",name:"Mathías Olivera",clubId:"napoli",position:"LB",age:28,overall:78,nationality:"Uruguay"},
+  {id:"nap-8",name:"Stanislav Lobotka",clubId:"napoli",position:"CDM",age:31,overall:82,nationality:"Slovakia"},
+  {id:"nap-9",name:"Frank Anguissa",clubId:"napoli",position:"CM",age:30,overall:81,nationality:"Cameroon"},
+  {id:"nap-10",name:"Scott McTominay",clubId:"napoli",position:"CM",age:29,overall:82,nationality:"Scotland"},
+  {id:"nap-11",name:"Kevin De Bruyne",clubId:"napoli",position:"CAM",age:35,overall:85,nationality:"Belgium"},
+  {id:"nap-12",name:"Matteo Politano",clubId:"napoli",position:"RW",age:33,overall:80,nationality:"Italy"},
+  {id:"nap-13",name:"David Neres",clubId:"napoli",position:"LW",age:29,overall:81,nationality:"Brazil"},
+  {id:"nap-14",name:"Romelu Lukaku",clubId:"napoli",position:"ST",age:33,overall:83,nationality:"Belgium"},
+
+  /* BAYERN (14) */
   {id:"bay-1",name:"Manuel Neuer",clubId:"bayern-munich",position:"GK",age:40,overall:86,nationality:"Germany"},
-  {id:"bay-2",name:"Dayot Upamecano",clubId:"bayern-munich",position:"CB",age:27,overall:84,nationality:"France"},
-  {id:"bay-3",name:"Kim Min-jae",clubId:"bayern-munich",position:"CB",age:29,overall:83,nationality:"South Korea"},
-  {id:"bay-4",name:"Joshua Kimmich",clubId:"bayern-munich",position:"RB",age:31,overall:86,nationality:"Germany"},
-  {id:"bay-5",name:"Alphonso Davies",clubId:"bayern-munich",position:"LB",age:25,overall:85,nationality:"Canada"},
-  {id:"bay-6",name:"Aleksandar Pavlovic",clubId:"bayern-munich",position:"CDM",age:22,overall:81,nationality:"Germany"},
-  {id:"bay-7",name:"Leon Goretzka",clubId:"bayern-munich",position:"CM",age:31,overall:82,nationality:"Germany"},
-  {id:"bay-8",name:"Michael Olise",clubId:"bayern-munich",position:"CAM",age:24,overall:85,nationality:"France"},
-  {id:"bay-9",name:"Jamal Musiala",clubId:"bayern-munich",position:"CAM",age:23,overall:86,nationality:"Germany"},
-  {id:"bay-10",name:"Harry Kane",clubId:"bayern-munich",position:"ST",age:33,overall:89,nationality:"England"},
-  {id:"bay-11",name:"Leroy Sané",clubId:"bayern-munich",position:"RW",age:30,overall:83,nationality:"Germany"}
+  {id:"bay-2",name:"Jonas Urbig",clubId:"bayern-munich",position:"GK",age:23,overall:75,nationality:"Germany"},
+  {id:"bay-3",name:"Dayot Upamecano",clubId:"bayern-munich",position:"CB",age:27,overall:84,nationality:"France"},
+  {id:"bay-4",name:"Kim Min-jae",clubId:"bayern-munich",position:"CB",age:29,overall:83,nationality:"South Korea"},
+  {id:"bay-5",name:"Jonathan Tah",clubId:"bayern-munich",position:"CB",age:30,overall:82,nationality:"Germany"},
+  {id:"bay-6",name:"Joshua Kimmich",clubId:"bayern-munich",position:"RB",age:31,overall:86,nationality:"Germany"},
+  {id:"bay-7",name:"Alphonso Davies",clubId:"bayern-munich",position:"LB",age:25,overall:85,nationality:"Canada"},
+  {id:"bay-8",name:"Aleksandar Pavlovic",clubId:"bayern-munich",position:"CDM",age:22,overall:81,nationality:"Germany"},
+  {id:"bay-9",name:"Leon Goretzka",clubId:"bayern-munich",position:"CM",age:31,overall:82,nationality:"Germany"},
+  {id:"bay-10",name:"Michael Olise",clubId:"bayern-munich",position:"CAM",age:24,overall:85,nationality:"France"},
+  {id:"bay-11",name:"Jamal Musiala",clubId:"bayern-munich",position:"CAM",age:23,overall:86,nationality:"Germany"},
+  {id:"bay-12",name:"Leroy Sané",clubId:"bayern-munich",position:"RW",age:30,overall:83,nationality:"Germany"},
+  {id:"bay-13",name:"Serge Gnabry",clubId:"bayern-munich",position:"LW",age:31,overall:80,nationality:"Germany"},
+  {id:"bay-14",name:"Harry Kane",clubId:"bayern-munich",position:"ST",age:33,overall:89,nationality:"England"},
+
+  /* DORTMUND (14) */
+  {id:"bvb-1",name:"Gregor Kobel",clubId:"dortmund",position:"GK",age:28,overall:85,nationality:"Switzerland"},
+  {id:"bvb-2",name:"Alexander Meyer",clubId:"dortmund",position:"GK",age:34,overall:74,nationality:"Germany"},
+  {id:"bvb-3",name:"Nico Schlotterbeck",clubId:"dortmund",position:"CB",age:26,overall:83,nationality:"Germany"},
+  {id:"bvb-4",name:"Waldemar Anton",clubId:"dortmund",position:"CB",age:30,overall:79,nationality:"Germany"},
+  {id:"bvb-5",name:"Niklas Süle",clubId:"dortmund",position:"CB",age:30,overall:80,nationality:"Germany"},
+  {id:"bvb-6",name:"Julian Ryerson",clubId:"dortmund",position:"RB",age:28,overall:78,nationality:"Norway"},
+  {id:"bvb-7",name:"Ramy Bensebaini",clubId:"dortmund",position:"LB",age:31,overall:78,nationality:"Algeria"},
+  {id:"bvb-8",name:"Pascal Groß",clubId:"dortmund",position:"CDM",age:35,overall:79,nationality:"Germany"},
+  {id:"bvb-9",name:"Felix Nmecha",clubId:"dortmund",position:"CM",age:25,overall:80,nationality:"Germany"},
+  {id:"bvb-10",name:"Julian Brandt",clubId:"dortmund",position:"CAM",age:30,overall:81,nationality:"Germany"},
+  {id:"bvb-11",name:"Karim Adeyemi",clubId:"dortmund",position:"LW",age:24,overall:80,nationality:"Germany"},
+  {id:"bvb-12",name:"Jamie Gittens",clubId:"dortmund",position:"LW",age:22,overall:79,nationality:"England"},
+  {id:"bvb-13",name:"Serhou Guirassy",clubId:"dortmund",position:"ST",age:30,overall:83,nationality:"Guinea"},
+  {id:"bvb-14",name:"Maximilian Beier",clubId:"dortmund",position:"ST",age:23,overall:79,nationality:"Germany"},
+
+  /* LEVERKUSEN (14) */
+  {id:"lev-1",name:"Mark Flekken",clubId:"leverkusen",position:"GK",age:33,overall:80,nationality:"Netherlands"},
+  {id:"lev-2",name:"Niklas Lomb",clubId:"leverkusen",position:"GK",age:32,overall:72,nationality:"Germany"},
+  {id:"lev-3",name:"Edmond Tapsoba",clubId:"leverkusen",position:"CB",age:27,overall:82,nationality:"Burkina Faso"},
+  {id:"lev-4",name:"Jonathan Tah",clubId:"leverkusen",position:"CB",age:30,overall:82,nationality:"Germany"},
+  {id:"lev-5",name:"Piero Hincapié",clubId:"leverkusen",position:"CB",age:24,overall:82,nationality:"Ecuador"},
+  {id:"lev-6",name:"Jeremie Frimpong",clubId:"leverkusen",position:"RB",age:25,overall:79,nationality:"Netherlands"},
+  {id:"lev-7",name:"Alejandro Grimaldo",clubId:"leverkusen",position:"LB",age:30,overall:82,nationality:"Spain"},
+  {id:"lev-8",name:"Granit Xhaka",clubId:"leverkusen",position:"CDM",age:33,overall:82,nationality:"Switzerland"},
+  {id:"lev-9",name:"Exequiel Palacios",clubId:"leverkusen",position:"CM",age:27,overall:80,nationality:"Argentina"},
+  {id:"lev-10",name:"Florian Wirtz",clubId:"leverkusen",position:"CAM",age:23,overall:87,nationality:"Germany"},
+  {id:"lev-11",name:"Jonas Hofmann",clubId:"leverkusen",position:"CAM",age:34,overall:79,nationality:"Germany"},
+  {id:"lev-12",name:"Amine Adli",clubId:"leverkusen",position:"RW",age:26,overall:78,nationality:"Morocco"},
+  {id:"lev-13",name:"Patrik Schick",clubId:"leverkusen",position:"ST",age:30,overall:82,nationality:"Czechia"},
+  {id:"lev-14",name:"Victor Boniface",clubId:"leverkusen",position:"ST",age:25,overall:82,nationality:"Nigeria"},
+
+  /* ATLETICO MADRID (14) */
+  {id:"atm-1",name:"Jan Oblak",clubId:"atletico-madrid",position:"GK",age:33,overall:87,nationality:"Slovenia"},
+  {id:"atm-2",name:"Juan Musso",clubId:"atletico-madrid",position:"GK",age:32,overall:78,nationality:"Argentina"},
+  {id:"atm-3",name:"José María Giménez",clubId:"atletico-madrid",position:"CB",age:31,overall:82,nationality:"Uruguay"},
+  {id:"atm-4",name:"Robin Le Normand",clubId:"atletico-madrid",position:"CB",age:29,overall:82,nationality:"Spain"},
+  {id:"atm-5",name:"Dávid Hancko",clubId:"atletico-madrid",position:"CB",age:28,overall:81,nationality:"Slovakia"},
+  {id:"atm-6",name:"Nahuel Molina",clubId:"atletico-madrid",position:"RB",age:28,overall:79,nationality:"Argentina"},
+  {id:"atm-7",name:"Marcos Llorente",clubId:"atletico-madrid",position:"RB",age:31,overall:81,nationality:"Spain"},
+  {id:"atm-8",name:"Javi Galán",clubId:"atletico-madrid",position:"LB",age:31,overall:78,nationality:"Spain"},
+  {id:"atm-9",name:"Rodrigo De Paul",clubId:"atletico-madrid",position:"CM",age:32,overall:81,nationality:"Argentina"},
+  {id:"atm-10",name:"Pablo Barrios",clubId:"atletico-madrid",position:"CM",age:23,overall:80,nationality:"Spain"},
+  {id:"atm-11",name:"Koke",clubId:"atletico-madrid",position:"CM",age:34,overall:81,nationality:"Spain"},
+  {id:"atm-12",name:"Antoine Griezmann",clubId:"atletico-madrid",position:"CAM",age:35,overall:85,nationality:"France"},
+  {id:"atm-13",name:"Julián Álvarez",clubId:"atletico-madrid",position:"ST",age:26,overall:85,nationality:"Argentina"},
+  {id:"atm-14",name:"Alexander Sørloth",clubId:"atletico-madrid",position:"ST",age:30,overall:81,nationality:"Norway"},
+
+  /* REAL BETIS (13) */
+  {id:"bet-1",name:"Rui Silva",clubId:"real-betis",position:"GK",age:32,overall:78,nationality:"Portugal"},
+  {id:"bet-2",name:"Álvaro Valles",clubId:"real-betis",position:"GK",age:29,overall:79,nationality:"Spain"},
+  {id:"bet-3",name:"Marc Bartra",clubId:"real-betis",position:"CB",age:35,overall:76,nationality:"Spain"},
+  {id:"bet-4",name:"Natan",clubId:"real-betis",position:"CB",age:25,overall:78,nationality:"Brazil"},
+  {id:"bet-5",name:"Diego Llorente",clubId:"real-betis",position:"CB",age:33,overall:77,nationality:"Spain"},
+  {id:"bet-6",name:"Héctor Bellerín",clubId:"real-betis",position:"RB",age:31,overall:76,nationality:"Spain"},
+  {id:"bet-7",name:"Romain Perraud",clubId:"real-betis",position:"LB",age:28,overall:76,nationality:"France"},
+  {id:"bet-8",name:"Johnny Cardoso",clubId:"real-betis",position:"CDM",age:24,overall:79,nationality:"USA"},
+  {id:"bet-9",name:"Marc Roca",clubId:"real-betis",position:"CDM",age:29,overall:78,nationality:"Spain"},
+  {id:"bet-10",name:"Pablo Fornals",clubId:"real-betis",position:"CM",age:30,overall:79,nationality:"Spain"},
+  {id:"bet-11",name:"Isco",clubId:"real-betis",position:"CAM",age:34,overall:79,nationality:"Spain"},
+  {id:"bet-12",name:"Antony",clubId:"real-betis",position:"RW",age:26,overall:79,nationality:"Brazil"},
+  {id:"bet-13",name:"Cucho Hernández",clubId:"real-betis",position:"ST",age:27,overall:78,nationality:"Colombia"}
 ];
 
 /* ============================================================
@@ -551,7 +742,7 @@ function addDays(dateStr, days){
   d.setUTCDate(d.getUTCDate()+days);
   return d.toISOString().slice(0,10);
 }
-function randInt(min,max){ return Math.floor(min+Math.random()*(max-min+1)); }
+function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
 function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 function clamp(v,min,max){ return Math.max(min,Math.min(max,v)); }
 function pickWeighted(arr, weights){
@@ -586,9 +777,10 @@ function crestEl(clubId, size=28){
 
 function posClass(pos){
   if(pos==="GK") return "GK";
-  if(["CB","LB","RB"].includes(pos)) return "DEF";
+  if(["CB","LB","RB","RWB","LWB"].includes(pos)) return "DEF";
   if(["CDM","CM","CAM"].includes(pos)) return "MID";
-  return "FWD";
+  if(["AMR","AML","LW","RW","ST"].includes(pos)) return "FWD";
+  return "MID";
 }
 function ratingClass(o){
   if(o>=84) return "elite";
@@ -623,39 +815,35 @@ function moraleLabel(v){
   if(v>=20) return "Unhappy";
   return "Miserable";
 }
-function clubName(id){
-  return CLUBS[id]?.short || CLUBS[id]?.name || id;
-}
+function clubName(id){ return CLUBS[id]?.short || CLUBS[id]?.name || id; }
 
 /* ============================================================
-   STATE
+   FORMATIONS + POSITIONS
    ============================================================ */
-const state = {
-  userClubId: null,
-  currentDate: "2026-08-01",
-  matchday: 1,
-  fixtures: [],
-  playerStates: {},
-  inbox: [],
-  userFormation: "4-3-3",
-  userLineup: null,
-  userBench: null,
-  allPlayers: []
-};
-
 const FORMATIONS = {
   "4-3-3":["GK","RB","CB","CB","LB","CDM","CM","CM","RW","ST","LW"],
   "4-4-2":["GK","RB","CB","CB","LB","RW","CM","CM","LW","ST","ST"],
   "4-2-3-1":["GK","RB","CB","CB","LB","CDM","CDM","RW","CAM","LW","ST"],
-  "3-5-2":["GK","CB","CB","CB","RB","CM","CDM","CM","LB","ST","ST"],
-  "5-3-2":["GK","RB","CB","CB","CB","LB","CM","CDM","CM","ST","ST"]
+  "3-5-2":["GK","CB","CB","CB","RWB","CM","CDM","CM","LWB","ST","ST"],
+  "5-3-2":["GK","RB","CB","CB","CB","LB","CM","CDM","CM","ST","ST"],
+  "3-4-3":["GK","CB","CB","CB","RWB","CDM","CM","LWB","AMR","AML","ST"]
 };
 
 const POSITION_FIT = {
-  GK:{GK:1,CB:.1},CB:{CB:1,CDM:.8,LB:.75,RB:.75,CM:.65},LB:{LB:1,RB:.8,CB:.75,LW:.7},
-  RB:{RB:1,LB:.8,CB:.75,RW:.7},CDM:{CDM:1,CM:.9,CB:.8},CM:{CM:1,CDM:.9,CAM:.9},
-  CAM:{CAM:1,CM:.9,LW:.8,RW:.8,ST:.8},LW:{LW:1,RW:.85,CAM:.8,ST:.75},
-  RW:{RW:1,LW:.85,CAM:.8,ST:.75},ST:{ST:1,CAM:.8,LW:.75,RW:.75}
+  GK:{GK:1,CB:.1},
+  CB:{CB:1,CDM:.80,LB:.75,RB:.75,CM:.65},
+  LB:{LB:1,LWB:1,RB:.80,CB:.75,LW:.70},
+  RB:{RB:1,RWB:1,LB:.80,CB:.75,RW:.70},
+  LWB:{LWB:1,LB:1,LW:.85,RB:.80,CB:.70},
+  RWB:{RWB:1,RB:1,RW:.85,LB:.80,CB:.70},
+  CDM:{CDM:1,CM:.90,CB:.80},
+  CM:{CM:1,CDM:.90,CAM:.90},
+  CAM:{CAM:1,CM:.90,AMR:.85,AML:.85,ST:.80},
+  AMR:{AMR:1,RW:1,CAM:.85,AML:.85,ST:.75},
+  AML:{AML:1,LW:1,CAM:.85,AMR:.85,ST:.75},
+  LW:{LW:1,AML:1,RW:.85,CAM:.80,ST:.75},
+  RW:{RW:1,AMR:1,LW:.85,CAM:.80,ST:.75},
+  ST:{ST:1,CAM:.80,LW:.75,RW:.75,AMR:.75,AML:.75}
 };
 function posFit(natural, assigned){
   return (POSITION_FIT[natural] && POSITION_FIT[natural][assigned]) || 0.6;
@@ -671,17 +859,34 @@ const MATCH = {
 };
 
 /* ============================================================
-   BUILD SQUAD + LOAD PLAYER DATA
+   STATE
    ============================================================ */
-function getSquad(clubId){
-  return state.allPlayers.filter(p => p.clubId === clubId);
-}
+const state = {
+  userClubId: null,
+  currentDate: "2026-08-01",
+  matchday: 1,
+  fixtures: [],
+  cupFixtures: [],
+  cupDrawn: false,
+  cupGroups: null,
+  cupKnockout: null,
+  playerStates: {},
+  inbox: [],
+  userFormation: "4-3-3",
+  userLineup: null,
+  userBench: null,
+  allPlayers: [],
+  matchStats: {}
+};
+
+/* ============================================================
+   SQUAD ACCESS
+   ============================================================ */
+function getSquad(clubId){ return state.allPlayers.filter(p => p.clubId === clubId); }
 function getSquadWithState(clubId){
-  return getSquad(clubId).map(p => ({ ...p, ...(state.playerStates[p.id] || {}) }));
+  return getSquad(clubId).map(p => ({...p, ...(state.playerStates[p.id] || {})}));
 }
-function getPlayerById(id){
-  return state.allPlayers.find(p => p.id === id);
-}
+function getPlayerById(id){ return state.allPlayers.find(p => p.id === id); }
 
 /* ============================================================
    FIXTURES
@@ -722,11 +927,11 @@ function buildSeasonFixtures(){
         const times = ["12:30","15:00","15:00","15:00","17:30","14:00","16:30","19:00","20:00","20:00"];
         all.push({
           id: `${leagueId}-md${matchday}-${home}-${away}`,
-          leagueId, matchday,
+          comp:"league", leagueId, matchday,
           date: addDays(weekDate, dayOffset),
           time: times[i] || "15:00",
           homeClubId: home, awayClubId: away,
-          played: false, homeScore: null, awayScore: null
+          played:false, homeScore:null, awayScore:null
         });
       });
     });
@@ -734,12 +939,112 @@ function buildSeasonFixtures(){
   return all;
 }
 
-function getNextFixture(clubId){
-  return state.fixtures
-    .filter(f => (f.homeClubId===clubId || f.awayClubId===clubId) && !f.played)
-    .sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time))[0] || null;
+function buildCupFixtures(){
+  // Draw groups on matchday 3. Group stage has 8 midweek rounds (matchdays 4-11).
+  // Top 2 from each of 4 groups advance to QF (2 legs), SF (2 legs), Final.
+  const shuffled = [...ELITE_CUP_CLUBS].sort(()=>Math.random()-0.5);
+  const groups = [[],[],[],[]];
+  shuffled.forEach((c,i)=>groups[i%4].push(c));
+
+  const fixtures = [];
+  const startDate = "2026-08-01";
+  // Group stage starts midweek after matchday 3 → week 4 (7*3 days from start)
+  const groupStartWeek = addDays(startDate, 4*7 - 3);
+
+  // Build double round robin per group (5 teams → 10 matchdays, but we want
+  // each team to play each other home and away = 8 games per team = 8 rounds)
+  // For 5 teams, single RR is 5 rounds (each team plays 4 games, one bye).
+  // Double RR = 10 rounds (each plays 8, two byes).
+  // We use 10 rounds, and each round has 2 games + 1 bye per group.
+
+  for(let g=0; g<4; g++){
+    const groupClubIds = groups[g];
+    const rr = roundRobin5(groupClubIds); // returns 5 rounds of pairs with byes handled
+    const doubled = [...rr, ...rr.map(round => round.map(([h,a])=>[a,h]))];
+    doubled.forEach((round, mdIdx) => {
+      const roundDate = addDays(groupStartWeek, mdIdx * 7);
+      round.forEach(([home, away], i) => {
+        fixtures.push({
+          id: `cup-group-${g+1}-r${mdIdx+1}-${home}-${away}`,
+          comp:"cup", stage:"group", group:g+1,
+          round:mdIdx+1,
+          date: roundDate,
+          time: i === 0 ? "20:00" : "20:00",
+          homeClubId: home, awayClubId: away,
+          played:false, homeScore:null, awayScore:null
+        });
+      });
+    });
+  }
+
+  return {
+    groups,
+    fixtures
+  };
 }
 
+function roundRobin5(clubIds){
+  // 5-club round robin with byes. 5 rounds, each round: 2 games + 1 bye.
+  // Simple rotation.
+  const teams = [...clubIds];
+  const rounds = [];
+  // Add a dummy "bye" to make even
+  const arr = [...teams, "BYE"];
+  const n = arr.length;
+  const half = n/2;
+  for(let r=0;r<n-1;r++){
+    const round = [];
+    for(let i=0;i<half;i++){
+      const a = arr[i], b = arr[n-1-i];
+      if(a !== "BYE" && b !== "BYE"){
+        round.push(r%2===0 ? [a,b] : [b,a]);
+      }
+    }
+    rounds.push(round);
+    // rotate (keep arr[0] fixed)
+    const last = arr.pop();
+    arr.splice(1,0,last);
+  }
+  return rounds;
+}
+
+function buildCupKnockout(groupStandings){
+  // Called after group stage. Returns knockout fixtures object.
+  // Top 2 from each group → QF. QF: A1 v B2, B1 v A2, C1 v D2, D1 v C2.
+  // QF 2 legs, SF 2 legs, Final single.
+  const G = groupStandings;
+  const qf = [
+    { home: G[0][0], away: G[1][1], label:"QF1" },
+    { home: G[1][0], away: G[0][1], label:"QF2" },
+    { home: G[2][0], away: G[3][1], label:"QF3" },
+    { home: G[3][0], away: G[2][1], label:"QF4" }
+  ];
+  const startWeek = addDays("2026-08-01", 16*7);
+  const fixtures = [];
+  let id = 0;
+  qf.forEach(m => {
+    id++;
+    const leg1Date = addDays(startWeek, id*3);
+    const leg2Date = addDays(startWeek, id*3 + 3);
+    fixtures.push({
+      id:`cup-qf-${id}-leg1`, comp:"cup", stage:"qf", round:1,
+      label:m.label, date:leg1Date, time:"20:00",
+      homeClubId:m.home, awayClubId:m.away,
+      played:false, homeScore:null, awayScore:null
+    });
+    fixtures.push({
+      id:`cup-qf-${id}-leg2`, comp:"cup", stage:"qf", round:2,
+      label:m.label, date:leg2Date, time:"20:00",
+      homeClubId:m.away, awayClubId:m.home,
+      played:false, homeScore:null, awayScore:null
+    });
+  });
+  return fixtures;
+}
+
+/* ============================================================
+   LEAGUE TABLE + CUP GROUP TABLE
+   ============================================================ */
 function buildTable(leagueId){
   const league = LEAGUES[leagueId];
   const rows = {};
@@ -748,6 +1053,30 @@ function buildTable(leagueId){
   }
   for(const f of state.fixtures){
     if(f.leagueId!==leagueId || !f.played) continue;
+    const h = rows[f.homeClubId], a = rows[f.awayClubId];
+    if(!h || !a) continue;
+    h.played++; a.played++;
+    h.gf += f.homeScore; h.ga += f.awayScore;
+    a.gf += f.awayScore; a.ga += f.homeScore;
+    if(f.homeScore>f.awayScore){ h.won++; h.points+=3; a.lost++; }
+    else if(f.homeScore<f.awayScore){ a.won++; a.points+=3; h.lost++; }
+    else { h.drawn++; a.drawn++; h.points++; a.points++; }
+  }
+  const table = Object.values(rows).map(r => ({...r, gd:r.gf-r.ga}));
+  table.sort((x,y)=> y.points-x.points || y.gd-x.gd || y.gf-x.gf || x.clubId.localeCompare(y.clubId));
+  table.forEach((r,i)=>r.position = i+1);
+  return table;
+}
+
+function buildCupGroupTable(groupIdx){
+  if(!state.cupGroups) return [];
+  const ids = state.cupGroups[groupIdx];
+  const rows = {};
+  for(const cid of ids){
+    rows[cid] = {clubId:cid,played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,points:0};
+  }
+  for(const f of state.cupFixtures){
+    if(f.stage !== "group" || f.group !== (groupIdx+1) || !f.played) continue;
     const h = rows[f.homeClubId], a = rows[f.awayClubId];
     if(!h || !a) continue;
     h.played++; a.played++;
@@ -772,19 +1101,28 @@ function initStateFor(clubId){
   state.currentDate = "2026-08-01";
   state.matchday = 1;
   state.playerStates = {};
+  state.matchStats = {};
   for(const p of state.allPlayers){
     state.playerStates[p.id] = {
       fatigue: 100, morale: 75,
-      minutesThisSeason: 0, matchesThisSeason: 0
+      minutesThisSeason: 0, matchesThisSeason: 0,
+      goals: 0, assists: 0, yellow: 0, red: 0,
+      ratingPoints: 0,
+      ratingMatches: 0,
+      ratingBaseline: p.overall
     };
   }
   state.inbox = [{
     id:"welcome",
     title: "Welcome to " + club.name,
     body: "Set your default lineup in Tactics, then play your first fixture from Home.",
-    read: false
+    read:false
   }];
   state.fixtures = buildSeasonFixtures();
+  state.cupDrawn = false;
+  state.cupGroups = null;
+  state.cupFixtures = [];
+  state.cupKnockout = null;
   state.userFormation = "4-3-3";
   const picked = autoPickLineup(clubId, "4-3-3");
   state.userLineup = picked.lineup.map(p => p.id);
@@ -792,7 +1130,7 @@ function initStateFor(clubId){
 }
 
 /* ============================================================
-   AUTO PICK LINEUP
+   LINEUP AUTO-PICK
    ============================================================ */
 function autoPickLineup(clubId, formationId){
   const squad = getSquadWithState(clubId);
@@ -825,7 +1163,7 @@ function samplePoisson(lambda){
 
 function teamStrength(lineup, style, isHome){
   let total = 0;
-  lineup.forEach((p,i) => {
+  lineup.forEach((p) => {
     const slotPos = p.assignedPos || p.position;
     const fit = posFit(p.position, slotPos);
     const fatMult = p.fatigue >= 80 ? 1 : p.fatigue >= 60 ? .95 : p.fatigue >= 40 ? .85 : p.fatigue >= 20 ? .70 : .50;
@@ -841,7 +1179,7 @@ function pickScorer(lineup){
   const c = lineup.filter(p => p.position !== "GK");
   const w = c.map(p => {
     const base = Math.max(1, p.overall - 55);
-    const posMult = {ST:5,CAM:3,LW:3,RW:3,CM:1.4,CDM:.6,CB:.5,LB:.4,RB:.4}[p.position] || 1;
+    const posMult = {ST:5,CAM:3,AMR:3,AML:3,LW:3,RW:3,CM:1.4,CDM:.6,CB:.5,LB:.4,RB:.4,LWB:.4,RWB:.4}[p.position] || 1;
     return base * posMult;
   });
   return pickWeighted(c,w);
@@ -850,7 +1188,7 @@ function pickAssist(lineup, scorer){
   const c = lineup.filter(p => p.id !== scorer.id && p.position !== "GK");
   const w = c.map(p => {
     const base = Math.max(1, p.overall - 55);
-    const posMult = {CAM:4,LW:3.5,RW:3.5,CM:3,ST:2,LB:1.6,RB:1.6,CDM:1,CB:.6}[p.position] || 1;
+    const posMult = {CAM:4,AMR:3.5,AML:3.5,LW:3.5,RW:3.5,CM:3,ST:2,LB:1.6,RB:1.6,LWB:1.6,RWB:1.6,CDM:1,CB:.6}[p.position] || 1;
     return base * posMult;
   });
   return pickWeighted(c,w);
@@ -903,30 +1241,88 @@ function simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle){
 
   events.sort((a,b)=>a.minute-b.minute);
 
-  const ratings = {};
-  for(const p of [...homeLineup, ...awayLineup]){
-    ratings[p.id] = {rating:6.0, goals:0, assists:0, yellow:0, red:0};
-  }
-  for(const e of events){
-    const r = ratings[e.playerId];
-    if(!r) continue;
-    if(e.type === "goal"){
-      r.goals++; r.rating += 1.2;
-      if(e.assistId && ratings[e.assistId]){ ratings[e.assistId].assists++; ratings[e.assistId].rating += .8; }
+  /* ============================================
+     PER-PLAYER MATCH STATS
+     ============================================ */
+  const allPlayers = [...homeLineup, ...awayLineup];
+  const matchStats = {};
+  for(const p of allPlayers){
+    matchStats[p.id] = {
+      playerId: p.id, minutes: 90,
+      goals:0, assists:0, yellow:0, red:0,
+      shots:0, shotsOnTarget:0, xg:0,
+      passes:0, passesCompleted:0,
+      tackles:0, interceptions:0,
+      rating: 6.0
+    };
+    // Base stats per position
+    const isGK = p.position === "GK";
+    const isDEF = ["CB","LB","RB","LWB","RWB"].includes(p.position);
+    const isMID = ["CDM","CM","CAM"].includes(p.position);
+    const isATT = ["AMR","AML","LW","RW","ST"].includes(p.position);
+
+    if(isGK){
+      matchStats[p.id].passes = randInt(15, 35);
+      matchStats[p.id].passesCompleted = Math.floor(matchStats[p.id].passes * (0.65 + Math.random()*0.15));
+      matchStats[p.id].tackles = 0;
+      matchStats[p.id].interceptions = randInt(0, 1);
+    } else if(isDEF){
+      matchStats[p.id].passes = randInt(30, 70);
+      matchStats[p.id].passesCompleted = Math.floor(matchStats[p.id].passes * (0.82 + Math.random()*0.12));
+      matchStats[p.id].tackles = randInt(1, 5);
+      matchStats[p.id].interceptions = randInt(1, 4);
+      matchStats[p.id].shots = randInt(0, 1);
+      matchStats[p.id].xg = Math.round(Math.random()*15)/100;
+    } else if(isMID){
+      matchStats[p.id].passes = randInt(35, 85);
+      matchStats[p.id].passesCompleted = Math.floor(matchStats[p.id].passes * (0.85 + Math.random()*0.10));
+      matchStats[p.id].tackles = randInt(0, 4);
+      matchStats[p.id].interceptions = randInt(0, 3);
+      matchStats[p.id].shots = randInt(0, 3);
+      matchStats[p.id].xg = Math.round(Math.random()*30)/100;
+    } else if(isATT){
+      matchStats[p.id].passes = randInt(20, 55);
+      matchStats[p.id].passesCompleted = Math.floor(matchStats[p.id].passes * (0.75 + Math.random()*0.12));
+      matchStats[p.id].tackles = randInt(0, 2);
+      matchStats[p.id].interceptions = randInt(0, 1);
+      matchStats[p.id].shots = randInt(1, 5);
+      matchStats[p.id].xg = Math.round(Math.random()*60)/100;
     }
-    else if(e.type === "yellow"){ r.yellow++; r.rating -= .3; }
-    else if(e.type === "red"){ r.red++; r.rating -= 1.5; }
   }
+
+  /* Apply goal/assist/card events to stats + ratings */
+  for(const e of events){
+    const s = matchStats[e.playerId];
+    if(!s) continue;
+    if(e.type === "goal"){
+      s.goals++; s.rating += 1.2;
+      s.shots++; s.shotsOnTarget++; s.xg = Math.round((s.xg + 0.35)*100)/100;
+      if(e.assistId && matchStats[e.assistId]){
+        matchStats[e.assistId].assists++;
+        matchStats[e.assistId].rating += 0.8;
+      }
+    }
+    else if(e.type === "yellow"){ s.yellow++; s.rating -= 0.3; }
+    else if(e.type === "red"){ s.red++; s.rating -= 1.5; }
+  }
+
+  /* Result bonus */
   const homeWin = hs>as, awayWin = as>hs;
-  for(const id of Object.keys(ratings)){
+  for(const id of Object.keys(matchStats)){
     const isHome = homeLineup.some(p => p.id === id);
-    if(homeWin) ratings[id].rating += isHome ? .4 : -.4;
-    else if(awayWin) ratings[id].rating += isHome ? -.4 : .4;
-    ratings[id].rating = Math.max(3, Math.min(10, Math.round(ratings[id].rating * 10) / 10));
+    if(homeWin) matchStats[id].rating += isHome ? 0.4 : -0.4;
+    else if(awayWin) matchStats[id].rating += isHome ? -0.4 : 0.4;
+    matchStats[id].rating = Math.max(3, Math.min(10, Math.round(matchStats[id].rating * 10)/10));
+  }
+
+  /* Rating adjustments - random noise per player */
+  for(const id of Object.keys(matchStats)){
+    matchStats[id].rating = clamp(matchStats[id].rating + (Math.random()-0.5)*0.3, 3, 10);
+    matchStats[id].rating = Math.round(matchStats[id].rating * 10)/10;
   }
 
   return {
-    fixture, events, ratings,
+    fixture, events, matchStats,
     finalScore:{home:hs,away:as},
     homeLineup, awayLineup
   };
@@ -935,7 +1331,7 @@ function simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle){
 /* ============================================================
    SAVE / LOAD
    ============================================================ */
-const SAVE_KEY = "fm-2026-27-save";
+const SAVE_KEY = "fm-2026-27-save-v2";
 function saveState(){
   try{
     const payload = {
@@ -943,6 +1339,10 @@ function saveState(){
       currentDate: state.currentDate,
       matchday: state.matchday,
       fixtures: state.fixtures,
+      cupFixtures: state.cupFixtures,
+      cupGroups: state.cupGroups,
+      cupDrawn: state.cupDrawn,
+      cupKnockout: state.cupKnockout,
       playerStates: state.playerStates,
       inbox: state.inbox,
       userFormation: state.userFormation,
@@ -950,7 +1350,7 @@ function saveState(){
       userBench: state.userBench
     };
     localStorage.setItem(SAVE_KEY, JSON.stringify(payload));
-  }catch(e){}
+  }catch(e){ console.warn("save failed", e); }
 }
 function loadState(){
   try{
@@ -970,7 +1370,6 @@ function clearSave(){
    UI: NAVIGATION
    ============================================================ */
 let currentScreen = "dashboard";
-
 function showScreen(name){
   currentScreen = name;
   const screens = $("#screens");
@@ -1055,7 +1454,7 @@ function renderDashboard(root){
   root.appendChild(el("button", {
     class:"btn-danger",
     style:"width:100%;margin-top:16px",
-    onclick:()=>resignCareer()
+    onclick:resignCareer
   }, "Resign"));
 }
 
@@ -1072,6 +1471,9 @@ function resignCareer(){
   clearSave();
   state.userClubId = null;
   state.fixtures = [];
+  state.cupFixtures = [];
+  state.cupGroups = null;
+  state.cupDrawn = false;
   state.playerStates = {};
   state.inbox = [];
   state.userLineup = null;
@@ -1080,20 +1482,30 @@ function resignCareer(){
 }
 
 /* ============================================================
-   UI: FIXTURES
+   UI: FIXTURES (with Elite Cup tab)
    ============================================================ */
 let activeFixturesLeague = null;
 function renderFixtures(root){
   if(!activeFixturesLeague) activeFixturesLeague = CLUBS[state.userClubId].leagueId;
   root.appendChild(el("h1", {}, "Fixtures"));
+
   const bar = el("div", {class:"tab-bar"});
   for(const lid of LEAGUE_ORDER){
     bar.appendChild(el("button", {
       class:"tab" + (lid === activeFixturesLeague ? " active" : ""),
       onclick:()=>{ activeFixturesLeague = lid; showScreen("fixtures"); }
-    }, LEAGUES[lid].name));
+    }, LEAGUES[lid].short));
   }
+  bar.appendChild(el("button", {
+    class:"tab" + (activeFixturesLeague === "elite-cup" ? " active" : ""),
+    onclick:()=>{ activeFixturesLeague = "elite-cup"; showScreen("fixtures"); }
+  }, "Elite Cup"));
   root.appendChild(bar);
+
+  if(activeFixturesLeague === "elite-cup"){
+    renderCupFixtures(root);
+    return;
+  }
 
   const grouped = {};
   for(const f of state.fixtures){
@@ -1111,30 +1523,97 @@ function renderFixtures(root){
     group.appendChild(el("div", {class:"fixture-group-title"}, "Matchday " + md));
     const fixtures = grouped[md].sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time));
     for(const f of fixtures){
-      const isUser = f.homeClubId === state.userClubId || f.awayClubId === state.userClubId;
-      const row = el("div", {class:"fixture-row" + (isUser ? " is-user" : "") + (f.played ? " played" : "")}, [
-        el("div", {class:"fixture-side home"}, [
-          crestEl(f.homeClubId, 24),
-          el("div", {class:"fixture-team"}, clubName(f.homeClubId))
-        ]),
-        el("div", {class:"fixture-center"},
-          f.played
-            ? el("div", {class:"score"}, f.homeScore + " – " + f.awayScore)
-            : f.time
-        ),
-        el("div", {class:"fixture-side away"}, [
-          el("div", {class:"fixture-team"}, clubName(f.awayClubId)),
-          crestEl(f.awayClubId, 24)
-        ])
-      ]);
-      if(isUser && !f.played){
-        row.style.cursor = "pointer";
-        row.addEventListener("click", () => openPreMatch(f.id));
-      }
-      group.appendChild(row);
+      group.appendChild(renderFixtureRow(f));
     }
     root.appendChild(group);
   }
+}
+
+function renderCupFixtures(root){
+  if(!state.cupGroups){
+    root.appendChild(el("div", {class:"empty"}, "Elite Cup group draw happens on matchday 3."));
+    return;
+  }
+  root.appendChild(el("div", {class:"card"}, [
+    el("div", {class:"card-title"}, "Group Stage"),
+    el("div", {class:"card-sub"}, "Home & away vs each team in your group. Top 2 advance.")
+  ]));
+
+  // Group tables
+  for(let g=0; g<4; g++){
+    root.appendChild(el("div", {class:"card"}, [
+      el("div", {class:"card-title"}, "Group " + String.fromCharCode(65+g)),
+      ...buildCupGroupTable(g).map(r => {
+        const isUser = r.clubId === state.userClubId;
+        return el("div", {class:"row-between",style:"padding:4px 0;font-size:13px" + (isUser ? ";font-weight:700;color:var(--accent-dark)" : "")}, [
+          el("span", {style:"display:flex;align-items:center;gap:8px"}, [
+            crestEl(r.clubId, 20),
+            clubName(r.clubId)
+          ]),
+          el("span", {class:"muted",style:"font-size:11px"}, r.played + " P · " + r.points + " pts")
+        ]);
+      })
+    ]));
+  }
+
+  // Cup fixtures by round
+  const grouped = {};
+  for(const f of state.cupFixtures){
+    const key = f.stage + "-" + (f.round || 1);
+    if(!grouped[key]) grouped[key] = [];
+    grouped[key].push(f);
+  }
+  const roundKeys = Object.keys(grouped).sort((a,b)=> a.localeCompare(b));
+  for(const key of roundKeys){
+    const group = el("div", {class:"fixture-group"});
+    const label = formatCupRoundLabel(key);
+    group.appendChild(el("div", {class:"fixture-group-title"}, label));
+    const fixtures = grouped[key].sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time));
+    for(const f of fixtures) group.appendChild(renderFixtureRow(f));
+    root.appendChild(group);
+  }
+
+  if(!state.cupKnockout && state.cupFixtures.filter(f => f.stage==="group" && f.played).length >= 40){
+    // All group games done, build knockout (once)
+    const standings = [0,1,2,3].map(g => buildCupGroupTable(g).map(r => r.clubId));
+    state.cupKnockout = buildCupKnockout(standings);
+    state.cupFixtures.push(...state.cupKnockout);
+    saveState();
+    showScreen("fixtures");
+  }
+}
+
+function formatCupRoundLabel(key){
+  const [stage, round] = key.split("-");
+  if(stage === "group") return "Group Stage · Round " + round;
+  if(stage === "qf") return "Quarter-Final · Leg " + round;
+  if(stage === "sf") return "Semi-Final · Leg " + round;
+  if(stage === "final") return "Final";
+  return key;
+}
+
+function renderFixtureRow(f){
+  const isUser = f.homeClubId === state.userClubId || f.awayClubId === state.userClubId;
+  const row = el("div", {class:"fixture-row" + (isUser ? " is-user" : "") + (f.played ? " played" : "")}, [
+    el("div", {class:"fixture-side home"}, [
+      crestEl(f.homeClubId, 24),
+      el("div", {class:"fixture-team"}, clubName(f.homeClubId))
+    ]),
+    el("div", {class:"fixture-center"},
+      f.played
+        ? el("div", {class:"score"}, f.homeScore + " – " + f.awayScore)
+        : f.time
+    ),
+    el("div", {class:"fixture-side away"}, [
+      el("div", {class:"fixture-team"}, clubName(f.awayClubId)),
+      crestEl(f.awayClubId, 24)
+    ])
+  ]);
+  if(isUser && !f.played){
+    row.style.cursor = "pointer";
+    row.addEventListener("click", () => openPreMatch(f.id));
+  }
+  return row;
 }
 
 /* ============================================================
@@ -1143,6 +1622,10 @@ function renderFixtures(root){
 function renderSquad(root){
   root.appendChild(el("h1", {}, "Squad"));
   const squad = getSquadWithState(state.userClubId).sort((a,b) => b.overall - a.overall);
+  if(squad.length === 0){
+    root.appendChild(el("div", {class:"empty"}, "No squad data. Upload data/players.js."));
+    return;
+  }
   for(const p of squad){
     const row = el("div", {class:"player-row", onclick:()=>openPlayerDetail(p.id)}, [
       el("div", {class:"player-pos " + posClass(p.position)}, p.position),
@@ -1163,9 +1646,10 @@ function openPlayerDetail(playerId){
   const overlay = $("#match-overlay");
   overlay.classList.remove("hidden");
   clearEl(overlay);
+  const inXI = state.userLineup && state.userLineup.includes(playerId);
   const panel = el("div", {class:"match-panel"}, [
     el("h2", {style:"margin-bottom:4px"}, p.name),
-    el("div", {class:"card-sub mb-3", style:"margin-bottom:12px"}, p.position + " · " + p.age + " · OVR " + p.overall),
+    el("div", {class:"card-sub", style:"margin-bottom:12px"}, p.position + " · " + p.age + " · OVR " + p.overall),
     el("div", {class:"bar-row", style:"margin-bottom:4px"}, [
       el("div", {class:"bar-label"}, "Fatigue"),
       el("div", {class:"bar-track"}, el("div", {class:"bar-fill " + fatigueClass(p.fatigue), style:"width:"+p.fatigue+"%"})),
@@ -1178,6 +1662,32 @@ function openPlayerDetail(playerId){
       el("div", {class:"bar-value"}, String(Math.round(p.morale)))
     ]),
     el("div", {class:"bar-status"}, moraleLabel(p.morale)),
+    el("div", {class:"row-between",style:"margin-top:16px"}, [
+      el("span", {class:"card-sub"}, "Matches"),
+      el("span", null, String(p.matchesThisSeason || 0))
+    ]),
+    el("div", {class:"row-between"}, [
+      el("span", {class:"card-sub"}, "Minutes"),
+      el("span", null, String(p.minutesThisSeason || 0))
+    ]),
+    el("div", {class:"row-between"}, [
+      el("span", {class:"card-sub"}, "Goals"),
+      el("span", null, String(p.goals || 0))
+    ]),
+    el("div", {class:"row-between"}, [
+      el("span", {class:"card-sub"}, "Assists"),
+      el("span", null, String(p.assists || 0))
+    ]),
+    !inXI ? el("div", {class:"row",style:"margin-top:16px;gap:8px"}, [
+      el("button", {class:"btn-secondary btn-sm", onclick:()=>{
+        alert(p.name + " listed for sale. AI clubs may bid for him.");
+        overlay.classList.add("hidden");
+      }}, "List for Sale"),
+      el("button", {class:"btn-secondary btn-sm", onclick:()=>{
+        alert(p.name + " listed for loan. AI clubs may bid for him.");
+        overlay.classList.add("hidden");
+      }}, "List for Loan")
+    ]) : el("div", {class:"card-sub",style:"margin-top:12px"}, "Player is in your XI — remove him from the starting lineup to list."),
     el("div", {class:"match-actions"}, [
       el("button", {class:"btn-primary", onclick:()=>overlay.classList.add("hidden")}, "Close")
     ])
@@ -1271,25 +1781,27 @@ function openSwapDialog(slotIndex){
     el("h2", {style:"margin-bottom:4px"}, "Swap Player"),
     el("div", {class:"card-sub", style:"margin-bottom:12px"},
       "Slot: " + slotPos + " — currently " + (getPlayerById(currentId)?.name || "—")),
-    ...candidates.slice(0, 25).map(p => {
-      const fit = posFit(p.position, slotPos);
-      const row = el("div", {class:"lineup-row", style:"cursor:pointer"}, [
-        el("div", {class:"player-pos " + posClass(p.position)}, p.position),
-        el("div", {class:"player-name"}, p.name),
-        el("div", {class:"lineup-rating mid"}, String(p.overall)),
-        el("div", {class:"lineup-stats"}, Math.round(fit*100) + "% fit")
-      ]);
-      row.onclick = () => {
-        const oldId = state.userLineup[slotIndex];
-        state.userLineup[slotIndex] = p.id;
-        state.userBench = (state.userBench || []).filter(id => id !== p.id);
-        if(oldId && !state.userBench.includes(oldId)) state.userBench.push(oldId);
-        saveState();
-        overlay.classList.add("hidden");
-        showScreen("tactics");
-      };
-      return row;
-    }),
+    candidates.length === 0
+      ? el("div", {class:"empty"}, "No available players on the bench. Upload data/players.js for full squads.")
+      : el("div", {}, ...candidates.slice(0, 25).map(p => {
+          const fit = posFit(p.position, slotPos);
+          const row = el("div", {class:"lineup-row", style:"cursor:pointer"}, [
+            el("div", {class:"player-pos " + posClass(p.position)}, p.position),
+            el("div", {class:"player-name"}, p.name),
+            el("div", {class:"lineup-rating mid"}, String(p.overall)),
+            el("div", {class:"lineup-stats"}, Math.round(fit*100) + "% fit")
+          ]);
+          row.onclick = () => {
+            const oldId = state.userLineup[slotIndex];
+            state.userLineup[slotIndex] = p.id;
+            state.userBench = (state.userBench || []).filter(id => id !== p.id);
+            if(oldId && !state.userBench.includes(oldId)) state.userBench.push(oldId);
+            saveState();
+            overlay.classList.add("hidden");
+            showScreen("tactics");
+          };
+          return row;
+        })),
     el("div", {class:"match-actions"}, [
       el("button", {class:"btn-ghost", onclick:()=>overlay.classList.add("hidden")}, "Cancel")
     ])
@@ -1298,15 +1810,162 @@ function openSwapDialog(slotIndex){
 }
 
 /* ============================================================
-   UI: TRANSFERS (minimal v1)
+   UI: TRANSFERS
    ============================================================ */
+let activeTransfersTab = "market";
+let transfersFilter = {position:"ALL", league:"ALL", maxValue:null};
 function renderTransfers(root){
   root.appendChild(el("h1", {}, "Transfers"));
-  root.appendChild(el("div", {class:"card"}, [
-    el("div", {class:"card-title"}, "Transfer Market"),
-    el("div", {class:"card-sub"}, "Budget: " + formatMoney(CLUBS[state.userClubId].budget))
+  root.appendChild(el("div", {class:"tab-bar"}, [
+    el("button", {class:"tab" + (activeTransfersTab==="market" ? " active" : ""),
+      onclick:()=>{activeTransfersTab="market"; showScreen("transfers");}}, "Market"),
+    el("button", {class:"tab" + (activeTransfersTab==="offers" ? " active" : ""),
+      onclick:()=>{activeTransfersTab="offers"; showScreen("transfers");}}, "My Offers")
   ]));
-  root.appendChild(el("div", {class:"empty"}, "Transfer market coming in next update."));
+  if(activeTransfersTab === "market") renderTransferMarket(root);
+  else renderTransferOffers(root);
+}
+
+function renderTransferMarket(root){
+  const budget = CLUBS[state.userClubId].budget;
+  root.appendChild(el("div", {class:"card"}, [
+    el("div", {class:"card-title"}, "Budget"),
+    el("div", {class:"card-sub"}, "Transfer: " + formatMoney(budget))
+  ]));
+
+  const positions = ["ALL","GK","CB","LB","RB","LWB","RWB","CDM","CM","CAM","AMR","AML","LW","RW","ST"];
+  root.appendChild(el("div", {class:"manage-section"}, [
+    el("h3", {}, "Position"),
+    (() => {
+      const sel = el("select", {class:"manage-select"},
+        positions.map(p => el("option", {value:p, selected:p===transfersFilter.position}, p)));
+      sel.onchange = e => { transfersFilter.position = e.target.value; showScreen("transfers"); };
+      return sel;
+    })()
+  ]));
+
+  root.appendChild(el("div", {class:"manage-section"}, [
+    el("h3", {}, "Max Value"),
+    (() => {
+      const sel = el("select", {class:"manage-select"},
+        [
+          {v:null, l:"No limit"},
+          {v:5000000, l:"£5M"},
+          {v:15000000, l:"£15M"},
+          {v:30000000, l:"£30M"},
+          {v:60000000, l:"£60M"},
+          {v:100000000, l:"£100M"}
+        ].map(o => el("option", {value:o.v==null?"":o.v, selected:(transfersFilter.maxValue||"")==(o.v||"")}, o.l)));
+      sel.onchange = e => { transfersFilter.maxValue = e.target.value ? Number(e.target.value) : null; showScreen("transfers"); };
+      return sel;
+    })()
+  ]));
+
+  const pool = state.allPlayers
+    .filter(p => p.clubId !== state.userClubId)
+    .filter(p => transfersFilter.position === "ALL" || p.position === transfersFilter.position)
+    .filter(p => !transfersFilter.maxValue || (p.value || estimateValue(p.overall, p.age)) <= transfersFilter.maxValue)
+    .sort((a,b) => b.overall - a.overall);
+
+  root.appendChild(el("div", {class:"card-sub",style:"margin-bottom:8px"},
+    pool.length + " players"));
+
+  for(const p of pool.slice(0, 60)){
+    const estValue = p.value || estimateValue(p.overall, p.age);
+    const canAfford = estValue <= budget;
+    root.appendChild(el("div", {class:"player-row", style:"grid-template-columns:34px 1fr 60px 80px"}, [
+      el("div", {class:"player-pos " + posClass(p.position)}, p.position),
+      el("div", {class:"grow"}, [
+        el("div", {class:"player-name"}, p.name),
+        el("div", {class:"player-meta"}, clubName(p.clubId) + " · " + p.age + "y")
+      ]),
+      el("div", {class:"player-ovr " + ratingClass(p.overall)}, String(p.overall)),
+      el("button", {
+        class:"btn-sm " + (canAfford ? "btn-secondary" : "btn-ghost"),
+        disabled: !canAfford,
+        onclick:() => makeOffer(p, estValue)
+      }, canAfford ? formatMoney(estValue) : "Too high")
+    ]));
+  }
+}
+
+function estimateValue(overall, age){
+  const base = Math.pow(Math.max(0, overall - 50), 2.4) * 1000;
+  const ageMult = age <= 21 ? 1.6 : age <= 25 ? 1.3 : age <= 29 ? 1.0 : age <= 32 ? .65 : .35;
+  return Math.round(base * ageMult);
+}
+
+function makeOffer(player, estValue){
+  const overlay = $("#match-overlay");
+  overlay.classList.remove("hidden");
+  clearEl(overlay);
+  const budget = CLUBS[state.userClubId].budget;
+
+  const input = el("input", {
+    type:"number", value: estValue, style:"width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:var(--surface-2)"
+  });
+
+  const panel = el("div", {class:"match-panel"}, [
+    el("h2", {style:"margin-bottom:4px"}, "Offer for " + player.name),
+    el("div", {class:"card-sub", style:"margin-bottom:12px"},
+      clubName(player.clubId) + " · " + player.position + " · OVR " + player.overall + " · age " + player.age),
+    el("div", {class:"manage-section"}, [
+      el("h3", {}, "Transfer Fee (£)"),
+      input
+    ]),
+    el("div", {class:"card-sub"}, "Your budget: " + formatMoney(budget)),
+    el("div", {class:"match-actions"}, [
+      el("button", {class:"btn-ghost", onclick:()=>overlay.classList.add("hidden")}, "Cancel"),
+      el("button", {class:"btn-primary", onclick:()=>{
+        const fee = Number(input.value);
+        if(!fee || fee < 100000){ alert("Enter a valid fee"); return; }
+        if(fee > budget){ alert("Fee exceeds budget"); return; }
+        const result = resolveOffer(player, fee);
+        overlay.classList.add("hidden");
+        alert(result);
+        showScreen("transfers");
+      }}, "Submit Offer")
+    ])
+  ]);
+  overlay.appendChild(panel);
+}
+
+function resolveOffer(player, fee){
+  const est = estimateValue(player.overall, player.age);
+  const ratio = fee / est;
+  if(ratio < 0.7){
+    return "Offer rejected — too low. " + clubName(player.clubId) + " wants closer to " + formatMoney(est) + ".";
+  }
+  if(ratio < 1.0){
+    const counter = Math.round(est * 1.15);
+    const accept = confirm(clubName(player.clubId) + " counters with " + formatMoney(counter) + ". Accept?");
+    if(accept){
+      return executeSigning(player, counter);
+    }
+    return "Offer withdrawn.";
+  }
+  return executeSigning(player, fee);
+}
+
+function executeSigning(player, fee){
+  const c = CLUBS[state.userClubId];
+  if(fee > c.budget) return "Not enough budget.";
+  // Move player in state
+  const p = state.allPlayers.find(x => x.id === player.id);
+  if(p){
+    p.clubId = state.userClubId;
+    state.playerStates[p.id] = state.playerStates[p.id] || {
+      fatigue:100, morale:75, minutesThisSeason:0, matchesThisSeason:0,
+      goals:0, assists:0, yellow:0, red:0, ratingPoints:0, ratingMatches:0, ratingBaseline:p.overall
+    };
+  }
+  c.budget -= fee;
+  saveState();
+  return "Signed! " + player.name + " joins for " + formatMoney(fee) + ".";
+}
+
+function renderTransferOffers(root){
+  root.appendChild(el("div", {class:"empty"}, "No offers pending. AI clubs will bid for your players as matchdays pass."));
 }
 
 /* ============================================================
@@ -1340,10 +1999,9 @@ function renderTables(root){
     bar.appendChild(el("button", {
       class:"tab" + (lid === activeTablesLeague ? " active" : ""),
       onclick:()=>{ activeTablesLeague = lid; showScreen("tables"); }
-    }, LEAGUES[lid].name));
+    }, LEAGUES[lid].short));
   }
   root.appendChild(bar);
-
   const table = buildTable(activeTablesLeague);
   const tbl = el("table", {class:"league-table"}, [
     el("thead", {}, el("tr", {}, [
@@ -1382,7 +2040,8 @@ function renderTables(root){
 let currentMatch = null;
 
 function openPreMatch(fixtureId){
-  const fixture = state.fixtures.find(f => f.id === fixtureId);
+  const fixture = state.fixtures.find(f => f.id === fixtureId) ||
+                  state.cupFixtures.find(f => f.id === fixtureId);
   if(!fixture) return;
   const userIsHome = fixture.homeClubId === state.userClubId;
   let userFormation = state.userFormation || "4-3-3";
@@ -1493,9 +2152,9 @@ function renderLive(){
   const {fixture} = currentMatch;
   const panel = el("div", {class:"match-panel"}, [
     el("div", {id:"live-scoreboard"}, [
-      el("div", {id:"live-home-name"}, clubName(fixture.homeClubId)),
+      el("div", {id:"live-home-name"}, [crestEl(fixture.homeClubId, 28), clubName(fixture.homeClubId)]),
       el("div", {id:"live-score"}, "0 – 0"),
-      el("div", {id:"live-away-name"}, clubName(fixture.awayClubId)),
+      el("div", {id:"live-away-name"}, [clubName(fixture.awayClubId), crestEl(fixture.awayClubId, 28)]),
       el("div", {id:"live-minute"}, "0'")
     ]),
     el("div", {id:"live-events"}),
@@ -1540,13 +2199,12 @@ function startReveal(){
 
 function renderEventItem(ev){
   const iconMap = {goal:"⚽",yellow:"🟨",red:"🟥",sub:"🔁",injury:"🚑"};
-  const clsMap = {goal:"goal",yellow:"card-yellow",red:"card-red",sub:"sub",injury:"injury"};
   const p = ev.playerId ? getPlayerById(ev.playerId) : null;
   const a = ev.assistId ? getPlayerById(ev.assistId) : null;
   let main = p ? p.name : "—";
   let detail = "";
   if(ev.type === "goal") detail = a ? "Assist: " + a.name : "Unassisted";
-  return el("div", {class:"event-item " + (clsMap[ev.type] || "")}, [
+  return el("div", {class:"event-item " + ev.type}, [
     el("div", {class:"event-minute"}, ev.minute + "'"),
     el("div", {class:"event-icon"}, iconMap[ev.type] || "•"),
     el("div", {}, [
@@ -1590,7 +2248,7 @@ function renderManage(fromHalfTime){
     ]),
     el("div", {class:"manage-section"}, [
       el("h3", {}, "Substitutions"),
-      el("div", {class:"card-sub"}, "Sub management coming in next update.")
+      el("div", {class:"card-sub"}, "Sub management coming soon.")
     ]),
     el("div", {class:"match-actions"}, [
       el("button", {class:"btn-primary", onclick:resumeMatch}, "Resume")
@@ -1617,6 +2275,42 @@ function resumeMatch(){
   startReveal();
 }
 
+function commitMatchStats(sim){
+  for(const pid of Object.keys(sim.matchStats)){
+    const s = sim.matchStats[pid];
+    const ps = state.playerStates[pid];
+    if(!ps) continue;
+    ps.minutesThisSeason = (ps.minutesThisSeason || 0) + s.minutes;
+    ps.matchesThisSeason = (ps.matchesThisSeason || 0) + 1;
+    ps.goals = (ps.goals || 0) + s.goals;
+    ps.assists = (ps.assists || 0) + s.assists;
+    ps.yellow = (ps.yellow || 0) + s.yellow;
+    ps.red = (ps.red || 0) + s.red;
+    ps.ratingPoints = (ps.ratingPoints || 0) + s.rating;
+    ps.ratingMatches = (ps.ratingMatches || 0) + 1;
+    // Fatigue decay
+    ps.fatigue = Math.max(0, (ps.fatigue || 100) - 12);
+
+    // Every 20 matches: apply rating progression
+    if(ps.ratingMatches >= 20){
+      const avg = ps.ratingPoints / ps.ratingMatches;
+      const p = getPlayerById(pid);
+      if(p){
+        let delta = 0;
+        if(avg >= 8.0) delta = 2;
+        else if(avg >= 7.5) delta = 1;
+        else if(avg <= 5.5) delta = -1;
+        // Age modifier
+        if(p.age < 23 && delta > 0) delta = Math.min(2, delta + 0);
+        if(p.age > 32 && delta > 0) delta = Math.max(0, delta - 1);
+        p.overall = clamp(p.overall + delta, 40, 99);
+      }
+      ps.ratingPoints = 0;
+      ps.ratingMatches = 0;
+    }
+  }
+}
+
 function finishMatch(){
   currentMatch.finished = true;
   const {sim, fixture} = currentMatch;
@@ -1624,24 +2318,40 @@ function finishMatch(){
   fixture.homeScore = sim.finalScore.home;
   fixture.awayScore = sim.finalScore.away;
 
-  for(const p of [...sim.homeLineup, ...sim.awayLineup]){
-    const ps = state.playerStates[p.id];
-    if(ps){ ps.fatigue = Math.max(0, ps.fatigue - 12); ps.minutesThisSeason += 90; ps.matchesThisSeason++; }
+  commitMatchStats(sim);
+
+  state.matchday = Math.max(state.matchday, fixture.matchday || state.matchday);
+
+  // Cup draw on matchday 3
+  if(!state.cupDrawn && state.matchday >= 3){
+    const result = buildCupFixtures();
+    state.cupGroups = result.groups;
+    state.cupFixtures = result.fixtures;
+    state.cupDrawn = true;
+    state.inbox.unshift({
+      id: "cup-draw-" + Date.now(),
+      title: "Elite Cup draw complete",
+      body: "20 clubs split into 4 groups of 5. Check Fixtures → Elite Cup to see your group.",
+      read: false
+    });
   }
 
-  state.matchday = fixture.matchday;
-  const nextUserFix = state.fixtures.find(f =>
-    (f.homeClubId === state.userClubId || f.awayClubId === state.userClubId) && !f.played && f.matchday > state.matchday);
+  // Advance date to next user fixture
+  const allNext = [...state.fixtures, ...state.cupFixtures];
+  const nextUserFix = allNext.find(f =>
+    (f.homeClubId === state.userClubId || f.awayClubId === state.userClubId) && !f.played);
   if(nextUserFix) state.currentDate = nextUserFix.date;
 
-  // Auto-play other fixtures from same matchday in same league
-  for(const f of state.fixtures.filter(x => x.leagueId === fixture.leagueId && x.matchday === fixture.matchday && !x.played)){
-    const hL = autoPickLineup(f.homeClubId, "4-3-3").lineup;
-    const aL = autoPickLineup(f.awayClubId, "4-3-3").lineup;
-    const s = simulateMatch(f, hL, aL, "balanced", "balanced");
-    f.played = true;
-    f.homeScore = s.finalScore.home;
-    f.awayScore = s.finalScore.away;
+  // Auto-play remaining league fixtures for this matchday
+  if(fixture.comp === "league"){
+    for(const f of state.fixtures.filter(x => x.leagueId === fixture.leagueId && x.matchday === fixture.matchday && !x.played)){
+      const hL = autoPickLineup(f.homeClubId, "4-3-3").lineup;
+      const aL = autoPickLineup(f.awayClubId, "4-3-3").lineup;
+      const s = simulateMatch(f, hL, aL, "balanced", "balanced");
+      f.played = true;
+      f.homeScore = s.finalScore.home;
+      f.awayScore = s.finalScore.away;
+    }
   }
 
   saveState();
@@ -1675,14 +2385,6 @@ function renderResult(){
   overlay.appendChild(panel);
 
   const evContainer = panel.querySelector("#result-events");
-  panel.querySelector("#result-events").appendChild(
-    el("div", {class:"event-item ht"}, [
-      el("div", {class:"event-minute"}, "HT"),
-      el("div", {class:"event-icon"}, ""),
-      el("div", {}, el("div", {class:"event-player"}, "Half Time")),
-      el("div", {class:"event-score"}, "—")
-    ])
-  );
   for(const ev of sim.events) evContainer.appendChild(renderEventItem(ev));
   evContainer.appendChild(
     el("div", {class:"event-item ft"}, [
@@ -1714,18 +2416,30 @@ function renderLineupBlock(side, sim){
   const block = el("div", {class:"lineup-block"}, [
     el("div", {class:"lineup-title"}, [crestEl(clubId, 24), CLUBS[clubId].name])
   ]);
+  block.appendChild(el("div", {class:"stat-header"}, [
+    el("div", {}, "Player"),
+    el("div", {style:"text-align:center"}, "Rating")
+  ]));
   for(const p of lineup){
-    const r = sim.ratings[p.id] || {rating:6, goals:0, assists:0};
-    const stats = [];
-    if(r.goals) stats.push(r.goals + "G");
-    if(r.assists) stats.push(r.assists + "A");
-    const ratingCls = r.rating >= 7.5 ? "high" : r.rating >= 6 ? "mid" : "low";
-    block.appendChild(el("div", {class:"lineup-row"}, [
+    const s = sim.matchStats[p.id];
+    if(!s) continue;
+    const ratingCls = s.rating >= 7.5 ? "high" : s.rating >= 6 ? "mid" : "low";
+    const statBits = [];
+    if(s.goals) statBits.push(s.goals + " G");
+    if(s.assists) statBits.push(s.assists + " A");
+    statBits.push("xG " + s.xg.toFixed(2));
+    statBits.push("Pass " + s.passesCompleted + "/" + s.passes);
+    if(s.tackles) statBits.push("Tkl " + s.tackles);
+    if(s.interceptions) statBits.push("Int " + s.interceptions);
+    const row = el("div", {class:"stat-row"}, [
       el("div", {class:"player-pos " + posClass(p.position)}, p.position),
-      el("div", {class:"player-name"}, p.name),
-      el("div", {class:"lineup-rating " + ratingCls}, r.rating.toFixed(1)),
-      el("div", {class:"lineup-stats"}, stats.join(" · ") || "—")
-    ]));
+      el("div", {}, [
+        el("div", {class:"stat-name"}, p.name),
+        el("div", {class:"stat-sub"}, statBits.join(" · "))
+      ]),
+      el("div", {class:"stat-rating " + ratingCls}, s.rating.toFixed(1))
+    ]);
+    block.appendChild(row);
   }
   return block;
 }
@@ -1783,12 +2497,10 @@ function renderClubSelect(){
    BOOT
    ============================================================ */
 function boot(){
-  // wire nav
   $$(".nav-btn").forEach(b => {
     b.addEventListener("click", () => showScreen(b.dataset.screen));
   });
 
-  // load external player data if present, otherwise use placeholder
   const externalScript = document.createElement("script");
   externalScript.src = "data/players.js";
   externalScript.onload = () => {
@@ -1797,7 +2509,7 @@ function boot(){
       console.log("Loaded " + state.allPlayers.length + " external players");
     } else {
       state.allPlayers = PLACEHOLDER_PLAYERS;
-      console.log("data/players.js loaded but empty — using placeholder");
+      console.log("data/players.js empty — using placeholder");
     }
     bootWithPlayers();
   };
