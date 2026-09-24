@@ -549,6 +549,193 @@ const PLACEHOLDER_PLAYERS = [
   {id:"bet-10",name:"Cucho Hernández",clubId:"real-betis",position:"ST",age:27,overall:78,value:20000000}
 ];
 
+// ============================================================
+// OPTION C: CSV → Player converter (fetch data/raw-players.csv)
+// ============================================================
+const CSV_URL = 'data/raw-players.csv';
+
+// Club mapping: FBref "Squad" value → game clubId.
+// Keys MUST match the exact Squad strings in the CSV.
+// Values MUST match CLUBS object keys above.
+const CSV_CLUB_MAP = {
+  // Premier League
+  'Arsenal':'arsenal','Aston Villa':'aston-villa','Bournemouth':'bournemouth',
+  'Brentford':'brentford','Brighton':'brighton','Burnley':'burnley','Chelsea':'chelsea',
+  'Crystal Palace':'crystal-palace','Everton':'everton','Fulham':'fulham',
+  'Leeds United':'leeds-united','Liverpool':'liverpool','Manchester City':'man-city',
+  'Manchester Utd':'man-united','Newcastle':'newcastle','Nottingham':'nottingham-forest',
+  'Sunderland':'sunderland','Tottenham':'tottenham','West Ham':'west-ham','Wolves':'wolves',
+  'Hull City':'leeds-united','Coventry City':'burnley','Ipswich Town':'burnley',
+  // La Liga
+  'Alavés':'alaves','Athletic Club':'athletic-bilbao','Atlético Madrid':'atletico-madrid',
+  'Barcelona':'barcelona','Celta Vigo':'celta-vigo','Elche':'elche','Espanyol':'espanyol',
+  'Getafe':'getafe','Girona':'girona','Levante':'levante','Mallorca':'mallorca',
+  'Osasuna':'osasuna','Rayo Vallecano':'rayo-vallecano','Real Betis':'real-betis',
+  'Real Madrid':'real-madrid','Real Sociedad':'real-sociedad','Sevilla':'sevilla',
+  'Valencia':'valencia','Villarreal':'villarreal','Málaga':'real-oviedo',
+  'Racing Sant':'real-oviedo','Dep. A Coruña':'real-oviedo',
+  // Ligue 1
+  'Angers':'angers','Auxerre':'auxerre','Brest':'brest','Le Havre':'le-havre','Lens':'lens',
+  'Lille':'lille','Lorient':'lorient','Lyon':'lyon','Marseille':'marseille','Metz':'metz',
+  'Monaco':'monaco','Nantes':'nantes','Nice':'nice','Paris FC':'paris-fc','Paris SG':'paris-sg',
+  'Rennes':'rennes','Strasbourg':'strasbourg','Toulouse':'toulouse',
+  'Le Mans':'le-havre','Troyes':'metz',
+  // Serie A
+  'Atalanta':'atalanta','Bologna':'bologna','Cagliari':'cagliari','Como':'como',
+  'Cremonese':'cremonese','Fiorentina':'fiorentina','Genoa':'genoa','Hellas Verona':'hellas-verona',
+  'Inter':'inter','Juventus':'juventus','Lazio':'lazio','Lecce':'lecce','Milan':'milan',
+  'Napoli':'napoli','Parma':'parma','Pisa':'pisa','Roma':'roma','Sassuolo':'sassuolo',
+  'Torino':'torino','Udinese':'udinese','Frosinone':'cremonese','Monza':'cremonese',
+  // Bundesliga
+  'Augsburg':'augsburg','Bayern Munich':'bayern-munich','Dortmund':'dortmund',
+  'Frankfurt':'frankfurt','Freiburg':'freiburg','Gladbach':'gladbach',
+  'Hamburger SV':'hamburger-sv','Heidenheim':'heidenheim','Hoffenheim':'hoffenheim',
+  'Köln':'koln','Leverkusen':'leverkusen','Mainz 05':'mainz','RB Leipzig':'rb-leipzig',
+  'St. Pauli':'st-pauli','Stuttgart':'stuttgart','Union Berlin':'union-berlin',
+  'Werder Bremen':'werder-bremen','Wolfsburg':'wolfsburg','Schalke 04':'heidenheim',
+  'Paderborn 07':'heidenheim','Elversberg':'heidenheim'
+};
+
+function parseCSV(text){
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for(let i=0;i<text.length;i++){
+    const c = text[i];
+    if(inQuotes){
+      if(c === '"'){
+        if(text[i+1] === '"'){ field += '"'; i++; }
+        else inQuotes = false;
+      } else field += c;
+    } else {
+      if(c === '"') inQuotes = true;
+      else if(c === ','){ row.push(field); field = ''; }
+      else if(c === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+      else if(c === '\r'){ /* skip */ }
+      else field += c;
+    }
+  }
+  if(field.length || row.length){ row.push(field); rows.push(row); }
+  return rows;
+}
+
+// FBref Pos ("GK","DF","MF","FW","MF,FW") → game positions.
+// Primary position inference + fallback to broader role.
+function inferGamePosition(fbrefPos){
+  if(!fbrefPos) return 'CM';
+  const codes = String(fbrefPos).split(',').map(s => s.trim());
+  if(codes.includes('GK')) return 'GK';
+  if(codes.includes('DF')) return 'CB';
+  if(codes.includes('MF')) return 'CM';
+  if(codes.includes('FW')) return 'ST';
+  return 'CM';
+}
+
+// Derive rating (58-94) from per-90 output + minutes + age.
+function deriveRating(r, pos){
+  const mp = parseInt(r.MP) || 0;
+  const starts = parseInt(r.Starts) || 0;
+  const min = parseInt(r.Min) || 0;
+  const gls = parseInt(r.Gls) || 0;
+  const ast = parseInt(r.Ast) || 0;
+  const age = parseFloat(r.Age) || 25;
+  if(mp === 0) return 62;
+
+  const nineties = Math.max(min / 90, 0.1);
+  const g90 = gls / nineties;
+  const a90 = ast / nineties;
+  const minWeight = Math.min(min / 900, 1.5);
+
+  let rating = 65;
+  if(pos === 'ST') rating += g90 * 8 + a90 * 2;
+  else if(pos === 'CM') rating += g90 * 5 + a90 * 6;
+  else if(pos === 'CB') rating += g90 * 4 + a90 * 4;
+  else if(pos === 'GK') rating += 2;
+  rating += minWeight * 4;
+  if(starts >= 3) rating += 2;
+  if(age < 21) rating -= 2;
+  else if(age > 33) rating -= 2;
+  return Math.max(58, Math.min(94, Math.round(rating)));
+}
+
+// Derive market value (£M) from rating + age + position.
+function deriveValue(rating, age, pos){
+  let value = Math.pow(1.24, rating - 60) * 1.5;
+  const posMult = { GK:0.7, CB:0.85, CM:1.0, ST:1.15 };
+  value *= posMult[pos] || 1;
+  let ageMult = 1;
+  if(age <= 21) ageMult = 1.3;
+  else if(age <= 24) ageMult = 1.15;
+  else if(age <= 27) ageMult = 1.0;
+  else if(age <= 30) ageMult = 0.75;
+  else if(age <= 33) ageMult = 0.45;
+  else ageMult = 0.2;
+  value *= ageMult;
+  return Math.max(500000, Math.min(200000000, Math.round(value * 1000000)));
+}
+
+function rowsToPlayers(rows){
+  if(!rows.length) return [];
+  const header = rows[0];
+  const idx = {};
+  header.forEach((h,i) => { idx[h] = i; });
+  const NEED = ['Player','Pos','Squad','Age','MP','Starts','Min','Gls','Ast'];
+  for(const n of NEED) if(!(n in idx)) { console.warn('CSV missing col:', n); return []; }
+
+  const players = [];
+  const seen = new Set();
+  for(let r=1;r<rows.length;r++){
+    const row = rows[r];
+    if(!row || row.length < 5) continue;
+    const name = (row[idx.Player] || '').trim();
+    const squad = (row[idx.Squad] || '').trim();
+    if(!name || !squad) continue;
+    const clubId = CSV_CLUB_MAP[squad];
+    if(!clubId) continue;
+    const key = name + '|' + clubId;
+    if(seen.has(key)) continue;
+    seen.add(key);
+
+    const rowObj = {};
+    header.forEach((h,i) => { rowObj[h] = row[i]; });
+
+    const position = inferGamePosition(row[idx.Pos]);
+    const age = parseFloat(row[idx.Age]) || 25;
+    const overall = deriveRating(rowObj, position);
+    const value = deriveValue(overall, age, position);
+
+    players.push({
+      id: 'csv-' + clubId + '-' + players.length,
+      name,
+      clubId,
+      position,
+      age,
+      overall,
+      value
+    });
+  }
+  return players;
+}
+
+async function loadPlayersFromCSV(){
+  try {
+    const res = await fetch(CSV_URL + '?v=' + Date.now());
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    if(!text || text.length < 5000) throw new Error('CSV too small (' + text.length + ' bytes)');
+    const rows = parseCSV(text);
+    const players = rowsToPlayers(rows);
+    if(players.length < 100) throw new Error('Parsed only ' + players.length + ' players');
+    console.log('[FM] Loaded ' + players.length + ' real players from CSV');
+    return players;
+  } catch(err){
+    console.warn('[FM] CSV load failed:', err.message);
+    return null;
+  }
+}
+// ============================================================
+// end Option C block
+// ============================================================
+
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 function el(tag, attrs={}, children=[]){
@@ -1909,18 +2096,28 @@ function renderClubSelect(){
   }
 }
 
-function boot(){
+async function boot(){
   try{
     $$(".nav-btn").forEach(b => { b.addEventListener("click", () => showScreen(b.dataset.screen)); });
-    state.allPlayers = PLACEHOLDER_PLAYERS;
-    const externalScript = document.createElement("script");
-    externalScript.src = "data/players.js";
-    externalScript.onload = () => {
-      if(window.FM_PLAYERS && Array.isArray(window.FM_PLAYERS) && window.FM_PLAYERS.length > 0) state.allPlayers = window.FM_PLAYERS;
-      bootWithPlayers();
-    };
-    externalScript.onerror = () => { bootWithPlayers(); };
-    document.head.appendChild(externalScript);
+
+    // Try CSV first, then data/players.js, then placeholders.
+    let loaded = await loadPlayersFromCSV();
+    if(!loaded){
+      loaded = await new Promise((resolve) => {
+        const s = document.createElement("script");
+        s.src = "data/players.js";
+        s.onload = () => {
+          if(window.FM_PLAYERS && Array.isArray(window.FM_PLAYERS) && window.FM_PLAYERS.length > 0){
+            resolve(window.FM_PLAYERS);
+          } else resolve(null);
+        };
+        s.onerror = () => resolve(null);
+        document.head.appendChild(s);
+      });
+    }
+    state.allPlayers = loaded || PLACEHOLDER_PLAYERS;
+    console.log("[FM] Using " + (loaded ? loaded.length + " loaded" : PLACEHOLDER_PLAYERS.length + " placeholder") + " players");
+    bootWithPlayers();
   } catch(err){
     document.body.innerHTML = '<div style="padding:20px;color:red;font-family:monospace;white-space:pre-wrap">Boot error:\n' + err.message + "\n\n" + (err.stack||"") + "</div>";
     console.error(err);
