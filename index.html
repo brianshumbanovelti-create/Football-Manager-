@@ -4,86 +4,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#E91E63">
-<title>Football Manager</title>
+<title>Football Manager 2026/27</title>
 <style>
-/* ==================== RESET + TOKENS ==================== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0e0e12;--surface:#17171d;--surface-2:#1f1f27;--surface-3:#2a2a34;
-  --border:#2e2e38;--border-strong:#3a3a46;
-  --text:#f2f2f5;--text-muted:#9a9aa6;--text-dim:#6b6b78;
-  --accent:#E91E63;--accent-soft:#ff4d8d;--accent-glow:rgba(233,30,99,.25);
-  --green:#2ecc71;--yellow:#f1c40f;--orange:#e67e22;--red:#e74c3c;--blue:#3498db;
-  --bar-track:#23232c;
-  --topbar-h:52px;--nav-h:60px;
-  --radius:10px;--radius-sm:6px;--radius-lg:16px;
-}
 html,body{height:100%}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  font-size:15px;line-height:1.4;overflow:hidden;
-  -webkit-tap-highlight-color:transparent;
-}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
-h1{font-size:22px;font-weight:700}
+input,select,textarea{font:inherit;color:inherit}
+ul,ol{list-style:none}
+:root{
+  --bg:#f4f4f7;--surface:#ffffff;--surface-2:#f8f9fb;--surface-3:#eef0f4;
+  --border:#e2e4e9;--border-strong:#c8ccd4;
+  --text:#16161c;--text-muted:#5a5a66;--text-dim:#8a8a95;
+  --accent:#E91E63;--accent-soft:#ff4d8d;--accent-dark:#ad1457;--accent-glow:rgba(233,30,99,.12);
+  --green:#2ecc71;--green-bg:#e7f7ee;--yellow:#f1c40f;--yellow-bg:#fef7dc;
+  --orange:#e67e22;--red:#e74c3c;--red-bg:#fbeae8;--blue:#3498db;--blue-bg:#e6f2fb;
+  --purple:#7c4dff;--purple-bg:#ede7ff;--bar-track:#e4e4ea;
+  --topbar-h:52px;--nav-h:60px;
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.4;overflow:hidden;-webkit-tap-highlight-color:transparent}
+h1{font-size:22px;font-weight:700;letter-spacing:-.3px}
 h2{font-size:17px;font-weight:600}
-h3{font-size:15px;font-weight:600}
-.muted{color:var(--text-muted)}
-.dim{color:var(--text-dim)}
-.hidden{display:none!important}
+h3{font-size:14px;font-weight:600}
+.muted{color:var(--text-muted)}.dim{color:var(--text-dim)}.hidden{display:none!important}
+.center{text-align:center}.grow{flex:1;min-width:0}.truncate{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row{display:flex;align-items:center;gap:10px}
 .row-between{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.center{text-align:center}
-.grow{flex:1;min-width:0}
-.truncate{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mt-1{margin-top:4px}.mt-2{margin-top:8px}.mt-3{margin-top:16px}
+.mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:16px}
 
-/* ==================== APP SHELL ==================== */
-#app{
-  display:flex;flex-direction:column;
-  height:100vh;height:100dvh;
-  max-width:720px;margin:0 auto;
-}
-#topbar{
-  height:var(--topbar-h);flex:0 0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 16px;background:var(--surface);
-  border-bottom:1px solid var(--border);
-}
+#app{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:780px;margin:0 auto}
+#topbar{height:var(--topbar-h);flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--border)}
 .topbar-left,.topbar-right{display:flex;align-items:center;gap:10px;min-width:0}
-#topbar-club{font-weight:700}
-#topbar-league{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)}
+#topbar-club{font-weight:700;font-size:15px}
+#topbar-league{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)}
 #topbar-date,#topbar-budget{font-size:12px;color:var(--text-muted);white-space:nowrap}
-
 #screens{flex:1;position:relative;overflow:hidden}
-.screen{
-  display:none;position:absolute;inset:0;
-  overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch;
-}
+.screen{display:none;position:absolute;inset:0;overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch}
 .screen.active{display:block}
-
-#bottomnav{
-  flex:0 0 auto;height:var(--nav-h);display:flex;
-  background:var(--surface);border-top:1px solid var(--border);
-  padding-bottom:env(safe-area-inset-bottom);
-}
-.nav-btn{
-  flex:1;display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:600;color:var(--text-muted);
-  letter-spacing:.2px;position:relative;transition:color .15s;
-}
+#bottomnav{flex:0 0 auto;height:var(--nav-h);display:flex;background:var(--surface);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:600;color:var(--text-muted);letter-spacing:.2px;transition:color .15s;position:relative}
 .nav-btn.active{color:var(--accent)}
-.nav-btn.active::before{
-  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:26px;height:3px;background:var(--accent);border-radius:0 0 3px 3px;
-}
+.nav-btn.active::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:26px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
 
-/* ==================== COMPONENTS ==================== */
-.btn-primary,.btn-secondary,.btn-ghost{
-  padding:10px 16px;border-radius:var(--radius-sm);font-weight:600;font-size:14px;
-  transition:background .15s,transform .1s;
-}
-.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 14px var(--accent-glow)}
+.btn-primary,.btn-secondary,.btn-ghost,.btn-danger{padding:11px 18px;border-radius:var(--radius-sm);font-weight:600;font-size:14px;transition:background .15s,transform .1s;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 3px 12px var(--accent-glow)}
 .btn-primary:hover{background:var(--accent-soft)}
 .btn-primary:active{transform:scale(.97)}
 .btn-primary:disabled{background:var(--surface-3);color:var(--text-dim);box-shadow:none;cursor:not-allowed}
@@ -91,54 +57,43 @@ h3{font-size:15px;font-weight:600}
 .btn-secondary:hover{background:var(--border-strong)}
 .btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border)}
 .btn-ghost:hover{color:var(--text);border-color:var(--border-strong)}
-.btn-sm{padding:6px 10px;font-size:12px}
+.btn-danger{background:transparent;color:var(--red);border:1px solid var(--red)}
+.btn-danger:hover{background:var(--red-bg)}
+.btn-sm{padding:7px 11px;font-size:12px;border-radius:var(--radius-sm)}
 
-.tab-bar{
-  display:flex;gap:4px;overflow-x:auto;padding-bottom:2px;margin-bottom:12px;
-  scrollbar-width:none;border-bottom:1px solid var(--border);
-}
+.tab-bar{display:flex;gap:4px;overflow-x:auto;padding-bottom:2px;margin-bottom:12px;scrollbar-width:none;border-bottom:1px solid var(--border)}
 .tab-bar::-webkit-scrollbar{display:none}
-.tab{
-  flex:0 0 auto;padding:10px 14px;font-size:13px;font-weight:600;
-  color:var(--text-muted);white-space:nowrap;
-  border-bottom:2px solid transparent;margin-bottom:-1px;
-  transition:color .15s,border-color .15s;
-}
+.tab{flex:0 0 auto;padding:10px 14px;font-size:13px;font-weight:600;color:var(--text-muted);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s,border-color .15s}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-.card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:14px;margin-bottom:10px;
-}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:10px}
 .card-highlight{border-left:3px solid var(--accent)}
 .card-title{font-size:14px;font-weight:700;margin-bottom:6px}
 .card-sub{font-size:12px;color:var(--text-muted)}
 
-/* Fixture rows */
+.badge{display:inline-block;padding:3px 9px;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;border-radius:6px;background:var(--surface-3);color:var(--text-muted)}
+.badge.blue{background:var(--blue-bg);color:#1c6ea4}
+.badge.yellow{background:var(--yellow-bg);color:#8b6f00}
+.badge.green{background:var(--green-bg);color:#1c7a4a}
+.badge.red{background:var(--red-bg);color:#a52a1f}
+.badge.pink{background:#fce4ec;color:var(--accent-dark)}
+
 .fixture-group{margin-bottom:20px}
-.fixture-group-title{
-  font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
-  color:var(--text-dim);margin-bottom:8px;padding-left:2px;
-}
-.fixture-row{
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;
-  padding:12px 14px;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);margin-bottom:6px;
-  transition:background .15s,border-color .15s;
-}
+.fixture-group-title{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;padding-left:2px}
+.fixture-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:6px;transition:background .15s,border-color .15s}
 .fixture-row.is-user{border-left:3px solid var(--accent);padding-left:12px}
-.fixture-row.played{opacity:.72}
+.fixture-row.played{opacity:.75}
+.fixture-side{display:flex;align-items:center;gap:8px;min-width:0}
+.fixture-side.home{justify-content:flex-start}
+.fixture-side.away{justify-content:flex-end;flex-direction:row-reverse}
 .fixture-team{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fixture-team.home{text-align:left}
-.fixture-team.away{text-align:right}
-.fixture-center{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums;text-align:center;min-width:60px}
+.fixture-center{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums;text-align:center;min-width:56px}
 .fixture-center .score{font-size:15px;font-weight:800;color:var(--accent-soft)}
 
-/* Bars */
 .bar-row{display:flex;align-items:center;gap:8px;font-size:12px}
 .bar-label{width:52px;color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
-.bar-track{flex:1;height:8px;background:var(--bar-track);border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px;transition:width .4s,background .3s}
+.bar-track{flex:1;height:6px;background:var(--bar-track);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;transition:width .4s,background .3s}
 .bar-fill.fresh{background:var(--green)}
 .bar-fill.okay{background:#7fc96b}
 .bar-fill.tired{background:var(--yellow)}
@@ -150,113 +105,93 @@ h3{font-size:15px;font-weight:600}
 .bar-value{width:28px;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-muted);font-size:11px}
 .bar-status{font-size:11px;color:var(--text-muted);margin-top:2px;padding-left:60px}
 
-/* Player rows */
-.player-row{
-  display:grid;grid-template-columns:34px 1fr 46px 40px;
-  align-items:center;gap:10px;padding:10px 12px;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);margin-bottom:6px;cursor:pointer;
-  transition:background .15s,border-color .15s;
-}
+.player-row{display:grid;grid-template-columns:34px 1fr 46px 40px;align-items:center;gap:10px;padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:6px;cursor:pointer;transition:background .15s,border-color .15s}
 .player-row:hover{background:var(--surface-2)}
 .player-row.selected{border-color:var(--accent);background:var(--surface-2)}
 .player-pos{font-size:11px;font-weight:800;text-align:center;padding:3px 0;border-radius:4px;background:var(--surface-3);color:var(--text-muted)}
-.player-pos.GK{background:#3a2f0f;color:#f1c40f}
-.player-pos.DEF{background:#102b3a;color:#3498db}
-.player-pos.MID{background:#1b3320;color:#2ecc71}
-.player-pos.FWD{background:#3a1020;color:#E91E63}
+.player-pos.GK{background:#fdf3d1;color:#8b6f00}
+.player-pos.DEF{background:#e0eefb;color:#1c6ea4}
+.player-pos.MID{background:#e6f5ea;color:#1c7a4a}
+.player-pos.FWD{background:#fce4ec;color:var(--accent-dark)}
 .player-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .player-meta{font-size:11px;color:var(--text-dim)}
 .player-ovr{font-size:15px;font-weight:800;text-align:center;font-variant-numeric:tabular-nums}
 .player-ovr.elite{color:var(--accent-soft)}
 .player-ovr.good{color:var(--green)}
+.player-ovr.avg{color:var(--text)}
 .player-age{font-size:12px;text-align:center;color:var(--text-muted)}
 
-/* League table */
 .league-table{width:100%;border-collapse:collapse;font-size:13px}
 .league-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-dim);padding:8px 6px;border-bottom:1px solid var(--border)}
 .league-table td{padding:9px 6px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums}
-.league-table tr.user-club td{background:rgba(233,30,99,.08);font-weight:700}
-.league-table .pos{width:26px;color:var(--text-muted)}
+.league-table tr.user-club td{background:#fce4ec;font-weight:700}
+.league-table .pos{width:26px;color:var(--text-muted);text-align:center}
 .league-table .team{font-weight:600}
 .league-table .num{width:30px;text-align:center}
 .league-table .pts{font-weight:800;color:var(--accent-soft);width:34px;text-align:center}
+.league-table .pos-ucl{color:var(--green);font-weight:700}
+.league-table .pos-rel{color:var(--red);font-weight:700}
 
-/* Event feed */
-.event-item{
-  display:grid;grid-template-columns:34px 22px 1fr auto;align-items:center;gap:8px;
-  padding:10px 12px;background:var(--surface-2);border-radius:var(--radius-sm);
-  font-size:13px;animation:eventIn .3s;
-}
+.event-item{display:grid;grid-template-columns:38px 24px 1fr auto;align-items:center;gap:10px;padding:12px 14px;background:var(--surface-2);border-radius:var(--radius-sm);font-size:13px;animation:eventIn .3s;margin-bottom:6px}
 @keyframes eventIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
-.event-minute{font-size:12px;font-weight:700;color:var(--text-muted)}
-.event-icon{font-size:15px;text-align:center}
+.event-minute{font-size:11px;font-weight:700;text-align:center;padding:3px 0;background:#fce4ec;color:var(--accent-dark);border-radius:6px}
+.event-icon{font-size:16px;text-align:center}
 .event-player{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .event-detail{font-size:11px;color:var(--text-muted)}
-.event-score{font-size:13px;font-weight:800;color:var(--accent-soft)}
-.event-item.goal{background:linear-gradient(90deg,rgba(233,30,99,.14),var(--surface-2));border-left:3px solid var(--accent)}
-.event-item.card-yellow{border-left:3px solid var(--yellow)}
-.event-item.card-red{border-left:3px solid var(--red)}
-.event-item.sub{border-left:3px solid var(--blue);opacity:.85}
-.event-item.injury{border-left:3px solid var(--orange)}
+.event-score{font-size:13px;font-weight:800;color:var(--accent-soft);font-variant-numeric:tabular-nums}
+.event-item.goal{background:linear-gradient(90deg,#fce4ec,var(--surface-2));border-left:3px solid var(--accent)}
+.event-item.ht,.event-item.ft{background:var(--surface-3);border-left:3px solid var(--border-strong);font-weight:700}
+.event-item.sub{border-left:3px solid var(--blue);opacity:.9}
 
-/* Result banner */
-#result-banner{
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px 12px;
-  padding:18px;background:var(--surface-2);border-radius:var(--radius);margin-bottom:16px;text-align:center;
-}
-#result-banner .rb-team{font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#result-banner .rb-team.home{text-align:right}
-#result-banner .rb-team.away{text-align:left}
-#result-banner .rb-score{font-size:30px;font-weight:800;letter-spacing:-1px;color:var(--accent-soft)}
-#result-banner .rb-status{grid-column:1/-1;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
+#result-banner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px 12px;padding:20px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:16px;text-align:center}
+#result-banner .rb-side{display:flex;flex-direction:column;align-items:center;gap:6px}
+#result-banner .rb-team{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
+#result-banner .rb-score{font-size:34px;font-weight:800;letter-spacing:-1.5px;color:var(--accent-soft);font-variant-numeric:tabular-nums}
+#result-banner .rb-status{grid-column:1/-1;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);margin-top:4px}
 
-/* Lineup */
 .lineup-block{margin-bottom:18px}
-.lineup-title{font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px}
-.lineup-row{display:grid;grid-template-columns:34px 1fr 40px 90px;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--border);font-size:13px}
+.lineup-title{font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:8px}
+.lineup-row{display:grid;grid-template-columns:34px 1fr 42px 90px;align-items:center;gap:8px;padding:9px 10px;border-bottom:1px solid var(--border);font-size:13px}
 .lineup-row:last-child{border-bottom:none}
-.lineup-rating{font-weight:800;text-align:center;font-variant-numeric:tabular-nums}
-.lineup-rating.high{color:var(--green)}
+.lineup-rating{font-weight:800;text-align:center;font-variant-numeric:tabular-nums;padding:3px 0;border-radius:5px}
+.lineup-rating.high{color:#1c7a4a;background:var(--green-bg)}
 .lineup-rating.mid{color:var(--text)}
-.lineup-rating.low{color:var(--red)}
+.lineup-rating.low{color:#a52a1f;background:var(--red-bg)}
 .lineup-stats{font-size:11px;color:var(--text-muted);text-align:right;white-space:nowrap}
 
-/* Manage panel */
 .manage-section{margin-bottom:16px}
 .manage-section h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-dim);margin-bottom:8px}
-.manage-select{
-  width:100%;padding:9px 12px;background:var(--surface-2);border:1px solid var(--border);
-  border-radius:var(--radius-sm);font-size:14px;color:var(--text);
-}
+.manage-select{width:100%;padding:10px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text)}
 .style-toggle{display:flex;gap:6px}
-.style-toggle .tab{flex:1;text-align:center;padding:9px 4px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);margin:0}
+.style-toggle .tab{flex:1;text-align:center;padding:10px 4px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);margin:0;border-bottom:1px solid var(--border)}
 .style-toggle .tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-/* Match overlay */
-#match-overlay{
-  position:fixed;inset:0;z-index:1000;background:rgba(8,8,12,.92);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;
-}
-.match-panel{
-  width:100%;max-width:560px;background:var(--surface);
-  border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;
-  box-shadow:0 20px 60px rgba(0,0,0,.6);animation:panelIn .22s;
-}
+#match-overlay{position:fixed;inset:0;z-index:1000;background:rgba(20,20,30,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.match-panel{width:100%;max-width:600px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.15);animation:panelIn .22s}
 @keyframes panelIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-.match-actions{margin-top:18px;display:flex;gap:10px;justify-content:flex-end}
-#live-scoreboard{display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto auto;align-items:center;gap:4px 12px;padding:14px;background:var(--surface-2);border-radius:var(--radius);margin-bottom:16px}
+.match-actions{margin-top:18px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+#live-scoreboard{display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto auto;align-items:center;gap:4px 12px;padding:16px;background:var(--surface-2);border-radius:var(--radius);margin-bottom:16px}
 #live-home-name,#live-away-name{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#live-home-name{text-align:left}
-#live-away-name{text-align:right}
-#live-score{font-size:26px;font-weight:800;letter-spacing:-1px;color:var(--accent-soft);grid-column:2;grid-row:1}
-#live-minute{grid-column:1/-1;grid-row:2;text-align:center;font-size:12px;color:var(--text-muted)}
-#live-events{display:flex;flex-direction:column;gap:8px;max-height:45vh;overflow-y:auto}
+#live-home-name{text-align:right}
+#live-away-name{text-align:left}
+#live-score{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--accent-soft);grid-column:2;grid-row:1;font-variant-numeric:tabular-nums}
+#live-minute{grid-column:1/-1;grid-row:2;text-align:center;font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+#live-events{display:flex;flex-direction:column;gap:6px;max-height:48vh;overflow-y:auto;padding-right:2px}
 
-.empty{text-align:center;padding:40px 20px;color:var(--text-dim);font-size:13px}
-.badge{display:inline-block;padding:2px 7px;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;border-radius:4px;background:var(--surface-3);color:var(--text-muted)}
-.badge.accent{background:var(--accent);color:#fff}
+.empty{text-align:center;padding:48px 20px;color:var(--text-dim);font-size:13px}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:4px}
+
+@media (max-width:420px){
+  #topbar-league{display:none}
+  #topbar-budget{display:none}
+  .screen{padding:12px}
+  .player-row{grid-template-columns:30px 1fr 42px}
+  .player-age{display:none}
+  .lineup-row{grid-template-columns:30px 1fr 36px}
+  .lineup-stats{display:none}
+}
 </style>
 </head>
 <body>
@@ -272,13 +207,13 @@ h3{font-size:15px;font-weight:600}
       <span id="topbar-budget">—</span>
     </div>
   </header>
-
   <main id="screens"></main>
-
   <nav id="bottomnav" style="display:none">
     <button class="nav-btn active" data-screen="dashboard">Home</button>
     <button class="nav-btn" data-screen="fixtures">Fixtures</button>
     <button class="nav-btn" data-screen="squad">Squad</button>
+    <button class="nav-btn" data-screen="tactics">Tactics</button>
+    <button class="nav-btn" data-screen="transfers">Transfers</button>
     <button class="nav-btn" data-screen="inbox">Inbox</button>
     <button class="nav-btn" data-screen="tables">Tables</button>
   </nav>
@@ -287,497 +222,433 @@ h3{font-size:15px;font-weight:600}
 <div id="match-overlay" class="hidden"></div>
 
 <script>
-/* ==========================================================================
-   FOOTBALL MANAGER — SINGLE FILE EDITION
-   Everything below is plain JS. No imports, no modules, no build.
-   ========================================================================== */
-
-/* ==================== DATA: LEAGUE ==================== */
-const LEAGUE = {
-  id: "premier-league",
-  name: "Premier League",
-  shortName: "PL",
-  country: "England",
-  season: "2026-27",
-  clubs: [
-    "arsenal","aston-villa","bournemouth","brentford","brighton",
-    "burnley","chelsea","crystal-palace","everton","fulham",
-    "leeds-united","liverpool","man-city","man-united","newcastle",
-    "nottingham-forest","sunderland","tottenham","west-ham","wolves"
-  ]
+/* ============================================================
+   DATA: LEAGUES
+   ============================================================ */
+const LEAGUES = {
+  "premier-league":{id:"premier-league",name:"Premier League",short:"PL",country:"England",tier:1,
+    clubIds:["arsenal","aston-villa","bournemouth","brentford","brighton","burnley","chelsea",
+      "crystal-palace","everton","fulham","leeds-united","liverpool","man-city","man-united",
+      "newcastle","nottingham-forest","sunderland","tottenham","west-ham","wolves"]},
+  "la-liga":{id:"la-liga",name:"La Liga",short:"LaLiga",country:"Spain",tier:1,
+    clubIds:["alaves","athletic-bilbao","atletico-madrid","barcelona","celta-vigo","elche",
+      "espanyol","getafe","girona","levante","mallorca","osasuna","rayo-vallecano","real-betis",
+      "real-madrid","real-oviedo","real-sociedad","sevilla","valencia","villarreal"]},
+  "ligue-1":{id:"ligue-1",name:"Ligue 1",short:"L1",country:"France",tier:1,
+    clubIds:["angers","auxerre","brest","le-havre","lens","lille","lorient","lyon","marseille",
+      "metz","monaco","nantes","nice","paris-fc","paris-sg","rennes","strasbourg","toulouse"]},
+  "serie-a":{id:"serie-a",name:"Serie A",short:"Serie A",country:"Italy",tier:1,
+    clubIds:["atalanta","bologna","cagliari","como","cremonese","fiorentina","genoa",
+      "hellas-verona","inter","juventus","lazio","lecce","milan","napoli","parma","pisa",
+      "roma","sassuolo","torino","udinese"]},
+  "bundesliga":{id:"bundesliga",name:"Bundesliga",short:"Bundesliga",country:"Germany",tier:1,
+    clubIds:["augsburg","bayern-munich","dortmund","frankfurt","freiburg","gladbach",
+      "hamburger-sv","heidenheim","hoffenheim","koln","leverkusen","mainz","rb-leipzig",
+      "st-pauli","stuttgart","union-berlin","werder-bremen","wolfsburg"]}
 };
+const LEAGUE_ORDER = ["premier-league","la-liga","ligue-1","serie-a","bundesliga"];
 
-/* ==================== DATA: CLUBS ==================== */
+/* ============================================================
+   DATA: CLUBS
+   ============================================================ */
 const CLUBS = {
-  "arsenal":            { id:"arsenal",            name:"Arsenal",            short:"Arsenal",     rating:86, budget:120000000 },
-  "aston-villa":        { id:"aston-villa",        name:"Aston Villa",        short:"Villa",       rating:79, budget:45000000 },
-  "bournemouth":        { id:"bournemouth",        name:"Bournemouth",        short:"Bournemouth", rating:73, budget:35000000 },
-  "brentford":          { id:"brentford",          name:"Brentford",          short:"Brentford",   rating:74, budget:30000000 },
-  "brighton":           { id:"brighton",           name:"Brighton",           short:"Brighton",    rating:77, budget:55000000 },
-  "burnley":            { id:"burnley",            name:"Burnley",            short:"Burnley",     rating:68, budget:20000000 },
-  "chelsea":            { id:"chelsea",            name:"Chelsea",            short:"Chelsea",     rating:84, budget:130000000 },
-  "crystal-palace":     { id:"crystal-palace",     name:"Crystal Palace",     short:"Palace",      rating:74, budget:35000000 },
-  "everton":            { id:"everton",            name:"Everton",            short:"Everton",     rating:73, budget:30000000 },
-  "fulham":             { id:"fulham",             name:"Fulham",             short:"Fulham",      rating:74, budget:35000000 },
-  "leeds-united":       { id:"leeds-united",       name:"Leeds United",       short:"Leeds",       rating:70, budget:30000000 },
-  "liverpool":          { id:"liverpool",          name:"Liverpool",          short:"Liverpool",   rating:87, budget:140000000 },
-  "man-city":           { id:"man-city",           name:"Manchester City",    short:"Man City",    rating:88, budget:150000000 },
-  "man-united":         { id:"man-united",         name:"Manchester United",  short:"Man United",  rating:82, budget:120000000 },
-  "newcastle":          { id:"newcastle",          name:"Newcastle United",   short:"Newcastle",   rating:81, budget:90000000 },
-  "nottingham-forest":  { id:"nottingham-forest",  name:"Nottingham Forest",  short:"Forest",      rating:74, budget:40000000 },
-  "sunderland":         { id:"sunderland",         name:"Sunderland",         short:"Sunderland",  rating:70, budget:35000000 },
-  "tottenham":          { id:"tottenham",          name:"Tottenham Hotspur",  short:"Spurs",       rating:81, budget:90000000 },
-  "west-ham":           { id:"west-ham",           name:"West Ham United",    short:"West Ham",    rating:75, budget:45000000 },
-  "wolves":             { id:"wolves",             name:"Wolverhampton",      short:"Wolves",      rating:72, budget:30000000 }
+  "arsenal":{id:"arsenal",name:"Arsenal",short:"Arsenal",leagueId:"premier-league",bg:"#EF0107",fg:"#FFFFFF",abbr:"ARS",rating:86,budget:120000000,wageBudget:3200000},
+  "aston-villa":{id:"aston-villa",name:"Aston Villa",short:"Villa",leagueId:"premier-league",bg:"#95BFE5",fg:"#670E36",abbr:"AVL",rating:79,budget:45000000,wageBudget:2100000},
+  "bournemouth":{id:"bournemouth",name:"Bournemouth",short:"Bournemouth",leagueId:"premier-league",bg:"#DA291C",fg:"#FFFFFF",abbr:"BOU",rating:73,budget:35000000,wageBudget:1100000},
+  "brentford":{id:"brentford",name:"Brentford",short:"Brentford",leagueId:"premier-league",bg:"#E30613",fg:"#FFFFFF",abbr:"BRE",rating:74,budget:30000000,wageBudget:1050000},
+  "brighton":{id:"brighton",name:"Brighton",short:"Brighton",leagueId:"premier-league",bg:"#0057B8",fg:"#FFFFFF",abbr:"BHA",rating:77,budget:55000000,wageBudget:1400000},
+  "burnley":{id:"burnley",name:"Burnley",short:"Burnley",leagueId:"premier-league",bg:"#6C1D45",fg:"#99D6EA",abbr:"BUR",rating:68,budget:20000000,wageBudget:750000},
+  "chelsea":{id:"chelsea",name:"Chelsea",short:"Chelsea",leagueId:"premier-league",bg:"#034694",fg:"#FFFFFF",abbr:"CHE",rating:84,budget:130000000,wageBudget:3400000},
+  "crystal-palace":{id:"crystal-palace",name:"Crystal Palace",short:"Palace",leagueId:"premier-league",bg:"#1B458F",fg:"#C4122E",abbr:"CRY",rating:74,budget:35000000,wageBudget:1300000},
+  "everton":{id:"everton",name:"Everton",short:"Everton",leagueId:"premier-league",bg:"#003399",fg:"#FFFFFF",abbr:"EVE",rating:73,budget:30000000,wageBudget:1500000},
+  "fulham":{id:"fulham",name:"Fulham",short:"Fulham",leagueId:"premier-league",bg:"#000000",fg:"#FFFFFF",abbr:"FUL",rating:74,budget:35000000,wageBudget:1300000},
+  "leeds-united":{id:"leeds-united",name:"Leeds United",short:"Leeds",leagueId:"premier-league",bg:"#FFFFFF",fg:"#1D428A",abbr:"LEE",rating:70,budget:30000000,wageBudget:1100000},
+  "liverpool":{id:"liverpool",name:"Liverpool",short:"Liverpool",leagueId:"premier-league",bg:"#C8102E",fg:"#FFFFFF",abbr:"LIV",rating:87,budget:140000000,wageBudget:3600000},
+  "man-city":{id:"man-city",name:"Manchester City",short:"Man City",leagueId:"premier-league",bg:"#6CABDD",fg:"#1C2C5B",abbr:"MCI",rating:88,budget:150000000,wageBudget:4000000},
+  "man-united":{id:"man-united",name:"Manchester United",short:"Man United",leagueId:"premier-league",bg:"#DA020E",fg:"#FBE122",abbr:"MUN",rating:82,budget:120000000,wageBudget:3500000},
+  "newcastle":{id:"newcastle",name:"Newcastle United",short:"Newcastle",leagueId:"premier-league",bg:"#241F20",fg:"#FFFFFF",abbr:"NEW",rating:81,budget:90000000,wageBudget:2200000},
+  "nottingham-forest":{id:"nottingham-forest",name:"Nottingham Forest",short:"Forest",leagueId:"premier-league",bg:"#DD0000",fg:"#FFFFFF",abbr:"NFO",rating:74,budget:40000000,wageBudget:1500000},
+  "sunderland":{id:"sunderland",name:"Sunderland",short:"Sunderland",leagueId:"premier-league",bg:"#EB172B",fg:"#FFFFFF",abbr:"SUN",rating:70,budget:35000000,wageBudget:1100000},
+  "tottenham":{id:"tottenham",name:"Tottenham Hotspur",short:"Spurs",leagueId:"premier-league",bg:"#132257",fg:"#FFFFFF",abbr:"TOT",rating:81,budget:90000000,wageBudget:2600000},
+  "west-ham":{id:"west-ham",name:"West Ham United",short:"West Ham",leagueId:"premier-league",bg:"#7A263A",fg:"#1BB1E7",abbr:"WHU",rating:75,budget:45000000,wageBudget:1800000},
+  "wolves":{id:"wolves",name:"Wolverhampton",short:"Wolves",leagueId:"premier-league",bg:"#FDB913",fg:"#231F20",abbr:"WOL",rating:72,budget:30000000,wageBudget:1300000},
+
+  "alaves":{id:"alaves",name:"Deportivo Alavés",short:"Alavés",leagueId:"la-liga",bg:"#0761AF",fg:"#FFFFFF",abbr:"ALA",rating:68,budget:12000000,wageBudget:500000},
+  "athletic-bilbao":{id:"athletic-bilbao",name:"Athletic Club",short:"Athletic",leagueId:"la-liga",bg:"#EE2523",fg:"#FFFFFF",abbr:"ATH",rating:79,budget:40000000,wageBudget:1500000},
+  "atletico-madrid":{id:"atletico-madrid",name:"Atlético Madrid",short:"Atleti",leagueId:"la-liga",bg:"#CB3524",fg:"#FFFFFF",abbr:"ATM",rating:85,budget:100000000,wageBudget:3200000},
+  "barcelona":{id:"barcelona",name:"FC Barcelona",short:"Barça",leagueId:"la-liga",bg:"#A50044",fg:"#EDBB00",abbr:"BAR",rating:86,budget:90000000,wageBudget:3800000},
+  "celta-vigo":{id:"celta-vigo",name:"Celta Vigo",short:"Celta",leagueId:"la-liga",bg:"#8AC3EE",fg:"#FFFFFF",abbr:"CEL",rating:71,budget:15000000,wageBudget:650000},
+  "elche":{id:"elche",name:"Elche CF",short:"Elche",leagueId:"la-liga",bg:"#FFFFFF",fg:"#00963F",abbr:"ELC",rating:66,budget:10000000,wageBudget:420000},
+  "espanyol":{id:"espanyol",name:"RCD Espanyol",short:"Espanyol",leagueId:"la-liga",bg:"#007FC8",fg:"#FFFFFF",abbr:"ESP",rating:70,budget:15000000,wageBudget:620000},
+  "getafe":{id:"getafe",name:"Getafe CF",short:"Getafe",leagueId:"la-liga",bg:"#005999",fg:"#FFFFFF",abbr:"GET",rating:70,budget:14000000,wageBudget:600000},
+  "girona":{id:"girona",name:"Girona FC",short:"Girona",leagueId:"la-liga",bg:"#D50000",fg:"#FFFFFF",abbr:"GIR",rating:72,budget:20000000,wageBudget:700000},
+  "levante":{id:"levante",name:"Levante UD",short:"Levante",leagueId:"la-liga",bg:"#0051A2",fg:"#B4053F",abbr:"LEV",rating:66,budget:10000000,wageBudget:420000},
+  "mallorca":{id:"mallorca",name:"RCD Mallorca",short:"Mallorca",leagueId:"la-liga",bg:"#E20613",fg:"#000000",abbr:"MLL",rating:70,budget:14000000,wageBudget:600000},
+  "osasuna":{id:"osasuna",name:"CA Osasuna",short:"Osasuna",leagueId:"la-liga",bg:"#0A346F",fg:"#D91A21",abbr:"OSA",rating:71,budget:15000000,wageBudget:640000},
+  "rayo-vallecano":{id:"rayo-vallecano",name:"Rayo Vallecano",short:"Rayo",leagueId:"la-liga",bg:"#FFFFFF",fg:"#E53027",abbr:"RAY",rating:71,budget:14000000,wageBudget:600000},
+  "real-betis":{id:"real-betis",name:"Real Betis",short:"Betis",leagueId:"la-liga",bg:"#00954C",fg:"#FFFFFF",abbr:"BET",rating:76,budget:35000000,wageBudget:1300000},
+  "real-madrid":{id:"real-madrid",name:"Real Madrid",short:"Real Madrid",leagueId:"la-liga",bg:"#FFFFFF",fg:"#FEBE10",abbr:"RMA",rating:89,budget:160000000,wageBudget:4200000},
+  "real-oviedo":{id:"real-oviedo",name:"Real Oviedo",short:"Oviedo",leagueId:"la-liga",bg:"#0055A5",fg:"#FFFFFF",abbr:"OVI",rating:65,budget:9000000,wageBudget:400000},
+  "real-sociedad":{id:"real-sociedad",name:"Real Sociedad",short:"La Real",leagueId:"la-liga",bg:"#0067B1",fg:"#FFFFFF",abbr:"RSO",rating:76,budget:35000000,wageBudget:1300000},
+  "sevilla":{id:"sevilla",name:"Sevilla FC",short:"Sevilla",leagueId:"la-liga",bg:"#D80027",fg:"#FFFFFF",abbr:"SEV",rating:75,budget:30000000,wageBudget:1400000},
+  "valencia":{id:"valencia",name:"Valencia CF",short:"Valencia",leagueId:"la-liga",bg:"#FFFFFF",fg:"#EE3524",abbr:"VAL",rating:73,budget:22000000,wageBudget:950000},
+  "villarreal":{id:"villarreal",name:"Villarreal CF",short:"Villarreal",leagueId:"la-liga",bg:"#FFE667",fg:"#005187",abbr:"VIL",rating:77,budget:40000000,wageBudget:1400000},
+
+  "angers":{id:"angers",name:"Angers SCO",short:"Angers",leagueId:"ligue-1",bg:"#000000",fg:"#FFFFFF",abbr:"ANG",rating:65,budget:8000000,wageBudget:350000},
+  "auxerre":{id:"auxerre",name:"AJ Auxerre",short:"Auxerre",leagueId:"ligue-1",bg:"#0055A5",fg:"#FFFFFF",abbr:"AUX",rating:66,budget:9000000,wageBudget:380000},
+  "brest":{id:"brest",name:"Stade Brestois",short:"Brest",leagueId:"ligue-1",bg:"#E30613",fg:"#FFFFFF",abbr:"BST",rating:70,budget:12000000,wageBudget:520000},
+  "le-havre":{id:"le-havre",name:"Le Havre AC",short:"Le Havre",leagueId:"ligue-1",bg:"#003DA5",fg:"#FFFFFF",abbr:"HAV",rating:65,budget:8000000,wageBudget:350000},
+  "lens":{id:"lens",name:"RC Lens",short:"Lens",leagueId:"ligue-1",bg:"#FFED00",fg:"#E30613",abbr:"LEN",rating:75,budget:30000000,wageBudget:1050000},
+  "lille":{id:"lille",name:"LOSC Lille",short:"Lille",leagueId:"ligue-1",bg:"#E01E13",fg:"#FFFFFF",abbr:"LIL",rating:77,budget:35000000,wageBudget:1300000},
+  "lorient":{id:"lorient",name:"FC Lorient",short:"Lorient",leagueId:"ligue-1",bg:"#F77F00",fg:"#000000",abbr:"LOR",rating:66,budget:9000000,wageBudget:380000},
+  "lyon":{id:"lyon",name:"Olympique Lyonnais",short:"Lyon",leagueId:"ligue-1",bg:"#FFFFFF",fg:"#1D3C8F",abbr:"LYO",rating:78,budget:40000000,wageBudget:1600000},
+  "marseille":{id:"marseille",name:"Olympique de Marseille",short:"Marseille",leagueId:"ligue-1",bg:"#2FAEE0",fg:"#FFFFFF",abbr:"MAR",rating:79,budget:45000000,wageBudget:1900000},
+  "metz":{id:"metz",name:"FC Metz",short:"Metz",leagueId:"ligue-1",bg:"#7B0D1E",fg:"#FFFFFF",abbr:"MET",rating:65,budget:8000000,wageBudget:350000},
+  "monaco":{id:"monaco",name:"AS Monaco",short:"Monaco",leagueId:"ligue-1",bg:"#E63946",fg:"#FFFFFF",abbr:"MON",rating:80,budget:55000000,wageBudget:1800000},
+  "nantes":{id:"nantes",name:"FC Nantes",short:"Nantes",leagueId:"ligue-1",bg:"#FBE122",fg:"#007A33",abbr:"NAN",rating:68,budget:12000000,wageBudget:600000},
+  "nice":{id:"nice",name:"OGC Nice",short:"Nice",leagueId:"ligue-1",bg:"#ED1C24",fg:"#000000",abbr:"NIC",rating:75,budget:30000000,wageBudget:1100000},
+  "paris-fc":{id:"paris-fc",name:"Paris FC",short:"Paris FC",leagueId:"ligue-1",bg:"#002D5A",fg:"#FFFFFF",abbr:"PFC",rating:67,budget:25000000,wageBudget:700000},
+  "paris-sg":{id:"paris-sg",name:"Paris Saint-Germain",short:"PSG",leagueId:"ligue-1",bg:"#004170",fg:"#DA291C",abbr:"PSG",rating:87,budget:150000000,wageBudget:4200000},
+  "rennes":{id:"rennes",name:"Stade Rennais",short:"Rennes",leagueId:"ligue-1",bg:"#E21F26",fg:"#000000",abbr:"REN",rating:74,budget:25000000,wageBudget:1050000},
+  "strasbourg":{id:"strasbourg",name:"RC Strasbourg",short:"Strasbourg",leagueId:"ligue-1",bg:"#0072BC",fg:"#FFFFFF",abbr:"STR",rating:72,budget:18000000,wageBudget:720000},
+  "toulouse":{id:"toulouse",name:"Toulouse FC",short:"Toulouse",leagueId:"ligue-1",bg:"#5B2D90",fg:"#FFFFFF",abbr:"TOU",rating:71,budget:15000000,wageBudget:640000},
+
+  "atalanta":{id:"atalanta",name:"Atalanta",short:"Atalanta",leagueId:"serie-a",bg:"#1E71B8",fg:"#000000",abbr:"ATA",rating:80,budget:45000000,wageBudget:1500000},
+  "bologna":{id:"bologna",name:"Bologna",short:"Bologna",leagueId:"serie-a",bg:"#1A2F48",fg:"#E4002B",abbr:"BOL",rating:76,budget:30000000,wageBudget:1100000},
+  "cagliari":{id:"cagliari",name:"Cagliari",short:"Cagliari",leagueId:"serie-a",bg:"#00243F",fg:"#B2001F",abbr:"CAG",rating:70,budget:15000000,wageBudget:640000},
+  "como":{id:"como",name:"Como",short:"Como",leagueId:"serie-a",bg:"#005CA9",fg:"#FFFFFF",abbr:"COM",rating:71,budget:20000000,wageBudget:720000},
+  "cremonese":{id:"cremonese",name:"Cremonese",short:"Cremonese",leagueId:"serie-a",bg:"#A6192E",fg:"#FFFFFF",abbr:"CRE",rating:66,budget:9000000,wageBudget:400000},
+  "fiorentina":{id:"fiorentina",name:"Fiorentina",short:"Fiorentina",leagueId:"serie-a",bg:"#582C83",fg:"#FFFFFF",abbr:"FIO",rating:77,budget:40000000,wageBudget:1400000},
+  "genoa":{id:"genoa",name:"Genoa",short:"Genoa",leagueId:"serie-a",bg:"#A6192E",fg:"#003876",abbr:"GEN",rating:71,budget:15000000,wageBudget:680000},
+  "hellas-verona":{id:"hellas-verona",name:"Hellas Verona",short:"Verona",leagueId:"serie-a",bg:"#FFD700",fg:"#003876",abbr:"VER",rating:69,budget:13000000,wageBudget:580000},
+  "inter":{id:"inter",name:"Inter Milan",short:"Inter",leagueId:"serie-a",bg:"#010E80",fg:"#000000",abbr:"INT",rating:85,budget:80000000,wageBudget:2800000},
+  "juventus":{id:"juventus",name:"Juventus",short:"Juventus",leagueId:"serie-a",bg:"#000000",fg:"#FFFFFF",abbr:"JUV",rating:82,budget:70000000,wageBudget:2600000},
+  "lazio":{id:"lazio",name:"Lazio",short:"Lazio",leagueId:"serie-a",bg:"#87D8F7",fg:"#FFFFFF",abbr:"LAZ",rating:77,budget:35000000,wageBudget:1500000},
+  "lecce":{id:"lecce",name:"Lecce",short:"Lecce",leagueId:"serie-a",bg:"#F5D200",fg:"#E2001A",abbr:"LEC",rating:68,budget:12000000,wageBudget:500000},
+  "milan":{id:"milan",name:"AC Milan",short:"Milan",leagueId:"serie-a",bg:"#FB090B",fg:"#000000",abbr:"MIL",rating:83,budget:75000000,wageBudget:2500000},
+  "napoli":{id:"napoli",name:"Napoli",short:"Napoli",leagueId:"serie-a",bg:"#12A0D7",fg:"#FFFFFF",abbr:"NAP",rating:83,budget:70000000,wageBudget:2300000},
+  "parma":{id:"parma",name:"Parma",short:"Parma",leagueId:"serie-a",bg:"#FFD700",fg:"#003876",abbr:"PAR",rating:68,budget:12000000,wageBudget:520000},
+  "pisa":{id:"pisa",name:"Pisa",short:"Pisa",leagueId:"serie-a",bg:"#002D72",fg:"#FFFFFF",abbr:"PIS",rating:65,budget:9000000,wageBudget:400000},
+  "roma":{id:"roma",name:"AS Roma",short:"Roma",leagueId:"serie-a",bg:"#8E1F2F",fg:"#F0BC42",abbr:"ROM",rating:80,budget:50000000,wageBudget:2000000},
+  "sassuolo":{id:"sassuolo",name:"Sassuolo",short:"Sassuolo",leagueId:"serie-a",bg:"#00A752",fg:"#000000",abbr:"SAS",rating:67,budget:10000000,wageBudget:440000},
+  "torino":{id:"torino",name:"Torino",short:"Torino",leagueId:"serie-a",bg:"#8B1A1A",fg:"#FFFFFF",abbr:"TOR",rating:73,budget:20000000,wageBudget:820000},
+  "udinese":{id:"udinese",name:"Udinese",short:"Udinese",leagueId:"serie-a",bg:"#000000",fg:"#FFFFFF",abbr:"UDI",rating:72,budget:18000000,wageBudget:740000},
+
+  "augsburg":{id:"augsburg",name:"FC Augsburg",short:"Augsburg",leagueId:"bundesliga",bg:"#BA3733",fg:"#FFFFFF",abbr:"FCA",rating:70,budget:15000000,wageBudget:600000},
+  "bayern-munich":{id:"bayern-munich",name:"Bayern Munich",short:"Bayern",leagueId:"bundesliga",bg:"#DC052D",fg:"#FFFFFF",abbr:"FCB",rating:89,budget:130000000,wageBudget:4200000},
+  "dortmund":{id:"dortmund",name:"Borussia Dortmund",short:"Dortmund",leagueId:"bundesliga",bg:"#FDE100",fg:"#000000",abbr:"BVB",rating:84,budget:80000000,wageBudget:2600000},
+  "frankfurt":{id:"frankfurt",name:"Eintracht Frankfurt",short:"Frankfurt",leagueId:"bundesliga",bg:"#E1000F",fg:"#000000",abbr:"SGE",rating:78,budget:40000000,wageBudget:1500000},
+  "freiburg":{id:"freiburg",name:"SC Freiburg",short:"Freiburg",leagueId:"bundesliga",bg:"#000000",fg:"#E60000",abbr:"SCF",rating:75,budget:25000000,wageBudget:1000000},
+  "gladbach":{id:"gladbach",name:"Borussia M'gladbach",short:"Gladbach",leagueId:"bundesliga",bg:"#000000",fg:"#FFFFFF",abbr:"BMG",rating:74,budget:20000000,wageBudget:1100000},
+  "hamburger-sv":{id:"hamburger-sv",name:"Hamburger SV",short:"HSV",leagueId:"bundesliga",bg:"#FFFFFF",fg:"#0F3F94",abbr:"HSV",rating:71,budget:15000000,wageBudget:700000},
+  "heidenheim":{id:"heidenheim",name:"1. FC Heidenheim",short:"Heidenheim",leagueId:"bundesliga",bg:"#003D7D",fg:"#E2001A",abbr:"FCH",rating:68,budget:8000000,wageBudget:450000},
+  "hoffenheim":{id:"hoffenheim",name:"TSG Hoffenheim",short:"Hoffenheim",leagueId:"bundesliga",bg:"#1C63B7",fg:"#FFFFFF",abbr:"TSG",rating:73,budget:20000000,wageBudget:1000000},
+  "koln":{id:"koln",name:"1. FC Köln",short:"Köln",leagueId:"bundesliga",bg:"#ED1C24",fg:"#FFFFFF",abbr:"KOE",rating:71,budget:15000000,wageBudget:700000},
+  "leverkusen":{id:"leverkusen",name:"Bayer Leverkusen",short:"Leverkusen",leagueId:"bundesliga",bg:"#E32221",fg:"#000000",abbr:"B04",rating:83,budget:60000000,wageBudget:2200000},
+  "mainz":{id:"mainz",name:"1. FSV Mainz 05",short:"Mainz",leagueId:"bundesliga",bg:"#C3141E",fg:"#FFFFFF",abbr:"M05",rating:72,budget:15000000,wageBudget:750000},
+  "rb-leipzig":{id:"rb-leipzig",name:"RB Leipzig",short:"Leipzig",leagueId:"bundesliga",bg:"#FFFFFF",fg:"#DD0741",abbr:"RBL",rating:82,budget:70000000,wageBudget:2200000},
+  "st-pauli":{id:"st-pauli",name:"FC St. Pauli",short:"St. Pauli",leagueId:"bundesliga",bg:"#662D2A",fg:"#FFFFFF",abbr:"STP",rating:68,budget:9000000,wageBudget:450000},
+  "stuttgart":{id:"stuttgart",name:"VfB Stuttgart",short:"Stuttgart",leagueId:"bundesliga",bg:"#FFFFFF",fg:"#E32219",abbr:"VFB",rating:78,budget:40000000,wageBudget:1500000},
+  "union-berlin":{id:"union-berlin",name:"Union Berlin",short:"Union",leagueId:"bundesliga",bg:"#E60000",fg:"#FFFFFF",abbr:"FCU",rating:73,budget:20000000,wageBudget:800000},
+  "werder-bremen":{id:"werder-bremen",name:"Werder Bremen",short:"Bremen",leagueId:"bundesliga",bg:"#1D9053",fg:"#FFFFFF",abbr:"SVW",rating:74,budget:22000000,wageBudget:1000000},
+  "wolfsburg":{id:"wolfsburg",name:"VfL Wolfsburg",short:"Wolfsburg",leagueId:"bundesliga",bg:"#65B32E",fg:"#FFFFFF",abbr:"WOB",rating:74,budget:25000000,wageBudget:1100000}
 };
 
-/* ==================== DATA: PLAYERS ==================== */
-/* Compact format per player: [name, position, age, overall] */
-/* Positions: GK, CB, LB, RB, CDM, CM, CAM, LW, RW, ST */
-const SQUADS = {
-  "arsenal": [
-    ["David Raya","GK",30,85],["Kepa Arrizabalaga","GK",31,79],
-    ["William Saliba","CB",25,86],["Gabriel Magalhães","CB",28,85],
-    ["Piero Hincapié","CB",24,82],["Cristhian Mosquera","CB",22,76],
-    ["Ben White","RB",28,82],["Jurriën Timber","RB",25,83],
-    ["Riccardo Calafiori","LB",24,82],["Myles Lewis-Skelly","LB",19,78],
-    ["Declan Rice","CDM",27,87],["Martín Zubimendi","CDM",27,85],
-    ["Bruno Guimarães","CM",28,84],["Martin Ødegaard","CAM",27,87],
-    ["Mikel Merino","CM",30,82],["Ethan Nwaneri","CAM",19,78],
-    ["Eberechi Eze","CAM",28,84],["Bukayo Saka","RW",24,87],
-    ["Noni Madueke","RW",24,79],["Christos Tzolis","LW",24,79],
-    ["Gabriel Martinelli","LW",25,82],["Leandro Trossard","LW",31,81],
-    ["Viktor Gyökeres","ST",28,85],["Kai Havertz","ST",27,83],
-    ["Gabriel Jesus","ST",29,81]
-  ],
-  "aston-villa": [
-    ["Emiliano Martínez","GK",33,84],["Robin Olsen","GK",36,74],["Marco Bizot","GK",35,72],
-    ["Ezri Konsa","CB",28,81],["Pau Torres","CB",29,81],["Tyrone Mings","CB",33,77],["Victor Lindelöf","CB",32,77],
-    ["Matty Cash","RB",28,78],["Lucas Digne","LB",33,78],["Ian Maatsen","LB",24,79],
-    ["Boubacar Kamara","CDM",26,82],["Amadou Onana","CDM",24,81],
-    ["Douglas Luiz","CM",28,82],["Youri Tielemans","CM",29,83],["John McGinn","CM",32,79],
-    ["Harvey Elliott","CAM",23,79],["Emiliano Buendía","CAM",29,78],["Morgan Rogers","CAM",23,81],
-    ["Leon Bailey","RW",28,79],["Jadon Sancho","LW",26,79],["Donyell Malen","RW",27,79],
-    ["Ollie Watkins","ST",30,83],["Tammy Abraham","ST",28,78]
-  ],
-  "bournemouth": [
-    ["Đorđe Petrović","GK",26,79],["Mark Travers","GK",27,73],["Fraser Forster","GK",38,73],
-    ["Adam Smith","RB",35,72],["Julián Araujo","RB",25,75],["James Hill","CB",24,75],
-    ["Marcos Senesi","CB",29,79],["Bafodé Diakité","CB",25,78],
-    ["Adrien Truffert","LB",24,77],["Miloš Kerkez","LB",23,78],["Julio Soler","LB",21,74],
-    ["Tyler Adams","CDM",27,79],["Lewis Cook","CDM",29,76],
-    ["Ryan Christie","CM",31,77],["Alex Scott","CM",22,77],["Marcus Tavernier","CM",27,77],
-    ["Justin Kluivert","LW",27,79],["David Brooks","RW",29,75],["Amine Adli","LW",26,76],
-    ["Ben Doak","RW",20,74],["Evanilson","ST",26,79],["Enes Ünal","ST",29,75]
-  ],
-  "brentford": [
-    ["Caoimhín Kelleher","GK",27,78],["Hákon Valdimarsson","GK",24,72],["Matthew Cox","GK",22,68],
-    ["Aaron Hickey","RB",24,77],["Michael Kayode","RB",21,75],
-    ["Rico Henry","LB",28,77],["Keane Lewis-Potter","LB",25,76],
-    ["Nathan Collins","CB",25,80],["Sepp van den Berg","CB",24,78],
-    ["Ethan Pinnock","CB",33,77],["Kristoffer Ajer","CB",28,76],
-    ["Jordan Henderson","CDM",36,76],["Vitaly Janelt","CDM",28,76],
-    ["Mathias Jensen","CM",30,77],["Mikkel Damsgaard","CAM",26,79],
-    ["Yehor Yarmoliuk","CM",22,74],["Frank Onyeka","CM",28,75],
-    ["Kevin Schade","LW",24,78],["Dango Ouattara","RW",24,77],
-    ["Yoane Wissa","ST",29,79],["Igor Thiago","ST",25,78],
-    ["Fábio Carvalho","CAM",23,75]
-  ],
-  "brighton": [
-    ["Bart Verbruggen","GK",24,82],["Jason Steele","GK",36,74],["Tom McGill","GK",26,68],
-    ["Lewis Dunk","CB",35,79],["Olivier Boscagli","CB",29,78],["Diego Coppola","CB",23,77],
-    ["Tariq Lamptey","RB",26,76],["Joël Veltman","RB",34,75],
-    ["Ferdi Kadıoğlu","LB",27,79],["Maxim De Cuyper","LB",26,77],
-    ["Mats Wieffer","CDM",27,78],["Pascal Groß","CM",35,78],
-    ["Yasin Ayari","CM",23,77],["Matt O'Riley","CM",26,78],["Jack Hinshelwood","CM",21,75],
-    ["Malick Yalcouyé","CM",21,74],["Kaoru Mitoma","LW",29,82],["Yankuba Minteh","RW",22,78],
-    ["Georginio Rutter","CAM",24,78],["Brajan Gruda","CAM",22,76],
-    ["Diego Gómez","CM",23,76],["Charalampos Kostoulas","ST",19,76],
-    ["Evan Ferguson","ST",22,77],["Stefanos Tzimas","ST",20,74]
-  ],
-  "burnley": [
-    ["Martin Dúbravka","GK",37,75],["Václav Hladký","GK",36,71],["Max Weiß","GK",22,70],
-    ["Kyle Walker","RB",36,76],["Connor Roberts","RB",31,74],["Oliver Sonne","RB",25,72],
-    ["Jordan Beyer","CB",26,75],["Axel Tuanzebe","CB",28,74],["Hjalmar Ekdal","CB",27,73],
-    ["Joe Worrall","CB",29,72],["Hannes Delcroix","CB",27,72],["Lucas Pires","LB",25,73],
-    ["Josh Cullen","CDM",30,75],["Josh Laurent","CM",31,72],
-    ["James Ward-Prowse","CM",31,77],["Aaron Ramsey","CAM",23,74],["Mike Trésor","CAM",27,75],
-    ["Jacob Bruun Larsen","LW",27,75],["Marcus Edwards","RW",27,76],
-    ["Armando Broja","ST",24,75],["Lyle Foster","ST",26,74],["Ashley Barnes","ST",37,68],
-    ["Zian Flemming","CAM",27,72]
-  ],
-  "chelsea": [
-    ["Robert Sánchez","GK",28,80],["Filip Jörgensen","GK",24,77],["Mike Penders","GK",21,74],
-    ["Reece James","RB",26,83],["Malo Gusto","RB",23,79],
-    ["Marc Cucurella","LB",28,82],["Pep Chavarria","LB",24,76],["Marco Palestra","RB",21,75],
-    ["Levi Colwill","CB",23,81],["Wesley Fofana","CB",25,80],["Maxence Lacroix","CB",26,80],
-    ["Tosin Adarabioyo","CB",28,78],
-    ["Moisés Caicedo","CDM",24,85],["Roméo Lavia","CDM",22,78],
-    ["Enzo Fernández","CM",25,84],["Jordan Henderson","CM",36,76],
-    ["Morgan Rogers","CAM",23,81],["Cole Palmer","CAM",24,86],
-    ["Pedro Neto","LW",26,82],["Alejandro Garnacho","LW",22,80],
-    ["Jamie Gittens","LW",22,78],["Estevão","RW",19,78],
-    ["João Pedro","ST",24,82],["Danny Welbeck","ST",36,75],["Liam Delap","ST",23,78]
-  ],
-  "crystal-palace": [
-    ["Dean Henderson","GK",29,80],["Walter Benítez","GK",33,76],["Remi Matthews","GK",32,68],
-    ["Daniel Muñoz","RB",30,80],["Nathaniel Clyne","RB",35,72],
-    ["Axel Disasi","CB",28,79],["Maxence Lacroix","CB",26,80],["Chris Richards","CB",26,78],
-    ["Chadi Riad","CB",23,76],["Jaydee Canvot","CB",20,75],
-    ["Tyrick Mitchell","LB",26,78],["Borna Sosa","LB",28,76],
-    ["Cheick Doucouré","CDM",26,78],["Jefferson Lerma","CDM",31,77],
-    ["Adam Wharton","CM",22,81],["Will Hughes","CM",31,74],["Daichi Kamada","CAM",29,77],
-    ["Dwight McNeil","LW",26,77],["Ismaïla Sarr","RW",28,80],["Yéremy Pino","RW",23,78],
-    ["Evann Guessand","ST",24,77],["Jean-Philippe Mateta","ST",29,80],
-    ["Eddie Nketiah","ST",27,77]
-  ],
-  "everton": [
-    ["Jordan Pickford","GK",32,83],["Mark Travers","GK",27,73],["Tom King","GK",31,68],
-    ["Jake O'Brien","CB",25,79],["Jarrad Branthwaite","CB",24,82],["James Tarkowski","CB",33,79],
-    ["Michael Keane","CB",33,75],["Vitaliy Mykolenko","LB",27,78],["Nathan Patterson","RB",24,75],
-    ["Séamus Coleman","RB",37,70],
-    ["James Garner","CM",25,78],["Idrissa Gueye","CDM",36,75],
-    ["Kiernan Dewsbury-Hall","CM",27,79],["Christian Nørgaard","CDM",32,78],
-    ["Harrison Armstrong","CM",19,72],["Charly Alcaraz","CAM",23,76],
-    ["Jack Grealish","LW",30,80],["Dwight McNeil","LW",26,77],
-    ["Tyler Dibling","RW",20,76],["Brennan Johnson","RW",25,79],
-    ["Iliman Ndiaye","CAM",26,78],["Thierno Barry","ST",23,77],["Beto","ST",28,76]
-  ],
-  "fulham": [
-    ["Bernd Leno","GK",34,80],["Benjamin Lecomte","GK",35,73],["Steven Benda","GK",28,70],
-    ["Kenny Tete","RB",30,78],["Timothy Castagne","RB",30,78],
-    ["Antonee Robinson","LB",28,80],["Ryan Sessegnon","LB",26,76],
-    ["Calvin Bassey","CB",26,79],["Joachim Andersen","CB",30,79],["Jorge Cuenca","CB",26,76],
-    ["Harrison Reed","CDM",31,75],["Sander Berge","CDM",28,78],
-    ["Tom Cairney","CM",35,76],["Shea Charles","CM",22,74],["César Palacios","CM",21,74],
-    ["Oscar Bobb","RW",23,78],["Alex Iwobi","RW",30,78],["Kevin","LW",23,78],
-    ["Emile Smith Rowe","CAM",26,78],["Gonzalo García","ST",22,77],
-    ["Rodrigo Muniz","ST",25,78],["Josh King","ST",19,72]
-  ],
-  "leeds-united": [
-    ["Lucas Perri","GK",28,78],["Karl Darlow","GK",35,72],["Illan Meslier","GK",26,78],
-    ["Jayden Bogle","RB",26,76],["Djed Spence","RB",26,77],
-    ["Gabriel Gudmundsson","LB",27,76],["Joe Rothwell","CM",31,75],
-    ["Ethan Ampadu","CB",26,78],["Pascal Struijk","CB",26,78],["Jaka Bijol","CB",27,78],
-    ["Sebastiaan Bornauw","CB",27,76],
-    ["Daniel James","RW",28,78],["Willy Gnonto","LW",22,78],["Brenden Aaronson","CAM",25,77],
-    ["Anton Stach","CM",27,78],["Sean Longstaff","CM",28,76],["Ilia Gruev","CDM",26,76],
-    ["Dominik Szoboszlai","CM",25,80],
-    ["Lukas Nmecha","ST",27,76],["Joël Piroe","ST",27,77],["Mateo Joseph","ST",22,75]
-  ],
-  "liverpool": [
-    ["Alisson Becker","GK",34,86],["Giorgi Mamardashvili","GK",25,82],["Freddie Woodman","GK",29,73],
-    ["Virgil van Dijk","CB",35,85],["Jérémy Jacquet","CB",21,76],["Giovanni Leoni","CB",20,75],
-    ["Joe Gomez","CB",29,78],
-    ["Miloš Kerkez","LB",23,78],["Kostas Tsimikas","LB",30,77],
-    ["Jeremie Frimpong","RB",25,79],["Conor Bradley","RB",23,78],
-    ["Ronald Araújo","CB",27,82],
-    ["Alexis Mac Allister","CM",27,84],["Dominik Szoboszlai","CM",25,83],
-    ["Ryan Gravenberch","CDM",24,82],["Wataru Endo","CDM",33,76],
-    ["Florian Wirtz","CAM",23,87],["Harvey Elliott","CAM",23,79],
-    ["Federico Chiesa","RW",28,80],["Bradley Barcola","LW",23,82],["Cody Gakpo","LW",27,82],
-    ["Alexander Isak","ST",26,86],["Hugo Ekitike","ST",24,82],["Víctor Muñoz","RW",22,76]
-  ],
-  "man-city": [
-    ["Gianluigi Donnarumma","GK",27,88],["Gerónimo Rulli","GK",34,78],["Stefan Ortega","GK",33,80],
-    ["Kyle Walker","RB",36,76],["Matheus Nunes","RB",27,79],["Rico Lewis","RB",21,79],
-    ["Joško Gvardiol","LB",24,84],["Rayan Aït-Nouri","LB",25,80],
-    ["Rúben Dias","CB",29,87],["Marc Guéhi","CB",26,82],["Abdukodir Khusanov","CB",22,78],
-    ["Nathan Aké","CB",31,80],
-    ["Rodri","CDM",30,89],["Nico González","CDM",24,80],
-    ["Elliot Anderson","CM",23,80],["Bernardo Silva","CM",32,84],["Mateo Kovačić","CM",32,82],
-    ["Phil Foden","CAM",26,85],["Tijjani Reijnders","CM",28,81],
-    ["Sávio","RW",22,79],["Jérémy Doku","LW",24,81],
-    ["Omar Marmoush","ST",27,82],["Erling Haaland","ST",26,91]
-  ],
-  "man-united": [
-    ["Senne Lammens","GK",24,78],["Karl Darlow","GK",35,72],["Tom Heaton","GK",40,70],
-    ["Diogo Dalot","RB",27,81],["Noussair Mazraoui","RB",28,80],
-    ["Patrick Dorgu","LB",22,78],["Luke Shaw","LB",31,78],
-    ["Matthijs de Ligt","CB",27,82],["Lisandro Martínez","CB",28,82],["Harry Maguire","CB",33,79],
-    ["Leny Yoro","CB",20,79],
-    ["Carlos Baleba","CDM",22,81],["Manuel Ugarte","CDM",25,78],["Andrey Santos","CM",22,78],
-    ["Bruno Fernandes","CAM",31,85],["Mason Mount","CAM",27,78],["Youri Tielemans","CM",29,83],
-    ["Amad Diallo","RW",24,79],["Bryan Mbeumo","RW",27,81],
-    ["Matheus Cunha","ST",27,82],["Marcus Rashford","ST",28,82],
-    ["Benjamin Šeško","ST",23,81],["Joshua Zirkzee","ST",25,78]
-  ],
-  "newcastle": [
-    ["Nick Pope","GK",34,81],["Lukáš Horníček","GK",23,74],["Ewen Jaouen","GK",20,70],
-    ["Tino Livramento","RB",23,80],["Kieran Trippier","RB",35,76],["Lewis Hall","LB",22,79],
-    ["Sven Botman","CB",26,80],["Fabian Schär","CB",34,78],["Malick Thiaw","CB",25,79],
-    ["Dan Burn","CB",34,76],
-    ["Aladji Bamba","CM",20,74],["Joelinton","CM",30,81],["Sean Steur","CM",19,72],
-    ["Joe Willock","CM",27,76],["Lewis Miley","CM",20,75],["Jacob Ramsey","CM",25,77],
-    ["Bruno Guimarães","CM",28,84],
-    ["Anthony Elanga","RW",24,78],["Jacob Murphy","RW",31,77],
-    ["Harvey Barnes","LW",29,79],
-    ["Yoane Wissa","ST",29,79],["William Osula","ST",23,75],["Nick Woltemade","ST",24,82],
-    ["Bazoumana Touré","RW",19,73]
-  ],
-  "nottingham-forest": [
-    ["Matz Sels","GK",34,79],["Carlos Miguel","GK",28,76],["John Victor","GK",30,74],
-    ["Oleksandr Zinchenko","LB",29,78],["Nuno Tavares","LB",26,76],["Ola Aina","RB",30,78],
-    ["Nikola Milenković","CB",29,80],["Murillo","CB",24,81],
-    ["Morgan Gibbs-White","CAM",26,82],["Elliot Anderson","CM",23,80],
-    ["Ibrahim Sangaré","CDM",29,79],["Ryan Yates","CM",29,75],["Douglas Luiz","CM",28,82],
-    ["Danilo","CM",25,78],
-    ["Callum Hudson-Odoi","LW",26,78],["Anthony Elanga","RW",24,78],["Dilane Bakwa","RW",24,77],
-    ["Chris Wood","ST",35,78],["Igor Jesus","ST",25,78],["Taiwo Awoniyi","ST",29,77]
-  ],
-  "sunderland": [
-    ["Robin Roefs","GK",23,76],["Anthony Patterson","GK",26,76],["Simon Moore","GK",36,70],
-    ["Trai Hume","RB",24,77],["Nordi Mukiele","RB",28,78],
-    ["Dennis Cirkin","LB",24,76],["Arthur Masuaku","LB",32,74],
-    ["Dan Ballard","CB",26,77],["Omar Alderete","CB",29,78],["Jenson Seelt","CB",23,74],
-    ["Luke O'Nien","CB",31,74],
-    ["Granit Xhaka","CDM",34,80],["Noah Sadiki","CM",21,76],["Habib Diarra","CM",22,76],
-    ["Chris Rigg","CAM",19,76],["Ennis Mundle","LW",23,76],
-    ["Wilson Isidor","ST",26,77],["Brian Brobbey","ST",24,76],["Bertrand Traoré","RW",30,75],
-    ["Romaine Mundle","LW",23,75],["Milan Aleksić","CM",21,74],["Chemsdine Talbi","RW",21,74]
-  ],
-  "tottenham": [
-    ["Antonín Kinský","GK",23,78],["Guglielmo Vicario","GK",30,81],["Martin Dúbravka","GK",37,75],
-    ["Pedro Porro","RB",26,81],["Andy Robertson","LB",32,82],["Destiny Udogie","LB",23,80],
-    ["Micky van de Ven","CB",25,82],["Jan Paul van Hecke","CB",26,81],
-    ["Marcos Senesi","CB",29,79],["Cristian Romero","CB",28,84],
-    ["Sandro Tonali","CDM",26,83],["Rodrigo Bentancur","CM",29,80],
-    ["Conor Gallagher","CM",26,80],["Lucas Bergvall","CM",20,78],["Archie Gray","CM",20,78],
-    ["James Maddison","CAM",29,80],
-    ["Sávio","RW",22,79],["Mohammed Kudus","RW",26,81],
-    ["Omar Marmoush","ST",27,82],["Dominic Solanke","ST",28,80],
-    ["Richarlison","ST",29,78],["Mateus Fernandes","CM",22,77]
-  ],
-  "west-ham": [
-    ["Mads Hermansen","GK",26,78],["Alphonse Areola","GK",33,78],["Finlay Herrick","GK",20,68],
-    ["Kyle Walker-Peters","RB",29,77],["Aaron Wan-Bissaka","RB",28,79],["Joël Veltman","RB",34,75],
-    ["Maximilian Kilman","CB",29,78],["Konstantinos Mavropanos","CB",29,77],
-    ["Jean-Clair Todibo","CB",26,78],["Morato","CB",25,76],
-    ["El Hadji Malick Diouf","LB",22,77],["Ollie Scarles","LB",21,74],
-    ["Edson Álvarez","CDM",29,80],["Tomáš Souček","CM",31,78],
-    ["James Ward-Prowse","CM",31,77],["Soungoutou Magassa","CDM",23,76],
-    ["Mohamadou Kanté","CM",21,73],
-    ["Jarrod Bowen","RW",29,82],["Maxwel Cornet","LW",30,75],["Manor Solomon","LW",27,76],
-    ["Taty Castellanos","ST",28,78],["Niclas Füllkrug","ST",33,77],
-    ["Callum Wilson","ST",34,74],["Pablo Felipe","ST",23,74]
-  ],
-  "wolves": [
-    ["José Sá","GK",33,80],["Sam Johnstone","GK",33,76],["Dan Bentley","GK",33,71],
-    ["Nélson Semedo","RB",33,77],["Matt Doherty","RB",34,74],
-    ["Rayan Aït-Nouri","LB",25,80],["Hugo Bueno","LB",23,75],
-    ["Toti Gomes","CB",27,77],["Santiago Bueno","CB",27,76],
-    ["Emmanuel Agbadou","CB",29,78],["Yerson Mosquera","CB",25,77],
-    ["João Gomes","CDM",25,80],["André","CDM",25,78],
-    ["Marshall Munetsi","CM",29,76],["Jean-Ricner Bellegarde","CM",28,78],
-    ["Rodrigo Gomes","RW",23,76],["Hwang Hee-chan","LW",30,78],["Pedro Lima","RW",20,74],
-    ["Jørgen Strand Larsen","ST",26,78],["Tolu Arokodare","ST",25,77],
-    ["Saša Kalajdžić","ST",29,74],["Fábio Silva","ST",24,76]
-  ]
-};
+/* ============================================================
+   DATA: PLACEHOLDER PLAYERS
+   Small built-in set so the game runs standalone.
+   If data/players.js exists, it will replace this at boot.
+   ============================================================ */
+const PLACEHOLDER_PLAYERS = [
+  {id:"ars-1",name:"David Raya",clubId:"arsenal",position:"GK",age:30,overall:85,nationality:"Spain"},
+  {id:"ars-2",name:"William Saliba",clubId:"arsenal",position:"CB",age:25,overall:86,nationality:"France"},
+  {id:"ars-3",name:"Gabriel Magalhães",clubId:"arsenal",position:"CB",age:28,overall:85,nationality:"Brazil"},
+  {id:"ars-4",name:"Ben White",clubId:"arsenal",position:"RB",age:28,overall:82,nationality:"England"},
+  {id:"ars-5",name:"Riccardo Calafiori",clubId:"arsenal",position:"LB",age:24,overall:82,nationality:"Italy"},
+  {id:"ars-6",name:"Declan Rice",clubId:"arsenal",position:"CDM",age:27,overall:87,nationality:"England"},
+  {id:"ars-7",name:"Martín Zubimendi",clubId:"arsenal",position:"CDM",age:27,overall:85,nationality:"Spain"},
+  {id:"ars-8",name:"Martin Ødegaard",clubId:"arsenal",position:"CAM",age:27,overall:87,nationality:"Norway"},
+  {id:"ars-9",name:"Bukayo Saka",clubId:"arsenal",position:"RW",age:24,overall:87,nationality:"England"},
+  {id:"ars-10",name:"Gabriel Martinelli",clubId:"arsenal",position:"LW",age:25,overall:82,nationality:"Brazil"},
+  {id:"ars-11",name:"Viktor Gyökeres",clubId:"arsenal",position:"ST",age:28,overall:85,nationality:"Sweden"},
+  {id:"ars-12",name:"Kai Havertz",clubId:"arsenal",position:"ST",age:27,overall:83,nationality:"Germany"},
+  {id:"ars-13",name:"Eberechi Eze",clubId:"arsenal",position:"CAM",age:28,overall:84,nationality:"England"},
+  {id:"ars-14",name:"Bruno Guimarães",clubId:"arsenal",position:"CM",age:28,overall:84,nationality:"Brazil"},
+  {id:"ars-15",name:"Jurriën Timber",clubId:"arsenal",position:"RB",age:25,overall:83,nationality:"Netherlands"},
+  {id:"che-1",name:"Robert Sánchez",clubId:"chelsea",position:"GK",age:28,overall:80,nationality:"Spain"},
+  {id:"che-2",name:"Reece James",clubId:"chelsea",position:"RB",age:26,overall:83,nationality:"England"},
+  {id:"che-3",name:"Levi Colwill",clubId:"chelsea",position:"CB",age:23,overall:81,nationality:"England"},
+  {id:"che-4",name:"Wesley Fofana",clubId:"chelsea",position:"CB",age:25,overall:80,nationality:"France"},
+  {id:"che-5",name:"Marc Cucurella",clubId:"chelsea",position:"LB",age:28,overall:82,nationality:"Spain"},
+  {id:"che-6",name:"Moisés Caicedo",clubId:"chelsea",position:"CDM",age:24,overall:85,nationality:"Ecuador"},
+  {id:"che-7",name:"Enzo Fernández",clubId:"chelsea",position:"CM",age:25,overall:84,nationality:"Argentina"},
+  {id:"che-8",name:"Cole Palmer",clubId:"chelsea",position:"CAM",age:24,overall:86,nationality:"England"},
+  {id:"che-9",name:"Pedro Neto",clubId:"chelsea",position:"LW",age:26,overall:82,nationality:"Portugal"},
+  {id:"che-10",name:"João Pedro",clubId:"chelsea",position:"ST",age:24,overall:82,nationality:"Brazil"},
+  {id:"che-11",name:"Morgan Rogers",clubId:"chelsea",position:"CAM",age:23,overall:81,nationality:"England"},
+  {id:"liv-1",name:"Alisson Becker",clubId:"liverpool",position:"GK",age:34,overall:86,nationality:"Brazil"},
+  {id:"liv-2",name:"Virgil van Dijk",clubId:"liverpool",position:"CB",age:35,overall:85,nationality:"Netherlands"},
+  {id:"liv-3",name:"Ronald Araújo",clubId:"liverpool",position:"CB",age:27,overall:82,nationality:"Uruguay"},
+  {id:"liv-4",name:"Miloš Kerkez",clubId:"liverpool",position:"LB",age:23,overall:78,nationality:"Hungary"},
+  {id:"liv-5",name:"Jeremie Frimpong",clubId:"liverpool",position:"RB",age:25,overall:79,nationality:"Netherlands"},
+  {id:"liv-6",name:"Ryan Gravenberch",clubId:"liverpool",position:"CDM",age:24,overall:82,nationality:"Netherlands"},
+  {id:"liv-7",name:"Alexis Mac Allister",clubId:"liverpool",position:"CM",age:27,overall:84,nationality:"Argentina"},
+  {id:"liv-8",name:"Dominik Szoboszlai",clubId:"liverpool",position:"CM",age:25,overall:83,nationality:"Hungary"},
+  {id:"liv-9",name:"Florian Wirtz",clubId:"liverpool",position:"CAM",age:23,overall:87,nationality:"Germany"},
+  {id:"liv-10",name:"Bradley Barcola",clubId:"liverpool",position:"LW",age:23,overall:82,nationality:"France"},
+  {id:"liv-11",name:"Alexander Isak",clubId:"liverpool",position:"ST",age:26,overall:86,nationality:"Sweden"},
+  {id:"liv-12",name:"Hugo Ekitike",clubId:"liverpool",position:"ST",age:24,overall:82,nationality:"France"},
+  {id:"mci-1",name:"Gianluigi Donnarumma",clubId:"man-city",position:"GK",age:27,overall:88,nationality:"Italy"},
+  {id:"mci-2",name:"Rúben Dias",clubId:"man-city",position:"CB",age:29,overall:87,nationality:"Portugal"},
+  {id:"mci-3",name:"Marc Guéhi",clubId:"man-city",position:"CB",age:26,overall:82,nationality:"England"},
+  {id:"mci-4",name:"Joško Gvardiol",clubId:"man-city",position:"LB",age:24,overall:84,nationality:"Croatia"},
+  {id:"mci-5",name:"Rayan Aït-Nouri",clubId:"man-city",position:"LB",age:25,overall:80,nationality:"Algeria"},
+  {id:"mci-6",name:"Rodri",clubId:"man-city",position:"CDM",age:30,overall:89,nationality:"Spain"},
+  {id:"mci-7",name:"Elliot Anderson",clubId:"man-city",position:"CM",age:23,overall:80,nationality:"England"},
+  {id:"mci-8",name:"Phil Foden",clubId:"man-city",position:"CAM",age:26,overall:85,nationality:"England"},
+  {id:"mci-9",name:"Rayan Cherki",clubId:"man-city",position:"CAM",age:23,overall:82,nationality:"France"},
+  {id:"mci-10",name:"Iliman Ndiaye",clubId:"man-city",position:"LW",age:26,overall:81,nationality:"Senegal"},
+  {id:"mci-11",name:"Erling Haaland",clubId:"man-city",position:"ST",age:26,overall:91,nationality:"Norway"},
+  {id:"mun-1",name:"Senne Lammens",clubId:"man-united",position:"GK",age:24,overall:78,nationality:"Belgium"},
+  {id:"mun-2",name:"Matthijs de Ligt",clubId:"man-united",position:"CB",age:27,overall:82,nationality:"Netherlands"},
+  {id:"mun-3",name:"Lisandro Martínez",clubId:"man-united",position:"CB",age:28,overall:82,nationality:"Argentina"},
+  {id:"mun-4",name:"Diogo Dalot",clubId:"man-united",position:"RB",age:27,overall:81,nationality:"Portugal"},
+  {id:"mun-5",name:"Luke Shaw",clubId:"man-united",position:"LB",age:31,overall:78,nationality:"England"},
+  {id:"mun-6",name:"Carlos Baleba",clubId:"man-united",position:"CDM",age:22,overall:81,nationality:"Cameroon"},
+  {id:"mun-7",name:"Bruno Fernandes",clubId:"man-united",position:"CAM",age:32,overall:85,nationality:"Portugal"},
+  {id:"mun-8",name:"Youri Tielemans",clubId:"man-united",position:"CM",age:29,overall:83,nationality:"Belgium"},
+  {id:"mun-9",name:"Bryan Mbeumo",clubId:"man-united",position:"RW",age:27,overall:81,nationality:"Cameroon"},
+  {id:"mun-10",name:"Matheus Cunha",clubId:"man-united",position:"ST",age:27,overall:82,nationality:"Brazil"},
+  {id:"mun-11",name:"Benjamin Šeško",clubId:"man-united",position:"ST",age:23,overall:81,nationality:"Slovenia"},
+  {id:"tot-1",name:"Guglielmo Vicario",clubId:"tottenham",position:"GK",age:30,overall:81,nationality:"Italy"},
+  {id:"tot-2",name:"Cristian Romero",clubId:"tottenham",position:"CB",age:28,overall:84,nationality:"Argentina"},
+  {id:"tot-3",name:"Micky van de Ven",clubId:"tottenham",position:"CB",age:25,overall:82,nationality:"Netherlands"},
+  {id:"tot-4",name:"Pedro Porro",clubId:"tottenham",position:"RB",age:26,overall:81,nationality:"Spain"},
+  {id:"tot-5",name:"Andy Robertson",clubId:"tottenham",position:"LB",age:32,overall:82,nationality:"Scotland"},
+  {id:"tot-6",name:"Sandro Tonali",clubId:"tottenham",position:"CDM",age:26,overall:83,nationality:"Italy"},
+  {id:"tot-7",name:"Conor Gallagher",clubId:"tottenham",position:"CM",age:26,overall:80,nationality:"England"},
+  {id:"tot-8",name:"James Maddison",clubId:"tottenham",position:"CAM",age:29,overall:80,nationality:"England"},
+  {id:"tot-9",name:"Mohammed Kudus",clubId:"tottenham",position:"RW",age:26,overall:81,nationality:"Ghana"},
+  {id:"tot-10",name:"Omar Marmoush",clubId:"tottenham",position:"ST",age:27,overall:82,nationality:"Egypt"},
+  {id:"new-1",name:"Nick Pope",clubId:"newcastle",position:"GK",age:34,overall:81,nationality:"England"},
+  {id:"new-2",name:"Sven Botman",clubId:"newcastle",position:"CB",age:26,overall:80,nationality:"Netherlands"},
+  {id:"new-3",name:"Malick Thiaw",clubId:"newcastle",position:"CB",age:25,overall:79,nationality:"Germany"},
+  {id:"new-4",name:"Tino Livramento",clubId:"newcastle",position:"RB",age:23,overall:80,nationality:"England"},
+  {id:"new-5",name:"Lewis Hall",clubId:"newcastle",position:"LB",age:22,overall:79,nationality:"England"},
+  {id:"new-6",name:"Bruno Guimarães",clubId:"newcastle",position:"CM",age:28,overall:84,nationality:"Brazil"},
+  {id:"new-7",name:"Joelinton",clubId:"newcastle",position:"CM",age:30,overall:81,nationality:"Brazil"},
+  {id:"new-8",name:"Anthony Elanga",clubId:"newcastle",position:"RW",age:24,overall:78,nationality:"Sweden"},
+  {id:"new-9",name:"Harvey Barnes",clubId:"newcastle",position:"LW",age:29,overall:79,nationality:"England"},
+  {id:"new-10",name:"Nick Woltemade",clubId:"newcastle",position:"ST",age:24,overall:82,nationality:"Germany"},
+  {id:"new-11",name:"Yoane Wissa",clubId:"newcastle",position:"ST",age:29,overall:79,nationality:"DR Congo"},
+  {id:"rm-1",name:"Thibaut Courtois",clubId:"real-madrid",position:"GK",age:34,overall:89,nationality:"Belgium"},
+  {id:"rm-2",name:"Antonio Rüdiger",clubId:"real-madrid",position:"CB",age:33,overall:85,nationality:"Germany"},
+  {id:"rm-3",name:"Dean Huijsen",clubId:"real-madrid",position:"CB",age:21,overall:82,nationality:"Spain"},
+  {id:"rm-4",name:"Trent Alexander-Arnold",clubId:"real-madrid",position:"RB",age:27,overall:85,nationality:"England"},
+  {id:"rm-5",name:"Álvaro Carreras",clubId:"real-madrid",position:"LB",age:23,overall:81,nationality:"Spain"},
+  {id:"rm-6",name:"Federico Valverde",clubId:"real-madrid",position:"CM",age:28,overall:86,nationality:"Uruguay"},
+  {id:"rm-7",name:"Jude Bellingham",clubId:"real-madrid",position:"CAM",age:23,overall:88,nationality:"England"},
+  {id:"rm-8",name:"Arda Güler",clubId:"real-madrid",position:"CAM",age:21,overall:82,nationality:"Turkey"},
+  {id:"rm-9",name:"Vinicius Júnior",clubId:"real-madrid",position:"LW",age:26,overall:89,nationality:"Brazil"},
+  {id:"rm-10",name:"Kylian Mbappé",clubId:"real-madrid",position:"ST",age:27,overall:91,nationality:"France"},
+  {id:"rm-11",name:"Rodrygo",clubId:"real-madrid",position:"RW",age:25,overall:85,nationality:"Brazil"},
+  {id:"bar-1",name:"Joan García",clubId:"barcelona",position:"GK",age:25,overall:82,nationality:"Spain"},
+  {id:"bar-2",name:"Pau Cubarsí",clubId:"barcelona",position:"CB",age:19,overall:83,nationality:"Spain"},
+  {id:"bar-3",name:"Ronald Araújo",clubId:"barcelona",position:"CB",age:27,overall:82,nationality:"Uruguay"},
+  {id:"bar-4",name:"Jules Koundé",clubId:"barcelona",position:"RB",age:27,overall:85,nationality:"France"},
+  {id:"bar-5",name:"Alejandro Balde",clubId:"barcelona",position:"LB",age:22,overall:82,nationality:"Spain"},
+  {id:"bar-6",name:"Pedri",clubId:"barcelona",position:"CM",age:23,overall:86,nationality:"Spain"},
+  {id:"bar-7",name:"Frenkie de Jong",clubId:"barcelona",position:"CM",age:28,overall:84,nationality:"Netherlands"},
+  {id:"bar-8",name:"Dani Olmo",clubId:"barcelona",position:"CAM",age:28,overall:85,nationality:"Spain"},
+  {id:"bar-9",name:"Lamine Yamal",clubId:"barcelona",position:"RW",age:19,overall:88,nationality:"Spain"},
+  {id:"bar-10",name:"Raphinha",clubId:"barcelona",position:"LW",age:29,overall:86,nationality:"Brazil"},
+  {id:"bar-11",name:"Robert Lewandowski",clubId:"barcelona",position:"ST",age:37,overall:84,nationality:"Poland"},
+  {id:"psg-1",name:"Matvei Safonov",clubId:"paris-sg",position:"GK",age:27,overall:82,nationality:"Russia"},
+  {id:"psg-2",name:"Marquinhos",clubId:"paris-sg",position:"CB",age:32,overall:85,nationality:"Brazil"},
+  {id:"psg-3",name:"Willian Pacho",clubId:"paris-sg",position:"CB",age:24,overall:83,nationality:"Ecuador"},
+  {id:"psg-4",name:"Achraf Hakimi",clubId:"paris-sg",position:"RB",age:27,overall:85,nationality:"Morocco"},
+  {id:"psg-5",name:"Nuno Mendes",clubId:"paris-sg",position:"LB",age:24,overall:84,nationality:"Portugal"},
+  {id:"psg-6",name:"Vitinha",clubId:"paris-sg",position:"CDM",age:26,overall:85,nationality:"Portugal"},
+  {id:"psg-7",name:"João Neves",clubId:"paris-sg",position:"CM",age:21,overall:84,nationality:"Portugal"},
+  {id:"psg-8",name:"Fabián Ruiz",clubId:"paris-sg",position:"CM",age:30,overall:84,nationality:"Spain"},
+  {id:"psg-9",name:"Désiré Doué",clubId:"paris-sg",position:"RW",age:21,overall:82,nationality:"France"},
+  {id:"psg-10",name:"Khvicha Kvaratskhelia",clubId:"paris-sg",position:"LW",age:25,overall:86,nationality:"Georgia"},
+  {id:"psg-11",name:"Ousmane Dembélé",clubId:"paris-sg",position:"ST",age:29,overall:86,nationality:"France"},
+  {id:"fio-1",name:"David de Gea",clubId:"fiorentina",position:"GK",age:35,overall:82,nationality:"Spain"},
+  {id:"fio-2",name:"Pietro Comuzzo",clubId:"fiorentina",position:"CB",age:21,overall:78,nationality:"Italy"},
+  {id:"fio-3",name:"Luca Ranieri",clubId:"fiorentina",position:"CB",age:27,overall:76,nationality:"Italy"},
+  {id:"fio-4",name:"Dodô",clubId:"fiorentina",position:"RB",age:27,overall:80,nationality:"Brazil"},
+  {id:"fio-5",name:"Robin Gosens",clubId:"fiorentina",position:"LB",age:31,overall:79,nationality:"Germany"},
+  {id:"fio-6",name:"Nicolò Fagioli",clubId:"fiorentina",position:"CM",age:25,overall:79,nationality:"Italy"},
+  {id:"fio-7",name:"Cher Ndour",clubId:"fiorentina",position:"CM",age:22,overall:75,nationality:"Italy"},
+  {id:"fio-8",name:"Nicolás González",clubId:"fiorentina",position:"RW",age:28,overall:80,nationality:"Argentina"},
+  {id:"fio-9",name:"Franco Mastantuono",clubId:"fiorentina",position:"CAM",age:19,overall:79,nationality:"Argentina"},
+  {id:"fio-10",name:"Moise Kean",clubId:"fiorentina",position:"ST",age:26,overall:82,nationality:"Italy"},
+  {id:"fio-11",name:"Mateo Pellegrino",clubId:"fiorentina",position:"ST",age:25,overall:76,nationality:"Argentina"},
+  {id:"bvb-1",name:"Gregor Kobel",clubId:"dortmund",position:"GK",age:28,overall:85,nationality:"Switzerland"},
+  {id:"bvb-2",name:"Nico Schlotterbeck",clubId:"dortmund",position:"CB",age:26,overall:83,nationality:"Germany"},
+  {id:"bvb-3",name:"Waldemar Anton",clubId:"dortmund",position:"CB",age:30,overall:79,nationality:"Germany"},
+  {id:"bvb-4",name:"Julian Ryerson",clubId:"dortmund",position:"RB",age:28,overall:78,nationality:"Norway"},
+  {id:"bvb-5",name:"Ramy Bensebaini",clubId:"dortmund",position:"LB",age:31,overall:78,nationality:"Algeria"},
+  {id:"bvb-6",name:"Pascal Groß",clubId:"dortmund",position:"CDM",age:35,overall:79,nationality:"Germany"},
+  {id:"bvb-7",name:"Felix Nmecha",clubId:"dortmund",position:"CM",age:25,overall:80,nationality:"Germany"},
+  {id:"bvb-8",name:"Julian Brandt",clubId:"dortmund",position:"CAM",age:30,overall:81,nationality:"Germany"},
+  {id:"bvb-9",name:"Karim Adeyemi",clubId:"dortmund",position:"LW",age:24,overall:80,nationality:"Germany"},
+  {id:"bvb-10",name:"Serhou Guirassy",clubId:"dortmund",position:"ST",age:30,overall:83,nationality:"Guinea"},
+  {id:"bvb-11",name:"Maximilian Beier",clubId:"dortmund",position:"ST",age:23,overall:79,nationality:"Germany"},
+  {id:"bay-1",name:"Manuel Neuer",clubId:"bayern-munich",position:"GK",age:40,overall:86,nationality:"Germany"},
+  {id:"bay-2",name:"Dayot Upamecano",clubId:"bayern-munich",position:"CB",age:27,overall:84,nationality:"France"},
+  {id:"bay-3",name:"Kim Min-jae",clubId:"bayern-munich",position:"CB",age:29,overall:83,nationality:"South Korea"},
+  {id:"bay-4",name:"Joshua Kimmich",clubId:"bayern-munich",position:"RB",age:31,overall:86,nationality:"Germany"},
+  {id:"bay-5",name:"Alphonso Davies",clubId:"bayern-munich",position:"LB",age:25,overall:85,nationality:"Canada"},
+  {id:"bay-6",name:"Aleksandar Pavlovic",clubId:"bayern-munich",position:"CDM",age:22,overall:81,nationality:"Germany"},
+  {id:"bay-7",name:"Leon Goretzka",clubId:"bayern-munich",position:"CM",age:31,overall:82,nationality:"Germany"},
+  {id:"bay-8",name:"Michael Olise",clubId:"bayern-munich",position:"CAM",age:24,overall:85,nationality:"France"},
+  {id:"bay-9",name:"Jamal Musiala",clubId:"bayern-munich",position:"CAM",age:23,overall:86,nationality:"Germany"},
+  {id:"bay-10",name:"Harry Kane",clubId:"bayern-munich",position:"ST",age:33,overall:89,nationality:"England"},
+  {id:"bay-11",name:"Leroy Sané",clubId:"bayern-munich",position:"RW",age:30,overall:83,nationality:"Germany"}
+];
 
-/* Expand compact squads into full player objects */
-let PLAYERS = {};
-(function buildPlayers(){
-  for (const clubId of Object.keys(SQUADS)){
-    const raw = SQUADS[clubId];
-    raw.forEach(([name,position,age,overall],i)=>{
-      const id = clubId + "-" + name.toLowerCase().replace(/[^a-z0-9]+/g,"-") + "-" + i;
-      PLAYERS[id] = {
-        id, name, position, age, overall,
-        clubId,
-        value: estimateValue(overall, age),
-        wage: estimateWage(overall),
-        nationality: "—"
-      };
-    });
+/* ============================================================
+   HELPERS
+   ============================================================ */
+const $ = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+function el(tag, attrs={}, children=[]){
+  const node = document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs)){
+    if(k==="class") node.className = v;
+    else if(k==="html") node.innerHTML = v;
+    else if(k==="text") node.textContent = v;
+    else if(k.startsWith("on") && typeof v==="function") node.addEventListener(k.slice(2).toLowerCase(), v);
+    else if(v!=null && v!==false) node.setAttribute(k,v);
   }
-})();
-
-function estimateValue(overall, age){
-  const base = Math.pow(Math.max(0, overall - 50), 2.4) * 1800;
-  const ageMult = age <= 21 ? 1.6 : age <= 25 ? 1.3 : age <= 29 ? 1.0 : age <= 32 ? 0.65 : 0.35;
-  return Math.round((base * ageMult) / 100000) * 100000;
+  const kids = Array.isArray(children)?children:[children];
+  for(const c of kids){
+    if(c==null||c===false) continue;
+    if(typeof c==="string"||typeof c==="number") node.appendChild(document.createTextNode(String(c)));
+    else if(c instanceof Node) node.appendChild(c);
+  }
+  return node;
 }
-function estimateWage(overall){
-  return Math.max(10000, Math.round(Math.pow(Math.max(0, overall - 55), 1.9) * 25));
+function clearEl(node){ while(node.firstChild) node.removeChild(node.firstChild); }
+
+function formatMoney(n){
+  if(n==null) return "—";
+  if(Math.abs(n)>=1e6) return "£"+(n/1e6).toFixed(1)+"M";
+  if(Math.abs(n)>=1e3) return "£"+Math.round(n/1e3)+"k";
+  return "£"+n;
+}
+function formatDateLong(dateStr){
+  const d = new Date(dateStr+"T00:00:00Z");
+  const days=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${days[d.getUTCDay()]} ${d.getUTCDate()} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+}
+function addDays(dateStr, days){
+  const d = new Date(dateStr+"T00:00:00Z");
+  d.setUTCDate(d.getUTCDate()+days);
+  return d.toISOString().slice(0,10);
+}
+function randInt(min,max){ return Math.floor(min+Math.random()*(max-min+1)); }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function clamp(v,min,max){ return Math.max(min,Math.min(max,v)); }
+function pickWeighted(arr, weights){
+  let total = weights.reduce((a,b)=>a+b,0);
+  if(total<=0) return arr[0];
+  let r = Math.random()*total;
+  for(let i=0;i<arr.length;i++){ r -= weights[i]; if(r<=0) return arr[i]; }
+  return arr[arr.length-1];
 }
 
-/* ==================== STATE ==================== */
+function crestSvg(clubId, size=32){
+  const c = CLUBS[clubId];
+  if(!c) return "";
+  const s = size;
+  const r = s/2 - 2;
+  const cx = s/2, cy = s/2;
+  const fontSize = Math.round(s * 0.34);
+  const stroke = c.fg === "#FFFFFF" ? "rgba(0,0,0,.18)" : "rgba(255,255,255,.28)";
+  return `<svg viewBox="0 0 ${s} ${s}" width="${s}" height="${s}" xmlns="http://www.w3.org/2000/svg" style="display:block">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="${c.bg}" stroke="${stroke}" stroke-width="1.5"/>
+    <text x="${cx}" y="${cy + fontSize*0.36}" text-anchor="middle"
+      font-family="system-ui,-apple-system,sans-serif" font-weight="900"
+      font-size="${fontSize}" fill="${c.fg}" letter-spacing="0.3">${c.abbr}</text>
+  </svg>`;
+}
+function crestEl(clubId, size=28){
+  const span = document.createElement("span");
+  span.style.display="inline-flex"; span.style.flexShrink="0";
+  span.innerHTML = crestSvg(clubId, size);
+  return span.firstChild;
+}
+
+function posClass(pos){
+  if(pos==="GK") return "GK";
+  if(["CB","LB","RB"].includes(pos)) return "DEF";
+  if(["CDM","CM","CAM"].includes(pos)) return "MID";
+  return "FWD";
+}
+function ratingClass(o){
+  if(o>=84) return "elite";
+  if(o>=76) return "good";
+  if(o>=68) return "avg";
+  return "low";
+}
+function fatigueClass(v){
+  if(v>=80) return "fresh";
+  if(v>=60) return "okay";
+  if(v>=40) return "tired";
+  return "exhausted";
+}
+function fatigueLabel(v){
+  if(v>=90) return "Fresh";
+  if(v>=75) return "Good";
+  if(v>=60) return "Okay";
+  if(v>=40) return "Tired";
+  if(v>=20) return "Exhausted";
+  return "Critical";
+}
+function moraleClass(v){
+  if(v>=80) return "morale-high";
+  if(v>=60) return "morale-mid";
+  if(v>=40) return "morale-low";
+  return "morale-bad";
+}
+function moraleLabel(v){
+  if(v>=80) return "Happy";
+  if(v>=60) return "Content";
+  if(v>=40) return "Concerned";
+  if(v>=20) return "Unhappy";
+  return "Miserable";
+}
+function clubName(id){
+  return CLUBS[id]?.short || CLUBS[id]?.name || id;
+}
+
+/* ============================================================
+   STATE
+   ============================================================ */
 const state = {
   userClubId: null,
   currentDate: "2026-08-01",
   matchday: 1,
   fixtures: [],
   playerStates: {},
-  inbox: []
+  inbox: [],
+  userFormation: "4-3-3",
+  userLineup: null,
+  userBench: null,
+  allPlayers: []
 };
 
-function initStateFor(clubId){
-  state.userClubId = clubId;
-  state.currentDate = "2026-08-01";
-  state.matchday = 1;
-  state.playerStates = {};
-  for (const pid of Object.keys(PLAYERS)){
-    state.playerStates[pid] = {
-      fatigue: 100, morale: 75,
-      minutesThisSeason: 0, matchesThisSeason: 0
-    };
-  }
-  state.inbox = [{
-    id: "welcome",
-    title: "Welcome to " + CLUBS[clubId].name,
-    body: "Pick your team and get started. Play your first fixture from the Home tab.",
-    read: false
-  }];
-  state.fixtures = buildSeasonFixtures();
-}
-
-function saveState(){
-  try{ localStorage.setItem("fm-single-save", JSON.stringify(state)); }catch(e){}
-}
-function loadState(){
-  try{
-    const raw = localStorage.getItem("fm-single-save");
-    if (!raw) return false;
-    const parsed = JSON.parse(raw);
-    if (!parsed.userClubId || !parsed.fixtures) return false;
-    Object.assign(state, parsed);
-    return true;
-  }catch(e){ return false; }
-}
-
-/* ==================== FIXTURES ==================== */
-function buildSeasonFixtures(){
-  const clubs = LEAGUE.clubs;
-  const rounds = roundRobin(clubs);
-  const fixtures = [];
-  const startDate = "2026-08-01";
-
-  rounds.forEach((round, mdIdx)=>{
-    const matchday = mdIdx + 1;
-    const weekDate = addDays(startDate, mdIdx * 7);
-    round.forEach(([home, away], i)=>{
-      const dayOffset = i < 5 ? 0 : i < 8 ? 1 : i === 8 ? -1 : 2;
-      const times = ["12:30","15:00","15:00","15:00","17:30","14:00","16:30","19:00","20:00","20:00"];
-      fixtures.push({
-        id: `${matchday}-${home}-${away}`,
-        matchday,
-        date: addDays(weekDate, dayOffset),
-        time: times[i] || "15:00",
-        homeClubId: home,
-        awayClubId: away,
-        played: false,
-        homeScore: null,
-        awayScore: null
-      });
-    });
-  });
-  return fixtures;
-}
-
-function roundRobin(clubIds){
-  const teams = [...clubIds];
-  const n = teams.length;
-  const rounds = [];
-  const fixed = teams[0];
-  const rotating = teams.slice(1);
-  const half = n / 2;
-
-  for (let r = 0; r < n - 1; r++){
-    const left = [fixed, ...rotating.slice(0, half - 1)];
-    const right = rotating.slice(half - 1).reverse();
-    const pairs = [];
-    for (let i = 0; i < half; i++){
-      const a = left[i], b = right[i];
-      pairs.push(r % 2 === 0 ? [a,b] : [b,a]);
-    }
-    rounds.push(pairs);
-    rotating.unshift(rotating.pop());
-  }
-
-  const second = rounds.map(round => round.map(([h,a]) => [a,h]));
-  return [...rounds, ...second];
-}
-
-function addDays(dateStr, days){
-  const d = new Date(dateStr + "T00:00:00Z");
-  d.setUTCDate(d.getUTCDate() + days);
-  return d.toISOString().slice(0,10);
-}
-function formatDate(dateStr){
-  const d = new Date(dateStr + "T00:00:00Z");
-  const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  return `${days[d.getUTCDay()]} ${d.getUTCDate()} ${months[d.getUTCMonth()]}`;
-}
-function formatDateLong(dateStr){
-  const d = new Date(dateStr + "T00:00:00Z");
-  const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  return `${days[d.getUTCDay()]} ${d.getUTCDate()} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
-}
-function formatMoney(n){
-  if (n == null) return "—";
-  if (Math.abs(n) >= 1e6) return "£" + (n/1e6).toFixed(1) + "M";
-  if (Math.abs(n) >= 1e3) return "£" + Math.round(n/1e3) + "k";
-  return "£" + n;
-}
-
-function getSquad(clubId){
-  return Object.values(PLAYERS).filter(p => p.clubId === clubId);
-}
-function getSquadWithState(clubId){
-  return getSquad(clubId).map(p => ({ ...p, ...(state.playerStates[p.id] || {}) }));
-}
-function getNextFixture(clubId){
-  return state.fixtures
-    .filter(f => (f.homeClubId === clubId || f.awayClubId === clubId) && !f.played)
-    .sort((a,b) => (a.date + a.time).localeCompare(b.date + b.time))[0] || null;
-}
-function buildTable(){
-  const rows = {};
-  for (const cid of LEAGUE.clubs){
-    rows[cid] = { clubId: cid, played:0, won:0, drawn:0, lost:0, gf:0, ga:0, gd:0, points:0 };
-  }
-  for (const f of state.fixtures){
-    if (!f.played) continue;
-    const h = rows[f.homeClubId], a = rows[f.awayClubId];
-    if (!h || !a) continue;
-    h.played++; a.played++;
-    h.gf += f.homeScore; h.ga += f.awayScore;
-    a.gf += f.awayScore; a.ga += f.homeScore;
-    if (f.homeScore > f.awayScore){ h.won++; h.points += 3; a.lost++; }
-    else if (f.homeScore < f.awayScore){ a.won++; a.points += 3; h.lost++; }
-    else { h.drawn++; a.drawn++; h.points++; a.points++; }
-  }
-  const table = Object.values(rows).map(r => ({ ...r, gd: r.gf - r.ga }));
-  table.sort((x,y) => y.points - x.points || y.gd - x.gd || y.gf - x.gf || x.clubId.localeCompare(y.clubId));
-  table.forEach((r,i) => r.position = i + 1);
-  return table;
-}
-
-/* ==================== RNG ==================== */
-function rng(){ return Math.random(); }
-function randInt(min, max){ return Math.floor(min + Math.random() * (max - min + 1)); }
-function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
-function pickWeighted(arr, weights){
-  let total = weights.reduce((a,b) => a+b, 0);
-  if (total <= 0) return arr[0];
-  let r = Math.random() * total;
-  for (let i = 0; i < arr.length; i++){
-    r -= weights[i];
-    if (r <= 0) return arr[i];
-  }
-  return arr[arr.length - 1];
-}
-
-/* ==================== FORMATIONS ==================== */
 const FORMATIONS = {
-  "4-3-3": ["GK","RB","CB","CB","LB","CDM","CM","CM","RW","ST","LW"],
-  "4-4-2": ["GK","RB","CB","CB","LB","RW","CM","CM","LW","ST","ST"],
-  "4-2-3-1": ["GK","RB","CB","CB","LB","CDM","CDM","RW","CAM","LW","ST"],
-  "3-5-2": ["GK","CB","CB","CB","RB","CM","CDM","CM","LB","ST","ST"],
-  "5-3-2": ["GK","RB","CB","CB","CB","LB","CM","CDM","CM","ST","ST"]
+  "4-3-3":["GK","RB","CB","CB","LB","CDM","CM","CM","RW","ST","LW"],
+  "4-4-2":["GK","RB","CB","CB","LB","RW","CM","CM","LW","ST","ST"],
+  "4-2-3-1":["GK","RB","CB","CB","LB","CDM","CDM","RW","CAM","LW","ST"],
+  "3-5-2":["GK","CB","CB","CB","RB","CM","CDM","CM","LB","ST","ST"],
+  "5-3-2":["GK","RB","CB","CB","CB","LB","CM","CDM","CM","ST","ST"]
 };
 
 const POSITION_FIT = {
@@ -790,96 +661,171 @@ function posFit(natural, assigned){
   return (POSITION_FIT[natural] && POSITION_FIT[natural][assigned]) || 0.6;
 }
 
-/* ==================== MATCH ENGINE ==================== */
 const MATCH = {
-  BASE_XG: 1.35,
-  HOME_ADV: 1.15,
-  REVEAL_MS: 1400,
-  HALF_TIME: 45,
-  MAX_SUBS: 5
+  BASE_XG:1.35,
+  HOME_ADV:1.15,
+  REVEAL_MS:2200,
+  MINUTE_MS:260,
+  HALF_TIME:45,
+  MAX_SUBS:5
 };
 
-function simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle){
-  const homeStrength = teamStrength(homeLineup, homeStyle, true);
-  const awayStrength = teamStrength(awayLineup, awayStyle, false);
+/* ============================================================
+   BUILD SQUAD + LOAD PLAYER DATA
+   ============================================================ */
+function getSquad(clubId){
+  return state.allPlayers.filter(p => p.clubId === clubId);
+}
+function getSquadWithState(clubId){
+  return getSquad(clubId).map(p => ({ ...p, ...(state.playerStates[p.id] || {}) }));
+}
+function getPlayerById(id){
+  return state.allPlayers.find(p => p.id === id);
+}
 
-  const homeXg = Math.max(0.2, Math.min(4.5, MATCH.BASE_XG * Math.pow(homeStrength/awayStrength, .85)));
-  const awayXg = Math.max(0.2, Math.min(4.5, MATCH.BASE_XG * Math.pow(awayStrength/homeStrength, .85)));
+/* ============================================================
+   FIXTURES
+   ============================================================ */
+function roundRobin(clubIds){
+  const teams = [...clubIds];
+  const n = teams.length;
+  const rounds = [];
+  const fixed = teams[0];
+  const rotating = teams.slice(1);
+  const half = n / 2;
+  for(let r=0;r<n-1;r++){
+    const left = [fixed, ...rotating.slice(0,half-1)];
+    const right = rotating.slice(half-1).reverse();
+    const pairs = [];
+    for(let i=0;i<half;i++){
+      const a = left[i], b = right[i];
+      pairs.push(r%2===0?[a,b]:[b,a]);
+    }
+    rounds.push(pairs);
+    rotating.unshift(rotating.pop());
+  }
+  const second = rounds.map(round => round.map(([h,a])=>[a,h]));
+  return [...rounds, ...second];
+}
 
-  const homeGoals = samplePoisson(homeXg);
-  const awayGoals = samplePoisson(awayXg);
-
-  const events = [];
-  const homeMinutes = [], awayMinutes = [];
-  for (let i = 0; i < homeGoals; i++) homeMinutes.push(randInt(3,90));
-  for (let i = 0; i < awayGoals; i++) awayMinutes.push(randInt(3,90));
-  homeMinutes.sort((a,b)=>a-b);
-  awayMinutes.sort((a,b)=>a-b);
-
-  const allGoals = [
-    ...homeMinutes.map(m=>({minute:m,side:"home"})),
-    ...awayMinutes.map(m=>({minute:m,side:"away"}))
-  ].sort((a,b)=>a.minute-b.minute);
-
-  let hs=0, as=0;
-  for (const g of allGoals){
-    const lineup = g.side === "home" ? homeLineup : awayLineup;
-    const scorer = pickScorer(lineup);
-    const assist = pickAssist(lineup, scorer);
-    if (g.side === "home") hs++; else as++;
-    events.push({
-      minute: g.minute, type: "goal", side: g.side,
-      playerId: scorer.id, assistId: assist ? assist.id : null,
-      homeScore: hs, awayScore: as
+function buildSeasonFixtures(){
+  const all = [];
+  for(const leagueId of LEAGUE_ORDER){
+    const league = LEAGUES[leagueId];
+    const rounds = roundRobin(league.clubIds);
+    const startDate = "2026-08-01";
+    rounds.forEach((round, mdIdx) => {
+      const matchday = mdIdx + 1;
+      const weekDate = addDays(startDate, mdIdx * 7);
+      round.forEach(([home, away], i) => {
+        const dayOffset = i < 5 ? 0 : i < 8 ? 1 : i === 8 ? -1 : 2;
+        const times = ["12:30","15:00","15:00","15:00","17:30","14:00","16:30","19:00","20:00","20:00"];
+        all.push({
+          id: `${leagueId}-md${matchday}-${home}-${away}`,
+          leagueId, matchday,
+          date: addDays(weekDate, dayOffset),
+          time: times[i] || "15:00",
+          homeClubId: home, awayClubId: away,
+          played: false, homeScore: null, awayScore: null
+        });
+      });
     });
   }
+  return all;
+}
 
-  const cardCount = randInt(2, 5);
-  for (let i = 0; i < cardCount; i++){
-    const side = rng() < .5 ? "home" : "away";
-    const lineup = side === "home" ? homeLineup : awayLineup;
-    const candidates = lineup.filter(p => p.position !== "GK");
-    const p = pick(candidates);
-    if (!p) continue;
-    events.push({ minute: randInt(5,89), type: rng() < .06 ? "red" : "yellow", side, playerId: p.id });
-  }
+function getNextFixture(clubId){
+  return state.fixtures
+    .filter(f => (f.homeClubId===clubId || f.awayClubId===clubId) && !f.played)
+    .sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time))[0] || null;
+}
 
-  events.sort((a,b)=>a.minute-b.minute);
+function buildTable(leagueId){
+  const league = LEAGUES[leagueId];
+  const rows = {};
+  for(const cid of league.clubIds){
+    rows[cid] = {clubId:cid,played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,points:0};
+  }
+  for(const f of state.fixtures){
+    if(f.leagueId!==leagueId || !f.played) continue;
+    const h = rows[f.homeClubId], a = rows[f.awayClubId];
+    if(!h || !a) continue;
+    h.played++; a.played++;
+    h.gf += f.homeScore; h.ga += f.awayScore;
+    a.gf += f.awayScore; a.ga += f.homeScore;
+    if(f.homeScore>f.awayScore){ h.won++; h.points+=3; a.lost++; }
+    else if(f.homeScore<f.awayScore){ a.won++; a.points+=3; h.lost++; }
+    else { h.drawn++; a.drawn++; h.points++; a.points++; }
+  }
+  const table = Object.values(rows).map(r => ({...r, gd:r.gf-r.ga}));
+  table.sort((x,y)=> y.points-x.points || y.gd-x.gd || y.gf-x.gf || x.clubId.localeCompare(y.clubId));
+  table.forEach((r,i)=>r.position = i+1);
+  return table;
+}
 
-  // Ratings
-  const ratings = {};
-  for (const p of [...homeLineup, ...awayLineup]){
-    ratings[p.id] = { rating: 6.0, goals: 0, assists: 0, yellow: 0, red: 0 };
+/* ============================================================
+   INIT
+   ============================================================ */
+function initStateFor(clubId){
+  const club = CLUBS[clubId];
+  state.userClubId = clubId;
+  state.currentDate = "2026-08-01";
+  state.matchday = 1;
+  state.playerStates = {};
+  for(const p of state.allPlayers){
+    state.playerStates[p.id] = {
+      fatigue: 100, morale: 75,
+      minutesThisSeason: 0, matchesThisSeason: 0
+    };
   }
-  for (const e of events){
-    const r = ratings[e.playerId];
-    if (!r) continue;
-    if (e.type === "goal"){
-      r.goals++; r.rating += 1.2;
-      if (e.assistId && ratings[e.assistId]){ ratings[e.assistId].assists++; ratings[e.assistId].rating += .8; }
-    }
-    else if (e.type === "yellow"){ r.yellow++; r.rating -= .3; }
-    else if (e.type === "red"){ r.red++; r.rating -= 1.5; }
-  }
-  const homeWin = hs > as, awayWin = as > hs;
-  for (const id of Object.keys(ratings)){
-    const isHome = homeLineup.some(p=>p.id === id);
-    if (homeWin) ratings[id].rating += isHome ? .4 : -.4;
-    else if (awayWin) ratings[id].rating += isHome ? -.4 : .4;
-    ratings[id].rating = Math.max(3, Math.min(10, Math.round(ratings[id].rating * 10) / 10));
-  }
+  state.inbox = [{
+    id:"welcome",
+    title: "Welcome to " + club.name,
+    body: "Set your default lineup in Tactics, then play your first fixture from Home.",
+    read: false
+  }];
+  state.fixtures = buildSeasonFixtures();
+  state.userFormation = "4-3-3";
+  const picked = autoPickLineup(clubId, "4-3-3");
+  state.userLineup = picked.lineup.map(p => p.id);
+  state.userBench = picked.bench.map(p => p.id);
+}
 
-  return {
-    fixture, events, ratings,
-    finalScore: { home: hs, away: as },
-    homeLineup, awayLineup,
-    homeSubs: [], awaySubs: []
-  };
+/* ============================================================
+   AUTO PICK LINEUP
+   ============================================================ */
+function autoPickLineup(clubId, formationId){
+  const squad = getSquadWithState(clubId);
+  const slots = FORMATIONS[formationId] || FORMATIONS["4-3-3"];
+  const used = new Set();
+  const lineup = [];
+  for(const slotPos of slots){
+    const candidates = squad.filter(p => !used.has(p.id));
+    candidates.sort((a,b) => scoreForSlot(b, slotPos) - scoreForSlot(a, slotPos));
+    if(!candidates[0]) break;
+    lineup.push({...candidates[0], assignedPos:slotPos});
+    used.add(candidates[0].id);
+  }
+  const bench = squad.filter(p => !used.has(p.id)).slice(0, 9);
+  return {lineup, bench};
+}
+function scoreForSlot(p, slotPos){
+  return p.overall * posFit(p.position, slotPos) * ((p.fatigue||100)/100);
+}
+
+/* ============================================================
+   MATCH ENGINE
+   ============================================================ */
+function samplePoisson(lambda){
+  const L = Math.exp(-lambda);
+  let k = 0, p = 1;
+  do { k++; p *= Math.random(); } while (p > L);
+  return k - 1;
 }
 
 function teamStrength(lineup, style, isHome){
   let total = 0;
-  lineup.forEach((p, i) => {
+  lineup.forEach((p,i) => {
     const slotPos = p.assignedPos || p.position;
     const fit = posFit(p.position, slotPos);
     const fatMult = p.fatigue >= 80 ? 1 : p.fatigue >= 60 ? .95 : p.fatigue >= 40 ? .85 : p.fatigue >= 20 ? .70 : .50;
@@ -892,220 +838,298 @@ function teamStrength(lineup, style, isHome){
 }
 
 function pickScorer(lineup){
-  const candidates = lineup.filter(p => p.position !== "GK");
-  const weights = candidates.map(p => {
+  const c = lineup.filter(p => p.position !== "GK");
+  const w = c.map(p => {
     const base = Math.max(1, p.overall - 55);
-    const posMult = { ST:5, CAM:3, LW:3, RW:3, CM:1.4, CDM:.6, CB:.5, LB:.4, RB:.4 }[p.position] || 1;
+    const posMult = {ST:5,CAM:3,LW:3,RW:3,CM:1.4,CDM:.6,CB:.5,LB:.4,RB:.4}[p.position] || 1;
     return base * posMult;
   });
-  return pickWeighted(candidates, weights);
+  return pickWeighted(c,w);
 }
 function pickAssist(lineup, scorer){
-  const candidates = lineup.filter(p => p.id !== scorer.id && p.position !== "GK");
-  const weights = candidates.map(p => {
+  const c = lineup.filter(p => p.id !== scorer.id && p.position !== "GK");
+  const w = c.map(p => {
     const base = Math.max(1, p.overall - 55);
-    const posMult = { CAM:4, LW:3.5, RW:3.5, CM:3, ST:2, LB:1.6, RB:1.6, CDM:1, CB:.6 }[p.position] || 1;
+    const posMult = {CAM:4,LW:3.5,RW:3.5,CM:3,ST:2,LB:1.6,RB:1.6,CDM:1,CB:.6}[p.position] || 1;
     return base * posMult;
   });
-  return pickWeighted(candidates, weights);
-}
-function samplePoisson(lambda){
-  const L = Math.exp(-lambda);
-  let k = 0, p = 1;
-  do { k++; p *= Math.random(); } while (p > L);
-  return k - 1;
+  return pickWeighted(c,w);
 }
 
-function autoPickLineup(clubId, formationId){
-  const squad = getSquadWithState(clubId);
-  const slots = FORMATIONS[formationId] || FORMATIONS["4-3-3"];
-  const used = new Set();
-  const lineup = [];
-  for (const slotPos of slots){
-    const candidates = squad.filter(p => !used.has(p.id));
-    candidates.sort((a,b) => scoreForSlot(b, slotPos) - scoreForSlot(a, slotPos));
-    if (!candidates[0]) break;
-    lineup.push({ ...candidates[0], assignedPos: slotPos });
-    used.add(candidates[0].id);
+function simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle){
+  const homeStr = teamStrength(homeLineup, homeStyle, true);
+  const awayStr = teamStrength(awayLineup, awayStyle, false);
+  const homeRatio = homeStr / awayStr;
+  const awayRatio = awayStr / homeStr;
+  const homeXg = clamp(MATCH.BASE_XG * Math.pow(homeRatio, 1.6), 0.15, 4.8);
+  const awayXg = clamp(MATCH.BASE_XG * Math.pow(awayRatio, 1.6), 0.15, 4.8);
+
+  const homeGoals = samplePoisson(homeXg);
+  const awayGoals = samplePoisson(awayXg);
+
+  const events = [];
+  const homeMinutes = [], awayMinutes = [];
+  for(let i=0;i<homeGoals;i++) homeMinutes.push(randInt(3,90));
+  for(let i=0;i<awayGoals;i++) awayMinutes.push(randInt(3,90));
+  homeMinutes.sort((a,b)=>a-b); awayMinutes.sort((a,b)=>a-b);
+
+  const allGoals = [
+    ...homeMinutes.map(m=>({minute:m,side:"home"})),
+    ...awayMinutes.map(m=>({minute:m,side:"away"}))
+  ].sort((a,b)=>a.minute-b.minute);
+
+  let hs=0, as=0;
+  for(const g of allGoals){
+    const lineup = g.side === "home" ? homeLineup : awayLineup;
+    const scorer = pickScorer(lineup);
+    const assist = pickAssist(lineup, scorer);
+    if(g.side === "home") hs++; else as++;
+    events.push({
+      minute:g.minute, type:"goal", side:g.side,
+      playerId:scorer.id, assistId:assist ? assist.id : null,
+      homeScore:hs, awayScore:as
+    });
   }
-  const bench = squad.filter(p => !used.has(p.id)).slice(0, 9);
-  return { lineup, bench };
-}
-function scoreForSlot(p, slotPos){
-  return p.overall * posFit(p.position, slotPos) * (p.fatigue / 100);
-}
 
-/* ==================== UI HELPERS ==================== */
-function el(tag, attrs = {}, children = []){
-  const node = document.createElement(tag);
-  for (const [k,v] of Object.entries(attrs)){
-    if (k === "class") node.className = v;
-    else if (k === "html") node.innerHTML = v;
-    else if (k.startsWith("on") && typeof v === "function") node.addEventListener(k.slice(2).toLowerCase(), v);
-    else if (v != null && v !== false) node.setAttribute(k, v);
+  const cardCount = randInt(2,5);
+  for(let i=0;i<cardCount;i++){
+    const side = Math.random()<.5 ? "home" : "away";
+    const lineup = side === "home" ? homeLineup : awayLineup;
+    const candidates = lineup.filter(p => p.position !== "GK");
+    const p = pick(candidates);
+    if(!p) continue;
+    events.push({minute:randInt(5,89),type:Math.random()<.06?"red":"yellow",side,playerId:p.id});
   }
-  const kids = Array.isArray(children) ? children : [children];
-  for (const c of kids){
-    if (c == null || c === false) continue;
-    if (typeof c === "string" || typeof c === "number") node.appendChild(document.createTextNode(String(c)));
-    else if (c instanceof Node) node.appendChild(c);
+
+  events.sort((a,b)=>a.minute-b.minute);
+
+  const ratings = {};
+  for(const p of [...homeLineup, ...awayLineup]){
+    ratings[p.id] = {rating:6.0, goals:0, assists:0, yellow:0, red:0};
   }
-  return node;
-}
-function clearEl(node){ while (node.firstChild) node.removeChild(node.firstChild); }
-function $(sel, root=document){ return root.querySelector(sel); }
+  for(const e of events){
+    const r = ratings[e.playerId];
+    if(!r) continue;
+    if(e.type === "goal"){
+      r.goals++; r.rating += 1.2;
+      if(e.assistId && ratings[e.assistId]){ ratings[e.assistId].assists++; ratings[e.assistId].rating += .8; }
+    }
+    else if(e.type === "yellow"){ r.yellow++; r.rating -= .3; }
+    else if(e.type === "red"){ r.red++; r.rating -= 1.5; }
+  }
+  const homeWin = hs>as, awayWin = as>hs;
+  for(const id of Object.keys(ratings)){
+    const isHome = homeLineup.some(p => p.id === id);
+    if(homeWin) ratings[id].rating += isHome ? .4 : -.4;
+    else if(awayWin) ratings[id].rating += isHome ? -.4 : .4;
+    ratings[id].rating = Math.max(3, Math.min(10, Math.round(ratings[id].rating * 10) / 10));
+  }
 
-function posClass(pos){
-  if (pos === "GK") return "GK";
-  if (["CB","LB","RB"].includes(pos)) return "DEF";
-  if (["CDM","CM","CAM"].includes(pos)) return "MID";
-  return "FWD";
-}
-function ratingClass(o){
-  if (o >= 84) return "elite";
-  if (o >= 76) return "good";
-  return "avg";
-}
-function fatigueClass(v){
-  if (v >= 80) return "fresh";
-  if (v >= 60) return "okay";
-  if (v >= 40) return "tired";
-  return "exhausted";
-}
-function fatigueLabel(v){
-  if (v >= 90) return "Fresh";
-  if (v >= 75) return "Good";
-  if (v >= 60) return "Okay";
-  if (v >= 40) return "Tired";
-  if (v >= 20) return "Exhausted";
-  return "Critical";
-}
-function moraleClass(v){
-  if (v >= 80) return "morale-high";
-  if (v >= 60) return "morale-mid";
-  if (v >= 40) return "morale-low";
-  return "morale-bad";
-}
-function moraleLabel(v){
-  if (v >= 80) return "Happy";
-  if (v >= 60) return "Content";
-  if (v >= 40) return "Concerned";
-  if (v >= 20) return "Unhappy";
-  return "Miserable";
+  return {
+    fixture, events, ratings,
+    finalScore:{home:hs,away:as},
+    homeLineup, awayLineup
+  };
 }
 
-/* ==================== SCREENS ==================== */
+/* ============================================================
+   SAVE / LOAD
+   ============================================================ */
+const SAVE_KEY = "fm-2026-27-save";
+function saveState(){
+  try{
+    const payload = {
+      userClubId: state.userClubId,
+      currentDate: state.currentDate,
+      matchday: state.matchday,
+      fixtures: state.fixtures,
+      playerStates: state.playerStates,
+      inbox: state.inbox,
+      userFormation: state.userFormation,
+      userLineup: state.userLineup,
+      userBench: state.userBench
+    };
+    localStorage.setItem(SAVE_KEY, JSON.stringify(payload));
+  }catch(e){}
+}
+function loadState(){
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(!raw) return false;
+    const parsed = JSON.parse(raw);
+    if(!parsed.userClubId) return false;
+    Object.assign(state, parsed);
+    return true;
+  }catch(e){ return false; }
+}
+function clearSave(){
+  try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+}
+
+/* ============================================================
+   UI: NAVIGATION
+   ============================================================ */
+let currentScreen = "dashboard";
+
 function showScreen(name){
+  currentScreen = name;
   const screens = $("#screens");
   clearEl(screens);
-  document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.screen === name));
-
-  const wrap = el("div", { class: "screen active" });
+  $$(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.screen === name));
+  const wrap = el("div", {class:"screen active"});
   screens.appendChild(wrap);
-
-  if (name === "dashboard") renderDashboard(wrap);
-  else if (name === "fixtures") renderFixtures(wrap);
-  else if (name === "squad") renderSquad(wrap);
-  else if (name === "inbox") renderInbox(wrap);
-  else if (name === "tables") renderTables(wrap);
-
+  if(name === "dashboard") renderDashboard(wrap);
+  else if(name === "fixtures") renderFixtures(wrap);
+  else if(name === "squad") renderSquad(wrap);
+  else if(name === "tactics") renderTactics(wrap);
+  else if(name === "transfers") renderTransfers(wrap);
+  else if(name === "inbox") renderInbox(wrap);
+  else if(name === "tables") renderTables(wrap);
   updateTopbar();
 }
 
 function updateTopbar(){
-  if (!state.userClubId) return;
+  if(!state.userClubId) return;
   const c = CLUBS[state.userClubId];
+  const l = LEAGUES[c.leagueId];
   $("#topbar-club").textContent = c.short;
-  $("#topbar-league").textContent = LEAGUE.shortName;
+  $("#topbar-league").textContent = l.short;
   $("#topbar-date").textContent = formatDateLong(state.currentDate);
   $("#topbar-budget").textContent = formatMoney(c.budget);
 }
 
-/* ---------- DASHBOARD ---------- */
+/* ============================================================
+   UI: DASHBOARD
+   ============================================================ */
 function renderDashboard(root){
   const c = CLUBS[state.userClubId];
   const next = getNextFixture(state.userClubId);
-  const table = buildTable();
-  const pos = table.find(r => r.clubId === state.userClubId).position;
+  const table = buildTable(c.leagueId);
+  const pos = table.find(r => r.clubId === state.userClubId)?.position;
   const unread = state.inbox.filter(m => !m.read).length;
 
   root.appendChild(el("h1", {}, "Dashboard"));
 
-  root.appendChild(el("div", { class: "card card-highlight" }, [
-    el("div", { class: "card-title" }, "Next Fixture"),
-    next
-      ? el("div", {}, [
-          el("div", { style: "font-size:15px;font-weight:600;margin-bottom:4px" },
-            CLUBS[next.homeClubId].short + " vs " + CLUBS[next.awayClubId].short),
-          el("div", { class: "card-sub" }, formatDateLong(next.date) + " · " + next.time),
-          el("button", {
-            class: "btn-primary",
-            style: "margin-top:10px;width:100%",
-            onclick: () => openPreMatch(next.id)
-          }, "Play Match")
-        ])
-      : el("div", { class: "card-sub" }, "Season complete.")
+  root.appendChild(el("div", {class:"card card-highlight"}, [
+    el("div", {class:"card-title"}, "Next Fixture"),
+    next ? el("div", {}, [
+      el("div", {style:"display:flex;align-items:center;gap:10px;margin-bottom:6px"}, [
+        crestEl(next.homeClubId, 32),
+        el("div", {class:"grow"}, [
+          el("div", {style:"font-size:15px;font-weight:700"}, clubName(next.homeClubId) + " vs " + clubName(next.awayClubId)),
+          el("div", {class:"card-sub"}, formatDateLong(next.date) + " · " + next.time)
+        ]),
+        crestEl(next.awayClubId, 32)
+      ]),
+      el("button", {class:"btn-primary",style:"margin-top:8px;width:100%",onclick:()=>openPreMatch(next.id)}, "Play Match")
+    ]) : el("div", {class:"card-sub"}, "Season complete.")
   ]));
 
-  root.appendChild(el("div", { class: "card" }, [
-    el("div", { class: "card-title" }, c.name),
-    rowBetween("League Position", "#" + pos),
+  root.appendChild(el("div", {class:"card"}, [
+    el("div", {class:"card-title",style:"display:flex;align-items:center;gap:10px"}, [
+      crestEl(state.userClubId, 28),
+      c.name
+    ]),
+    rowBetween("League Position", "#" + (pos || "—")),
     rowBetween("Transfer Budget", formatMoney(c.budget)),
     rowBetween("Unread Messages", String(unread))
   ]));
 
   const played = state.fixtures
-    .filter(f => (f.homeClubId === state.userClubId || f.awayClubId === state.userClubId) && f.played)
+    .filter(f => (f.homeClubId===state.userClubId || f.awayClubId===state.userClubId) && f.played)
     .slice(-5).reverse();
-  if (played.length){
-    root.appendChild(el("div", { class: "card" }, [
-      el("div", { class: "card-title" }, "Recent Results"),
-      ...played.map(f => el("div", { class: "row-between", style: "padding:4px 0;font-size:13px" }, [
-        el("span", {}, CLUBS[f.homeClubId].short + " " + f.homeScore + "–" + f.awayScore + " " + CLUBS[f.awayClubId].short),
-        el("span", { class: "muted", style: "font-size:11px" }, "MD" + f.matchday)
+  if(played.length){
+    root.appendChild(el("div", {class:"card"}, [
+      el("div", {class:"card-title"}, "Recent Results"),
+      ...played.map(f => el("div", {class:"row-between",style:"padding:6px 0;font-size:13px"}, [
+        el("span", {style:"display:flex;align-items:center;gap:6px"}, [
+          crestEl(f.homeClubId, 20),
+          el("span", {}, f.homeScore + "–" + f.awayScore),
+          crestEl(f.awayClubId, 20)
+        ]),
+        el("span", {class:"muted",style:"font-size:11px"}, "MD" + f.matchday)
       ]))
     ]));
   }
+
+  root.appendChild(el("button", {
+    class:"btn-danger",
+    style:"width:100%;margin-top:16px",
+    onclick:()=>resignCareer()
+  }, "Resign"));
 }
+
 function rowBetween(label, value){
-  return el("div", { class: "row-between", style: "padding:4px 0" }, [
-    el("span", { class: "card-sub" }, label),
-    el("span", { style: "font-weight:700" }, value)
+  return el("div", {class:"row-between",style:"padding:4px 0"}, [
+    el("span", {class:"card-sub"}, label),
+    el("span", {style:"font-weight:700"}, value)
   ]);
 }
 
-/* ---------- FIXTURES ---------- */
-function renderFixtures(root){
-  root.appendChild(el("h1", {}, "Fixtures"));
+function resignCareer(){
+  const c = CLUBS[state.userClubId];
+  if(!confirm("Resign from " + c.name + "?\n\nThis will end your current career and return you to club selection. This cannot be undone.")) return;
+  clearSave();
+  state.userClubId = null;
+  state.fixtures = [];
+  state.playerStates = {};
+  state.inbox = [];
+  state.userLineup = null;
+  state.userBench = null;
+  renderClubSelect();
+}
 
-  const currentMd = state.matchday;
+/* ============================================================
+   UI: FIXTURES
+   ============================================================ */
+let activeFixturesLeague = null;
+function renderFixtures(root){
+  if(!activeFixturesLeague) activeFixturesLeague = CLUBS[state.userClubId].leagueId;
+  root.appendChild(el("h1", {}, "Fixtures"));
+  const bar = el("div", {class:"tab-bar"});
+  for(const lid of LEAGUE_ORDER){
+    bar.appendChild(el("button", {
+      class:"tab" + (lid === activeFixturesLeague ? " active" : ""),
+      onclick:()=>{ activeFixturesLeague = lid; showScreen("fixtures"); }
+    }, LEAGUES[lid].name));
+  }
+  root.appendChild(bar);
+
   const grouped = {};
-  for (const f of state.fixtures){
-    if (!grouped[f.matchday]) grouped[f.matchday] = [];
+  for(const f of state.fixtures){
+    if(f.leagueId !== activeFixturesLeague) continue;
+    if(!grouped[f.matchday]) grouped[f.matchday] = [];
     grouped[f.matchday].push(f);
   }
-
   const matchdays = Object.keys(grouped).map(Number).sort((a,b)=>a-b);
-  const start = Math.max(0, matchdays.indexOf(currentMd) - 1);
-  const window = matchdays.slice(start, start + 6);
+  const currentMd = matchdays.find(md => grouped[md].some(f => !f.played)) || matchdays[matchdays.length-1] || 1;
+  const idx = matchdays.indexOf(currentMd);
+  const window = matchdays.slice(Math.max(0, idx-1), Math.max(0, idx-1)+6);
 
-  for (const md of window){
-    const group = el("div", { class: "fixture-group" });
-    group.appendChild(el("div", { class: "fixture-group-title" }, "Matchday " + md));
-    const fixtures = grouped[md].sort((a,b) => (a.date + a.time).localeCompare(b.date + b.time));
-    for (const f of fixtures){
+  for(const md of window){
+    const group = el("div", {class:"fixture-group"});
+    group.appendChild(el("div", {class:"fixture-group-title"}, "Matchday " + md));
+    const fixtures = grouped[md].sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time));
+    for(const f of fixtures){
       const isUser = f.homeClubId === state.userClubId || f.awayClubId === state.userClubId;
-      const row = el("div", { class: "fixture-row" + (isUser ? " is-user" : "") + (f.played ? " played" : "") }, [
-        el("div", { class: "fixture-team home" }, CLUBS[f.homeClubId].short),
-        el("div", { class: "fixture-center" },
+      const row = el("div", {class:"fixture-row" + (isUser ? " is-user" : "") + (f.played ? " played" : "")}, [
+        el("div", {class:"fixture-side home"}, [
+          crestEl(f.homeClubId, 24),
+          el("div", {class:"fixture-team"}, clubName(f.homeClubId))
+        ]),
+        el("div", {class:"fixture-center"},
           f.played
-            ? el("div", { class: "score" }, f.homeScore + " – " + f.awayScore)
-            : f.time),
-        el("div", { class: "fixture-team away" }, CLUBS[f.awayClubId].short)
+            ? el("div", {class:"score"}, f.homeScore + " – " + f.awayScore)
+            : f.time
+        ),
+        el("div", {class:"fixture-side away"}, [
+          el("div", {class:"fixture-team"}, clubName(f.awayClubId)),
+          crestEl(f.awayClubId, 24)
+        ])
       ]);
-      if (isUser && !f.played){
+      if(isUser && !f.played){
         row.style.cursor = "pointer";
-        row.onclick = () => openPreMatch(f.id);
+        row.addEventListener("click", () => openPreMatch(f.id));
       }
       group.appendChild(row);
     }
@@ -1113,116 +1137,274 @@ function renderFixtures(root){
   }
 }
 
-/* ---------- SQUAD ---------- */
+/* ============================================================
+   UI: SQUAD
+   ============================================================ */
 function renderSquad(root){
   root.appendChild(el("h1", {}, "Squad"));
   const squad = getSquadWithState(state.userClubId).sort((a,b) => b.overall - a.overall);
-
-  for (const p of squad){
-    const row = el("div", { class: "player-row" }, [
-      el("div", { class: "player-pos " + posClass(p.position) }, p.position),
-      el("div", { class: "grow" }, [
-        el("div", { class: "player-name" }, p.name),
-        el("div", { class: "player-meta" }, fatigueLabel(p.fatigue) + " · " + moraleLabel(p.morale))
+  for(const p of squad){
+    const row = el("div", {class:"player-row", onclick:()=>openPlayerDetail(p.id)}, [
+      el("div", {class:"player-pos " + posClass(p.position)}, p.position),
+      el("div", {class:"grow"}, [
+        el("div", {class:"player-name"}, p.name),
+        el("div", {class:"player-meta"}, fatigueLabel(p.fatigue) + " · " + moraleLabel(p.morale))
       ]),
-      el("div", { class: "player-ovr " + ratingClass(p.overall) }, String(p.overall)),
-      el("div", { class: "player-age" }, String(p.age))
+      el("div", {class:"player-ovr " + ratingClass(p.overall)}, String(p.overall)),
+      el("div", {class:"player-age"}, String(p.age))
     ]);
-    row.onclick = () => openPlayerDetail(p.id);
     root.appendChild(row);
   }
 }
 
 function openPlayerDetail(playerId){
   const p = getSquadWithState(state.userClubId).find(x => x.id === playerId);
-  if (!p) return;
+  if(!p) return;
   const overlay = $("#match-overlay");
   overlay.classList.remove("hidden");
   clearEl(overlay);
-  const panel = el("div", { class: "match-panel" }, [
-    el("h2", { style: "margin-bottom:6px" }, p.name),
-    el("div", { class: "card-sub mb-3", style: "margin-bottom:12px" }, p.position + " · " + p.age + " · OVR " + p.overall),
-    el("div", { class: "bar-row", style: "margin-bottom:4px" }, [
-      el("div", { class: "bar-label" }, "Fatigue"),
-      el("div", { class: "bar-track" }, el("div", { class: "bar-fill " + fatigueClass(p.fatigue), style: "width:" + p.fatigue + "%" })),
-      el("div", { class: "bar-value" }, String(Math.round(p.fatigue)))
+  const panel = el("div", {class:"match-panel"}, [
+    el("h2", {style:"margin-bottom:4px"}, p.name),
+    el("div", {class:"card-sub mb-3", style:"margin-bottom:12px"}, p.position + " · " + p.age + " · OVR " + p.overall),
+    el("div", {class:"bar-row", style:"margin-bottom:4px"}, [
+      el("div", {class:"bar-label"}, "Fatigue"),
+      el("div", {class:"bar-track"}, el("div", {class:"bar-fill " + fatigueClass(p.fatigue), style:"width:"+p.fatigue+"%"})),
+      el("div", {class:"bar-value"}, String(Math.round(p.fatigue)))
     ]),
-    el("div", { class: "bar-status" }, fatigueLabel(p.fatigue)),
-    el("div", { class: "bar-row", style: "margin:12px 0 4px" }, [
-      el("div", { class: "bar-label" }, "Morale"),
-      el("div", { class: "bar-track" }, el("div", { class: "bar-fill " + moraleClass(p.morale), style: "width:" + p.morale + "%" })),
-      el("div", { class: "bar-value" }, String(Math.round(p.morale)))
+    el("div", {class:"bar-status"}, fatigueLabel(p.fatigue)),
+    el("div", {class:"bar-row", style:"margin:12px 0 4px"}, [
+      el("div", {class:"bar-label"}, "Morale"),
+      el("div", {class:"bar-track"}, el("div", {class:"bar-fill " + moraleClass(p.morale), style:"width:"+p.morale+"%"})),
+      el("div", {class:"bar-value"}, String(Math.round(p.morale)))
     ]),
-    el("div", { class: "bar-status" }, moraleLabel(p.morale)),
-    el("div", { class: "match-actions" }, [
-      el("button", { class: "btn-primary", onclick: () => overlay.classList.add("hidden") }, "Close")
+    el("div", {class:"bar-status"}, moraleLabel(p.morale)),
+    el("div", {class:"match-actions"}, [
+      el("button", {class:"btn-primary", onclick:()=>overlay.classList.add("hidden")}, "Close")
     ])
   ]);
   overlay.appendChild(panel);
 }
 
-/* ---------- INBOX ---------- */
+/* ============================================================
+   UI: TACTICS
+   ============================================================ */
+function renderTactics(root){
+  root.appendChild(el("h1", {}, "Tactics"));
+  if(!state.userFormation) state.userFormation = "4-3-3";
+  if(!state.userLineup || state.userLineup.length !== 11){
+    const picked = autoPickLineup(state.userClubId, state.userFormation);
+    state.userLineup = picked.lineup.map(p => p.id);
+    state.userBench = picked.bench.map(p => p.id);
+  }
+  root.appendChild(el("div", {class:"manage-section"}, [
+    el("h3", {}, "Formation"),
+    (() => {
+      const sel = el("select", {class:"manage-select"},
+        Object.keys(FORMATIONS).map(f => el("option", {value:f, selected:f===state.userFormation}, f)));
+      sel.onchange = e => {
+        state.userFormation = e.target.value;
+        const picked = autoPickLineup(state.userClubId, state.userFormation);
+        state.userLineup = picked.lineup.map(p => p.id);
+        state.userBench = picked.bench.map(p => p.id);
+        saveState();
+        showScreen("tactics");
+      };
+      return sel;
+    })()
+  ]));
+  const slots = FORMATIONS[state.userFormation];
+  root.appendChild(el("div", {class:"manage-section"}, [
+    el("h3", {}, "Starting XI"),
+    ...state.userLineup.map((pid, idx) => {
+      const p = getPlayerById(pid);
+      if(!p) return null;
+      const slotPos = slots[idx];
+      const row = el("div", {class:"lineup-row", style:"cursor:pointer"}, [
+        el("div", {class:"player-pos " + posClass(slotPos)}, slotPos),
+        el("div", {class:"player-name"}, p.name),
+        el("div", {class:"lineup-rating mid"}, String(p.overall)),
+        el("div", {class:"lineup-stats"}, "Swap")
+      ]);
+      row.onclick = () => openSwapDialog(idx);
+      return row;
+    })
+  ]));
+  root.appendChild(el("div", {class:"manage-section"}, [
+    el("h3", {}, "Bench"),
+    ...(state.userBench || []).map(pid => {
+      const p = getPlayerById(pid);
+      if(!p) return null;
+      return el("div", {class:"lineup-row"}, [
+        el("div", {class:"player-pos " + posClass(p.position)}, p.position),
+        el("div", {class:"player-name"}, p.name),
+        el("div", {class:"lineup-rating mid"}, String(p.overall)),
+        el("div", {class:"lineup-stats"}, "—")
+      ]);
+    })
+  ]));
+  root.appendChild(el("button", {
+    class:"btn-secondary", style:"width:100%;margin-top:8px",
+    onclick:()=>{
+      const picked = autoPickLineup(state.userClubId, state.userFormation);
+      state.userLineup = picked.lineup.map(p => p.id);
+      state.userBench = picked.bench.map(p => p.id);
+      saveState();
+      showScreen("tactics");
+    }
+  }, "Auto-Pick Best XI"));
+}
+
+function openSwapDialog(slotIndex){
+  const overlay = $("#match-overlay");
+  overlay.classList.remove("hidden");
+  clearEl(overlay);
+  const slots = FORMATIONS[state.userFormation];
+  const slotPos = slots[slotIndex];
+  const currentId = state.userLineup[slotIndex];
+  const squad = getSquadWithState(state.userClubId);
+  const inXI = new Set(state.userLineup);
+  const candidates = squad
+    .filter(p => !inXI.has(p.id) && p.id !== currentId)
+    .sort((a,b) => (b.overall * posFit(b.position, slotPos)) - (a.overall * posFit(a.position, slotPos)));
+
+  const panel = el("div", {class:"match-panel"}, [
+    el("h2", {style:"margin-bottom:4px"}, "Swap Player"),
+    el("div", {class:"card-sub", style:"margin-bottom:12px"},
+      "Slot: " + slotPos + " — currently " + (getPlayerById(currentId)?.name || "—")),
+    ...candidates.slice(0, 25).map(p => {
+      const fit = posFit(p.position, slotPos);
+      const row = el("div", {class:"lineup-row", style:"cursor:pointer"}, [
+        el("div", {class:"player-pos " + posClass(p.position)}, p.position),
+        el("div", {class:"player-name"}, p.name),
+        el("div", {class:"lineup-rating mid"}, String(p.overall)),
+        el("div", {class:"lineup-stats"}, Math.round(fit*100) + "% fit")
+      ]);
+      row.onclick = () => {
+        const oldId = state.userLineup[slotIndex];
+        state.userLineup[slotIndex] = p.id;
+        state.userBench = (state.userBench || []).filter(id => id !== p.id);
+        if(oldId && !state.userBench.includes(oldId)) state.userBench.push(oldId);
+        saveState();
+        overlay.classList.add("hidden");
+        showScreen("tactics");
+      };
+      return row;
+    }),
+    el("div", {class:"match-actions"}, [
+      el("button", {class:"btn-ghost", onclick:()=>overlay.classList.add("hidden")}, "Cancel")
+    ])
+  ]);
+  overlay.appendChild(panel);
+}
+
+/* ============================================================
+   UI: TRANSFERS (minimal v1)
+   ============================================================ */
+function renderTransfers(root){
+  root.appendChild(el("h1", {}, "Transfers"));
+  root.appendChild(el("div", {class:"card"}, [
+    el("div", {class:"card-title"}, "Transfer Market"),
+    el("div", {class:"card-sub"}, "Budget: " + formatMoney(CLUBS[state.userClubId].budget))
+  ]));
+  root.appendChild(el("div", {class:"empty"}, "Transfer market coming in next update."));
+}
+
+/* ============================================================
+   UI: INBOX
+   ============================================================ */
 function renderInbox(root){
   root.appendChild(el("h1", {}, "Inbox"));
-  if (state.inbox.length === 0){
-    root.appendChild(el("div", { class: "empty" }, "No messages."));
+  if(state.inbox.length === 0){
+    root.appendChild(el("div", {class:"empty"}, "No messages."));
     return;
   }
-  for (const m of state.inbox){
-    const card = el("div", { class: "card" + (!m.read ? " card-highlight" : "") }, [
-      el("div", { class: "card-title" }, m.title),
-      el("div", { class: "card-sub" }, m.body)
+  for(const m of state.inbox){
+    const card = el("div", {class:"card" + (!m.read ? " card-highlight" : ""), style:"cursor:pointer"}, [
+      el("div", {class:"card-title"}, m.title),
+      el("div", {class:"card-sub"}, m.body)
     ]);
-    card.onclick = () => { m.read = true; renderInbox(root); };
+    card.onclick = () => { m.read = true; saveState(); showScreen("inbox"); };
     root.appendChild(card);
   }
 }
 
-/* ---------- TABLES ---------- */
+/* ============================================================
+   UI: TABLES
+   ============================================================ */
+let activeTablesLeague = null;
 function renderTables(root){
-  root.appendChild(el("h1", {}, "League Table"));
-  const table = buildTable();
-  const tbl = el("table", { class: "league-table" }, [
+  if(!activeTablesLeague) activeTablesLeague = CLUBS[state.userClubId].leagueId;
+  root.appendChild(el("h1", {}, "Tables"));
+  const bar = el("div", {class:"tab-bar"});
+  for(const lid of LEAGUE_ORDER){
+    bar.appendChild(el("button", {
+      class:"tab" + (lid === activeTablesLeague ? " active" : ""),
+      onclick:()=>{ activeTablesLeague = lid; showScreen("tables"); }
+    }, LEAGUES[lid].name));
+  }
+  root.appendChild(bar);
+
+  const table = buildTable(activeTablesLeague);
+  const tbl = el("table", {class:"league-table"}, [
     el("thead", {}, el("tr", {}, [
-      el("th", { class: "pos" }, "#"),
-      el("th", { class: "team" }, "Team"),
-      el("th", { class: "num" }, "P"),
-      el("th", { class: "num" }, "W"),
-      el("th", { class: "num" }, "D"),
-      el("th", { class: "num" }, "L"),
-      el("th", { class: "num" }, "GD"),
-      el("th", { class: "pts" }, "Pts")
+      el("th", {class:"pos"}, "#"),
+      el("th", {class:"team"}, "Team"),
+      el("th", {class:"num"}, "P"),
+      el("th", {class:"num"}, "W"),
+      el("th", {class:"num"}, "D"),
+      el("th", {class:"num"}, "L"),
+      el("th", {class:"num"}, "GD"),
+      el("th", {class:"pts"}, "Pts")
     ])),
-    el("tbody", {}, table.map(r => el("tr", { class: r.clubId === state.userClubId ? "user-club" : "" }, [
-      el("td", { class: "pos" }, String(r.position)),
-      el("td", { class: "team" }, CLUBS[r.clubId].short),
-      el("td", { class: "num" }, String(r.played)),
-      el("td", { class: "num" }, String(r.won)),
-      el("td", { class: "num" }, String(r.drawn)),
-      el("td", { class: "num" }, String(r.lost)),
-      el("td", { class: "num" }, (r.gd >= 0 ? "+" : "") + r.gd),
-      el("td", { class: "pts" }, String(r.points))
-    ])))
+    el("tbody", {}, table.map(r => {
+      const posCls = r.position <= 4 ? "pos-ucl" : r.position >= table.length-2 ? "pos-rel" : "";
+      return el("tr", {class:r.clubId === state.userClubId ? "user-club" : ""}, [
+        el("td", {class:"pos " + posCls}, String(r.position)),
+        el("td", {class:"team", style:"display:flex;align-items:center;gap:8px"}, [
+          crestEl(r.clubId, 20),
+          clubName(r.clubId)
+        ]),
+        el("td", {class:"num"}, String(r.played)),
+        el("td", {class:"num"}, String(r.won)),
+        el("td", {class:"num"}, String(r.drawn)),
+        el("td", {class:"num"}, String(r.lost)),
+        el("td", {class:"num"}, (r.gd>=0?"+":"") + r.gd),
+        el("td", {class:"pts"}, String(r.points))
+      ]);
+    }))
   ]);
   root.appendChild(tbl);
 }
 
-/* ==================== MATCH FLOW ==================== */
+/* ============================================================
+   MATCH FLOW
+   ============================================================ */
 let currentMatch = null;
 
 function openPreMatch(fixtureId){
   const fixture = state.fixtures.find(f => f.id === fixtureId);
-  if (!fixture) return;
+  if(!fixture) return;
   const userIsHome = fixture.homeClubId === state.userClubId;
-  const userFormation = "4-3-3";
-  const userStyle = "balanced";
-
-  const userPicked = autoPickLineup(state.userClubId, userFormation);
+  let userFormation = state.userFormation || "4-3-3";
+  let userPicked;
+  if(state.userLineup && state.userLineup.length === 11 && state.userLineup.every(id => getPlayerById(id))){
+    const squad = getSquadWithState(state.userClubId);
+    const lineup = state.userLineup.map((id, i) => {
+      const p = squad.find(x => x.id === id);
+      return p ? {...p, assignedPos: FORMATIONS[userFormation][i]} : null;
+    }).filter(Boolean);
+    const bench = (state.userBench || []).map(id => squad.find(x => x.id === id)).filter(Boolean);
+    userPicked = {lineup, bench};
+  } else {
+    userPicked = autoPickLineup(state.userClubId, userFormation);
+  }
   const aiClubId = userIsHome ? fixture.awayClubId : fixture.homeClubId;
   const aiPicked = autoPickLineup(aiClubId, "4-3-3");
-
-  currentMatch = { fixture, userIsHome, userFormation, userStyle, userPicked, aiPicked, aiStyle: "balanced" };
-
+  currentMatch = {
+    fixture, userIsHome,
+    userFormation, userStyle:"balanced",
+    userPicked, aiPicked, aiStyle:"balanced"
+  };
   renderPreMatch();
   $("#match-overlay").classList.remove("hidden");
 }
@@ -1230,194 +1412,55 @@ function openPreMatch(fixtureId){
 function renderPreMatch(){
   const overlay = $("#match-overlay");
   clearEl(overlay);
-  const { fixture, userIsHome, userFormation, userStyle, userPicked } = currentMatch;
+  const {fixture, userIsHome, userFormation, userStyle, userPicked} = currentMatch;
 
-  const panel = el("div", { class: "match-panel" }, [
-    el("h2", { style: "margin-bottom:4px" }, CLUBS[fixture.homeClubId].short + " vs " + CLUBS[fixture.awayClubId].short),
-    el("div", { class: "card-sub", style: "margin-bottom:12px" }, "Pre-Match"),
+  const panel = el("div", {class:"match-panel"}, [
+    el("h2", {style:"margin-bottom:4px"},
+      clubName(fixture.homeClubId) + " vs " + clubName(fixture.awayClubId)),
+    el("div", {class:"card-sub", style:"margin-bottom:12px"}, "Pre-Match"),
 
-    el("div", { class: "manage-section" }, [
+    el("div", {class:"manage-section"}, [
       el("h3", {}, "Formation"),
       (() => {
-        const sel = el("select", { class: "manage-select" },
-          Object.keys(FORMATIONS).map(f => el("option", { value: f, selected: f === userFormation }, f)));
-        sel.onchange = e => { currentMatch.userFormation = e.target.value; refreshPreMatchLineups(); renderPreMatch(); };
+        const sel = el("select", {class:"manage-select"},
+          Object.keys(FORMATIONS).map(f => el("option", {value:f, selected:f===userFormation}, f)));
+        sel.onchange = e => {
+          currentMatch.userFormation = e.target.value;
+          currentMatch.userPicked = autoPickLineup(state.userClubId, currentMatch.userFormation);
+          renderPreMatch();
+        };
         return sel;
       })()
     ]),
 
-    el("div", { class: "manage-section" }, [
+    el("div", {class:"manage-section"}, [
       el("h3", {}, "Tactical Style"),
-      el("div", { class: "style-toggle" },
+      el("div", {class:"style-toggle"},
         ["attacking","balanced","defensive"].map(s =>
           el("button", {
-            class: "tab" + (s === userStyle ? " active" : ""),
-            onclick: () => { currentMatch.userStyle = s; renderPreMatch(); }
+            class:"tab" + (s === userStyle ? " active" : ""),
+            onclick:()=>{ currentMatch.userStyle = s; renderPreMatch(); }
           }, s.charAt(0).toUpperCase() + s.slice(1))
         )
       )
     ]),
 
-    el("div", { class: "manage-section" }, [
-      el("div", { class: "row-between", style: "margin-bottom:8px" }, [
-        el("h3", { style: "margin:0" }, "Starting XI — tap a player to swap"),
-      ]),
-      ...userPicked.lineup.map((p, idx) => el("div", {
-        class: "lineup-row", style: "cursor:pointer",
-        onclick: () => openSwapPicker({ mode: "prematch", slotIndex: idx })
-      }, [
-        el("div", { class: "player-pos " + posClass(p.assignedPos) }, p.assignedPos),
-        el("div", { class: "player-name" }, p.name),
-        el("div", { class: "lineup-rating mid" }, String(p.overall)),
-        el("div", { class: "lineup-stats" }, fatigueLabel(p.fatigue))
+    el("div", {class:"manage-section"}, [
+      el("h3", {}, "Starting XI"),
+      ...userPicked.lineup.map(p => el("div", {class:"lineup-row"}, [
+        el("div", {class:"player-pos " + posClass(p.assignedPos)}, p.assignedPos),
+        el("div", {class:"player-name"}, p.name),
+        el("div", {class:"lineup-rating mid"}, String(p.overall)),
+        el("div", {class:"lineup-stats"}, "")
       ]))
     ]),
 
-    el("div", { class: "match-actions" }, [
-      el("button", { class: "btn-ghost", onclick: closeMatch }, "Cancel"),
-      el("button", { class: "btn-primary", onclick: kickOff }, "Kick Off")
+    el("div", {class:"match-actions"}, [
+      el("button", {class:"btn-ghost", onclick:closeMatch}, "Cancel"),
+      el("button", {class:"btn-primary", onclick:kickOff}, "Kick Off")
     ])
   ]);
   overlay.appendChild(panel);
-}
-
-function refreshPreMatchLineups(){
-  currentMatch.userPicked = autoPickLineup(state.userClubId, currentMatch.userFormation);
-  // Re-apply manual picks by matching the PLAYER back into whichever slot best fits
-  // their natural position under the new formation — never by raw slot index, since
-  // slot 10 can mean "LW" in one formation and "ST" in another.
-  if (currentMatch.manualPickIds && currentMatch.manualPickIds.length){
-    applyManualPicks();
-  }
-}
-
-// Tracks manual starting-XI overrides as a plain list of player IDs the user chose
-// (position-independent) so formation changes re-fit them rather than reusing raw slot index.
-function applyManualPicks(){
-  const squad = getSquadWithState(state.userClubId);
-  const slots = FORMATIONS[currentMatch.userFormation] || FORMATIONS["4-3-3"];
-  const lineup = currentMatch.userPicked.lineup;
-  const usedIds = new Set(lineup.map(p => p.id));
-
-  for (const playerId of currentMatch.manualPickIds){
-    const player = squad.find(p => p.id === playerId);
-    if (!player) continue;
-    if (lineup.some(p => p.id === playerId)) continue; // already placed by auto-pick
-
-    // find the best-fit open slot for this player across the new formation
-    let bestSlotIdx = -1, bestScore = -1;
-    lineup.forEach((occupant, idx) => {
-      // only consider bumping players who were NOT also manually picked
-      if (currentMatch.manualPickIds.includes(occupant.id)) return;
-      const score = posFit(player.position, slots[idx]);
-      if (score > bestScore){ bestScore = score; bestSlotIdx = idx; }
-    });
-
-    if (bestSlotIdx === -1) continue; // no room (shouldn't normally happen)
-    const bumped = lineup[bestSlotIdx];
-    usedIds.delete(bumped.id);
-    lineup[bestSlotIdx] = { ...player, assignedPos: slots[bestSlotIdx] };
-    usedIds.add(player.id);
-  }
-
-  currentMatch.userPicked.bench = squad.filter(p => !usedIds.has(p.id));
-}
-
-/* ---------- SWAP PICKER (used for both pre-match XI edits and in-match subs) ---------- */
-function openSwapPicker({ mode, slotIndex }){
-  const overlay = $("#match-overlay");
-  const picker = el("div", { class: "match-panel", id: "swap-picker-panel" });
-
-  const isPrematch = mode === "prematch";
-  const picked = isPrematch ? currentMatch.userPicked : currentMatch.userPicked;
-  const outgoing = picked.lineup[slotIndex];
-  const slotPos = outgoing.assignedPos;
-
-  let subsUsed = 0, subsRemaining = MATCH.MAX_SUBS;
-  if (!isPrematch){
-    const sideSubs = currentMatch.userIsHome ? currentMatch.sim.homeSubs : currentMatch.sim.awaySubs;
-    subsUsed = sideSubs.length;
-    subsRemaining = MATCH.MAX_SUBS - subsUsed;
-  }
-
-  const bench = picked.bench || [];
-  const benchSorted = [...bench].sort((a,b) => scoreForSlot(b, slotPos) - scoreForSlot(a, slotPos));
-
-  picker.appendChild(el("h2", { style: "margin-bottom:4px" }, isPrematch ? "Replace " + outgoing.name : "Substitute " + outgoing.name));
-  picker.appendChild(el("div", { class: "card-sub", style: "margin-bottom:14px" },
-    isPrematch ? "Slot: " + slotPos : "Substitutions used: " + subsUsed + "/" + MATCH.MAX_SUBS));
-
-  if (!isPrematch && subsRemaining <= 0){
-    picker.appendChild(el("div", { class: "empty" }, "No substitutions remaining."));
-  } else if (benchSorted.length === 0){
-    picker.appendChild(el("div", { class: "empty" }, "No bench players available."));
-  } else {
-    for (const p of benchSorted){
-      const row = el("div", { class: "player-row", style: "cursor:pointer" }, [
-        el("div", { class: "player-pos " + posClass(p.position) }, p.position),
-        el("div", { class: "grow" }, [
-          el("div", { class: "player-name" }, p.name),
-          el("div", { class: "player-meta" }, fatigueLabel(p.fatigue) + " · " + moraleLabel(p.morale) )
-        ]),
-        el("div", { class: "player-ovr " + ratingClass(p.overall) }, String(p.overall)),
-        el("div", { class: "player-age" }, String(p.age))
-      ]);
-      row.onclick = () => {
-        if (isPrematch) confirmPrematchSwap(slotIndex, p);
-        else confirmInMatchSub(slotIndex, p);
-      };
-      picker.appendChild(row);
-    }
-  }
-
-  picker.appendChild(el("div", { class: "match-actions" }, [
-    el("button", { class: "btn-ghost", onclick: () => { isPrematch ? renderPreMatch() : renderManage(currentMatch._fromHalfTime); } }, "Back")
-  ]));
-
-  clearEl(overlay);
-  overlay.appendChild(picker);
-}
-
-function confirmPrematchSwap(slotIndex, incoming){
-  const outgoing = currentMatch.userPicked.lineup[slotIndex];
-  const slotPos = outgoing.assignedPos;
-  currentMatch.userPicked.lineup[slotIndex] = { ...incoming, assignedPos: slotPos };
-  currentMatch.userPicked.bench = currentMatch.userPicked.bench
-    .filter(p => p.id !== incoming.id)
-    .concat([outgoing]);
-
-  if (!currentMatch.manualPickIds) currentMatch.manualPickIds = [];
-  currentMatch.manualPickIds = currentMatch.manualPickIds.filter(id => id !== outgoing.id);
-  currentMatch.manualPickIds.push(incoming.id);
-
-  renderPreMatch();
-}
-
-function confirmInMatchSub(slotIndex, incoming){
-  const { sim, userIsHome } = currentMatch;
-  const lineup = userIsHome ? sim.homeLineup : sim.awayLineup;
-  const bench = userIsHome ? currentMatch.userPicked.bench : currentMatch.userPicked.bench;
-  const outgoing = lineup[slotIndex];
-  const slotPos = outgoing.assignedPos || outgoing.position;
-
-  lineup[slotIndex] = { ...incoming, assignedPos: slotPos };
-  currentMatch.userPicked.bench = bench.filter(p => p.id !== incoming.id).concat([outgoing]);
-
-  const subLog = userIsHome ? sim.homeSubs : sim.awaySubs;
-  subLog.push({ outId: outgoing.id, inId: incoming.id, minute: currentMatch.minute });
-
-  // log a visible sub event in the live feed
-  sim.events.splice(currentMatch.revealIdx, 0, {
-    minute: currentMatch.minute, type: "sub",
-    side: userIsHome ? "home" : "away",
-    playerId: incoming.id, subOutId: outgoing.id
-  });
-  sim.events.sort((a,b) => a.minute - b.minute);
-  // recompute revealIdx position since we inserted an event at/near current point
-  currentMatch.revealIdx = sim.events.findIndex(e => e === sim.events.find(x => x.minute === currentMatch.minute && x.type === "sub" && x.playerId === incoming.id));
-  if (currentMatch.revealIdx === -1) currentMatch.revealIdx = 0;
-
-  renderManage(currentMatch._fromHalfTime);
 }
 
 function closeMatch(){
@@ -1428,19 +1471,18 @@ function closeMatch(){
 let revealTimer = null;
 
 function kickOff(){
-  const { fixture, userIsHome, userFormation, userStyle, userPicked, aiPicked, aiStyle } = currentMatch;
-
+  const {fixture, userIsHome, userFormation, userStyle, userPicked, aiPicked, aiStyle} = currentMatch;
   const homeLineup = userIsHome ? userPicked.lineup : aiPicked.lineup;
   const awayLineup = userIsHome ? aiPicked.lineup : userPicked.lineup;
   const homeStyle = userIsHome ? userStyle : aiStyle;
   const awayStyle = userIsHome ? aiStyle : userStyle;
-
   const sim = simulateMatch(fixture, homeLineup, awayLineup, homeStyle, awayStyle);
   currentMatch.sim = sim;
   currentMatch.revealIdx = 0;
   currentMatch.minute = 0;
   currentMatch.paused = false;
-
+  currentMatch.finished = false;
+  currentMatch.halfTimeDone = false;
   renderLive();
   startReveal();
 }
@@ -1448,18 +1490,17 @@ function kickOff(){
 function renderLive(){
   const overlay = $("#match-overlay");
   clearEl(overlay);
-  const { fixture } = currentMatch;
-
-  const panel = el("div", { class: "match-panel" }, [
-    el("div", { id: "live-scoreboard" }, [
-      el("div", { id: "live-home-name" }, CLUBS[fixture.homeClubId].short),
-      el("div", { id: "live-score" }, "0 – 0"),
-      el("div", { id: "live-away-name" }, CLUBS[fixture.awayClubId].short),
-      el("div", { id: "live-minute" }, "0'")
+  const {fixture} = currentMatch;
+  const panel = el("div", {class:"match-panel"}, [
+    el("div", {id:"live-scoreboard"}, [
+      el("div", {id:"live-home-name"}, clubName(fixture.homeClubId)),
+      el("div", {id:"live-score"}, "0 – 0"),
+      el("div", {id:"live-away-name"}, clubName(fixture.awayClubId)),
+      el("div", {id:"live-minute"}, "0'")
     ]),
-    el("div", { id: "live-events" }),
-    el("div", { class: "match-actions" }, [
-      el("button", { class: "btn-primary", id: "pause-btn", onclick: onPauseClick }, "Pause / Manage")
+    el("div", {id:"live-events"}),
+    el("div", {class:"match-actions"}, [
+      el("button", {class:"btn-primary", id:"pause-btn", onclick:onPauseClick}, "Pause / Manage")
     ])
   ]);
   overlay.appendChild(panel);
@@ -1467,66 +1508,52 @@ function renderLive(){
 
 function startReveal(){
   clearTimeout(revealTimer);
-  const { sim } = currentMatch;
-
+  const {sim} = currentMatch;
   const step = () => {
-    if (currentMatch.paused || currentMatch.finished) return;
-
+    if(currentMatch.paused || currentMatch.finished) return;
     const ev = sim.events[currentMatch.revealIdx];
-    if (!ev){
-      // No more events — jump to 90 and finish
+    if(!ev){
       currentMatch.minute = 90;
       $("#live-minute").textContent = "90'";
       finishMatch();
       return;
     }
-
-    if (currentMatch.minute < ev.minute){
-      currentMatch.minute = Math.min(currentMatch.minute + 2, ev.minute);
+    if(currentMatch.minute < ev.minute){
+      currentMatch.minute = Math.min(currentMatch.minute + 1, ev.minute);
       $("#live-minute").textContent = currentMatch.minute + "'";
-
-      if (currentMatch.minute >= MATCH.HALF_TIME && !currentMatch.halfTimeDone){
+      if(currentMatch.minute >= MATCH.HALF_TIME && !currentMatch.halfTimeDone){
         currentMatch.halfTimeDone = true;
         currentMatch.paused = true;
         renderManage(true);
         return;
       }
-      revealTimer = setTimeout(step, 80);
+      revealTimer = setTimeout(step, MATCH.MINUTE_MS);
       return;
     }
-
-    // Reveal event
     $("#live-events").appendChild(renderEventItem(ev));
-    if (ev.type === "goal"){
-      $("#live-score").textContent = ev.homeScore + " – " + ev.awayScore;
-    }
+    if(ev.type === "goal") $("#live-score").textContent = ev.homeScore + " – " + ev.awayScore;
     currentMatch.revealIdx++;
     revealTimer = setTimeout(step, MATCH.REVEAL_MS);
   };
-
   revealTimer = setTimeout(step, 200);
 }
 
 function renderEventItem(ev){
-  const iconMap = { goal:"⚽", yellow:"🟨", red:"🟥", sub:"🔁", injury:"🚑" };
-  const clsMap = { goal:"goal", yellow:"card-yellow", red:"card-red", sub:"sub", injury:"injury" };
-  const p = ev.playerId ? PLAYERS[ev.playerId] : null;
-  const a = ev.assistId ? PLAYERS[ev.assistId] : null;
-  const subOut = ev.subOutId ? PLAYERS[ev.subOutId] : null;
-
+  const iconMap = {goal:"⚽",yellow:"🟨",red:"🟥",sub:"🔁",injury:"🚑"};
+  const clsMap = {goal:"goal",yellow:"card-yellow",red:"card-red",sub:"sub",injury:"injury"};
+  const p = ev.playerId ? getPlayerById(ev.playerId) : null;
+  const a = ev.assistId ? getPlayerById(ev.assistId) : null;
   let main = p ? p.name : "—";
   let detail = "";
-  if (ev.type === "goal") detail = a ? "Assist: " + a.name : "Unassisted";
-  if (ev.type === "sub"){ main = (p ? p.name : "—") + " ON"; detail = subOut ? subOut.name + " OFF" : ""; }
-
-  return el("div", { class: "event-item " + (clsMap[ev.type] || "") }, [
-    el("div", { class: "event-minute" }, ev.minute + "'"),
-    el("div", { class: "event-icon" }, iconMap[ev.type] || "•"),
+  if(ev.type === "goal") detail = a ? "Assist: " + a.name : "Unassisted";
+  return el("div", {class:"event-item " + (clsMap[ev.type] || "")}, [
+    el("div", {class:"event-minute"}, ev.minute + "'"),
+    el("div", {class:"event-icon"}, iconMap[ev.type] || "•"),
     el("div", {}, [
-      el("div", { class: "event-player" }, main),
-      detail ? el("div", { class: "event-detail" }, detail) : null
+      el("div", {class:"event-player"}, main),
+      detail ? el("div", {class:"event-detail"}, detail) : null
     ]),
-    ev.type === "goal" ? el("div", { class: "event-score" }, ev.homeScore + "–" + ev.awayScore) : el("div")
+    ev.type === "goal" ? el("div", {class:"event-score"}, ev.homeScore + "–" + ev.awayScore) : el("div")
   ]);
 }
 
@@ -1536,55 +1563,37 @@ function onPauseClick(){
 }
 
 function renderManage(fromHalfTime){
-  currentMatch._fromHalfTime = fromHalfTime;
   const overlay = $("#match-overlay");
   clearEl(overlay);
-  const { userStyle, userFormation, userPicked, sim, userIsHome } = currentMatch;
-
-  const subsUsed = (userIsHome ? sim.homeSubs : sim.awaySubs).length;
-
-  const panel = el("div", { class: "match-panel" }, [
-    el("h2", { style: "margin-bottom:12px" }, fromHalfTime ? "Half Time" : "Manage"),
-
-    el("div", { class: "manage-section" }, [
+  const {userStyle, userFormation} = currentMatch;
+  const panel = el("div", {class:"match-panel"}, [
+    el("h2", {style:"margin-bottom:12px"}, fromHalfTime ? "Half Time" : "Manage"),
+    el("div", {class:"manage-section"}, [
       el("h3", {}, "Formation"),
       (() => {
-        const sel = el("select", { class: "manage-select" },
-          Object.keys(FORMATIONS).map(f => el("option", { value: f, selected: f === userFormation }, f)));
+        const sel = el("select", {class:"manage-select"},
+          Object.keys(FORMATIONS).map(f => el("option", {value:f, selected:f===userFormation}, f)));
         sel.onchange = e => { currentMatch.userFormation = e.target.value; };
         return sel;
       })()
     ]),
-
-    el("div", { class: "manage-section" }, [
+    el("div", {class:"manage-section"}, [
       el("h3", {}, "Tactical Style"),
-      el("div", { class: "style-toggle" },
+      el("div", {class:"style-toggle"},
         ["attacking","balanced","defensive"].map(s =>
           el("button", {
-            class: "tab" + (s === userStyle ? " active" : ""),
-            onclick: () => { currentMatch.userStyle = s; renderManage(fromHalfTime); }
+            class:"tab" + (s === userStyle ? " active" : ""),
+            onclick:()=>{ currentMatch.userStyle = s; renderManage(fromHalfTime); }
           }, s.charAt(0).toUpperCase() + s.slice(1))
         )
       )
     ]),
-
-    el("div", { class: "manage-section" }, [
-      el("h3", {}, "Substitutions (" + subsUsed + "/" + MATCH.MAX_SUBS + ")"),
-      subsUsed >= MATCH.MAX_SUBS
-        ? el("div", { class: "card-sub" }, "No substitutions remaining.")
-        : el("div", {}, (userIsHome ? sim.homeLineup : sim.awayLineup).map((p, idx) => el("div", {
-            class: "lineup-row", style: "cursor:pointer",
-            onclick: () => openSwapPicker({ mode: "inmatch", slotIndex: idx })
-          }, [
-            el("div", { class: "player-pos " + posClass(p.assignedPos || p.position) }, p.assignedPos || p.position),
-            el("div", { class: "player-name" }, p.name),
-            el("div", { class: "lineup-rating mid" }, fatigueLabel(p.fatigue)),
-            el("div", { class: "lineup-stats" }, "Sub off")
-          ])))
+    el("div", {class:"manage-section"}, [
+      el("h3", {}, "Substitutions"),
+      el("div", {class:"card-sub"}, "Sub management coming in next update.")
     ]),
-
-    el("div", { class: "match-actions" }, [
-      el("button", { class: "btn-primary", onclick: resumeMatch }, "Resume")
+    el("div", {class:"match-actions"}, [
+      el("button", {class:"btn-primary", onclick:resumeMatch}, "Resume")
     ])
   ]);
   overlay.appendChild(panel);
@@ -1593,15 +1602,14 @@ function renderManage(fromHalfTime){
 function resumeMatch(){
   currentMatch.paused = false;
   renderLive();
-  // Restore previous events
   const sim = currentMatch.sim;
-  for (let i = 0; i < currentMatch.revealIdx; i++){
+  for(let i=0;i<currentMatch.revealIdx;i++){
     $("#live-events").appendChild(renderEventItem(sim.events[i]));
   }
-  if (currentMatch.minute > 0){
+  if(currentMatch.minute > 0){
     $("#live-minute").textContent = currentMatch.minute + "'";
     const goalsSoFar = sim.events.slice(0, currentMatch.revealIdx).filter(e => e.type === "goal");
-    if (goalsSoFar.length){
+    if(goalsSoFar.length){
       const last = goalsSoFar[goalsSoFar.length - 1];
       $("#live-score").textContent = last.homeScore + " – " + last.awayScore;
     }
@@ -1611,31 +1619,23 @@ function resumeMatch(){
 
 function finishMatch(){
   currentMatch.finished = true;
-  const { sim, fixture } = currentMatch;
-
-  // Commit
+  const {sim, fixture} = currentMatch;
   fixture.played = true;
   fixture.homeScore = sim.finalScore.home;
   fixture.awayScore = sim.finalScore.away;
 
-  // Fatigue
-  for (const p of [...sim.homeLineup, ...sim.awayLineup]){
+  for(const p of [...sim.homeLineup, ...sim.awayLineup]){
     const ps = state.playerStates[p.id];
-    if (ps){ ps.fatigue = Math.max(0, ps.fatigue - 12); ps.minutesThisSeason += 90; ps.matchesThisSeason++; }
+    if(ps){ ps.fatigue = Math.max(0, ps.fatigue - 12); ps.minutesThisSeason += 90; ps.matchesThisSeason++; }
   }
 
-  // Advance matchday if user's fixture is done
   state.matchday = fixture.matchday;
-  const nextUserFixture = state.fixtures.find(f =>
+  const nextUserFix = state.fixtures.find(f =>
     (f.homeClubId === state.userClubId || f.awayClubId === state.userClubId) && !f.played && f.matchday > state.matchday);
-  if (nextUserFixture){
-    state.currentDate = nextUserFixture.date;
-  }
+  if(nextUserFix) state.currentDate = nextUserFix.date;
 
-  saveState();
-
-  // Play all other fixtures in this matchday
-  for (const f of state.fixtures.filter(x => x.matchday === fixture.matchday && !x.played)){
+  // Auto-play other fixtures from same matchday in same league
+  for(const f of state.fixtures.filter(x => x.leagueId === fixture.leagueId && x.matchday === fixture.matchday && !x.played)){
     const hL = autoPickLineup(f.homeClubId, "4-3-3").lineup;
     const aL = autoPickLineup(f.awayClubId, "4-3-3").lineup;
     const s = simulateMatch(f, hL, aL, "balanced", "balanced");
@@ -1643,87 +1643,174 @@ function finishMatch(){
     f.homeScore = s.finalScore.home;
     f.awayScore = s.finalScore.away;
   }
-  saveState();
 
+  saveState();
   renderResult();
 }
 
 function renderResult(){
   const overlay = $("#match-overlay");
   clearEl(overlay);
-  const { sim, fixture } = currentMatch;
+  const {sim, fixture} = currentMatch;
+  const home = CLUBS[fixture.homeClubId];
+  const away = CLUBS[fixture.awayClubId];
 
-  const panel = el("div", { class: "match-panel" }, [
-    el("div", { id: "result-banner" }, [
-      el("div", { class: "rb-team home" }, CLUBS[fixture.homeClubId].short),
-      el("div", { class: "rb-score" }, sim.finalScore.home + " – " + sim.finalScore.away),
-      el("div", { class: "rb-team away" }, CLUBS[fixture.awayClubId].short),
-      el("div", { class: "rb-status" }, "Full Time")
+  const panel = el("div", {class:"match-panel"}, [
+    el("div", {id:"result-banner"}, [
+      el("div", {class:"rb-side"}, [crestEl(fixture.homeClubId, 48), el("div", {class:"rb-team"}, home.short)]),
+      el("div", {class:"rb-score"}, sim.finalScore.home + " – " + sim.finalScore.away),
+      el("div", {class:"rb-side"}, [crestEl(fixture.awayClubId, 48), el("div", {class:"rb-team"}, away.short)]),
+      el("div", {class:"rb-status"}, "Full Time")
     ]),
-    el("div", { class: "tab-bar" }, [
-      el("button", { class: "tab active", id: "tab-events" }, "Events"),
-      el("button", { class: "tab", id: "tab-teams" }, "Teams")
+    el("div", {class:"tab-bar", id:"result-tabs"}, [
+      el("button", {class:"tab active", "data-tab":"events"}, "Events"),
+      el("button", {class:"tab", "data-tab":"teams"}, "Teams")
     ]),
-    el("div", { id: "result-events" }),
-    el("div", { id: "result-teams", class: "hidden" }),
-    el("div", { class: "match-actions" }, [
-      el("button", { class: "btn-primary", onclick: () => { closeMatch(); showScreen("dashboard"); } }, "Continue")
+    el("div", {id:"result-events", class:"tab-panel"}),
+    el("div", {id:"result-teams", class:"tab-panel hidden"}),
+    el("div", {class:"match-actions"}, [
+      el("button", {class:"btn-primary", onclick:()=>{ closeMatch(); showScreen("dashboard"); }}, "Continue")
     ])
   ]);
   overlay.appendChild(panel);
 
   const evContainer = panel.querySelector("#result-events");
-  for (const ev of sim.events) evContainer.appendChild(renderEventItem(ev));
+  panel.querySelector("#result-events").appendChild(
+    el("div", {class:"event-item ht"}, [
+      el("div", {class:"event-minute"}, "HT"),
+      el("div", {class:"event-icon"}, ""),
+      el("div", {}, el("div", {class:"event-player"}, "Half Time")),
+      el("div", {class:"event-score"}, "—")
+    ])
+  );
+  for(const ev of sim.events) evContainer.appendChild(renderEventItem(ev));
+  evContainer.appendChild(
+    el("div", {class:"event-item ft"}, [
+      el("div", {class:"event-minute"}, "FT"),
+      el("div", {class:"event-icon"}, ""),
+      el("div", {}, el("div", {class:"event-player"}, "Full Time")),
+      el("div", {class:"event-score"}, sim.finalScore.home + "–" + sim.finalScore.away)
+    ])
+  );
 
   const teamsContainer = panel.querySelector("#result-teams");
-  teamsContainer.appendChild(renderLineup("home", sim));
-  teamsContainer.appendChild(renderLineup("away", sim));
+  teamsContainer.appendChild(renderLineupBlock("home", sim));
+  teamsContainer.appendChild(renderLineupBlock("away", sim));
 
-  panel.querySelector("#tab-events").onclick = () => {
-    panel.querySelector("#tab-events").classList.add("active");
-    panel.querySelector("#tab-teams").classList.remove("active");
-    evContainer.classList.remove("hidden");
-    teamsContainer.classList.add("hidden");
-  };
-  panel.querySelector("#tab-teams").onclick = () => {
-    panel.querySelector("#tab-teams").classList.add("active");
-    panel.querySelector("#tab-events").classList.remove("active");
-    teamsContainer.classList.remove("hidden");
-    evContainer.classList.add("hidden");
-  };
+  panel.querySelectorAll("#result-tabs .tab").forEach(t => {
+    t.onclick = () => {
+      panel.querySelectorAll("#result-tabs .tab").forEach(x => x.classList.remove("active"));
+      t.classList.add("active");
+      const target = t.dataset.tab;
+      panel.querySelector("#result-events").classList.toggle("hidden", target !== "events");
+      panel.querySelector("#result-teams").classList.toggle("hidden", target !== "teams");
+    };
+  });
 }
 
-function renderLineup(side, sim){
+function renderLineupBlock(side, sim){
   const lineup = side === "home" ? sim.homeLineup : sim.awayLineup;
   const clubId = side === "home" ? sim.fixture.homeClubId : sim.fixture.awayClubId;
-  const block = el("div", { class: "lineup-block" }, [
-    el("div", { class: "lineup-title" }, CLUBS[clubId].name)
+  const block = el("div", {class:"lineup-block"}, [
+    el("div", {class:"lineup-title"}, [crestEl(clubId, 24), CLUBS[clubId].name])
   ]);
-  for (const p of lineup){
-    const r = sim.ratings[p.id] || { rating: 6, goals: 0, assists: 0 };
+  for(const p of lineup){
+    const r = sim.ratings[p.id] || {rating:6, goals:0, assists:0};
     const stats = [];
-    if (r.goals) stats.push(r.goals + "G");
-    if (r.assists) stats.push(r.assists + "A");
+    if(r.goals) stats.push(r.goals + "G");
+    if(r.assists) stats.push(r.assists + "A");
     const ratingCls = r.rating >= 7.5 ? "high" : r.rating >= 6 ? "mid" : "low";
-    block.appendChild(el("div", { class: "lineup-row" }, [
-      el("div", { class: "player-pos " + posClass(p.position) }, p.position),
-      el("div", { class: "player-name" }, p.name),
-      el("div", { class: "lineup-rating " + ratingCls }, r.rating.toFixed(1)),
-      el("div", { class: "lineup-stats" }, stats.join(" · ") || "—")
+    block.appendChild(el("div", {class:"lineup-row"}, [
+      el("div", {class:"player-pos " + posClass(p.position)}, p.position),
+      el("div", {class:"player-name"}, p.name),
+      el("div", {class:"lineup-rating " + ratingCls}, r.rating.toFixed(1)),
+      el("div", {class:"lineup-stats"}, stats.join(" · ") || "—")
     ]));
   }
   return block;
 }
 
-/* ==================== BOOT ==================== */
+/* ============================================================
+   CLUB SELECT
+   ============================================================ */
+let clubSelectLeague = "premier-league";
+function renderClubSelect(){
+  const screens = $("#screens");
+  clearEl(screens);
+  $("#topbar").style.display = "none";
+  $("#bottomnav").style.display = "none";
+  const wrap = el("div", {class:"screen active"}, [
+    el("h1", {style:"text-align:center;margin-top:20px;margin-bottom:4px"}, "Football Manager"),
+    el("p", {class:"muted center mb-3"}, "2026/27 Season · Choose Your Club"),
+    el("div", {class:"tab-bar", id:"club-select-tabs"},
+      LEAGUE_ORDER.map(lid =>
+        el("button", {
+          class:"tab" + (lid === clubSelectLeague ? " active" : ""),
+          onclick:()=>{ clubSelectLeague = lid; renderClubSelect(); }
+        }, LEAGUES[lid].name)
+      )
+    ),
+    el("div", {id:"club-list"})
+  ]);
+  screens.appendChild(wrap);
+  const list = $("#club-list");
+  const clubs = LEAGUES[clubSelectLeague].clubIds
+    .map(id => CLUBS[id])
+    .sort((a,b) => b.rating - a.rating);
+  for(const c of clubs){
+    const card = el("div", {class:"player-row", style:"grid-template-columns:40px 1fr 46px auto"}, [
+      crestEl(c.id, 32),
+      el("div", {class:"grow"}, [
+        el("div", {class:"player-name"}, c.name),
+        el("div", {class:"player-meta"}, formatMoney(c.budget) + " budget")
+      ]),
+      el("div", {class:"player-ovr " + ratingClass(c.rating)}, String(c.rating)),
+      el("div", {class:"player-age"}, "")
+    ]);
+    card.onclick = () => {
+      if(!confirm("Manage " + c.name + "?")) return;
+      initStateFor(c.id);
+      saveState();
+      $("#topbar").style.display = "";
+      $("#bottomnav").style.display = "";
+      showScreen("dashboard");
+    };
+    list.appendChild(card);
+  }
+}
+
+/* ============================================================
+   BOOT
+   ============================================================ */
 function boot(){
-  // Wire nav
-  document.querySelectorAll(".nav-btn").forEach(b => {
-    b.onclick = () => showScreen(b.dataset.screen);
+  // wire nav
+  $$(".nav-btn").forEach(b => {
+    b.addEventListener("click", () => showScreen(b.dataset.screen));
   });
 
-  // Load or start new
-  if (loadState() && state.userClubId){
+  // load external player data if present, otherwise use placeholder
+  const externalScript = document.createElement("script");
+  externalScript.src = "data/players.js";
+  externalScript.onload = () => {
+    if(window.FM_PLAYERS && Array.isArray(window.FM_PLAYERS) && window.FM_PLAYERS.length > 0){
+      state.allPlayers = window.FM_PLAYERS;
+      console.log("Loaded " + state.allPlayers.length + " external players");
+    } else {
+      state.allPlayers = PLACEHOLDER_PLAYERS;
+      console.log("data/players.js loaded but empty — using placeholder");
+    }
+    bootWithPlayers();
+  };
+  externalScript.onerror = () => {
+    state.allPlayers = PLACEHOLDER_PLAYERS;
+    console.log("data/players.js not found — using placeholder");
+    bootWithPlayers();
+  };
+  document.head.appendChild(externalScript);
+}
+
+function bootWithPlayers(){
+  if(loadState() && state.userClubId && CLUBS[state.userClubId]){
     $("#topbar").style.display = "";
     $("#bottomnav").style.display = "";
     showScreen("dashboard");
@@ -1732,40 +1819,7 @@ function boot(){
   }
 }
 
-function renderClubSelect(){
-  const screens = $("#screens");
-  clearEl(screens);
-  $("#topbar").style.display = "none";
-  $("#bottomnav").style.display = "none";
-
-  const wrap = el("div", { class: "screen active" }, [
-    el("h1", { style: "text-align:center;margin-bottom:6px;margin-top:20px" }, "Football Manager"),
-    el("p", { class: "muted center", style: "margin-bottom:20px" }, "2026/27 Season · Choose Your Club"),
-    ...Object.keys(CLUBS).sort((a,b) => CLUBS[b].rating - CLUBS[a].rating).map(cid => {
-      const c = CLUBS[cid];
-      const card = el("div", { class: "player-row", style: "grid-template-columns:1fr auto auto" }, [
-        el("div", { class: "grow" }, [
-          el("div", { class: "player-name" }, c.name),
-          el("div", { class: "player-meta" }, "Budget " + formatMoney(c.budget))
-        ]),
-        el("div", { class: "player-ovr " + ratingClass(c.rating) }, String(c.rating)),
-        el("div", { class: "player-age" }, "")
-      ]);
-      card.onclick = () => {
-        if (!confirm("Manage " + c.name + "?")) return;
-        initStateFor(cid);
-        saveState();
-        $("#topbar").style.display = "";
-        $("#bottomnav").style.display = "";
-        showScreen("dashboard");
-      };
-      return card;
-    })
-  ]);
-  screens.appendChild(wrap);
-}
-
-boot();
+document.addEventListener("DOMContentLoaded", boot);
 </script>
 </body>
 </html>
